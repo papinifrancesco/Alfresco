@@ -3,7 +3,7 @@
 # Backup of Alfresco
 
 # Written by Chris Newald – localized by Clint Davis Feb 2017
-
+# modified for Alfresco 6.0 community edition by Francesco Papini Sep 2018
  
 
 # Configuration:
@@ -14,13 +14,13 @@ TIMESTAMP=$( date +%Y%m%d%H%M%S ) # Create timestamp
 
 DUMP_NUM=10 # Number of backups to keep
 
-AL_FOLDER="/opt/alfresco-community" # Alfresco folder
+AL_FOLDER="/opt/alfresco-content-services" # Alfresco folder
 
-AL_DATA="/opt/alfresco-community/alf_data" # Alfresco data folder
+AL_DATA="/opt/alfresco-content-services/alf_data" # Alfresco data folder
 
 TARGET_FOLDER=”/backup” # Backup destination folder
 
-DB_HOME="/opt/alfresco-community/postgresql" # PostgreSQL folder
+DB_HOME="/opt/alfresco-content-services/postgresql" # PostgreSQL folder
 
  
 
