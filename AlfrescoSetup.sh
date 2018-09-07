@@ -2,7 +2,7 @@ reset
 
 export AlfrescoBaseDir="/home/fra/Downloads/alfresco-content-services-community-distribution-6.0.7-ga"
 
-export AlfrescoServer="192.168.122.184"
+export AlfrescoServer="192.168.122.45"
 
 export CATALINA_HOME="/opt/tomcat"
 
@@ -13,7 +13,7 @@ scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/web
 scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
 
 # JDBC driver not needed:
-# scp -r $AlfrescoBaseDir/web-server/shared/lib $AlfrescoServer:$CATALINA_HOME/lib
+# scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
 
 scp $AlfrescoBaseDir/web-server/conf/Catalina/localhost/*.xml $AlfrescoServer:$CATALINA_HOME/conf
