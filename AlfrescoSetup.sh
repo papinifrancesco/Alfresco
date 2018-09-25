@@ -1,12 +1,16 @@
 reset
-
+# copy the tomcat folder into AlfrescoBaseDir first!
 export AlfrescoBaseDir="/home/fra/Downloads/alfresco-content-services-community-distribution-6.0.7-ga"
 
-export AlfrescoServer="192.168.122.45"
+export AlfrescoServer="192.168.122.44"
 
-export CATALINA_HOME="/opt/tomcat"
+export AlfrescoHome="/opt/alfresco-content-services"
 
+export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 
+scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
+
+ssh $AlfrescoServer md $CATALINA_HOME/webapps
 
 scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
@@ -31,7 +35,7 @@ scp $AlfrescoBaseDir/web-server/conf/Catalina/localhost/*.xml $AlfrescoServer:$C
 # GRANT ALL PRIVILEGES ON alfresco.* TO 'alfresco'@'%';	
 
 
-
-
-
-
+# PostgreSQL , psql
+CREATE USER alfresco WITH PASSWORD 'admin';
+CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
+GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
