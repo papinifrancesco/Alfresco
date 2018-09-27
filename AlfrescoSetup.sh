@@ -12,6 +12,11 @@ scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
 
 ssh $AlfrescoServer md $CATALINA_HOME/webapps
 
+# create these folders!
+ssh $AlfrescoServer "md $AlfrscoBaseDir/modules;
+                     md $AlfrscoBaseDir/modules/platform;
+                     md $AlfrscoBaseDir/modules/share;"
+
 scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
 scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
@@ -19,9 +24,12 @@ scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
-
+# alfresco.xml and share.xml MUST be present in the destination folder
 scp $AlfrescoBaseDir/web-server/conf/Catalina/localhost/*.xml $AlfrescoServer:$CATALINA_HOME/conf
 
+# to stop Tomcat, ALWAYS use [...]/shutdown.sh 300 -force
+
+# remember the setEnv.sh
 
 
 # Database and user setup
