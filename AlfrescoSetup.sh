@@ -79,7 +79,9 @@ alfresco.rmi.services.host=0.0.0.0
 
 # unzip the .war files, don't let Tomcat do it (you can 
 # but we want to make a few mods before Tomcat starts).
-
+unzip $CATALINA_HOME/webapps/alfresco.war
+unzip $CATALINA_HOME/webapps/share.war
+unzip $CATALINA_HOME/webapps/ROOT.war
 
 
 # install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
