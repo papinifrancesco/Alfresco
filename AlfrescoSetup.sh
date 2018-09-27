@@ -34,6 +34,10 @@ scp postgresql-42.2.5.jar $AlfrescoServer:$CATALINA_HOME/lib
 # check that $CATALINA_HOME/conf/catalina.properties has:
 shared.loader=${catalina.base}/shared/classes
 
+# check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
+export CATALINA_PID=/opt/alfresco/tomcat/temp/catalina.pid
+export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64/
+
 
 # edit $CATALINA_HOME/conf/server.xml so that:
 <Connector port="8080" 
