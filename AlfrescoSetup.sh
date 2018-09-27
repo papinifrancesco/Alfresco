@@ -12,10 +12,10 @@ scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
 
 
 # create these folders!
-ssh $AlfrescoServer "md $AlfrescoHome/modules
-                     md $AlfrescoHome/modules/platform
-                     md $AlfrescoHome/modules/share
-                     md $CATALINA_HOME/webapps"
+ssh $AlfrescoServer "mkdir $AlfrescoHome/modules
+                     mkdir $AlfrescoHome/modules/platform
+                     mkdir $AlfrescoHome/modules/share
+                     mkdir $CATALINA_HOME/webapps"
 
 scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
