@@ -85,10 +85,12 @@ unzip $CATALINA_HOME/webapps/ROOT.war
 
 
 # install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
-$AlfrescoHome/bin/apply_amps.sh
+$AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco.war
 
-# define logging for all the web apps: $CATALINA_HOME/webapps/ * /WEB-INF/classes/log4j.properties
-
+# define logging for the web apps:
+# $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
+# $CATALINA_HOME/webapps/share/WEB-INF/classes/log4j.properties
+log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 
 # to stop Tomcat, ALWAYS use [...]/shutdown.sh 300 -force
 
