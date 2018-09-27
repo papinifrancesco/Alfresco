@@ -10,12 +10,12 @@ export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 
 scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
 
-ssh $AlfrescoServer md $CATALINA_HOME/webapps
 
 # create these folders!
-ssh $AlfrescoServer "md $AlfrscoBaseDir/modules
-                     md $AlfrscoBaseDir/modules/platform
-                     md $AlfrscoBaseDir/modules/share"
+ssh $AlfrescoServer "md $AlfrescoHome/modules
+                     md $AlfrescoHome/modules/platform
+                     md $AlfrescoHome/modules/share
+                     md $CATALINA_HOME/webapps"
 
 scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
@@ -35,8 +35,8 @@ scp postgresql-42.2.5.jar $AlfrescoServer:$CATALINA_HOME/lib
 shared.loader=${catalina.base}/shared/classes
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
-export CATALINA_PID=/opt/alfresco/tomcat/temp/catalina.pid
-export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64/
+export CATALINA_PID=/opt/alfresco-content-services/tomcat/temp/catalina.pid
+export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64
 
 
 # edit $CATALINA_HOME/conf/server.xml so that:
@@ -58,11 +58,13 @@ export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64/
   <user username="tomcat" password="tomcat" roles="manager,admin"/>
 
 
+# install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
+$AlfrescoHome/bin/apply_amps.sh
+
 
 
 # to stop Tomcat, ALWAYS use [...]/shutdown.sh 300 -force
 
-# remember the setEnv.sh
 
 
 # Database and user setup
@@ -76,7 +78,7 @@ export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64/
 # GRANT ALL PRIVILEGES ON alfresco.* TO 'alfresco'@'%';	
 
 
-# PostgreSQL , psql
+# on the DB server: PostgreSQL , psql
 CREATE USER alfresco WITH PASSWORD 'admin';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
