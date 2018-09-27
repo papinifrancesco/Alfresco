@@ -39,6 +39,25 @@ export CATALINA_PID=/opt/alfresco-content-services/tomcat/temp/catalina.pid
 export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64
 
 
+# edit $CATALINA_HOME/shared/classes/alfresco-global.properties and check:
+dir.root=/opt/alfresco-content-services/alf_data
+dir.keystore=${dir.root}/keystore
+db.username=alfresco
+db.password=alfresco
+db.schema.update=true
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://192.168.122.45:5432/alfresco
+alfresco.context=alfresco
+alfresco.host=alfresco6
+alfresco.port=8080
+alfresco.protocol=http
+share.context=share
+share.host=alfresco6
+share.port=8080
+share.protocol=http
+alfresco.rmi.services.host=0.0.0.0
+
+
 # edit $CATALINA_HOME/conf/server.xml so that:
 <Connector port="8080" 
     protocol="HTTP/1.1"
@@ -58,9 +77,15 @@ export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64
   <user username="tomcat" password="tomcat" roles="manager,admin"/>
 
 
+# unzip the .war files, don't let Tomcat do it (you can 
+# but we want to make a few mods before Tomcat starts).
+
+
+
 # install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
 $AlfrescoHome/bin/apply_amps.sh
 
+# define logging for all the web apps: $CATALINA_HOME/webapps/ * /WEB-INF/classes/log4j.properties
 
 
 # to stop Tomcat, ALWAYS use [...]/shutdown.sh 300 -force
@@ -79,6 +104,7 @@ $AlfrescoHome/bin/apply_amps.sh
 
 
 # on the DB server: PostgreSQL , psql
-CREATE USER alfresco WITH PASSWORD 'admin';
+psql -U postgres
+CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
