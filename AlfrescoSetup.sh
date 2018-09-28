@@ -15,11 +15,12 @@ scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
 ssh $AlfrescoServer "mkdir $AlfrescoHome/modules
                      mkdir $AlfrescoHome/modules/platform
                      mkdir $AlfrescoHome/modules/share
+                     mkdir $CATALINA_HOME/shared
                      mkdir $CATALINA_HOME/webapps"
 
 scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
-scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
+########################scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
 
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
