@@ -1,8 +1,12 @@
 reset
 # copy the tomcat folder into AlfrescoBaseDir first!
-export AlfrescoBaseDir="/home/fra/Downloads/alfresco-content-services-community-distribution-6.0.7-ga-TAI"
+# export AlfrescoBaseDir="/home/fra/Downloads/alfresco-content-services-community-distribution-6.0.7-ga-TAI"
 
-export AlfrescoServer="192.168.122.44"
+# export AlfrescoServer="192.168.122.44"
+
+# extract the Alfresco archive in /opt/alfresco-content-services
+# extract the Tomcat archive in /opt/alfresco-content-services/tomcat
+
 
 export AlfrescoHome="/opt/alfresco-content-services"
 
@@ -17,10 +21,9 @@ ssh $AlfrescoServer "mkdir $AlfrescoHome/modules
                      mkdir $AlfrescoHome/modules/share
                      mkdir $CATALINA_HOME/shared
                      mkdir $CATALINA_HOME/webapps"
+cp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
 
-scp $AlfrescoBaseDir/web-server/webapps/*.war $AlfrescoServer:$CATALINA_HOME/webapps/
-
-########################scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
+scp -r $AlfrescoBaseDir/web-server/shared/classes $AlfrescoServer:$CATALINA_HOME/shared/
 
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
@@ -80,13 +83,14 @@ alfresco.rmi.services.host=0.0.0.0
 
 # unzip the .war files, don't let Tomcat do it (you can 
 # but we want to make a few mods before Tomcat starts).
-unzip $CATALINA_HOME/webapps/alfresco.war
-unzip $CATALINA_HOME/webapps/share.war
-unzip $CATALINA_HOME/webapps/ROOT.war
+cd $CATALINA_HOME/webapps
+unzip -d alfresco/ alfresco.war
+unzip -d share/ share.war
+unzip -d ROOT/ ROOT.war
 
 
 # install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
-$AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco.war
+java -jar $AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
 
 # define logging for the web apps:
 # $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
