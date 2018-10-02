@@ -16,6 +16,7 @@ export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 
 
 # create these folders!
+mkdir $AlfrescoHome/amps_share
 mkdir $AlfrescoHome/modules
 mkdir $AlfrescoHome/modules/platform
 mkdir $AlfrescoHome/modules/share
