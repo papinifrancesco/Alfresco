@@ -124,3 +124,25 @@ psql -U postgres
 CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+
+
+
+# Alfresco should start without problems!
+
+######### LibreOffice install #########
+# Libraries
+
+yum install -y libfontconfig   \
+               libICE libSM    \
+               libXrender      \
+               libXext         \
+               libXinerama     \
+               libcups         \
+               libGLU          \
+               libcairo2       \
+               libgl1-mesa-glx
+
+
+# download and extract LibreOffice for your platform
+CD to the RPMS directory and remove any files with gnome in the filename. That is, rm *gnome* 
+
