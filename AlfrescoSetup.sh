@@ -132,17 +132,32 @@ GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 ######### LibreOffice install #########
 # Libraries
 
-yum install -y libfontconfig   \
+yum install -y libXinerama     \
+               libGLU          \
+               libfontconfig   \
                libICE libSM    \
                libXrender      \
                libXext         \
-               libXinerama     \
-               libcups         \
-               libGLU          \
+               libcups         \               
                libcairo2       \
                libgl1-mesa-glx
 
 
 # download and extract LibreOffice for your platform
-CD to the RPMS directory and remove any files with gnome in the filename. That is, rm *gnome* 
+# CD to the RPMS directory and remove any files with gnome , kde in the filename. 
+rm *gnome* 
+rm *kde*
+# rpm -i libreoffice6.1-ure-6.1.2.1-1.x86_64.rpm
+# rpm -i *core*
+# run the command below as many times as needed
+# not elegant but it is cheap
+for i in `ls *.rpm` ; do rpm -i $i ; done
+
+# Ignore any desktop update not found error messages.  You can remove the rpm files after installation
+
+# LibreOffice will be probably installed in /opt/LibreOffice6.1 make a symlink then
+ln -sf /opt/libreoffice6.1/ /opt/alfresco-content-services/LibreOffice/
+
+
+
 
