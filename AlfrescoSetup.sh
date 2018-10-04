@@ -106,19 +106,8 @@ java -jar $AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco
 log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 
 
-# to stop Tomcat, ALWAYS use [...]/shutdown.sh 300 -force
-
-
-
-# Database and user setup
-# http://docs.alfresco.com/6.0/concepts/mariadb-config.html
-# mysql -u root
-#
-# DROP DATABASE `alfresco`;
-# CREATE DATABASE `alfresco` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-# DA FARE : COLLATE utf8_bin , controllare
-# CREATE USER 'alfresco'@'%' IDENTIFIED BY 'alfresco';
-# GRANT ALL PRIVILEGES ON alfresco.* TO 'alfresco'@'%';	
+# to stop Tomcat, ALWAYS use:
+$CATALINA_HOME/bin/shutdown.sh 300 -force
 
 
 # on the DB server: PostgreSQL , psql
@@ -127,8 +116,9 @@ CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 
-# Alfresco should start without problems!
 
+# Alfresco should start without problems!
+$CATALINA_HOME/bin/startup.sh
 
 
 ######### LibreOffice install #########
@@ -148,27 +138,34 @@ yum install -y libXinerama     \
 
 
 # download and extract LibreOffice for your platform
+# http://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
+wget http://ftp.rz.tu-bs.de/pub/mirror/tdf/tdf-pub/libreoffice/stable/5.2.1/rpm/x86_64/LibreOffice_5.2.1_Linux_x86-64_rpm.tar.gz
+tar -xzf LibreOffice_5.2.1_Linux_x86-64_rpm.tar.gz
+
 # CD to the RPMS directory and remove any files with gnome , kde in the filename. 
 rm *gnome* 
 rm *kde*
-# rpm -i libreoffice6.1-ure-6.1.2.1-1.x86_64.rpm
-# rpm -i *core*
-# run the command below as many times as needed
-# not elegant but it is cheap
-for i in `ls *.rpm` ; do rpm -i $i ; done
+rm *freedesktop-menus*
+# yum install -y 
+yum install -y *.rpm
 
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
-# LibreOffice will be probably installed in /opt/LibreOffice6.1 make a symlink then
-ln -sf /opt/libreoffice6.1/ /opt/alfresco-content-services/LibreOffice/
+# LibreOffice will be probably installed in /opt/LibreOffice5.2 make a symlink then
+ln -sf /opt/libreoffice5.2/ /opt/alfresco-content-services/LibreOffice/
 
 # jodConverter.maxTasksPerProcess=100
 # Do not include a slash (/) at the end of the path:
-# jodconverter.officeHome=/opt/libreoffice6.1
-vi /opt/alfresco-content-services/tomcat/shared/classes/alfresco-global.properties
+# jodconverter.officeHome=/opt/alfresco/LibreOffice
+vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
 ######### ImageMagick install #########
+# EPEL is your friend, so:
+yum install epel-release
+
+# CONTROLLARE SOTTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # decide how to install, two paths are possible both with pros and cons
 # path 1 , easy install but everything is in different folders (as per FHS):
 yum install -y ImageMagick ImageMagick-c++
