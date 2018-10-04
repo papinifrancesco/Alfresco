@@ -127,9 +127,9 @@ CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 
-
-
 # Alfresco should start without problems!
+
+
 
 ######### LibreOffice install #########
 # Libraries
@@ -163,7 +163,21 @@ for i in `ls *.rpm` ; do rpm -i $i ; done
 ln -sf /opt/libreoffice6.1/ /opt/alfresco-content-services/LibreOffice/
 
 # jodConverter.maxTasksPerProcess=100
+# Do not include a slash (/) at the end of the path:
 # jodconverter.officeHome=/opt/libreoffice6.1
 vi /opt/alfresco-content-services/tomcat/shared/classes/alfresco-global.properties
+
+
+######### ImageMagick install #########
+# decide how to install, two paths are possible both with pros and cons
+# path 1 , easy install but everything is in different folders (as per FHS):
+yum install -y ImageMagick ImageMagick-c++
+# then you should find all that is asked in:
+# http://docs.alfresco.com/community/tasks/imagemagick-config.html
+# and edit the alfresco-global.properties accordingly
+# locate -r /ExactWordToBeFound$  is your friend so
+locate -r /convert$
+locate -r /coders$
+locate -r /ImageMagick$
 
 
