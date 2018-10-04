@@ -1,18 +1,12 @@
 reset
-# copy the tomcat folder into AlfrescoBaseDir first!
-# export AlfrescoBaseDir="/home/fra/Downloads/alfresco-content-services-community-distribution-6.0.7-ga-TAI"
-
-# export AlfrescoServer="192.168.122.44"
-
-# extract the Alfresco archive in /opt/alfresco-content-services
-# extract the Tomcat archive in /opt/alfresco-content-services/tomcat
-
 
 export AlfrescoHome="/opt/alfresco-content-services"
 
 export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 
-# scp -r $AlfrescoBaseDir $AlfrescoServer:$AlfrescoHome
+# extract the Alfresco archive in /opt/alfresco-content-services
+# extract the Tomcat archive in /opt/alfresco-content-services/tomcat
+
 
 
 # create these folders!
@@ -30,19 +24,27 @@ cp -r $AlfrescoHome/web-server/shared/classes $CATALINA_HOME/shared/
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
+
 # alfresco.xml and share.xml MUST be present in the destination folder
 cp $AlfrescoHome/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
+
 
 # put an up to date PostegreSQL JDBC in $CATALINA_HOME/lib
 # check that your version of the JDBC is supported by your version of Tomcat
 cp postgresql-42.2.5.jar $CATALINA_HOME/lib
 
+
 # check that $CATALINA_HOME/conf/catalina.properties has:
 shared.loader=${catalina.base}/shared/classes
+
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
 export CATALINA_PID=/opt/alfresco-content-services/tomcat/temp/catalina.pid
 export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64
+JAVA_OPTS="-XX:+UseConcMarkSweepGC -XX:+UseParNewGC $JAVA_OPTS "
+JAVA_OPTS="-Xms3G -Xmx3G $JAVA_OPTS " # java-memory-settings
+JAVA_OPTS="$JAVA_OPTS -XX:NewRatio=2 -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=1"
+export JAVA_OPTS
 
 
 # edit $CATALINA_HOME/shared/classes/alfresco-global.properties and check:
@@ -140,7 +142,9 @@ yum install -y libXinerama     \
                libXext         \
                libcups         \               
                libcairo2       \
-               libgl1-mesa-glx
+               libgl1-mesa-glx \
+               cups-libs       \
+               cairo
 
 
 # download and extract LibreOffice for your platform
@@ -158,6 +162,8 @@ for i in `ls *.rpm` ; do rpm -i $i ; done
 # LibreOffice will be probably installed in /opt/LibreOffice6.1 make a symlink then
 ln -sf /opt/libreoffice6.1/ /opt/alfresco-content-services/LibreOffice/
 
-
+# jodConverter.maxTasksPerProcess=100
+# jodconverter.officeHome=/opt/libreoffice6.1
+vi /opt/alfresco-content-services/tomcat/shared/classes/alfresco-global.properties
 
 
