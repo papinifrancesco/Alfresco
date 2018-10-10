@@ -197,5 +197,6 @@ alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}m
     # modify
 solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 
-
+# start Solr
+/opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 
