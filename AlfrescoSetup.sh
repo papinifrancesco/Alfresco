@@ -160,7 +160,7 @@ ln -sf /opt/libreoffice5.2/ /opt/alfresco-content-services/LibreOffice/
 vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
-######### ImageMagick install #########
+######### ImageMagick install NON FINITO#########
 # EPEL is your friend, so:
 yum install epel-release
 
@@ -176,5 +176,26 @@ yum install -y ImageMagick ImageMagick-c++
 locate -r /convert$
 locate -r /coders$
 locate -r /ImageMagick$
+######### ImageMagick install NON FINITO#########
+
+
+######### Solr #########
+# references: http://docs.alfresco.com/6.0/tasks/solr6-install-withoutSSL.html
+#             http://docs.alfresco.com/6.0/concepts/external-properties-solr6.html
+wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.2.0/alfresco-search-services-1.2.0.zip
+unzip alfresco-search-services-1.2.0.zip
+mv alfresco-search-services /opt/
+vi /opt/alfresco-search-services/solrhome/conf/shared.properties
+    # uncomment
+alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
+alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
+alfresco.suggestable.property.2={http://www.alfresco.org/model/content/1.0}description 
+alfresco.suggestable.property.3={http://www.alfresco.org/model/content/1.0}content
+alfresco.cross.locale.datatype.0={http://www.alfresco.org/model/dictionary/1.0}text
+alfresco.cross.locale.datatype.1={http://www.alfresco.org/model/dictionary/1.0}content
+alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}mltext
+    # modify
+solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
+
 
 
