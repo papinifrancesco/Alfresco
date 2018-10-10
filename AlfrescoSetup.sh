@@ -200,3 +200,20 @@ solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 # start Solr
 /opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 
+# restart Alfresco (don't know if it is needed, have to try)
+# TEST 1 - index version number should increase
+# open http://192.168.122.44:8983/solr/#/alfresco (your IP may be different)
+# and note down the number in "Version:"
+# go to http://192.168.122.44:8080/share/page/context/mine/myfiles and create a text file named: Solar
+# type some text in it and save it
+# go back to http://192.168.122.44:8983/solr/#/alfresco and check if "Current:" have the green V ,
+# if not wait a little and then reload the page
+# when the index is current, the number in "Version:" should be higher than your initial one
+# TEST 2 - query for file name
+# go to http://192.168.122.44:8983/solr/#/alfresco/query
+# in the "q" field, remove "*.*" , type: Solar and then [Execute query]
+# in the results you should have "response":{"numFound" : 1
+# TEST 3 - query for typed text
+# go to http://192.168.122.44:8983/solr/#/alfresco/query
+# in the "q" field, remove "*.*" , type a word you typed when you created the file , [Execute query]
+# in the results you should have "response":{"numFound" : 1
