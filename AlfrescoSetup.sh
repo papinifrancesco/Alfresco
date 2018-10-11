@@ -5,7 +5,7 @@ export ALFRESCO_HOME="/opt/alfresco-content-services"
 export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 export CATALINA_BASE=$CATALINA_HOME
 
-# export SOLR_HOME
+export SOLR_HOME="/opt/alfresco-search-services/solrhome"
 
 # extract the Alfresco archive in /opt/alfresco-content-services
 # extract the Tomcat archive in /opt/alfresco-content-services/tomcat
@@ -224,8 +224,15 @@ solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 
 ######### Tomcat SSL #########
 # references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
-# modify as needed:
-vi 
+vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
+# modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/alfresco/ssl.repo.client.keystore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/archive/ssl.repo.client.keystore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/ssl.repo.client.truststore"
+# so that everything will be copied in the right place
+
+
 
 
 
