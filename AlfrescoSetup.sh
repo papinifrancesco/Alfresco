@@ -1,9 +1,10 @@
 reset
-
+# maybe you should edit your .bashrc file with:
 export ALFRESCO_HOME="/opt/alfresco-content-services"
 
 export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 export CATALINA_BASE=$CATALINA_HOME
+export TOMCAT_HOME=$CATALINA_HOME
 
 export SOLR_HOME="/opt/alfresco-search-services/solrhome"
 
@@ -232,6 +233,7 @@ cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/ssl.repo.
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/ssl.repo.client.truststore"
 # so that everything will be copied in the right place
 
+vi $CATALINA_HOME/conf/server.xml
 
 
 
