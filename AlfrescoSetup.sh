@@ -1,8 +1,11 @@
 reset
 
-export AlfrescoHome="/opt/alfresco-content-services"
+export ALFRESCO_HOME="/opt/alfresco-content-services"
 
 export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
+export CATALINA_BASE=$CATALINA_HOME
+
+# export SOLR_HOME
 
 # extract the Alfresco archive in /opt/alfresco-content-services
 # extract the Tomcat archive in /opt/alfresco-content-services/tomcat
@@ -10,23 +13,23 @@ export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 
 
 # create these folders!
-mkdir $AlfrescoHome/amps_share
-mkdir $AlfrescoHome/modules
-mkdir $AlfrescoHome/modules/platform
-mkdir $AlfrescoHome/modules/share
+mkdir $ALFRESCO_HOME/amps_share
+mkdir $ALFRESCO_HOME/modules
+mkdir $ALFRESCO_HOME/modules/platform
+mkdir $ALFRESCO_HOME/modules/share
 mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
 
-cp $AlfrescoHome/web-server/webapps/*.war $CATALINA_HOME/webapps/
+cp $ALFRESCO_HOME/web-server/webapps/*.war $CATALINA_HOME/webapps/
 
-cp -r $AlfrescoHome/web-server/shared/classes $CATALINA_HOME/shared/
+cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
 
 # alfresco.xml and share.xml MUST be present in the destination folder
-cp $AlfrescoHome/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
+cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
 
 
 # put an up to date PostegreSQL JDBC in $CATALINA_HOME/lib
@@ -96,9 +99,9 @@ unzip -d share/ share.war
 unzip -d ROOT/ ROOT.war
 
 
-# install AMPs , by default only $AlfrescoHome/amps/alfresco-share-services.amp
-java -jar $AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
-java -jar $AlfrescoHome/bin/alfresco-mmt.jar install $AlfrescoHome/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco.war -nobackup
+# install AMPs , by default only $ALFRESCO_HOME/amps/alfresco-share-services.amp
+java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
+java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco.war -nobackup
 
 # define logging for the web apps:
 # $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
@@ -179,7 +182,7 @@ locate -r /ImageMagick$
 ######### ImageMagick install NON FINITO#########
 
 
-######### Solr #########
+######### Solr - same host - no SSL so far #########
 # references: http://docs.alfresco.com/6.0/tasks/solr6-install-withoutSSL.html
 #             http://docs.alfresco.com/6.0/concepts/external-properties-solr6.html
 wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.2.0/alfresco-search-services-1.2.0.zip
@@ -217,3 +220,24 @@ solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 # go to http://192.168.122.44:8983/solr/#/alfresco/query
 # in the "q" field, remove "*.*" , type a word you typed when you created the file , [Execute query]
 # in the results you should have "response":{"numFound" : 1
+
+
+######### Tomcat SSL #########
+# references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
+# modify as needed:
+vi 
+
+
+
+
+
+
+
+
+
+
+
+
+######### Solr - same host - SSL #########
+# references:   http://docs.alfresco.com/6.0/tasks/solr6-install.html
+#               http://docs.alfresco.com/6.0/tasks/generate-keys-solr4.html
