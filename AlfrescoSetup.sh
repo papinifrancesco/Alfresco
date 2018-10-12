@@ -288,3 +288,7 @@ SOLR_SSL_WANT_CLIENT_AUTH=false
 
 
 
+reset ; egrep --color -R 'ssl.repo.client.keystore' *
+reset ; updatedb ; locate -r keystore$ | while read file; do ls -ltr $file; done | sort
+reset ; updatedb ; locate -r keystore$ | while read file; do sha1sum $file; done | sort
+
