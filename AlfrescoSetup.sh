@@ -201,8 +201,15 @@ alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}m
     # modify
 solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 
-# start Solr
+# set SOLAR_HOME for solr
+vi /opt/alfresco-search-services/solr.in.sh
+# uncomment SOLR_HOME and add the path
+SOLR_HOME=/opt/alfresco-search-services/solrhome
+
+# start Solr , first time only command
 /opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+# then you'll start it with just
+/opt/alfresco-search-services/solr/bin/solr start
 
 # restart Alfresco (don't know if it is needed, have to try)
 # TEST 1 - index version number should increase
@@ -227,6 +234,7 @@ solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 # references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
 vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 # modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
+mkdir $SOLR_HOME/keystore
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/keystore/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/alfresco/ssl.repo.client.keystore"
@@ -260,21 +268,23 @@ share.protocol=https
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ######### Solr - same host - SSL #########
 # references:   http://docs.alfresco.com/6.0/tasks/solr6-install.html
 #               http://docs.alfresco.com/6.0/tasks/generate-keys-solr4.html
+vi /opt/alfresco-search-services/solr.in.sh
+# modify so that you'll have
+SOLR_SSL_KEY_STORE=$SOLR_HOME/keystore/ssl.repo.client.keystore
+SOLR_SSL_KEY_STORE_PASSWORD=kT9X6oe68t
+SOLR_SSL_KEY_STORE_TYPE=JCEKS
+SOLR_SSL_TRUST_STORE=$SOLR_HOME/keystore/ssl.repo.client.truststore
+SOLR_SSL_TRUST_STORE_PASSWORD=kT9X6oe68t
+SOLR_SSL_TRUST_STORE_TYPE=JCEKS
+SOLR_SSL_NEED_CLIENT_AUTH=false
+SOLR_SSL_WANT_CLIENT_AUTH=false
+
+# restart solr and test you can reach its website.
+
+
+
+
+
