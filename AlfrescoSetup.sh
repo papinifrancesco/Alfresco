@@ -227,6 +227,8 @@ solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 # references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
 vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 # modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/keystore/ssl.repo.client.keystore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/alfresco/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore" "$SOLR_HOME/archive/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/ssl.repo.client.truststore"
