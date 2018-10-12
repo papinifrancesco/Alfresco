@@ -234,6 +234,32 @@ cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/ssl.repo.c
 # so that everything will be copied in the right place
 
 vi $CATALINA_HOME/conf/server.xml
+# the keystorePass is the default one, do not use it in production
+<Connector port="443" URIEncoding="UTF-8"
+protocol="org.apache.coyote.http11.Http11Protocol"
+SSLEnabled="true" maxThreads="150" scheme="https"
+keystoreFile="/opt/alfresco-content-services/alf_data/keystore/ssl.keystore"
+keystorePass="kT9X6oe68t"
+keystoreType="JCEKS"
+secure="true" connectionTimeout="240000"
+clientAuth="false"
+sslProtocol="TLS"
+allowUnsafeLegacyRenegotiation="true"
+maxHttpHeaderSize="32768"
+sslEnabledProtocols="TLSv1.2,TLSv1.1,TLSv1" />
+
+vi $CATALINA_HOME/shared/classes/alfresco-global.properties
+# change to:
+alfresco.port=443
+alfresco.protocol=https
+share.port=443
+share.protocol=https
+# and restart Tomcat , from the browser you should be able to connect with HTTPS (even if with a lot of warnings)
+
+
+
+
+
 
 
 
