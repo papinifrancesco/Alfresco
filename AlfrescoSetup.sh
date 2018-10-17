@@ -238,8 +238,19 @@ vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 mkdir $SOLR_HOME/keystore
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/keystore/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+
+##############CHECK AND SOLVE###########
+http://docs.alfresco.com/6.0/tasks/solr6-install.html
+ssl-keystore-passwords.properties
+ssl-truststore-passwords.properties
+##############CHECK AND SOLVE###########
+
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/alfresco/conf/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/conf/ssl.repo.client.truststore"
+
+
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/archive/conf/ssl.repo.client.keystore"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/conf/ssl.repo.client.truststore"
 # so that everything will be copied in the right place
@@ -287,13 +298,16 @@ SOLR_SSL_TRUST_STORE_TYPE=JCEKS
 SOLR_SSL_NEED_CLIENT_AUTH=false
 SOLR_SSL_WANT_CLIENT_AUTH=false
 
+
+# modify: alfresco.secureComms=none
+# to:     alfresco.secureComms=https     
+vi $SOLR_HOME/alfresco/conf/solrcore.properties
+vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
+
 # restart solr and test you can reach its website.
 
-
-
-
-
+cd /opt/
 reset ; egrep --color -R 'ssl.repo.client.keystore' *
-reset ; updatedb ; locate -r keystore$ | while read file; do ls -ltr $file; done | sort
-reset ; updatedb ; locate -r keystore$ | while read file; do sha1sum $file; done | sort
-
+reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do ls -ltr $file; done | sort
+reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do sha1sum $file; done | sort
+reset ; updatedb ; locate -r store.passwords.properties | grep -v templates | while read file; do echo $file ; enca -L none $file; done
