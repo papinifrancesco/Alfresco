@@ -239,7 +239,7 @@ mkdir $SOLR_HOME/keystore
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"          "$SOLR_HOME/keystore/"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
-cp "$CERTIFICATE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
 
 ##############CHECK AND SOLVE###########
 # http://docs.alfresco.com/6.0/tasks/solr6-install.html
