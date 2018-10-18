@@ -236,23 +236,23 @@ vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 # modify CERTIFICATE_VALIDITY from 36525 to no more than 36500
 # modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
 mkdir $SOLR_HOME/keystore
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/keystore/ssl.repo.client.keystore"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/keystore/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"          "$SOLR_HOME/keystore/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
 cp "$CERTIFICATE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
 
 ##############CHECK AND SOLVE###########
-http://docs.alfresco.com/6.0/tasks/solr6-install.html
-ssl-keystore-passwords.properties
-ssl-truststore-passwords.properties
+# http://docs.alfresco.com/6.0/tasks/solr6-install.html
+# ssl-keystore-passwords.properties
+# ssl-truststore-passwords.properties
 ##############CHECK AND SOLVE###########
 
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/alfresco/conf/ssl.repo.client.keystore"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/conf/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/alfresco/conf/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/conf/"
 
 
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/archive/conf/ssl.repo.client.keystore"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/conf/ssl.repo.client.truststore"
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/archive/conf/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/conf/"
 # so that everything will be copied in the right place
 
 vi $CATALINA_HOME/conf/server.xml
