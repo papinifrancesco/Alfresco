@@ -238,8 +238,10 @@ vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 mkdir $SOLR_HOME/keystore
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"          "$SOLR_HOME/keystore/"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
 cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
+
+
 
 ##############CHECK AND SOLVE###########
 # http://docs.alfresco.com/6.0/tasks/solr6-install.html
@@ -249,10 +251,14 @@ cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keyst
 
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/alfresco/conf/"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/conf/"
-
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
 
 cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/archive/conf/"
 cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
+
 # so that everything will be copied in the right place
 
 vi $CATALINA_HOME/conf/server.xml
