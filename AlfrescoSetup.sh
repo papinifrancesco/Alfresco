@@ -291,8 +291,16 @@ share.protocol=https
 
 
 ######### Solr - same host - SSL #########
-# references:   http://docs.alfresco.com/6.0/tasks/solr6-install.html
+# references:   :http//docs.alfresco.com/6.0/tasks/solr6-install.html
 #               http://docs.alfresco.com/6.0/tasks/generate-keys-solr4.html
+
+# remove or move both alfresco and archive
+mv $SOLR_HOME/alfresco $SOLR_HOME/alfresco.ORIG
+mv $SOLR_HOME/archive  $SOLR_HOME/archive.ORIG
+
+#then start Solr
+/opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+
 vi /opt/alfresco-search-services/solr.in.sh
 # modify so that you'll have
 SOLR_SSL_KEY_STORE=$SOLR_HOME/keystore/ssl.repo.client.keystore
