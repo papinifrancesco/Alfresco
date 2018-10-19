@@ -236,9 +236,9 @@ vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
 # modify CERTIFICATE_VALIDITY from 36525 to no more than 36500
 # modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
 mkdir $SOLR_HOME/keystore
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"          "$SOLR_HOME/keystore/"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"        "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"                  "$SOLR_HOME/keystore/"
+cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"                "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
 cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
 
 
@@ -309,7 +309,7 @@ SOLR_SSL_KEY_STORE_TYPE=JCEKS
 SOLR_SSL_TRUST_STORE=$SOLR_HOME/keystore/ssl.repo.client.truststore
 SOLR_SSL_TRUST_STORE_PASSWORD=kT9X6oe68t
 SOLR_SSL_TRUST_STORE_TYPE=JCEKS
-SOLR_SSL_NEED_CLIENT_AUTH=false
+SOLR_SSL_NEED_CLIENT_AUTH=true
 SOLR_SSL_WANT_CLIENT_AUTH=false
 
 
@@ -325,3 +325,6 @@ reset ; egrep --color -R 'ssl.repo.client.keystore' *
 reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do ls -ltr $file; done | sort
 reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do sha1sum $file; done | sort
 reset ; updatedb ; locate -r store.passwords.properties | grep -v templates | while read file; do echo $file ; enca -L none $file; done
+
+keytool -list -keystore ssl.repo.client.keystore -storetype JCEKS -storepass kT9X6oe68t
+keytool -importkeystore -srckeystore ssl.repo.client.keystore.jks -srcstoretype JCEKS -destkeystore ssl.repo.client.keystore.p12 -deststoretype pkcs12
