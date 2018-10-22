@@ -90,6 +90,12 @@ alfresco.rmi.services.host=0.0.0.0
   <role rolename="manager-jmx"/>
   <user username="manager" password="manager" roles="admin-gui,admin-script,manager-gui,manager-status,manager-script,manager-jmx"/>
   <user username="tomcat" password="tomcat" roles="manager,admin"/>
+  # BTW, in 5.2 there are only the lines below left uncommented:
+  <tomcat-users>
+  <user username="CN=Alfresco Repository Client, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repoclient" password="null"/>
+  <user username="CN=Alfresco Repository, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repository" password="null"/>
+</tomcat-users>
+
 
 
 # unzip the .war files, don't let Tomcat do it (you can 
