@@ -1,6 +1,8 @@
 #! /bin/sh
 # Please edit the variables below to suit your installation
 # Note: for an installation created by the Alfresco installer, you only need to edit ALFRESCO_HOME
+# compared to the original script, "subject alternative names" have been defined otherwise modern
+# browsers will complain too much
 
 # Alfresco installation directory
 if [ -z "$ALFRESCO_HOME" ]; then
@@ -27,6 +29,7 @@ REPO_CERT_DNAME="CN=Alfresco Repository, OU=Unknown, O=Alfresco Software Ltd., L
 SOLR_CLIENT_CERT_DNAME="CN=Alfresco Repository Client, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB"
 
 # The number of days before the certificate expires
+# the original value, 36525 , seems too much and the issued certs have a validity of just ONE day
 CERTIFICATE_VALIDITY=36500
 
 # Stop
