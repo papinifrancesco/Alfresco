@@ -11,9 +11,14 @@ reset ; keytool -list -keystore /opt/alfresco/alf_data/keystore/ssl.truststore -
 keytool -list -keystore ./keystore -storetype JCEKS -storepass mp6yc0UD9e -keypass oKIWzVdEdA -v
 
 
+vi /opt/alfresco/tomcat/bin/setenv.sh
+
 vi /opt/alfresco/tomcat/conf/server.xml
 
 vi /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+
+
+
 
 vi /opt/solr6/solrhome/solr.xml
 
