@@ -1,8 +1,25 @@
 #! /bin/sh
+# original script, generate-keys.sh,  is missing a key piece: the emitting CA
+# as far as Alfresco 6.0 CE, keystore and truststore contains 2 certs with self-explanatory names:
+# ssl.alfresco.ca and ssl.repo
+# so the certificate chain is validated and you have no issues at all having solr4 to use
+# ssl.repo (verified: 5.2 installer puts Alfresco on http/8080 and sol4 on https/8443
+
+# despite what the official documentation states, I was able to have Alfresco 6.0 CE and Solr6 work
+# with just the generated, self-signed certs, and even a simple verification with:
+# tcpdump -i lo -w AlfrescoSolrTLS.cap
+# Wireshark , shows: Alert (Level: Fatal, Description: Unknown CA)
+
+# also, your generate certs should have "subject alternative names" defined otherwise modern
+# browsers will complain about such a missing field
+
+# have a look at:
+# https://angelborroy.wordpress.com/2016/06/15/configuring-alfresco-ssl-certificates/
+
+
 # Please edit the variables below to suit your installation
-# Note: for an installation created by the Alfresco installer, you only need to edit ALFRESCO_HOME
-# compared to the original script, "subject alternative names" have been defined otherwise modern
-# browsers will complain too much
+
+
 
 # Alfresco installation directory
 if [ -z "$ALFRESCO_HOME" ]; then
