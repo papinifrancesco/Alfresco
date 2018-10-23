@@ -236,36 +236,41 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # in the results you should have "response":{"numFound" : 1
 
 
+
 ######### Tomcat SSL #########
 # references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
-vi $ALFRESCO_HOME/alf_data/keystore/generate_keystores.sh
-# modify CERTIFICATE_VALIDITY from 36525 to no more than 36500
-# modify as needed ALFRESCO_HOME , JAVA_HOME , and add:
+# using default cert/keystore
 mkdir $SOLR_HOME/keystore
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"                  "$SOLR_HOME/keystore/"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore"                "$SOLR_HOME/keystore/"
+
+# copy the original keystore to an instance for Solr, just to keep the scripts unchanged
+# we could use one name "ssl.keystore" and "ssl.truststore" but then we should modify
+# all of the configuration scripts accordingly; easier to copy a file
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.keystore"   "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.truststore" "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/keystore/"
 cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
 cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
 
 
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/alfresco/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/alfresco/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/alfresco/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/alfresco/conf/"
 
-##############CHECK AND SOLVE###########
-# http://docs.alfresco.com/6.0/tasks/solr6-install.html
-# ssl-keystore-passwords.properties
-# ssl-truststore-passwords.properties
-##############CHECK AND SOLVE###########
 
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/alfresco/conf/"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/alfresco/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
-
-cp "$CERTIFICATE_HOME/ssl.repo.client.keystore"   "$SOLR_HOME/archive/conf/"
-cp "$CERTIFICATE_HOME/ssl.repo.client.truststore" "$SOLR_HOME/archive/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties" "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/archive/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/archive/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/archive/conf/"
+cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
 
 # so that everything will be copied in the right place
+
+
+keytool -export -keystore $ALFRESCO_KEYSTORE_HOME/ssl.keystore -storetype JCEKS -storepass kT9X6oe68t -alias ssl.alfresco.ca -file ssl.alfresco.ca.cer -v
+cp ssl.alfresco.ca.cer /etc/pki/ca-trust/source/anchors/
+
 
 vi $CATALINA_HOME/conf/server.xml
 # the keystorePass is the default one, do not use it in production
@@ -292,6 +297,8 @@ alfresco.port=8443
 alfresco.protocol=https
 share.port=8443
 share.protocol=https
+
+######### MISSING SOLR CONFIG, TO DO
 # and restart Tomcat , from the browser you should be able to connect with HTTPS (even if with a lot of warnings)
 
 
@@ -301,8 +308,8 @@ share.protocol=https
 #               http://docs.alfresco.com/6.0/tasks/generate-keys-solr4.html
 
 # remove or move both alfresco and archive
-mv $SOLR_HOME/alfresco $SOLR_HOME/alfresco.ORIG
-mv $SOLR_HOME/archive  $SOLR_HOME/archive.ORIG
+mv $SOLR_HOME/alfresco ~/$SOLR_HOME/alfresco.ORIG
+mv $SOLR_HOME/archive  ~/$SOLR_HOME/archive.ORIG
 
 #then start Solr
 /opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
