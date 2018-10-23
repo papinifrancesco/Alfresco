@@ -2,3 +2,21 @@ $CATALINA_HOME/bin/shutdown.sh 90 -force
 /opt/alfresco-search-services/solr/bin/solr stop
 $CATALINA_HOME/bin/startup.sh
 /opt/alfresco-search-services/solr/bin/solr start -force
+
+# check key store and trust store
+
+reset ; keytool -list -keystore /opt/alfresco/alf_data/keystore/ssl.keystore   -storetype JCEKS -storepass kT9X6oe68t -v
+reset ; keytool -list -keystore /opt/alfresco/alf_data/keystore/ssl.truststore -storetype JCEKS -storepass kT9X6oe68t -v
+
+keytool -list -keystore ./keystore -storetype JCEKS -storepass mp6yc0UD9e -keypass oKIWzVdEdA -v
+
+
+vi /opt/alfresco/tomcat/conf/server.xml
+
+vi /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+
+vi /opt/solr6/solrhome/solr.xml
+
+vi /opt/alfresco-search-services/solrhome/conf/shared.properties
+
+vi /opt/alfresco-search-services/solr.in.sh
