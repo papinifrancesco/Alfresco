@@ -1,0 +1,4 @@
+$CATALINA_HOME/bin/shutdown.sh 90 -force
+/opt/alfresco-search-services/solr/bin/solr stop
+$CATALINA_HOME/bin/startup.sh
+/opt/alfresco-search-services/solr/bin/solr start -force
