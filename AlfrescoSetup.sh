@@ -275,6 +275,11 @@ keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl 
 keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t
 # USELESS -> keytool -import -v -noprompt -file alfresco6.tst.lcl.cert.pem -alias ssl.repo           -keystore ssl.truststore -storepass kT9X6oe68t
 
+# in on CentOS, Fedora, RHEL - updating the ca trust won't hurt
+# for other distros check the relative documentation
+cp rootCA.cert.pem /etc/pki/ca-trust/source/anchors/
+cp intermediateCA.cert.pem /etc/pki/ca-trust/source/anchors/
+update-ca-trust export ; update-ca-trust
 
 # create ssl-keystore-passwords.properties and ssl-truststore-passwords.properties
 echo aliases=rootca.ssl,intermediateca.ssl,ssl.repo >> ssl-keystore-passwords.properties 
@@ -300,31 +305,30 @@ mkdir $SOLR_HOME/keystore
 # copy the original keystore to an instance for Solr, just to keep the scripts unchanged
 # we could use one name "ssl.keystore" and "ssl.truststore" but then we should modify
 # all of the configuration scripts accordingly; easier to copy a file
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.keystore"   "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.truststore" "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.keystore"   "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.truststore" "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"
 
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/keystore/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/keystore/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
-
-
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/alfresco/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/alfresco/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/alfresco/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/alfresco/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/keystore/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/keystore/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
 
 
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/archive/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/archive/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/archive/conf/"
-cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/alfresco/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/alfresco/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/alfresco/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/alfresco/conf/"
 
+
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/archive/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/archive/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/archive/conf/"
+\cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
 # so that everything will be copied in the right place
 
-
-keytool -export -keystore $ALFRESCO_KEYSTORE_HOME/ssl.keystore -storetype JCEKS -storepass kT9X6oe68t -alias ssl.alfresco.ca -file ssl.alfresco.ca.cer -v
-cp ssl.alfresco.ca.cer /etc/pki/ca-trust/source/anchors/
+# TO DELETE SOON
+# keytool -export -keystore $ALFRESCO_KEYSTORE_HOME/ssl.keystore -storetype JCEKS -storepass kT9X6oe68t -alias ssl.alfresco.ca -file ssl.alfresco.ca.cer -v
+# cp ssl.alfresco.ca.cer /etc/pki/ca-trust/source/anchors/
 
 
 vi $CATALINA_HOME/conf/server.xml
