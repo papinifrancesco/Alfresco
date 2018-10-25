@@ -253,7 +253,7 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # .cnf as well according to your needs
 
 # clean the everything but keystore* (these are Alfresco only files, no TLS related)
-cd $ALFRESCO_KEYSTORE
+cd $ALFRESCO_KEYSTORE_HOME
 (ls | grep -v '^keystore') | while read list; do rm -f $list; done
 
 
@@ -263,16 +263,16 @@ cd $ALFRESCO_KEYSTORE
 # import the .p12 into a new keystore , I intentionally left default options
 # for easier reading, in production environment we should change them
 keytool -importkeystore -v \
-        -srckeystore  alfresco6.tst.lcl.p12 -srcstoretype  PKCS12 -srcstorepass  alfresco   -srcalias 1 \
-        -destkeystore ssl.keystore          -deststoretype JCEKS  -deststorepass kT9X6oe68t -destalias ssl.repo
+        -srckeystore  alfresco6.tst.lcl.p12 -srcstoretype  PKCS12 -providerName SunJSSE -srcstorepass  alfresco   -srcalias 1 \
+        -destkeystore ssl.keystore          -deststoretype JCEKS  -providerName SunJCE  -deststorepass kT9X6oe68t -destalias ssl.repo -destkeypass kT9X6oe68t
 
 # if you, like me, have a base64 encoded CA chain, split it in single files (otherwise -alias won't work)
-keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.keystore -storepass kT9X6oe68t
-keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
+keytool -import -v -noprompt -trustcacerts -storetype JCEKS -providerName SunJCE -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.keystore -storepass kT9X6oe68t
+keytool -import -v -noprompt -trustcacerts -storetype JCEKS -providerName SunJCE -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
 
 # create the truststore
-keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t
-keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t
+keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t -storetype JCEKS -providerName SunJCE
+keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t -storetype JCEKS -providerName SunJCE
 # USELESS -> keytool -import -v -noprompt -file alfresco6.tst.lcl.cert.pem -alias ssl.repo           -keystore ssl.truststore -storepass kT9X6oe68t
 
 # in on CentOS, Fedora, RHEL - updating the ca trust won't hurt
@@ -342,6 +342,7 @@ maxThreads="150"
 scheme="https"
 keystoreFile="/opt/alfresco-content-services/alf_data/keystore/ssl.keystore"
 keystorePass="kT9X6oe68t"
+keystoreProvider="SunJCE"
 keystoreType="JCEKS"
 secure="true" connectionTimeout="240000"
 clientAuth="false"
