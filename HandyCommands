@@ -1,7 +1,5 @@
-$CATALINA_HOME/bin/shutdown.sh 90 -force
-/opt/alfresco-search-services/solr/bin/solr stop
-$CATALINA_HOME/bin/startup.sh
-/opt/alfresco-search-services/solr/bin/solr start -force
+$CATALINA_HOME/bin/shutdown.sh 90 -force ; $CATALINA_HOME/bin/startup.sh
+/opt/alfresco-search-services/solr/bin/solr stop ; /opt/alfresco-search-services/solr/bin/solr start -force
 
 # check key store and trust store
 
@@ -9,6 +7,8 @@ reset ; keytool -list -keystore /opt/alfresco/alf_data/keystore/ssl.keystore   -
 reset ; keytool -list -keystore /opt/alfresco/alf_data/keystore/ssl.truststore -storetype JCEKS -storepass kT9X6oe68t -v
 
 keytool -list -keystore ./keystore -storetype JCEKS -storepass mp6yc0UD9e -keypass oKIWzVdEdA -v
+
+vi /opt/alfresco/tomcat/logs/catalina.out
 
 
 vi /opt/alfresco/tomcat/bin/setenv.sh
