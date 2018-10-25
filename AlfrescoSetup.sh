@@ -236,7 +236,9 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # in the results you should have "response":{"numFound" : 1
 
 
-# Alfresco-Tomcat , Solr-Jetty TLS certificates configuration
+
+######### Alfresco-Tomcat , Solr-Jetty TLS certificates configuration #########
+
 # generate_keystore.sh doesn't work for a variety of reasons
 # it is way better to have a proper set-up with an emitting CA
 # instead of self-signed certs trying to trust each other (BTW
@@ -255,8 +257,8 @@ cd $ALFRESCO_KEYSTORE
 (ls | grep -v '^keystore') | while read list; do rm -f $list; done
 
 
-# then copy the .p12 to $ALFRESCO_KEYSTORE , it should be
-# /opt/alfresco/alf_data/keystore
+# then copy the .p12 to $ALFRESCO_KEYSTORE ,
+# it should be /opt/alfresco/alf_data/keystore
 
 # import the .p12 into a new keystore , I intentionally left default options
 # for easier reading, in production environment we should change them
@@ -269,9 +271,22 @@ keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file rootCA.cert.pe
 keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
 
 # create the truststore
-keytool -import -v -noprompt -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t
-keytool -import -v -noprompt -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t
+keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t
+keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t
+# USELESS -> keytool -import -v -noprompt -file alfresco6.tst.lcl.cert.pem -alias ssl.repo           -keystore ssl.truststore -storepass kT9X6oe68t
 
+
+# create ssl-keystore-passwords.properties and ssl-truststore-passwords.properties
+echo aliases=rootca.ssl,intermediateca.ssl,ssl.repo >> ssl-keystore-passwords.properties 
+echo keystore.password=kT9X6oe68t                   >> ssl-keystore-passwords.properties 
+echo rootca.ssl.password=kT9X6oe68t                 >> ssl-keystore-passwords.properties 
+echo intermediateca.ssl.password=kT9X6oe68t         >> ssl-keystore-passwords.properties 
+echo ssl.repo.password=kT9X6oe68t                   >> ssl-keystore-passwords.properties 
+
+echo aliases=rootca.ssl,intermediateca.ssl          >> ssl-truststore-passwords.properties 
+echo keystore.password=kT9X6oe68t                   >> ssl-truststore-passwords.properties 
+echo rootca.ssl.password=kT9X6oe68t                 >> ssl-truststore-passwords.properties 
+echo intermediateca.ssl.password=kT9X6oe68t         >> ssl-truststore-passwords.properties 
 
 
 
@@ -285,25 +300,25 @@ mkdir $SOLR_HOME/keystore
 # copy the original keystore to an instance for Solr, just to keep the scripts unchanged
 # we could use one name "ssl.keystore" and "ssl.truststore" but then we should modify
 # all of the configuration scripts accordingly; easier to copy a file
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.keystore"   "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.truststore" "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.keystore"   "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.truststore" "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"
 
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
-
-
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/alfresco/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/alfresco/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/alfresco/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/alfresco/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/keystore/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/keystore/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/keystore/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/keystore/"
 
 
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/archive/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/archive/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/archive/conf/"
-cp "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/alfresco/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/alfresco/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/alfresco/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/alfresco/conf/"
+
+
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.keystore"            "$SOLR_HOME/archive/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl.repo.client.truststore"          "$SOLR_HOME/archive/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-keystore-passwords.properties"   "$SOLR_HOME/archive/conf/"
+cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
 
 # so that everything will be copied in the right place
 
