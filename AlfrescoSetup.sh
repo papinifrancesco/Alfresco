@@ -236,6 +236,38 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # in the results you should have "response":{"numFound" : 1
 
 
+# Alfresco-Tomcat , Solr-Jetty TLS certificates configuration
+# generate_keystore.sh doesn't work for a variety of reasons
+# it is way better to have a proper set-up with an emitting CA
+# instead of self-signed certs trying to trust each other (BTW
+# it doesn't work).
+
+# using: /root/ca/intermediate/IL_ALFRESCO_SOLR_openssl.cnf
+# and:   /root/ca/03_create_server_AlfrescoSolr.sh
+# from https://github.com/papinifrancesco/OCSP
+# we can generate a PKCS12 .p12 cert to be used by Alfresco 
+# and Solr that contains the full certificate chain
+# Before running the .sh remember to customize it and the
+# .cnf as well according to your needs
+
+rm -rf $ALFRESCO_KEYSTORE 
+
+# then copy the .p12 to $ALFRESCO_KEYSTORE , it should be
+# /opt/alfresco/alf_data/keystore
+
+
+keytool -importkeystore -v \
+        -srckeystore  alfresco6.tst.lcl.p12 -srcstoretype  PKCS12 -srcstorepass  alfresco   -srcalias 1 \
+        -destkeystore ssl.keystore          -deststoretype JCEKS  -deststorepass kT9X6oe68t -destalias ssl.repo \
+
+#
+keytool -import -file rootCA.cert.pem -alias rootCA -keystore ssl.truststore
+keytool -import -file intermediateCA.cert.pem -alias intermediateCA -keystore ssl.truststore
+
+
+
+
+
 
 ######### Tomcat SSL #########
 # references: https://docs.alfresco.com/6.0/tasks/configure-ssl-test.html
