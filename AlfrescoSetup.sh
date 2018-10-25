@@ -250,25 +250,27 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # Before running the .sh remember to customize it and the
 # .cnf as well according to your needs
 
+# clean the everything but keystore* (these are Alfresco only files, no TLS related)
 cd $ALFRESCO_KEYSTORE
-rm -rf *
+(ls | grep -v '^keystore') | while read list; do rm -f $list; done
+
 
 # then copy the .p12 to $ALFRESCO_KEYSTORE , it should be
 # /opt/alfresco/alf_data/keystore
 
-
+# import the .p12 into a new keystore , I intentionally left default options
+# for easier reading, in production environment we should change them
 keytool -importkeystore -v \
         -srckeystore  alfresco6.tst.lcl.p12 -srcstoretype  PKCS12 -srcstorepass  alfresco   -srcalias 1 \
         -destkeystore ssl.keystore          -deststoretype JCEKS  -deststorepass kT9X6oe68t -destalias ssl.repo
 
 # if you, like me, have a base64 encoded CA chain, split it in single files (otherwise -alias won't work)
-
-keytool -import -trustcacerts -storetype JCEKS -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.keystore -storepass kT9X6oe68t
-keytool -import -trustcacerts -storetype JCEKS -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
+keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.keystore -storepass kT9X6oe68t
+keytool -import -v -noprompt -trustcacerts -storetype JCEKS -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
 
 # create the truststore
-keytool -import -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.truststore
-keytool -import -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.truststore
+keytool -import -v -noprompt -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t
+keytool -import -v -noprompt -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t
 
 
 
