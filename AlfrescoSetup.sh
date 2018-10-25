@@ -250,7 +250,8 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # Before running the .sh remember to customize it and the
 # .cnf as well according to your needs
 
-rm -rf $ALFRESCO_KEYSTORE 
+cd $ALFRESCO_KEYSTORE
+rm -rf *
 
 # then copy the .p12 to $ALFRESCO_KEYSTORE , it should be
 # /opt/alfresco/alf_data/keystore
@@ -258,11 +259,16 @@ rm -rf $ALFRESCO_KEYSTORE
 
 keytool -importkeystore -v \
         -srckeystore  alfresco6.tst.lcl.p12 -srcstoretype  PKCS12 -srcstorepass  alfresco   -srcalias 1 \
-        -destkeystore ssl.keystore          -deststoretype JCEKS  -deststorepass kT9X6oe68t -destalias ssl.repo \
+        -destkeystore ssl.keystore          -deststoretype JCEKS  -deststorepass kT9X6oe68t -destalias ssl.repo
 
-#
-keytool -import -file rootCA.cert.pem -alias rootCA -keystore ssl.truststore
-keytool -import -file intermediateCA.cert.pem -alias intermediateCA -keystore ssl.truststore
+# if you, like me, have a base64 encoded CA chain, split it in single files (otherwise -alias won't work)
+
+keytool -import -trustcacerts -storetype JCEKS -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.keystore -storepass kT9X6oe68t
+keytool -import -trustcacerts -storetype JCEKS -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.keystore -storepass kT9X6oe68t
+
+# create the truststore
+keytool -import -file rootCA.cert.pem         -alias rootca.ssl         -keystore ssl.truststore
+keytool -import -file intermediateCA.cert.pem -alias intermediateca.ssl -keystore ssl.truststore
 
 
 
