@@ -25,3 +25,13 @@ vi /opt/solr6/solrhome/solr.xml
 vi /opt/alfresco-search-services/solrhome/conf/shared.properties
 
 vi /opt/alfresco-search-services/solr.in.sh
+
+
+cd /opt/
+reset ; egrep --color -R 'ssl.repo.client.keystore' *
+reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do ls -ltr $file; done | sort
+reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do sha1sum $file; done | sort
+reset ; updatedb ; locate -r store.passwords.properties | grep -v templates | while read file; do echo $file ; enca -L none $file; done
+
+keytool -list -keystore ssl.repo.client.keystore -storetype JCEKS -storepass kT9X6oe68t
+keytool -importkeystore -srckeystore ssl.repo.client.keystore.jks -srcstoretype JCEKS -destkeystore ssl.repo.client.keystore.p12 -deststoretype pkcs12
