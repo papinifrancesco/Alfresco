@@ -1,6 +1,7 @@
 reset
 # maybe you should edit your .bashrc file with:
 export ALFRESCO_HOME="/opt/alfresco-content-services"
+export ALFRESCO_KEYSTORE_HOME="/opt/alfresco-content-services/alf_data/keystore"
 
 export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
 export CATALINA_BASE=$CATALINA_HOME
@@ -33,8 +34,9 @@ cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
 
 
-# put an up to date PostegreSQL JDBC in $CATALINA_HOME/lib
-# check that your version of the JDBC is supported by your version of Tomcat
+# put a Tomcat supported version of PostegreSQL JDBC in $CATALINA_HOME/lib
+# too old or too new might not work as expected, have a look at:
+# https://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
 cp postgresql-42.2.5.jar $CATALINA_HOME/lib
 
 
@@ -170,11 +172,11 @@ ln -sf /opt/libreoffice5.2/ /opt/alfresco-content-services/LibreOffice/
 vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
-######### ImageMagick install NON FINITO#########
+######### ImageMagick install NOT COMPLETED #########
 # EPEL is your friend, so:
 yum install epel-release
 
-# CONTROLLARE SOTTO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# CHECK BELOW !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # decide how to install, two paths are possible both with pros and cons
 # path 1 , easy install but everything is in different folders (as per FHS):
@@ -186,7 +188,7 @@ yum install -y ImageMagick ImageMagick-c++
 locate -r /convert$
 locate -r /coders$
 locate -r /ImageMagick$
-######### ImageMagick install NON FINITO#########
+######### ImageMagick install NOT COMPLETED #########
 
 
 ######### Solr - same host - no SSL so far #########
@@ -214,7 +216,7 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 
 # start Solr , first time only command
 /opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
-# then you'll start it with just
+# subsequent times you'll start it with just
 /opt/alfresco-search-services/solr/bin/solr start
 
 # restart Alfresco (don't know if it is needed, have to try)
@@ -258,7 +260,7 @@ cd $ALFRESCO_KEYSTORE_HOME
 
 
 # then copy the .p12 to $ALFRESCO_KEYSTORE ,
-# it should be /opt/alfresco/alf_data/keystore
+# it should be /opt/alfresco-content-services/alf_data/keystore
 
 # import the .p12 into a new keystore , I intentionally left default options
 # for easier reading, in production environment we should change them
@@ -273,7 +275,7 @@ keytool -import -v -noprompt -trustcacerts -storetype JCEKS -providerName SunJCE
 # create the truststore
 keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl         -keystore ssl.truststore -storepass kT9X6oe68t -storetype JCEKS -providerName SunJCE
 keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t -storetype JCEKS -providerName SunJCE
-# USELESS -> keytool -import -v -noprompt -file alfresco6.tst.lcl.cert.pem -alias ssl.repo           -keystore ssl.truststore -storepass kT9X6oe68t
+
 
 # in on CentOS, Fedora, RHEL - updating the ca trust won't hurt
 # for other distros check the relative documentation
@@ -326,9 +328,6 @@ mkdir $SOLR_HOME/keystore
 \cp -f "$ALFRESCO_KEYSTORE_HOME/ssl-truststore-passwords.properties" "$SOLR_HOME/archive/conf/"
 # so that everything will be copied in the right place
 
-# TO DELETE SOON
-# keytool -export -keystore $ALFRESCO_KEYSTORE_HOME/ssl.keystore -storetype JCEKS -storepass kT9X6oe68t -alias ssl.alfresco.ca -file ssl.alfresco.ca.cer -v
-# cp ssl.alfresco.ca.cer /etc/pki/ca-trust/source/anchors/
 
 
 vi $CATALINA_HOME/conf/server.xml
@@ -345,11 +344,12 @@ keystorePass="kT9X6oe68t"
 keystoreProvider="SunJCE"
 keystoreType="JCEKS"
 secure="true" connectionTimeout="240000"
-clientAuth="false"
+clientAuth="want"
 sslProtocol="TLS"
 allowUnsafeLegacyRenegotiation="true"
 maxHttpHeaderSize="32768"
 sslEnabledProtocols="TLSv1.2" />
+
 
 vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 # change to:
@@ -358,7 +358,7 @@ alfresco.protocol=https
 share.port=8443
 share.protocol=https
 
-######### MISSING SOLR CONFIG, TO DO
+
 # and restart Tomcat , from the browser you should be able to connect with HTTPS (even if with a lot of warnings)
 
 
@@ -392,12 +392,3 @@ vi $SOLR_HOME/alfresco/conf/solrcore.properties
 vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
 
 # restart solr and test you can reach its website.
-
-cd /opt/
-reset ; egrep --color -R 'ssl.repo.client.keystore' *
-reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do ls -ltr $file; done | sort
-reset ; updatedb ; locate -r keystore$ | grep -v templates | while read file; do sha1sum $file; done | sort
-reset ; updatedb ; locate -r store.passwords.properties | grep -v templates | while read file; do echo $file ; enca -L none $file; done
-
-keytool -list -keystore ssl.repo.client.keystore -storetype JCEKS -storepass kT9X6oe68t
-keytool -importkeystore -srckeystore ssl.repo.client.keystore.jks -srcstoretype JCEKS -destkeystore ssl.repo.client.keystore.p12 -deststoretype pkcs12
