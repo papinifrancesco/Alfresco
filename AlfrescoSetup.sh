@@ -253,6 +253,8 @@ SOLR_HOME=/opt/alfresco-search-services/solrhome
 # and Solr that contains the full certificate chain
 # Before running the .sh remember to customize it and the
 # .cnf as well according to your needs
+# IMPORTANT : both OCSPs must be running all the time so run:
+# 08_run_OCSP_responders.sh on the CA machine
 
 # clean the everything but keystore* (these are Alfresco only files, no TLS related)
 cd $ALFRESCO_KEYSTORE_HOME
@@ -277,7 +279,7 @@ keytool -import -v -noprompt -file rootCA.cert.pem            -alias rootca.ssl 
 keytool -import -v -noprompt -file intermediateCA.cert.pem    -alias intermediateca.ssl -keystore ssl.truststore -storepass kT9X6oe68t -storetype JCEKS -providerName SunJCE
 
 
-# in on CentOS, Fedora, RHEL - updating the ca trust won't hurt
+# on CentOS, Fedora, RHEL - updating the ca trust won't hurt
 # for other distros check the relative documentation
 cp rootCA.cert.pem /etc/pki/ca-trust/source/anchors/
 cp intermediateCA.cert.pem /etc/pki/ca-trust/source/anchors/
@@ -392,3 +394,62 @@ vi $SOLR_HOME/alfresco/conf/solrcore.properties
 vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
 
 # restart solr and test you can reach its website.
+
+
+
+
+
+######### Apache reverse proxy - AJP #########
+vi /opt/alfresco-content-services/tomcat/shared/classes/alfresco-global.properties
+
+alfresco.host=alfresco.tst.lcl
+alfresco.port=443
+[...]
+share.host=alfresco.tst.lcl
+share.port=443
+
+
+vi /opt/alfresco/tomcat/conf/server.xml
+
+<Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false" />
+
+
+# then copy the previously generated key and certs to the Apache machine and edit:
+vi /etc/httpd/conf.d/ssl.conf
+
+# Server Certificate
+SSLCertificateFile /etc/pki/tls/certs/alfresco6.tst.lcl.cert.pem
+# Server Private Key
+SSLCertificateKeyFile /etc/pki/tls/private/alfresco6.tst.lcl.key.pem
+# Server Certificate Chain
+SSLCertificateChainFile /etc/pki/tls/certs/ca-chain.cert.pem
+# Certificate Authority (CA)
+SSLCACertificateFile /etc/pki/tls/certs/rootCA.cert.pem
+# Client Authentication (Type)
+SSLVerifyClient optional
+
+
+# REMEMBER : both OCSPs must be running all the time so run:
+# 08_run_OCSP_responders.sh on the CA machine
+
+
+# a basic configuration: everything Apache gets will be sent to:
+# ajp://alfresco6.tst.lcl:8009/
+vi /etc/httpd/conf.d/mod_proxy_ajp.conf
+
+LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
+
+LogLevel Debug
+
+ProxyPass / ajp://alfresco6.tst.lcl:8009/
+ProxyPassReverse / ajp://alfresco6.tst.lcl:8009/
+
+
+
+
+# restart Alfresco, restart Apache
+$CATALINA_HOME/bin/shutdown.sh 90 -force ; $CATALINA_HOME/bin/startup.sh
+apachectl restart
+
+
+
