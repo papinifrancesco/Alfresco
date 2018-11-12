@@ -1,4 +1,7 @@
 $CATALINA_HOME/bin/shutdown.sh 90 -force ; $CATALINA_HOME/bin/startup.sh
+
+$CATALINA_HOME/bin/shutdown.sh 90 -force ; rm -f $CATALINA_HOME/logs/catalina.out ; $CATALINA_HOME/bin/startup.sh
+
 /opt/alfresco-search-services/solr/bin/solr stop ; /opt/alfresco-search-services/solr/bin/solr start -force
 
 # check key store and trust store
