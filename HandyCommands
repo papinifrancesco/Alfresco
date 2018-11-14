@@ -1,3 +1,22 @@
+# restore, hopefully, proper ACLs after a chmod disaster
+# install sshfs from epel
+#!/bin/bash
+myPath="usr/bin"
+for filename in /usr/bin/* ; do
+       echo chmod --reference "/mnt/properACL/$myPath/$filename" "/$myPath/$filename"
+done
+
+# clean Alfresco and Solr , remember to drop the DB as well
+$CATALINA_HOME/bin/shutdown.sh 90 -force ;
+rm -rf /opt/alfresco/alf_data/contentstore          \
+       /opt/alfresco/alf_data/contentstore.deleted  \
+       /opt/alfresco/tomcat/logs/*                  \
+       /opt/solr6/logs/*                            ;
+       
+
+#
+tail -f /opt/alfresco/tomcat/logs/catalina.out
+
 $CATALINA_HOME/bin/shutdown.sh 90 -force ; $CATALINA_HOME/bin/startup.sh
 
 $CATALINA_HOME/bin/shutdown.sh 90 -force ; rm -f $CATALINA_HOME/logs/catalina.out ; $CATALINA_HOME/bin/startup.sh
