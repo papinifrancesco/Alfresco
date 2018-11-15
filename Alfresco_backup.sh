@@ -12,7 +12,7 @@ CURRENT_FOLDER=$(pwd) # Script folder
 
 TIMESTAMP=$( date +%Y%m%d%H%M%S ) # Create timestamp
 
-DUMP_NUM=10 # Number of backups to keep
+DUMP_NUM=3 # Number of backups to keep
 
 AL_FOLDER="/opt/alfresco-content-services" # Alfresco folder
 
@@ -226,6 +226,6 @@ if [ "$SUCCESS" = 1 ]; then
 
 find $TARGET_FOLDER/*.tgz -type f -mtime +${DUMP_NUM} -exec rm {} \;
 
-echo "Backups older than 10 days have been removed"
+echo "Backups older than 3 days have been removed"
 
 fi
