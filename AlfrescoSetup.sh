@@ -114,6 +114,7 @@ java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfres
 
 # define logging for the web apps:
 # $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
+log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 # $CATALINA_HOME/webapps/share/WEB-INF/classes/log4j.properties
 log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 
