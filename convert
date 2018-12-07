@@ -1,0 +1,8 @@
+# A wrapper for Image Magick's "convert" command
+
+#!/bin/bash
+
+echo "$(date +$F_%T): eseguito convert con parametri: $*" >> /tmp/convert.out
+/usr/bin/convert.ORIG $*
+echo "$(date +$F_%T): exit code convert: $?" >> /tmp/convert.out
+
