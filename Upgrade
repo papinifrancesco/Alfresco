@@ -1,4 +1,5 @@
 # A list of notes to perform an Alfresco upgrade
+# review: http://docs.alfresco.com/6.0/tasks/upgrade-process.html
 
 # ALWAYS make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
 # cp alfresco-global.properties alfresco-global.properties.ORIG
