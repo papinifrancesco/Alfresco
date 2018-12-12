@@ -39,6 +39,9 @@ diff /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco-global.prop
 
 # inspect both alfresco-global.properties and see the DB you're working with
 # also, check if you have a custom keystore somewhere
+# AND put:
+# export TNS_ADMIN=/opt/alfresco/tomcat/shared/classes/
+# into setnv.sh to force the location of tnsnames.ora
 cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/tnsnames.ora /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
 cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/ldaps_keystore.jceks /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
 
@@ -85,20 +88,3 @@ unzip -d _vti_bin/ _vti_bin.war
 
 # we know we should run things with root so:
 chown -R dft.dftgrp /prd/dft/alfresco-5.2.4
-
-
-
-----------------------------------------------------------------------------
-Warning
-
-This environment is not configured optimally for Alfresco Content Services -
-review this list before continuing.
-
-While these issues won’t prevent Alfresco Content Services from functioning,
-some product features might not be available, or the system might not perform
-optimally.
-
-SMTP TCP port in use
-: 25
-IMAP TCP port in use.
-: 25
