@@ -1,5 +1,8 @@
 # A list of notes to perform an Alfresco upgrade
 
+# ALWAYS make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
+# cp alfresco-global.properties alfresco-global.properties.ORIG
+
 # Although most customers leave the default "alfresco" and "share" contexts, some
 # of them wants a customized one, e.g. "SMTHalfresco" , "SMTHshare"
 # refer to:
@@ -9,18 +12,18 @@
 /prd/dft/alfresco-5.0.3-20181210/java/bin/java -jar /prd/dft/alfresco-5.0.3-20181210/bin/alfresco-mmt.jar list /prd/dft/alfresco-5.0.3-20181210/tomcat/webapps/DFTSVIalfresco
 /prd/dft/alfresco-5.0.3-20181210/java/bin/java -jar /prd/dft/alfresco-5.0.3-20181210/bin/alfresco-mmt.jar list /prd/dft/alfresco-5.0.3-20181210/tomcat/webapps/DFTSVIshare
 
-# if you know 
+# basic stuff here
 diff /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco-global.properties /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 
-
+# install your custom amps and take note of what happens
+# (because it always happen something)
 /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
 
 [root@n0611289 upgrade_to_alf524]# /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
    - WARNING: The file '/WEB-INF/lib/commons-beanutils-1.9.3.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f0159702-fc75-11e8-aecf-91f946c1e2f8.bin'
    - WARNING: The file '/WEB-INF/lib/commons-collections-3.2.2.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f01744b3-fc75-11e8-aecf-91f946c1e2f8.bin'
    - WARNING: The file '/WEB-INF/lib/commons-logging-1.2.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f0182f14-fc75-11e8-aecf-91f946c1e2f8.bin
-
 
 [root@n0611289 upgrade_to_alf524]# /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-share-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIshare/ -nobackup -force
    - WARNING: The file '/components/documentlibrary/toolbar-min.js' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/31060a6e-fc76-11e8-93d6-e172bfa6e9df.bin'
@@ -31,11 +34,14 @@ diff /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco-global.prop
 
 # BEFORE COMPARING 5.0.3-PROD with 5.2.4 , 
 # COMPARE 5.0.3-ORIG with 5.0.3-PROD (omitted)
+# it means: use the "diff" command a lot
 
-
+# inspect both alfresco-global.properties and see the DB you're working with
+# also, check if you have a custom keystore somewhere
 cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/tnsnames.ora /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
 cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/ldaps_keystore.jceks /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
 
+# let's go diffing
 reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v temp
 
 reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -F ".xml"
@@ -68,17 +74,15 @@ diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/tomcat/bin/setenv.sh /prd/
 
 reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v temp | grep -v .xml | grep -v properties | grep -v .sh | grep -v BAK
 
-
+# if you want to install AOS manually (maybe an up to date version?)
+# http://docs.alfresco.com/aos1.1/tasks/aos-install.html
 /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /home/appTAI/alfresco-aos-module-distributionzip-1.1.8/alfresco-aos-module-1.1.8.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco -nobackup
-
 rm -rf /opt/alfresco/tomcat/webapps/_vti*
 cp _vti_bin.war /opt/alfresco/tomcat/webapps/
 unzip -d _vti_bin/ _vti_bin.war
 
 
-# Non ho capito se dovevo farlo o no: non fatto.
-http://docs.alfresco.com/aos1.1/tasks/install-server-root.html
-
+# we know we should run things with root so:
 chown -R dft.dftgrp /prd/dft/alfresco-5.2.4
 
 
