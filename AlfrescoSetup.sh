@@ -116,7 +116,7 @@ java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfres
 # $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
 log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 # $CATALINA_HOME/webapps/share/WEB-INF/classes/log4j.properties
-log4j.appender.File.File=${catalina.base}/logs/alfresco.log
+log4j.appender.File.File=${catalina.base}/logs/share.log
 
 
 # to stop Tomcat, ALWAYS use:
