@@ -214,23 +214,24 @@ ln -sf /opt/libreoffice5.2/ /opt/alfresco-content-services/LibreOffice/
 vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
-######### ImageMagick install NOT COMPLETED #########
+######### ImageMagick install #########
 # EPEL is your friend, so:
 yum install epel-release
 
-# CHECK BELOW !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# ImageMagick installation process is not that clear but try to get and .rpm for it and force the installation
+# probably the installer will complain but there are high chances that will get a working installation... for
+# Alfresco at least (in the end just "convert" is used).
 
-# decide how to install, two paths are possible both with pros and cons
-# path 1 , easy install but everything is in different folders (as per FHS):
-yum install -y ImageMagick ImageMagick-c++
-# then you should find all that is asked in:
-# http://docs.alfresco.com/community/tasks/imagemagick-config.html
-# and edit the alfresco-global.properties accordingly
-# locate -r /ExactWordToBeFound$  is your friend so
-locate -r /convert$
-locate -r /coders$
-locate -r /ImageMagick$
-######### ImageMagick install NOT COMPLETED #########
+# the key point is that we WILL NOT have a root directory so in alfresco-global.properties define
+# an empty root folder (see the provided file):
+
+img.root=
+img.dyn=/usr/lib64
+img.exe=/usr/bin/convert
+img.coders=/usr/lib64/ImageMagick-7.0.8/modules-Q16HDRI/coders
+img.config=/etc/ImageMagick-7
+
+######### ImageMagick install #########
 
 
 ######### Solr - same host - no SSL so far #########
