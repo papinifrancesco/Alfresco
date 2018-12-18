@@ -207,13 +207,17 @@ alfresco.suggestable.property.3={http://www.alfresco.org/model/content/1.0}conte
 alfresco.cross.locale.datatype.0={http://www.alfresco.org/model/dictionary/1.0}text
 alfresco.cross.locale.datatype.1={http://www.alfresco.org/model/dictionary/1.0}content
 alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}mltext
-    # modify
+
+# modify ONLY if you want to change Solr context (not even ASPI do this).
 solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
 
 # set SOLAR_HOME for solr
 vi /opt/alfresco-search-services/solr.in.sh
 # uncomment SOLR_HOME and add the path
 SOLR_HOME=/opt/alfresco-search-services/solrhome
+# and maybe change Java memory
+SOLR_JAVA_MEM="-Xms2g -Xmx2g"
+
 
 # start Solr , first time only command
 /opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
