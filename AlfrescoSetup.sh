@@ -43,6 +43,33 @@ crontab -u alfresco -e
 55 23 * * * /usr/local/script/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
 59 23 * * * /usr/local/script/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
+
+# make alfresco user able to start, stop, restart and check the status of both alfresco.service and solr.service
+visudo
+---
+# Allows members of the alfresco group to start and stop alfresco service
+%alfresco ALL= NOPASSWD: /bin/systemctl start   alfresco.service
+%alfresco ALL= NOPASSWD: /bin/systemctl stop    alfresco.service
+%alfresco ALL= NOPASSWD: /bin/systemctl restart alfresco.service
+%alfresco ALL= NOPASSWD: /bin/systemctl status  alfresco.service
+
+# Allows members of the alfresco group to start and stop solr service
+%alfresco ALL= NOPASSWD: /bin/systemctl start   solr.service
+%alfresco ALL= NOPASSWD: /bin/systemctl stop    solr.service
+%alfresco ALL= NOPASSWD: /bin/systemctl restart solr.service
+%alfresco ALL= NOPASSWD: /bin/systemctl status  solr.service
+---
+
+
+
+
+
+
+
+
+
+
+
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
