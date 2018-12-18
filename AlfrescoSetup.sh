@@ -36,7 +36,7 @@ chown alfresco:alfresco /usr/local/script/catalina_rotate.sh
 chmod u+x catalina_rotate.sh
 # chmod 744 catalina_rotate.sh
 # in the end it should be like as:
-# -rwxr--r-- 1 alfresco users 260 Dec 18 15:24 catalina_rotate.sh
+# -rwxr--r-- 1 alfresco alfresco 260 Dec 18 15:24 catalina_rotate.sh
 
 crontab -u alfresco -e
 # put the two lines below
@@ -62,12 +62,21 @@ shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
 
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
-export CATALINA_PID=/opt/alfresco-content-services/tomcat/temp/catalina.pid
-export JAVA_HOME=/usr/java/jdk1.8.0_181-amd64
-JAVA_OPTS="-XX:+UseConcMarkSweepGC -XX:+UseParNewGC $JAVA_OPTS "
-JAVA_OPTS="-Xms3G -Xmx3G $JAVA_OPTS " # java-memory-settings
-JAVA_OPTS="$JAVA_OPTS -XX:NewRatio=2 -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=1"
+----
+# Load Tomcat Native Library
+#LD_LIBRARY_PATH=/opt/alfresco/common/lib:$LD_LIBRARY_PATH
+
+JAVA_HOME=/opt/alfresco/java
+JRE_HOME=$JAVA_HOME
+JAVA_OPTS="-XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Djava.awt.headless=true -Dalfresco.home=/opt/alfresco -XX:ReservedCodeCacheSize=128m $JAVA_OPTS "
+JAVA_OPTS="-Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true $JAVA_OPTS "
+JAVA_OPTS="-XX:NewRatio=2 -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=2 $JAVA_OPTS "
+JAVA_OPTS="-Xms4G -Xmx4G $JAVA_OPTS " # java-memory-settings
+export JAVA_HOME
+export JRE_HOME
 export JAVA_OPTS
+#export LD_LIBRARY_PATH
+----                     
 
 
 # edit $CATALINA_HOME/shared/classes/alfresco-global.properties and check:
