@@ -21,10 +21,27 @@ mkdir $ALFRESCO_HOME/modules/platform
 mkdir $ALFRESCO_HOME/modules/share
 mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
+mkdir /usr/local/script
 
 cp $ALFRESCO_HOME/web-server/webapps/*.war $CATALINA_HOME/webapps/
 
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
+
+cp all_logs_compress.sh /usr/local/script/
+cp catalina.sh /usr/local/script/
+
+chown alfresco:alfresco /usr/local/script/all_logs_compress.sh
+chown alfresco:alfresco /usr/local/script/catalina_rotate.sh
+
+chmod u+x catalina_rotate.sh
+# chmod 744 catalina_rotate.sh
+# in the end it should be like as:
+# -rwxr--r-- 1 alfresco users 260 Dec 18 15:24 catalina_rotate.sh
+
+crontab -u alfresco -e
+# put the two lines below
+55 23 * * * /usr/local/script/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
+59 23 * * * /usr/local/script/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
@@ -41,7 +58,7 @@ cp postgresql-42.2.5.jar $CATALINA_HOME/lib
 
 
 # check that $CATALINA_HOME/conf/catalina.properties has:
-shared.loader=${catalina.base}/shared/classes
+shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
 
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
