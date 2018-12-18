@@ -1,4 +1,5 @@
 #!/bin/bash
+# should be put in /usr/local/script
 
 DATE_F=`date +%F`
 TCAT_HOME=$1
