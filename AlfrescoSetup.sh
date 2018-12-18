@@ -64,12 +64,6 @@ visudo
 
 
 
-
-
-
-
-
-
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
@@ -129,10 +123,15 @@ alfresco.rmi.services.host=0.0.0.0
 
 
 # edit $CATALINA_HOME/conf/server.xml so that:
-<Connector port="8080" 
-    protocol="HTTP/1.1"
-    connectionTimeout="20000"
-   redirectPort="8443" />
+ <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               URIEncoding="UTF-8" maxHttpHeaderSize="32768"
+               redirectPort="8443" />
+       [...]
+  <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log." suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b %I %T" />
+               
 # DO NOT define HTTPS/SSL in a basic installation
 
 
