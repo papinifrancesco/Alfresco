@@ -135,20 +135,9 @@ alfresco.rmi.services.host=0.0.0.0
 # DO NOT define HTTPS/SSL in a basic installation
 
 
-# edit $CATALINA_HOME/conf/tomcat-users.xml so that, for example:
- <role rolename="admin"/>
-  <role rolename="manager"/>
-  <role rolename="manager-gui"/>
-  <role rolename="manager-status"/>
-  <role rolename="manager-script"/>
-  <role rolename="manager-jmx"/>
-  <user username="manager" password="manager" roles="admin-gui,admin-script,manager-gui,manager-status,manager-script,manager-jmx"/>
-  <user username="tomcat" password="tomcat" roles="manager,admin"/>
-  # BTW, in 5.2 there are only the lines below left uncommented:
-  <tomcat-users>
-  <user username="CN=Alfresco Repository Client, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repoclient" password="null"/>
-  <user username="CN=Alfresco Repository, OU=Unknown, O=Alfresco Software Ltd., L=Maidenhead, ST=UK, C=GB" roles="repository" password="null"/>
-</tomcat-users>
+# mv $CATALINA_HOME/conf/tomcat-users.xml to .ORIG and copy the
+# provided tomcat.users.xml from this Github repo
+
 
 
 
