@@ -1,5 +1,4 @@
 #!/bin/bash
-# should be put in /usr/local/script
 
 TCAT_HOME=$1
 
