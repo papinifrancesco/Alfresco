@@ -1,3 +1,9 @@
+# extract repository.properties with Alfresco default values
+# useful to know what is preconfigured
+
+jar xvf /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/lib/alfresco-repository-6.56.jar alfresco/repository.properties
+
+
 # restore, hopefully, proper ACLs after a chmod disaster
 # install sshfs from epel
 #!/bin/bash
