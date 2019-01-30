@@ -1,0 +1,19 @@
+[Unit]
+Description=Alfresco ECM Repository
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/opt/alfresco/alfresco.sh start
+ExecReload=/opt/alfresco/alfresco.sh restart
+ExecStop=/opt/alfresco/alfresco.sh stop
+PIDFile=/opt/alfresco/tomcat/temp/catalina.pid
+WorkingDirectory=/opt/alfresco
+Restart=always
+User=daf
+Group=dafgrp
+
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
