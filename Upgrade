@@ -1,3 +1,9 @@
+# if you need to install A524 on a machine where A51x is running
+# install, with typical options but under /opt/alfresco, A524 on a dedicated (maybe temporary) VM
+# copy the whole Alfresco tree from the VM to the target machine
+# why? Because that way the installer will generate all of the files referring to /opt/alfresco
+# it is not good to realise later that you Alfresco tree contains lots of /somedir/alfresco-5.2.4 pointers
+
 # A list of notes to perform an Alfresco upgrade
 # review: http://docs.alfresco.com/6.0/tasks/upgrade-process.html
 
@@ -16,19 +22,39 @@ rm -rf /opt/alfresco/tomcat/temp/*
 # refer to:
 # https://docs.alfresco.com/6.0/tasks/deploy-contextpath.html
 # remember to change, for example:
-# /opt/alfresco/tomcat/webapps/alfresco.war -> /opt/alfresco/tomcat/webapps/DAFSVIalfresco.war
-# /opt/alfresco/tomcat/webapps/alfresco/ -> /opt/alfresco/tomcat/webapps/DAFSVIalfresco/
-cd /soft_install/alfresco-5.2.4/tomcat/conf/Catalina/localhost/
-mv alfresco.xml DAFSVIalfresco.xml
-mv share.xml DAFSVIshare.xml
+# /opt/alfresco/tomcat/webapps/
+                              alfresco.war -> DAFSVIalfresco.war
+                                 alfresco/ -> DAFSVIalfresco/
+
+# /opt/alfresco/tomcat/conf/Catalina/localhost/
+                                              alfresco.xml -> DAFSVIalfresco.xml
+                                                 share.xml -> DAFSVIshare.xml
+
 
 
 # check which amps are installed, remember that AOS in 5.0 was NOT an .amp but a .jar
-/prd/dft/alfresco-5.0.3-20181210/java/bin/java -jar /prd/dft/alfresco-5.0.3-20181210/bin/alfresco-mmt.jar list /prd/dft/alfresco-5.0.3-20181210/tomcat/webapps/DFTSVIalfresco
-/prd/dft/alfresco-5.0.3-20181210/java/bin/java -jar /prd/dft/alfresco-5.0.3-20181210/bin/alfresco-mmt.jar list /prd/dft/alfresco-5.0.3-20181210/tomcat/webapps/DFTSVIshare
+java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar list /opt/alfresco/tomcat/webapps/DFTSVIalfresco
+java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar list /opt/alfresco/tomcat/webapps/DFTSVIshare
 
-# basic stuff here
-diff /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco-global.properties /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+
+# diff the configuration files from old installation (left) and new installation (right) , example:
+ODIR=/opt/alfresco-5.1.2
+NDIR=/opt/alfresco-5.2.4
+AFILE=tomcat/shared/classes/alfresco-global.properties
+diff $ODIR/$AFILE $NDIR/$AFILE
+# diff and check all of these files:
+bin/apply_amps.sh
+bin/clean_tomcat.sh
+solr4/archive-SpacesStore/conf/solrcore.properties
+solr4/workspace-SpacesStore/conf/solrcore.properties
+solr4/context.xml
+tomcat/shared/classes/alfresco-global.properties
+tomcat/scripts/ctl.sh
+tomcat/bin/setenv.sh
+tomcat/conf/server.xml
+tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+tomcat/shared/classes/alfresco/extension/subsystems/Authentication/ldap-ad/ad1/ldap-ad-authentication.properties
+tomcat/shared/classes/tnsnames.ora
 
 
 # install your custom amps and take note of what happens
