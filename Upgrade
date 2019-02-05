@@ -29,6 +29,17 @@ rm -rf /opt/alfresco/tomcat/temp/*
 # /opt/alfresco/tomcat/conf/Catalina/localhost/
                                               alfresco.xml -> DAFSVIalfresco.xml
                                                  share.xml -> DAFSVIshare.xml
+# also, using vim or others, check for the context inside these files:
+# :%s/8080:\/alfresco/8080:\DAFSVIalfresco/,gc    
+vim bin/clean_tomcat.sh
+vim solr4/archive-SpacesStore/conf/solrcore.properties
+vim solr4/workspace-SpacesStore/conf/solrcore.properties
+vim tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+vim tomcat/shared/classes/alfresco-global.properties    
+vim tomcat/webapps/ROOT/index.jsp
+vim tomcat/webapps/_vti_bin/WEB-INF/web.xml
+
+
 
 
 
