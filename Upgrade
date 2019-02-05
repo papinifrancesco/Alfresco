@@ -7,15 +7,23 @@
 # A list of notes to perform an Alfresco upgrade
 # review: http://docs.alfresco.com/6.0/tasks/upgrade-process.html
 
+
+
 # clean, if needed, both "temp" and "work"
 rm -rf /opt/alfresco/tomcat/work/*
 rm -rf /opt/alfresco/tomcat/temp/*
 
+
+
 # remember to check the DB driver (a .jar probably): from a version to another the file might not be the same:
 # for example in /opt/alfresco/tomcat/lib/ we may have ojdbc6.jar but the Alfresco version needs ojdbc7.jar
 
+
+
 # ALWAYS make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
 # cp alfresco-global.properties alfresco-global.properties.ORIG
+
+
 
 # Although most customers leave the default "alfresco" and "share" contexts, some
 # of them wants a customized one, e.g. "SMTHalfresco" , "SMTHshare"
@@ -29,6 +37,7 @@ rm -rf /opt/alfresco/tomcat/temp/*
 # /opt/alfresco/tomcat/conf/Catalina/localhost/
                                               alfresco.xml -> DAFSVIalfresco.xml
                                                  share.xml -> DAFSVIshare.xml
+
 # also, using vim or others, check for the context inside these files:
 # :%s/8080:\/alfresco/8080:\DAFSVIalfresco/,gc    
 vim bin/clean_tomcat.sh
@@ -41,11 +50,10 @@ vim tomcat/webapps/_vti_bin/WEB-INF/web.xml
 
 
 
-
-
 # check which amps are installed, remember that AOS in 5.0 was NOT an .amp but a .jar
 java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar list /opt/alfresco/tomcat/webapps/DFTSVIalfresco
 java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar list /opt/alfresco/tomcat/webapps/DFTSVIshare
+
 
 
 # diff the configuration files from old installation (left) and new installation (right) , example:
@@ -54,96 +62,62 @@ NDIR=/opt/alfresco-5.2.4
 AFILE=tomcat/shared/classes/alfresco-global.properties
 diff $ODIR/$AFILE $NDIR/$AFILE
 # diff and check all of these files:
+alfresco.sh
 bin/apply_amps.sh
 bin/clean_tomcat.sh
+common/lib/ImageMagick-x.x.x/config-Q16/policy.xml
+libreoffice/scripts/libreoffice_check.sh
 solr4/archive-SpacesStore/conf/solrcore.properties
 solr4/workspace-SpacesStore/conf/solrcore.properties
 solr4/context.xml
 tomcat/shared/classes/alfresco-global.properties
 tomcat/scripts/ctl.sh
 tomcat/bin/setenv.sh
+tomcat/conf/context.xml
 tomcat/conf/server.xml
+tomcat/conf/tomcat-users.xml
 tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 tomcat/shared/classes/alfresco/extension/subsystems/Authentication/ldap-ad/ad1/ldap-ad-authentication.properties
 tomcat/shared/classes/tnsnames.ora
+tomcat/shared/classes/alfresco/extension/custom-log4j.properties
 
 
-# install your custom amps and take note of what happens
-# (because it always happen something)
 # Alfresco MUST be STOPPED!!!
-/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
+# copy the your amps either to ./amps or ./amps_share
+# then install them and take note of what happens
+# (because something always happen)
 
-[root@n0611289 upgrade_to_alf524]# /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
-   - WARNING: The file '/WEB-INF/lib/commons-beanutils-1.9.3.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f0159702-fc75-11e8-aecf-91f946c1e2f8.bin'
-   - WARNING: The file '/WEB-INF/lib/commons-collections-3.2.2.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f01744b3-fc75-11e8-aecf-91f946c1e2f8.bin'
-   - WARNING: The file '/WEB-INF/lib/commons-logging-1.2.jar' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/f0182f14-fc75-11e8-aecf-91f946c1e2f8.bin
+java -jar /opt/alfresco/bin/alfresco-mmt.jar install /opt/alfresco/amps/tech.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
+java -jar /opt/alfresco/bin/alfresco-mmt.jar install /opt/alfresco/amps_share/tech-share.amp /opt/alfresco/tomcat/webapps/DFTSVIshare/ -nobackup -force
 
-[root@n0611289 upgrade_to_alf524]# /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-share-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIshare/ -nobackup -force
-   - WARNING: The file '/components/documentlibrary/toolbar-min.js' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/31060a6e-fc76-11e8-93d6-e172bfa6e9df.bin'
-   - WARNING: The file '/components/documentlibrary/toolbar.js' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/3107910f-fc76-11e8-93d6-e172bfa6e9df.bin'
-   - WARNING: The file '/WEB-INF/classes/alfresco/site-webscripts/org/alfresco/components/invite/addemail.get.js' is being overwritten by this module. The original has been backed-up to '/WEB-INF/classes/alfresco/module/backup/3109b3f0-fc76-11e8-93d6-e172bfa6e9df.bin'
-
-
-
-# BEFORE COMPARING 5.0.3-PROD with 5.2.4 , 
-# COMPARE 5.0.3-ORIG with 5.0.3-PROD (omitted)
-# it means: use the "diff" command a lot
-
-# inspect both alfresco-global.properties and see the DB you're working with
-# also, check if you have a custom keystore somewhere
-# AND put:
-# export TNS_ADMIN=/opt/alfresco/tomcat/shared/classes/
-# into setnv.sh to force the location of tnsnames.ora
-cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/tnsnames.ora /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
-cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/ldaps_keystore.jceks /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
-
-# let's go diffing
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v 
-
-
-
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -F ".xml"
-diff -w -y -W 210 /prd/dft/alfresco-5.0.3-20181210/tomcat/conf/context.xml      /prd/dft/alfresco-5.2.4/tomcat/conf/context.xml      
-diff -w -y -W 210 /prd/dft/alfresco-5.0.3-20181210/tomcat/conf/server.xml       /prd/dft/alfresco-5.2.4/tomcat/conf/server.xml       
-diff -w -y -W 210 /prd/dft/alfresco-5.0.3-20181210/tomcat/conf/tomcat-users.xml /prd/dft/alfresco-5.2.4/tomcat/conf/tomcat-users.xml
-diff -w -y -W 200 /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml /prd/dft/alfresco-5.2.4/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
-diff  /prd/dft/alfresco-5.0.3-20181210/common/lib/ImageMagick-6.8.6/config-Q16/policy.xml /prd/dft/alfresco-5.2.4/common/lib/ImageMagick-7.0.5/config-Q16HDRI/policy.xml
-IDENTICAL
-
-
-
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep properties
-diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/solr4/archive-SpacesStore/conf/solrcore.properties   /prd/dft/alfresco-5.2.4/solr4/archive-SpacesStore/conf/solrcore.properties
-diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/solr4/workspace-SpacesStore/conf/solrcore.properties /prd/dft/alfresco-5.2.4/solr4/workspace-SpacesStore/conf/solrcore.properties
-cp -a /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco/extension/custom-log4j.properties /prd/dft/alfresco-5.2.4/tomcat/shared/classes/alfresco/extension/
-
-
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -F ".sh"
-diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/alfresco.sh /prd/dft/alfresco-5.2.4/alfresco.sh
-cp -a /prd/dft/alfresco-5.0.3-20181210/alfresco.sh /prd/dft/alfresco-5.2.4/alfresco.sh #ALMOST IDENTICAL
-
-diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/bin/clean_tomcat.sh /prd/dft/alfresco-5.2.4/bin/clean_tomcat.sh
-cp -a /prd/dft/alfresco-5.0.3-20181210/bin/clean_tomcat.sh /prd/dft/alfresco-5.2.4/bin/clean_tomcat.sh #ALMOST IDENTICAL
- 
-cp -a /prd/dft/alfresco-5.0.3-20181210/libreoffice/scripts/libreoffice_check.sh /prd/dft/alfresco-5.2.4/libreoffice/scripts/
-
-diff -y -w -B -W 200 /prd/dft/alfresco-5.0.3-20181210/tomcat/bin/setenv.sh /prd/dft/alfresco-5.2.4/tomcat/bin/setenv.sh
-
-
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v temp | grep -v .xml | grep -v properties | grep -v .sh | grep -v BAK
+# we could install the .amp to the .war as well with the same syntax, however check FIRST if a given amp needed
+# further customization AFTER you deployed it, example: an xml file that need to be edited
+# if you patch the folder first
+# then you edit the xml file
+# then you patch the .war
+# the folder will be misaligned with the .war and so the folder will be overwritten
+# it means: you'll lose the xml file customisation
 
 # if you want to install AOS manually (maybe an up to date version?)
 # http://docs.alfresco.com/aos1.1/tasks/aos-install.html
-/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /home/appTAI/alfresco-aos-module-distributionzip-1.1.8/alfresco-aos-module-1.1.8.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco -nobackup
+java -jar /opt/alfresco/bin/alfresco-mmt.jar install /pathToAmp/alfresco-aos-module-1.1.8.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco -nobackup
 rm -rf /opt/alfresco/tomcat/webapps/_vti*
 cp _vti_bin.war /opt/alfresco/tomcat/webapps/
 unzip -d _vti_bin/ _vti_bin.war
 
 
 
+# if you're working with an Oracle DB
+# copy tnsnames.ora in /opt/alfresco/tomcat/shared/classes/
+# then edit setnv.sh to force the location of tnsnames.ora by adding:
+export TNS_ADMIN=/opt/alfresco/tomcat/shared/classes/
 
 
 
+# copy any eventual keystore from the old installation:
+cp $ODIR/tomcat/shared/classes/ldaps_keystore.jceks $NDIR/tomcat/shared/classes/
 
-# we know we should run things with root so:
+ 
+
+# we know we should run things without root so:
 chown -R dft.dftgrp /prd/dft/alfresco-5.2.4
