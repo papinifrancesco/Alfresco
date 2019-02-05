@@ -1,6 +1,13 @@
 # A list of notes to perform an Alfresco upgrade
 # review: http://docs.alfresco.com/6.0/tasks/upgrade-process.html
 
+# clean, if needed, both "temp" and "work"
+rm -rf /opt/alfresco/tomcat/work/*
+rm -rf /opt/alfresco/tomcat/temp/*
+
+# remember to check the DB driver (a .jar probably): from a version to another the file might not be the same:
+# for example in /opt/alfresco/tomcat/lib/ we may have ojdbc6.jar but the Alfresco version needs ojdbc7.jar
+
 # ALWAYS make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
 # cp alfresco-global.properties alfresco-global.properties.ORIG
 
@@ -8,6 +15,13 @@
 # of them wants a customized one, e.g. "SMTHalfresco" , "SMTHshare"
 # refer to:
 # https://docs.alfresco.com/6.0/tasks/deploy-contextpath.html
+# remember to change, for example:
+# /opt/alfresco/tomcat/webapps/alfresco.war -> /opt/alfresco/tomcat/webapps/DAFSVIalfresco.war
+# /opt/alfresco/tomcat/webapps/alfresco/ -> /opt/alfresco/tomcat/webapps/DAFSVIalfresco/
+cd /soft_install/alfresco-5.2.4/tomcat/conf/Catalina/localhost/
+mv alfresco.xml DAFSVIalfresco.xml
+mv share.xml DAFSVIshare.xml
+
 
 # check which amps are installed, remember that AOS in 5.0 was NOT an .amp but a .jar
 /prd/dft/alfresco-5.0.3-20181210/java/bin/java -jar /prd/dft/alfresco-5.0.3-20181210/bin/alfresco-mmt.jar list /prd/dft/alfresco-5.0.3-20181210/tomcat/webapps/DFTSVIalfresco
@@ -19,6 +33,7 @@ diff /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/alfresco-global.prop
 
 # install your custom amps and take note of what happens
 # (because it always happen something)
+# Alfresco MUST be STOPPED!!!
 /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
 
 [root@n0611289 upgrade_to_alf524]# /opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar install /root/work/upgrade_to_alf524/tech-alfresco-amp.amp /opt/alfresco/tomcat/webapps/DFTSVIalfresco/ -nobackup -force
@@ -46,7 +61,9 @@ cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/tnsnames.ora /prd/dft/
 cp /prd/dft/alfresco-5.0.3-20181210/tomcat/shared/classes/ldaps_keystore.jceks /prd/dft/alfresco-5.2.4-modded/tomcat/shared/classes/
 
 # let's go diffing
-reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v temp
+reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -v logs | grep -v .log | grep -v 
+
+
 
 reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 | grep -F ".xml"
 diff -w -y -W 210 /prd/dft/alfresco-5.0.3-20181210/tomcat/conf/context.xml      /prd/dft/alfresco-5.2.4/tomcat/conf/context.xml      
@@ -84,6 +101,11 @@ reset ; diff -qr /prd/dft/alfresco-5.0.3.ORIG /prd/dft/alfresco-5.0.3-20181210 |
 rm -rf /opt/alfresco/tomcat/webapps/_vti*
 cp _vti_bin.war /opt/alfresco/tomcat/webapps/
 unzip -d _vti_bin/ _vti_bin.war
+
+
+
+
+
 
 
 # we know we should run things with root so:
