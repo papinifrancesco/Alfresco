@@ -97,6 +97,7 @@ tomcat/bin/setenv.sh
 tomcat/conf/context.xml
 tomcat/conf/server.xml
 tomcat/conf/tomcat-users.xml
+tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml
 tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 tomcat/shared/classes/alfresco/extension/subsystems/Authentication/ldap-ad/ad1/ldap-ad-authentication.properties
 tomcat/shared/classes/tnsnames.ora
