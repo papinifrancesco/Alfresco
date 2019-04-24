@@ -6,3 +6,13 @@ reset; reset;
 diff -qr $ODIR $NDIR | \
 grep -E -v  '*BAK*|\.a|\.h|\.bat|\.bau|\.bin|\.cfg|\.class|\.css|\.dat|\.dtd|\.desktop|\.dic|\examples|\.gif|\.glsl|\.gz|\.html|\.jar|\.java|\.la|LibreLogo|\.log|\.m4|\.mdl|\.mod|\.pc|\.pl|\.pdf|\.png|\.py|\.rdb|\.sample|\.so|\.sdg|\.str|\.svg|\.thm|\.ttf|\.ui|templates|terminfo|\.txt|\.war|\.xba|\.xcd|\.xlb|\.xsl|\.zip' | \
 sort ;
+
+
+
+# different approach, maybe more clean
+reset;reset; 
+diff -qr $ODIR $NDIR | 
+grep -E -i  '\.js|\.jsp|\.properties|\.ORIG|\.sh|\.xml' |
+grep -E -i -v '.BAK|dashlets|site-webscripts|alfresco/messages|/cmm/|/documentlibrary/|/components/|example|maven\.org' |
+grep -E -i -v 'LibreLogo|google/docs|/soffice.cfg/|/liblangtag/' |
+sort;
