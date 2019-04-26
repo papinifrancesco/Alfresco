@@ -12,7 +12,7 @@ sort ;
 # different approach, maybe more clean
 reset;reset; 
 diff -qr $ODIR $NDIR | 
-grep -E -i  '\.js|\.jsp|\.properties|\.ORIG|\.sh|\.xml' |
+grep -E -i  '\.js|\.jsp|\.ORIG|\.pri|\.properties|\.pub|\.sh|\.xml' |
 grep -E -i -v '.BAK|dashlets|site-webscripts|alfresco/messages|/cmm/|/documentlibrary/|/components/|example|maven\.org' |
 grep -E -i -v 'LibreLogo|google/docs|/soffice.cfg/|/liblangtag/' |
 sort;
