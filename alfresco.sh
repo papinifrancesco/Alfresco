@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# Allow only root or $USER_NAME execution
-USER_NAME=$(grep ^User= /etc/systemd/system/alfresco.service | cut -d= -f2)
-if [ `id|sed -e s/uid=//g -e s/\(.*//g` -ne 0 ] && [ `id|sed -e s/uid=[0-9]*\(//g -e s/\).*//g` != "$USER_NAME" ]; then
-    echo "This script requires root or $USER_NAME privileges"
-    exit 1
-fi
+# Allow only root execution
+#if [ `id|sed -e s/uid=//g -e s/\(.*//g` -ne 0 ]; then
+#    echo "This script requires root privileges"
+#    exit 1
+#fi
 
 
 # Disabling SELinux if enabled
@@ -14,7 +13,7 @@ if [ -f "/usr/sbin/getenforce" ] && [ `id -u` = 0 ] ; then
     /usr/sbin/setenforce 0 2> /dev/null
 fi
 
-INSTALLDIR=/opt/alfresco
+INSTALLDIR=/opt/alfresco-one
 
 if [ -r "$INSTALLDIR/scripts/setenv.sh" ]; then
 . "$INSTALLDIR/scripts/setenv.sh"
@@ -32,6 +31,7 @@ HYPERSONIC_SCRIPT=$INSTALLDIR/hypersonic/scripts/ctl.sh
 SOLR_SCRIPT=$INSTALLDIR/apache-solr/scripts/ctl.sh
 ELASTICSEARCH_SCRIPT=$INSTALLDIR/elasticsearch/scripts/ctl.sh
 TOMCAT_SCRIPT=$INSTALLDIR/tomcat/scripts/ctl.sh
+TOMCAT_CLEAN="$INSTALLDIR/bin/clean_tomcat_temp_work.sh $INSTALLDIR"
 RESIN_SCRIPT=$INSTALLDIR/resin/scripts/ctl.sh
 REDIS_SCRIPT=$INSTALLDIR/redis/scripts/ctl.sh
 SUBVERSION_SCRIPT=$INSTALLDIR/subversion/scripts/ctl.sh
@@ -51,88 +51,88 @@ RABBITMQ_SCRIPT=$INSTALLDIR/rabbitmq-server/scripts/ctl.sh
 ACTIVEMQ_SCRIPT=$INSTALLDIR/activemq/scripts/ctl.sh
 
 help() {
-	echo "usage: $0 help"
-	echo "       $0 (start|stop|restart|status)"
-	if test -x $MYSQL_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) mysql"
-	fi
-        if test -x $POSTGRESQL_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) postgresql"
-	fi
-	if test -x $MONGODB_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) mongodb"
-	fi
-	if test -x $INGRES_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) ingres"
-	fi
-	if test -x $MEMCACHED_SCRIPT; then
-	    echo "       $0 (start|stop|restart|status) memcached"
-	fi
-	if test -x $PHPFPM_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) php-fpm"
-	fi
-	if test -x $APACHE_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) apache"
-	fi
-	if test -x $VARNISH_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) varnish"
-	fi
-	if test -x $NGINX_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) nginx"
-	fi
-	if test -x $HYPERSONIC_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) hypersonic"
-	fi
-	if test -x $SOLR_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) solr"
-	fi
-	if test -x $ELASTICSEARCH_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) elasticsearch"
-	fi
-	if test -x $TOMCAT_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) tomcat"
-	fi
-	if test -x $RESIN_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) resin"
-	fi
-	if test -x $REDIS_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) redis"
-	fi
-	if test -x $SUBVERSION_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) subversion"
-	fi
-	if test -x $LIBREOFFICE_SCRIPT; then	
-	    echo "       $0 (start|stop|restart) libreoffice"
-	fi
+        echo "usage: $0 help"
+        echo "       $0 (start|stop|restart|status)"
+        if test -x $MYSQL_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) mysql"
+        fi
+        if test -x $POSTGRESQL_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) postgresql"
+        fi
+        if test -x $MONGODB_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) mongodb"
+        fi
+        if test -x $INGRES_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) ingres"
+        fi
+        if test -x $MEMCACHED_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) memcached"
+        fi
+        if test -x $PHPFPM_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) php-fpm"
+        fi
+        if test -x $APACHE_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) apache"
+        fi
+        if test -x $VARNISH_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) varnish"
+        fi
+        if test -x $NGINX_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) nginx"
+        fi
+        if test -x $HYPERSONIC_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) hypersonic"
+        fi
+        if test -x $SOLR_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) solr"
+        fi
+        if test -x $ELASTICSEARCH_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) elasticsearch"
+        fi
+        if test -x $TOMCAT_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) tomcat"
+        fi
+        if test -x $RESIN_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) resin"
+        fi
+        if test -x $REDIS_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) redis"
+        fi
+        if test -x $SUBVERSION_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) subversion"
+        fi
+        if test -x $LIBREOFFICE_SCRIPT; then
+            echo "       $0 (start|stop|restart) libreoffice"
+        fi
         #RUBY_APPLICATION_HELP
-	if test -x $LUCENE_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) lucene"
-	fi
-	if test -x $RABBITMQ_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) rabbitmq"
-	fi
-	if test -x $ACTIVEMQ_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) activemq"
-	fi
-	if test -x $ZOPE_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) zope_application"
-	fi
-	if test -x $THIRD_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) third_application"
-	fi
-	if test -x $NAGIOS_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) nagios"
-	fi
-	if test -x $JETTY_SCRIPT; then	
-	    echo "       $0 (start|stop|restart|status) jetty"
-	fi
+        if test -x $LUCENE_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) lucene"
+        fi
+        if test -x $RABBITMQ_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) rabbitmq"
+        fi
+        if test -x $ACTIVEMQ_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) activemq"
+        fi
+        if test -x $ZOPE_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) zope_application"
+        fi
+        if test -x $THIRD_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) third_application"
+        fi
+        if test -x $NAGIOS_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) nagios"
+        fi
+        if test -x $JETTY_SCRIPT; then
+            echo "       $0 (start|stop|restart|status) jetty"
+        fi
     if test -x $JBOSS_SCRIPT; then
         echo "       $0 (start|stop|restart|status) jboss"
     fi
     if test -x $WILDFLY_SCRIPT; then
     echo "       $0 (start|stop|restart|status) wildfly"
     fi
-	cat <<EOF
+        cat <<EOF
 
 help       - this screen
 start      - start the service(s)
@@ -164,8 +164,8 @@ elif [ "x$1" = "xstart" ]; then
             MYSQL_ERROR=$?
         fi
     elif [ "x$2" = "xpostgresql" ]; then
-        if test -x $POSTGRESQL_SCRIPT; then	
-            $POSTGRESQL_SCRIPT start  
+        if test -x $POSTGRESQL_SCRIPT; then
+            $POSTGRESQL_SCRIPT start
             POSTGRESQL_ERROR=$?
         fi
     elif [ "x$2" = "xmongodb" ]; then
@@ -179,13 +179,13 @@ elif [ "x$1" = "xstart" ]; then
             INGRES_ERROR=$?
         fi
     elif [ "x$2" = "xlibreoffice" ]; then
-        if test -x $LIBREOFFICE_SCRIPT; then	
-            $LIBREOFFICE_SCRIPT start  
+        if test -x $LIBREOFFICE_SCRIPT; then
+            $LIBREOFFICE_SCRIPT start
             LIBREOFFICE_ERROR=$?
         fi
     elif [ "x$2" = "xhypersonic" ]; then
-        if test -x $HYPERSONIC_SCRIPT; then	
-            $HYPERSONIC_SCRIPT start  
+        if test -x $HYPERSONIC_SCRIPT; then
+            $HYPERSONIC_SCRIPT start
             HYPERSONIC_ERROR=$?
         fi
     elif [ "x$2" = "xmemcached" ]; then
@@ -195,17 +195,17 @@ elif [ "x$1" = "xstart" ]; then
         fi
     elif [ "x$2" = "xsolr" ]; then
         if test -x $SOLR_SCRIPT; then
-            $SOLR_SCRIPT start  
+            $SOLR_SCRIPT start
             SOLR_ERROR=$?
         fi
     elif [ "x$2" = "xelasticsearch" ]; then
         if test -x $ELASTICSEARCH_SCRIPT; then
-            $ELASTICSEARCH_SCRIPT start  
+            $ELASTICSEARCH_SCRIPT start
             ELASTICSEARCH_ERROR=$?
         fi
     elif [ "x$2" = "xtomcat" ]; then
         if test -x $TOMCAT_SCRIPT; then
-            $LIBREOFFICE_CHECK; $TOMCAT_SCRIPT start  
+            $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
     elif [ "x$2" = "xjboss" ]; then
@@ -220,73 +220,73 @@ elif [ "x$1" = "xstart" ]; then
             fi
     elif [ "x$2" = "xresin" ]; then
         if test -x $RESIN_SCRIPT; then
-            $RESIN_SCRIPT start  
+            $RESIN_SCRIPT start
             RESIN_ERROR=$?
         fi
     elif [ "x$2" = "xredis" ]; then
         if test -x $REDIS_SCRIPT; then
-            $REDIS_SCRIPT start  
+            $REDIS_SCRIPT start
             REDIS_ERROR=$?
         fi
     #RUBY_APPLICATION_START
     elif [ "x$2" = "xrabbitmq" ]; then
-        if test -x $RABBITMQ_SCRIPT; then	
-            $RABBITMQ_SCRIPT start  
+        if test -x $RABBITMQ_SCRIPT; then
+            $RABBITMQ_SCRIPT start
             RABBITMQ_ERROR=$?
         fi
     elif [ "x$2" = "xactivemq" ]; then
-        if test -x $ACTIVEMQ_SCRIPT; then	
-            $ACTIVEMQ_SCRIPT start  
+        if test -x $ACTIVEMQ_SCRIPT; then
+            $ACTIVEMQ_SCRIPT start
             ACTIVEMQ_ERROR=$?
         fi
     elif [ "x$2" = "xzope_application" ]; then
-        if test -x $ZOPE_SCRIPT; then	
-            $ZOPE_SCRIPT start  
+        if test -x $ZOPE_SCRIPT; then
+            $ZOPE_SCRIPT start
             ZOPE_ERROR=$?
         fi
     elif [ "x$2" = "xlucene" ]; then
-        if test -x $LUCENE_SCRIPT; then	
-            $LUCENE_SCRIPT start  
+        if test -x $LUCENE_SCRIPT; then
+            $LUCENE_SCRIPT start
             LUCENE_ERROR=$?
         fi
     elif [ "x$2" = "xvarnish" ]; then
         if test -x $VARNISH_SCRIPT; then
-            $VARNISH_SCRIPT start  
+            $VARNISH_SCRIPT start
             VARNISH_ERROR=$?
         fi
     elif [ "x$2" = "xphp-fpm" ]; then
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT start  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT start
             PHPFPM_ERROR=$?
         fi
     elif [ "x$2" = "xapache" ]; then
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT start  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT start
             APACHE_ERROR=$?
         fi
     elif [ "x$2" = "xnginx" ]; then
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT start  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT start
             NGINX_ERROR=$?
         fi
     elif [ "x$2" = "xsubversion" ]; then
-        if test -x $SUBVERSION_SCRIPT; then	
-            $SUBVERSION_SCRIPT start  
+        if test -x $SUBVERSION_SCRIPT; then
+            $SUBVERSION_SCRIPT start
             SUBVERSION_ERROR=$?
         fi
     elif [ "x$2" = "xthird_application" ]; then
-        if test -x $THIRD_SCRIPT; then	
-            $THIRD_SCRIPT start  
+        if test -x $THIRD_SCRIPT; then
+            $THIRD_SCRIPT start
             THIRD_ERROR=$?
         fi
     elif [ "x$2" = "xnagios" ]; then
-        if test -x $NAGIOS_SCRIPT; then	
-            $NAGIOS_SCRIPT start  
+        if test -x $NAGIOS_SCRIPT; then
+            $NAGIOS_SCRIPT start
             NAGIOS_ERROR=$?
         fi
     elif [ "x$2" = "xjetty" ]; then
-        if test -x $JETTY_SCRIPT; then	
-            $JETTY_SCRIPT start  
+        if test -x $JETTY_SCRIPT; then
+            $JETTY_SCRIPT start
             JETTY_ERROR=$?
         fi
     elif [ "x$2" = "x" ]; then
@@ -294,9 +294,9 @@ elif [ "x$1" = "xstart" ]; then
             $MYSQL_SCRIPT start
             MYSQL_ERROR=$?
             sleep 5
-        fi  
-        if test -x $POSTGRESQL_SCRIPT; then	
-            $POSTGRESQL_SCRIPT start  
+        fi
+        if test -x $POSTGRESQL_SCRIPT; then
+            $POSTGRESQL_SCRIPT start
             POSTGRESQL_ERROR=$?
             sleep 5
         fi
@@ -304,40 +304,40 @@ elif [ "x$1" = "xstart" ]; then
             $MONGODB_SCRIPT start
             MONGODB_ERROR=$?
             sleep 2
-        fi  
+        fi
         if test -x $INGRES_SCRIPT; then
             $INGRES_SCRIPT start
             INGRES_ERROR=$?
             sleep 5
-        fi  
+        fi
 
-        if test -x $LIBREOFFICE_SCRIPT; then	
-            $LIBREOFFICE_SCRIPT start  
+        if test -x $LIBREOFFICE_SCRIPT; then
+            $LIBREOFFICE_SCRIPT start
             LIBREOFFICE_ERROR=$?
         fi
 
-        if test -x $HYPERSONIC_SCRIPT; then	
-            $HYPERSONIC_SCRIPT start  
+        if test -x $HYPERSONIC_SCRIPT; then
+            $HYPERSONIC_SCRIPT start
             HYPERSONIC_ERROR=$?
         fi
-        
+
         if test -x $MEMCACHED_SCRIPT; then
             $MEMCACHED_SCRIPT start
             MEMCACHED_ERROR=$?
         fi
 
         if test -x $SOLR_SCRIPT; then
-            $SOLR_SCRIPT start  
+            $SOLR_SCRIPT start
             SOLR_ERROR=$?
         fi
 
         if test -x $ELASTICSEARCH_SCRIPT; then
-            $ELASTICSEARCH_SCRIPT start  
+            $ELASTICSEARCH_SCRIPT start
             ELASTICSEARCH_ERROR=$?
         fi
 
         if test -x $TOMCAT_SCRIPT; then
-            $LIBREOFFICE_CHECK; $TOMCAT_SCRIPT start  
+            $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
 
@@ -350,68 +350,68 @@ elif [ "x$1" = "xstart" ]; then
             WILDFLY_ERROR=$?
         fi
         if test -x $RESIN_SCRIPT; then
-            $RESIN_SCRIPT start  
+            $RESIN_SCRIPT start
             RESIN_ERROR=$?
         fi
         if test -x $REDIS_SCRIPT; then
-            $REDIS_SCRIPT start  
+            $REDIS_SCRIPT start
             REDIS_ERROR=$?
         fi
-	#RUBY_APPLICATION_GENERIC_START
+        #RUBY_APPLICATION_GENERIC_START
 
-        if test -x $RABBITMQ_SCRIPT; then	
-            $RABBITMQ_SCRIPT start  
+        if test -x $RABBITMQ_SCRIPT; then
+            $RABBITMQ_SCRIPT start
             RABBITMQ_ERROR=$?
         fi
-        if test -x $ACTIVEMQ_SCRIPT; then	
-            $ACTIVEMQ_SCRIPT start  
+        if test -x $ACTIVEMQ_SCRIPT; then
+            $ACTIVEMQ_SCRIPT start
             ACTIVEMQ_ERROR=$?
         fi
 
-        if test -x $ZOPE_SCRIPT; then	
-            $ZOPE_SCRIPT start  
+        if test -x $ZOPE_SCRIPT; then
+            $ZOPE_SCRIPT start
             ZOPE_ERROR=$?
         fi
 
-        if test -x $LUCENE_SCRIPT; then	
-            $LUCENE_SCRIPT start  
+        if test -x $LUCENE_SCRIPT; then
+            $LUCENE_SCRIPT start
             LUCENE_ERROR=$?
         fi
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT start  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT start
             PHPFPM_ERROR=$?
         fi
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT start  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT start
             APACHE_ERROR=$?
         fi
         if test -x $VARNISH_SCRIPT; then
-            $VARNISH_SCRIPT start  
+            $VARNISH_SCRIPT start
             VARNISH_ERROR=$?
         fi
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT start  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT start
             NGINX_ERROR=$?
         fi
 
-        if test -x $SUBVERSION_SCRIPT; then	
-            $SUBVERSION_SCRIPT start  
+        if test -x $SUBVERSION_SCRIPT; then
+            $SUBVERSION_SCRIPT start
             SUBVERSION_ERROR=$?
         fi
-        if test -x $THIRD_SCRIPT; then	
-            $THIRD_SCRIPT start  
+        if test -x $THIRD_SCRIPT; then
+            $THIRD_SCRIPT start
             THIRD_ERROR=$?
         fi
-        if test -x $NAGIOS_SCRIPT; then	
-            $NAGIOS_SCRIPT start  
+        if test -x $NAGIOS_SCRIPT; then
+            $NAGIOS_SCRIPT start
             NAGIOS_ERROR=$?
         fi
-        if test -x $JETTY_SCRIPT; then	
-            $JETTY_SCRIPT start  
+        if test -x $JETTY_SCRIPT; then
+            $JETTY_SCRIPT start
             JETTY_ERROR=$?
         fi
-    else 
-	help
+    else
+        help
     fi
 
 
@@ -422,9 +422,9 @@ elif [ "x$1" = "xstop" ]; then
             $MYSQL_SCRIPT stop
             MYSQL_ERROR=$?
             sleep 2
-        fi        
+        fi
     elif [ "x$2" = "xpostgresql" ]; then
-        if test -x $POSTGRESQL_SCRIPT; then	
+        if test -x $POSTGRESQL_SCRIPT; then
             $POSTGRESQL_SCRIPT stop
             POSTGRESQL_ERROR=$?
             sleep 5
@@ -434,20 +434,20 @@ elif [ "x$1" = "xstop" ]; then
             $MONGODB_SCRIPT stop
             MONGODB_ERROR=$?
             sleep 2
-        fi        
+        fi
     elif [ "x$2" = "xingres" ]; then
         if test -x $INGRES_SCRIPT; then
             $INGRES_SCRIPT stop
             INGRES_ERROR=$?
             sleep 5
-        fi        
+        fi
     elif [ "x$2" = "xlibreoffice" ]; then
         if test -x $LIBREOFFICE_SCRIPT; then
             $LIBREOFFICE_SCRIPT stop
             LIBREOFFICE_ERROR=$?
         fi
     elif [ "x$2" = "xhypersonic" ]; then
-        if test -x $HYPERSONIC_SCRIPT; then	
+        if test -x $HYPERSONIC_SCRIPT; then
             $HYPERSONIC_SCRIPT stop
             HYPERSONIC_ERROR=$?
         fi
@@ -483,12 +483,12 @@ elif [ "x$1" = "xstop" ]; then
         fi
     #RUBY_APPLICATION_STOP
     elif [ "x$2" = "xrabbitmq" ]; then
-        if test -x $RABBITMQ_SCRIPT; then	
+        if test -x $RABBITMQ_SCRIPT; then
             $RABBITMQ_SCRIPT stop
             RABBITMQ_ERROR=$?
         fi
     elif [ "x$2" = "xactivemq" ]; then
-        if test -x $ACTIVEMQ_SCRIPT; then	
+        if test -x $ACTIVEMQ_SCRIPT; then
             $ACTIVEMQ_SCRIPT stop
             ACTIVEMQ_ERROR=$?
         fi
@@ -503,17 +503,17 @@ elif [ "x$1" = "xstop" ]; then
             LUCENE_ERROR=$?
         fi
     elif [ "x$2" = "xnginx" ]; then
-        if test -x $NGINX_SCRIPT; then	
+        if test -x $NGINX_SCRIPT; then
             $NGINX_SCRIPT stop
             NGINX_ERROR=$?
         fi
     elif [ "x$2" = "xapache" ]; then
-        if test -x $APACHE_SCRIPT; then	
+        if test -x $APACHE_SCRIPT; then
             $APACHE_SCRIPT stop
             APACHE_ERROR=$?
         fi
     elif [ "x$2" = "xphp-fpm" ]; then
-        if test -x $PHPFPM_SCRIPT; then	
+        if test -x $PHPFPM_SCRIPT; then
             $PHPFPM_SCRIPT stop
             PHPFPM_ERROR=$?
         fi
@@ -524,22 +524,22 @@ elif [ "x$1" = "xstop" ]; then
         fi
 
     elif [ "x$2" = "xsubversion" ]; then
-        if test -x $SUBVERSION_SCRIPT; then	
+        if test -x $SUBVERSION_SCRIPT; then
             $SUBVERSION_SCRIPT stop
             SUBVERSION_ERROR=$?
         fi
     elif [ "x$2" = "xthird_application" ]; then
-        if test -x $THIRD_SCRIPT; then	
+        if test -x $THIRD_SCRIPT; then
             $THIRD_SCRIPT stop
             THIRD_ERROR=$?
         fi
     elif [ "x$2" = "xnagios" ]; then
-        if test -x $NAGIOS_SCRIPT; then	
+        if test -x $NAGIOS_SCRIPT; then
             $NAGIOS_SCRIPT stop
             NAGIOS_ERROR=$?
         fi
     elif [ "x$2" = "xjetty" ]; then
-        if test -x $JETTY_SCRIPT; then	
+        if test -x $JETTY_SCRIPT; then
             $JETTY_SCRIPT stop
             JETTY_ERROR=$?
         fi
@@ -582,16 +582,16 @@ elif [ "x$1" = "xstop" ]; then
             $SUBVERSION_SCRIPT stop
             SUBVERSION_ERROR=$?
         fi
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT stop  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT stop
             NGINX_ERROR=$?
         fi
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT stop  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT stop
             APACHE_ERROR=$?
         fi
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT stop  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT stop
             PHPFPM_ERROR=$?
         fi
         if test -x $VARNISH_SCRIPT; then
@@ -613,8 +613,8 @@ elif [ "x$1" = "xstop" ]; then
             $ACTIVEMQ_SCRIPT stop
             ACTIVEMQ_ERROR=$?
         fi
-        if test -x $LUCENE_SCRIPT; then	
-            $LUCENE_SCRIPT stop 
+        if test -x $LUCENE_SCRIPT; then
+            $LUCENE_SCRIPT stop
             LUCENE_ERROR=$?
         fi
         if test -x $SOLR_SCRIPT; then
@@ -666,7 +666,7 @@ elif [ "x$1" = "xstop" ]; then
             POSTGRESQL_ERROR=$?
         fi
     else
-	help
+        help
     fi
 
 elif [ "x$1" = "xrestart" ]; then
@@ -679,8 +679,8 @@ elif [ "x$1" = "xrestart" ]; then
             MYSQL_ERROR=$?
         fi
     elif [ "x$2" = "xpostgresql" ]; then
-        if test -x $POSTGRESQL_SCRIPT; then	
-            $POSTGRESQL_SCRIPT stop  
+        if test -x $POSTGRESQL_SCRIPT; then
+            $POSTGRESQL_SCRIPT stop
             sleep 5
             $POSTGRESQL_SCRIPT start
             POSTGRESQL_ERROR=$?
@@ -693,22 +693,22 @@ elif [ "x$1" = "xrestart" ]; then
             MONGODB_ERROR=$?
         fi
    elif [ "x$2" = "xingres" ]; then
-        if test -x $INGRES_SCRIPT; then	
-            $INGRES_SCRIPT stop  
+        if test -x $INGRES_SCRIPT; then
+            $INGRES_SCRIPT stop
             sleep 5
             $INGRES_SCRIPT start
             INGRES_ERROR=$?
         fi
     elif [ "x$2" = "xlibreoffice" ]; then
-        if test -x $LIBREOFFICE_SCRIPT; then	
-            $LIBREOFFICE_SCRIPT stop  
+        if test -x $LIBREOFFICE_SCRIPT; then
+            $LIBREOFFICE_SCRIPT stop
             sleep 2
             $LIBREOFFICE_SCRIPT start
             LIBREOFFICE_ERROR=$?
         fi
     elif [ "x$2" = "xhypersonic" ]; then
-        if test -x $HYPERSONIC_SCRIPT; then	
-            $HYPERSONIC_SCRIPT stop  
+        if test -x $HYPERSONIC_SCRIPT; then
+            $HYPERSONIC_SCRIPT stop
             sleep 2
             $HYPERSONIC_SCRIPT start
             HYPERSONIC_ERROR=$?
@@ -737,7 +737,7 @@ elif [ "x$1" = "xrestart" ]; then
         if test -x $TOMCAT_SCRIPT; then
             $TOMCAT_SCRIPT stop
             sleep 5
-            $LIBREOFFICE_CHECK; $TOMCAT_SCRIPT start
+            $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
     elif [ "x$2" = "xresin" ]; then
@@ -757,43 +757,43 @@ elif [ "x$1" = "xrestart" ]; then
     #RUBY_APPLICATION_RESTART
 
     elif [ "x$2" = "xrabbitmq" ]; then
-        if test -x $RABBITMQ_SCRIPT; then	
-            $RABBITMQ_SCRIPT stop  
+        if test -x $RABBITMQ_SCRIPT; then
+            $RABBITMQ_SCRIPT stop
             sleep 2
             $RABBITMQ_SCRIPT start
             RABBITMQ_ERROR=$?
         fi
     elif [ "x$2" = "xactivemq" ]; then
-        if test -x $ACTIVEMQ_SCRIPT; then	
-            $ACTIVEMQ_SCRIPT stop  
+        if test -x $ACTIVEMQ_SCRIPT; then
+            $ACTIVEMQ_SCRIPT stop
             sleep 2
             $ACTIVEMQ_SCRIPT start
             ACTIVEMQ_ERROR=$?
         fi
     elif [ "x$2" = "xzope_application" ]; then
-        if test -x $ZOPE_SCRIPT; then	
-            $ZOPE_SCRIPT stop  
+        if test -x $ZOPE_SCRIPT; then
+            $ZOPE_SCRIPT stop
             sleep 2
             $ZOPE_SCRIPT start
             ZOPE_ERROR=$?
         fi
     elif [ "x$2" = "xlucene" ]; then
-        if test -x $LUCENE_SCRIPT; then	
-            $LUCENE_SCRIPT stop  
+        if test -x $LUCENE_SCRIPT; then
+            $LUCENE_SCRIPT stop
             sleep 2
             $LUCENE_SCRIPT start
             LUCENE_ERROR=$?
         fi
     elif [ "x$2" = "xphp-fpm" ]; then
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT stop  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT stop
             sleep 2
             $PHPFPM_SCRIPT start
             PHPFPM_ERROR=$?
         fi
     elif [ "x$2" = "xapache" ]; then
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT stop  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT stop
             sleep 2
             $APACHE_SCRIPT start
             APACHE_ERROR=$?
@@ -807,36 +807,36 @@ elif [ "x$1" = "xrestart" ]; then
         fi
 
     elif [ "x$2" = "xnginx" ]; then
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT stop  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT stop
             sleep 2
             $NGINX_SCRIPT start
             NGINX_ERROR=$?
         fi
     elif [ "x$2" = "xsubversion" ]; then
-        if test -x $SUBVERSION_SCRIPT; then	
-            $SUBVERSION_SCRIPT stop  
+        if test -x $SUBVERSION_SCRIPT; then
+            $SUBVERSION_SCRIPT stop
             sleep 2
             $SUBVERSION_SCRIPT start
             SUBVERSION_ERROR=$?
         fi
     elif [ "x$2" = "xthird_application" ]; then
-        if test -x $THIRD_SCRIPT; then	
-            $THIRD_SCRIPT stop  
+        if test -x $THIRD_SCRIPT; then
+            $THIRD_SCRIPT stop
             sleep 2
             $THIRD_SCRIPT start
             THIRD_ERROR=$?
         fi
     elif [ "x$2" = "xnagios" ]; then
-        if test -x $NAGIOS_SCRIPT; then	
-            $NAGIOS_SCRIPT stop  
+        if test -x $NAGIOS_SCRIPT; then
+            $NAGIOS_SCRIPT stop
             sleep 2
             $NAGIOS_SCRIPT start
             NAGIOS_ERROR=$?
         fi
     elif [ "x$2" = "xjetty" ]; then
-        if test -x $JETTY_SCRIPT; then	
-            $JETTY_SCRIPT stop  
+        if test -x $JETTY_SCRIPT; then
+            $JETTY_SCRIPT stop
             sleep 2
             $JETTY_SCRIPT start
             JETTY_ERROR=$?
@@ -856,7 +856,7 @@ elif [ "x$1" = "xrestart" ]; then
             WILDFLY_ERROR=$?
         fi
     elif [ "x$2" = "x" ]; then
-        if test -x $HYPERSONIC_SCRIPT; then	
+        if test -x $HYPERSONIC_SCRIPT; then
             $HYPERSONIC_SCRIPT stop
             HYPERSONIC_ERROR=$?
         fi
@@ -868,23 +868,23 @@ elif [ "x$1" = "xrestart" ]; then
             $WILDFLY_SCRIPT stop
             WILDFLY_ERROR=$?
         fi
-        if test -x $JETTY_SCRIPT; then	
+        if test -x $JETTY_SCRIPT; then
             $JETTY_SCRIPT stop
             JETTY_ERROR=$?
         fi
-        if test -x $NAGIOS_SCRIPT; then	
+        if test -x $NAGIOS_SCRIPT; then
             $NAGIOS_SCRIPT stop
             NAGIOS_ERROR=$?
         fi
-        if test -x $THIRD_SCRIPT; then	
+        if test -x $THIRD_SCRIPT; then
             $THIRD_SCRIPT stop
             THIRD_ERROR=$?
         fi
-        if test -x $SUBVERSION_SCRIPT; then	
+        if test -x $SUBVERSION_SCRIPT; then
             $SUBVERSION_SCRIPT stop
             SUBVERSION_ERROR=$?
         fi
-        if test -x $NGINX_SCRIPT; then	
+        if test -x $NGINX_SCRIPT; then
             $NGINX_SCRIPT stop
             NGINX_ERROR=$?
         fi
@@ -892,11 +892,11 @@ elif [ "x$1" = "xrestart" ]; then
             $VARNISH_SCRIPT stop
             VARNISH_ERROR=$?
         fi
-        if test -x $APACHE_SCRIPT; then	
+        if test -x $APACHE_SCRIPT; then
             $APACHE_SCRIPT stop
             APACHE_ERROR=$?
         fi
-        if test -x $PHPFPM_SCRIPT; then	
+        if test -x $PHPFPM_SCRIPT; then
             $PHPFPM_SCRIPT stop
             PHPFPM_ERROR=$?
         fi
@@ -905,7 +905,7 @@ elif [ "x$1" = "xrestart" ]; then
             $ZOPE_SCRIPT stop
             ZOPE_ERROR=$?
         fi
-        if test -x $LUCENE_SCRIPT; then	
+        if test -x $LUCENE_SCRIPT; then
             $LUCENE_SCRIPT stop
             LUCENE_ERROR=$?
         fi
@@ -933,7 +933,7 @@ elif [ "x$1" = "xrestart" ]; then
             $MEMCACHED_SCRIPT stop
             MEMCACHED_ERROR=$?
         fi
-        if test -x $LIBREOFFICE_SCRIPT; then	
+        if test -x $LIBREOFFICE_SCRIPT; then
             $LIBREOFFICE_SCRIPT stop
             LIBREOFFICE_ERROR=$?
         fi
@@ -943,34 +943,34 @@ elif [ "x$1" = "xrestart" ]; then
             $MYSQL_SCRIPT start;
             MYSQL_ERROR=$?
             sleep 2
-        fi         
+        fi
         if test -x $POSTGRESQL_SCRIPT; then
             $POSTGRESQL_SCRIPT stop
             sleep 2
             $POSTGRESQL_SCRIPT start;
             POSTGRESQL_ERROR=$?
             sleep 2
-        fi          
+        fi
         if test -x $MONGODB_SCRIPT; then
             $MONGODB_SCRIPT stop
             sleep 2
             $MONGODB_SCRIPT start;
             MONGODB_ERROR=$?
             sleep 2
-        fi         
+        fi
         if test -x $INGRES_SCRIPT; then
             $INGRES_SCRIPT stop
             sleep 7
             $INGRES_SCRIPT start;
             INGRES_ERROR=$?
             sleep 2
-        fi          
+        fi
         if test -x $MEMCACHED_SCRIPT; then
             $MEMCACHED_SCRIPT start
             MEMCACHED_ERROR=$?
         fi
-        if test -x $LIBREOFFICE_SCRIPT; then	
-            $LIBREOFFICE_SCRIPT start  
+        if test -x $LIBREOFFICE_SCRIPT; then
+            $LIBREOFFICE_SCRIPT start
             LIBREOFFICE_ERROR=$?
         fi
         if test -x $SOLR_SCRIPT; then
@@ -982,7 +982,7 @@ elif [ "x$1" = "xrestart" ]; then
             ELASTICSEARCH_ERROR=$?
         fi
         if test -x $TOMCAT_SCRIPT; then
-            $LIBREOFFICE_CHECK; $TOMCAT_SCRIPT start
+            $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
         if test -x $JBOSS_SCRIPT; then
@@ -996,62 +996,62 @@ elif [ "x$1" = "xrestart" ]; then
         if test -x $RESIN_SCRIPT; then
             $RESIN_SCRIPT start
             RESIN_ERROR=$?
-        fi        
+        fi
         if test -x $REDIS_SCRIPT; then
             $REDIS_SCRIPT start
             REDIS_ERROR=$?
         fi
         #RUBY_APPLICATION_GENERIC_START
-        if test -x $RABBITMQ_SCRIPT; then	
-            $RABBITMQ_SCRIPT start  
+        if test -x $RABBITMQ_SCRIPT; then
+            $RABBITMQ_SCRIPT start
             RABBITMQ_ERROR=$?
         fi
-        if test -x $ACTIVEMQ_SCRIPT; then	
-            $ACTIVEMQ_SCRIPT start  
+        if test -x $ACTIVEMQ_SCRIPT; then
+            $ACTIVEMQ_SCRIPT start
             ACTIVEMQ_ERROR=$?
         fi
-        if test -x $ZOPE_SCRIPT; then	
-            $ZOPE_SCRIPT start  
+        if test -x $ZOPE_SCRIPT; then
+            $ZOPE_SCRIPT start
             ZOPE_ERROR=$?
         fi
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT start  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT start
             PHPFPM_ERROR=$?
         fi
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT start  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT start
             APACHE_ERROR=$?
         fi
         if test -x $VARNISH_SCRIPT; then
             $VARNISH_SCRIPT start
             VARNISH_ERROR=$?
         fi
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT start  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT start
             NGINX_ERROR=$?
         fi
-        if test -x $SUBVERSION_SCRIPT; then	
-            $SUBVERSION_SCRIPT start  
+        if test -x $SUBVERSION_SCRIPT; then
+            $SUBVERSION_SCRIPT start
             SUBVERSION_ERROR=$?
         fi
-        if test -x $THIRD_SCRIPT; then	
-            $THIRD_SCRIPT start  
+        if test -x $THIRD_SCRIPT; then
+            $THIRD_SCRIPT start
             THIRD_ERROR=$?
         fi
-        if test -x $NAGIOS_SCRIPT; then	
-            $NAGIOS_SCRIPT start  
+        if test -x $NAGIOS_SCRIPT; then
+            $NAGIOS_SCRIPT start
             NAGIOS_ERROR=$?
         fi
-        if test -x $JETTY_SCRIPT; then	
-            $JETTY_SCRIPT start  
+        if test -x $JETTY_SCRIPT; then
+            $JETTY_SCRIPT start
             JETTY_ERROR=$?
         fi
-        if test -x $HYPERSONIC_SCRIPT; then	
-            $HYPERSONIC_SCRIPT start  
+        if test -x $HYPERSONIC_SCRIPT; then
+            $HYPERSONIC_SCRIPT start
             HYPERSONIC_ERROR=$?
         fi
     else
-	help
+        help
     fi
 
 elif [ "x$1" = "xstatus" ]; then
@@ -1060,22 +1060,22 @@ elif [ "x$1" = "xstatus" ]; then
         if test -x $MYSQL_SCRIPT; then
             $MYSQL_SCRIPT status
             sleep 2
-        fi        
+        fi
     elif [ "x$2" = "xmongodb" ]; then
         if test -x $MONGODB_SCRIPT; then
             $MONGODB_SCRIPT status
-        fi        
+        fi
     elif [ "x$2" = "xingres" ]; then
-        if test -x $INGRES_SCRIPT; then	
-            $INGRES_SCRIPT status  
+        if test -x $INGRES_SCRIPT; then
+            $INGRES_SCRIPT status
         fi
     elif [ "x$2" = "xpostgresql" ]; then
-        if test -x $POSTGRESQL_SCRIPT; then	
-            $POSTGRESQL_SCRIPT status  
+        if test -x $POSTGRESQL_SCRIPT; then
+            $POSTGRESQL_SCRIPT status
             sleep 2
         fi
     elif [ "x$2" = "xhypersonic" ]; then
-        if test -x $HYPERSONIC_SCRIPT; then	
+        if test -x $HYPERSONIC_SCRIPT; then
             $HYPERSONIC_SCRIPT status
         fi
     elif [ "x$2" = "xmemcached" ]; then
@@ -1104,11 +1104,11 @@ elif [ "x$1" = "xstatus" ]; then
         fi
     #RUBY_APPLICATION_STATUS
     elif [ "x$2" = "xrabbitmq" ]; then
-        if test -x $RABBITMQ_SCRIPT; then	
+        if test -x $RABBITMQ_SCRIPT; then
             $RABBITMQ_SCRIPT status
         fi
     elif [ "x$2" = "xactivemq" ]; then
-        if test -x $ACTIVEMQ_SCRIPT; then	
+        if test -x $ACTIVEMQ_SCRIPT; then
             $ACTIVEMQ_SCRIPT status
         fi
     elif [ "x$2" = "xzope_application" ]; then
@@ -1120,11 +1120,11 @@ elif [ "x$1" = "xstatus" ]; then
             $LUCENE_SCRIPT status
         fi
     elif [ "x$2" = "xapache" ]; then
-        if test -x $APACHE_SCRIPT; then	
+        if test -x $APACHE_SCRIPT; then
             $APACHE_SCRIPT status
         fi
     elif [ "x$2" = "xphp-fpm" ]; then
-        if test -x $PHPFPM_SCRIPT; then	
+        if test -x $PHPFPM_SCRIPT; then
             $PHPFPM_SCRIPT status
         fi
     elif [ "x$2" = "xvarnish" ]; then
@@ -1132,23 +1132,23 @@ elif [ "x$1" = "xstatus" ]; then
             $VARNISH_SCRIPT status
         fi
     elif [ "x$2" = "xnginx" ]; then
-        if test -x $NGINX_SCRIPT; then	
+        if test -x $NGINX_SCRIPT; then
             $NGINX_SCRIPT status
         fi
     elif [ "x$2" = "xsubversion" ]; then
-        if test -x $SUBVERSION_SCRIPT; then	
+        if test -x $SUBVERSION_SCRIPT; then
             $SUBVERSION_SCRIPT status
         fi
     elif [ "x$2" = "xthird_application" ]; then
-        if test -x $THIRD_SCRIPT; then	
+        if test -x $THIRD_SCRIPT; then
             $THIRD_SCRIPT status
         fi
     elif [ "x$2" = "xnagios" ]; then
-        if test -x $NAGIOS_SCRIPT; then	
+        if test -x $NAGIOS_SCRIPT; then
             $NAGIOS_SCRIPT status
         fi
     elif [ "x$2" = "xjetty" ]; then
-        if test -x $JETTY_SCRIPT; then	
+        if test -x $JETTY_SCRIPT; then
             $JETTY_SCRIPT status
         fi
     elif [ "x$2" = "xjboss" ]; then
@@ -1181,18 +1181,18 @@ elif [ "x$1" = "xstatus" ]; then
         if test -x $SUBVERSION_SCRIPT; then
             $SUBVERSION_SCRIPT status
         fi
-        if test -x $NGINX_SCRIPT; then	
-            $NGINX_SCRIPT status  
+        if test -x $NGINX_SCRIPT; then
+            $NGINX_SCRIPT status
         fi
         if test -x $VARNISH_SCRIPT; then
             $VARNISH_SCRIPT status
             sleep 3
         fi
-        if test -x $PHPFPM_SCRIPT; then	
-            $PHPFPM_SCRIPT status  
+        if test -x $PHPFPM_SCRIPT; then
+            $PHPFPM_SCRIPT status
         fi
-        if test -x $APACHE_SCRIPT; then	
-            $APACHE_SCRIPT status  
+        if test -x $APACHE_SCRIPT; then
+            $APACHE_SCRIPT status
         fi
         #RUBY_APPLICATION_GENERIC_STATUS
         if test -x $RABBITMQ_SCRIPT; then
@@ -1204,11 +1204,11 @@ elif [ "x$1" = "xstatus" ]; then
         if test -x $ZOPE_SCRIPT; then
             $ZOPE_SCRIPT status
         fi
-        if test -x $LUCENE_SCRIPT; then	
-            $LUCENE_SCRIPT status 
+        if test -x $LUCENE_SCRIPT; then
+            $LUCENE_SCRIPT status
         fi
-        if test -x $INGRES_SCRIPT; then	
-            $INGRES_SCRIPT status 
+        if test -x $INGRES_SCRIPT; then
+            $INGRES_SCRIPT status
         fi
         if test -x $SOLR_SCRIPT; then
             $SOLR_SCRIPT status
@@ -1244,7 +1244,7 @@ elif [ "x$1" = "xstatus" ]; then
             $MEMCACHED_SCRIPT status
         fi
     else
-	help
+        help
     fi
 elif [ "x$1" = "xcleanpid" ]; then
     if test -x $HYPERSONIC_SCRIPT; then
@@ -1262,17 +1262,17 @@ elif [ "x$1" = "xcleanpid" ]; then
     if test -x $SUBVERSION_SCRIPT; then
         $SUBVERSION_SCRIPT cleanpid
     fi
-    if test -x $PHPFPM_SCRIPT; then	
-        $PHPFPM_SCRIPT cleanpid  
+    if test -x $PHPFPM_SCRIPT; then
+        $PHPFPM_SCRIPT cleanpid
     fi
-    if test -x $APACHE_SCRIPT; then	
-        $APACHE_SCRIPT cleanpid  
+    if test -x $APACHE_SCRIPT; then
+        $APACHE_SCRIPT cleanpid
     fi
-    if test -x $NGINX_SCRIPT; then	
-        $NGINX_SCRIPT cleanpid  
+    if test -x $NGINX_SCRIPT; then
+        $NGINX_SCRIPT cleanpid
     fi
-    if test -x $LUCENE_SCRIPT; then	
-        $LUCENE_SCRIPT cleanpid 
+    if test -x $LUCENE_SCRIPT; then
+        $LUCENE_SCRIPT cleanpid
     fi
     if test -x $SOLR_SCRIPT; then
         $SOLR_SCRIPT cleanpid
