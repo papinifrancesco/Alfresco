@@ -47,20 +47,41 @@ remember to change, for example:
                                                share.xml -> DAFSVIshare.xml
 ```
 
+```
+/opt/alfresco/tomcat/webapps/share/js/alfresco.js
+/opt/alfresco/tomcat/webapps/share/js/alfresco.min.js
+
+from:
+Alfresco.constants.PROXY_V1_URI = "/share/proxy" + Alfresco.constants.API_V1_BASE_URL;
+to:
+Alfresco.constants.PROXY_V1_URI = "/DAFSVIshare/proxy" + Alfresco.constants.API_V1_BASE_URL;
+```
+
+
 
 Also, using **vim** or others, check for the context inside these files:
 
 ```
-:%s/8080:\/alfresco/8080:\DAFSVIalfresco/,gc    
+:%s#DAFSVIalfresco#DAFalfresco#gc
+:%s#DAFSVIshare#DAFshare#gc
 
+bin/apply_amps.sh
 bin/clean_tomcat.sh
 solr4/archive-SpacesStore/conf/solrcore.properties
 solr4/workspace-SpacesStore/conf/solrcore.properties
-tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 tomcat/shared/classes/alfresco-global.properties    
+
+:%s#8080/DAFSVIalfresco#8080/DAFalfresco#gc
+tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+
+
+:%s#alfrescoContextName = "DAFSVIalfresco";#alfrescoContextName = "DAFalfresco";#gc
 tomcat/webapps/ROOT/index.jsp
+
+:%s#<param-value>/DAFSVIalfresco/aos</param-value>#<param-value>/DAFalfresco/aos</param-value>#gc
 tomcat/webapps/_vti_bin/WEB-INF/web.xml
 ```
+
 
 
 
@@ -89,21 +110,31 @@ bin/clean_tomcat.sh
 common/lib/ImageMagick-x.x.x/config-Q16/policy.xml
 libreoffice/scripts/libreoffice_check.sh
 solr4/archive-SpacesStore/conf/solrcore.properties
+solr4/archive-SpacesStore/conf/solrconfig.xml
 solr4/workspace-SpacesStore/conf/solrcore.properties
+solr4/workspace-SpacesStore/conf/solrconfig.xml
 solr4/context.xml
+solr4/log4j-solr.properties
 tomcat/shared/classes/alfresco-global.properties
 tomcat/scripts/ctl.sh
 tomcat/bin/setenv.sh
 tomcat/conf/context.xml
-tomcat/conf/server.xml
+tomcat/conf/server.xml (remember the packetSize and jvmRoute parameters)
+
 tomcat/conf/tomcat-users.xml
-tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml
 tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 tomcat/shared/classes/alfresco/extension/subsystems/Authentication/ldap-ad/ad1/ldap-ad-authentication.properties
 tomcat/shared/classes/tnsnames.ora
 tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+tomcat/webapps/DAFalfresco/WEB-INF/classes/alfresco/content-services-context.xml (<bean id="extracter.RFC822" email extractor maybe OFF)
 ```
 
+
+then check the modules: best praticeses say to use AMPs but that might not always be the case and modules could have been installed manually under:
+
+tomcat/webapps/DAFalfresco/WEB-INF/classes/alfresco/module/
+
+ask your colleagues which modules should be present and which not (remember to mv to .disabled) and update the list module.xml???? accordingly; delete from share-config-custom.xml the namespace of the excluded modules **<---- TO DO: explain better and make examples**
 
 # Alfresco MUST be STOPPED!!!
 copy your amps either to ./amps or ./amps_share then install them and take note of what happens
@@ -148,7 +179,13 @@ then edit setnv.sh to force the location of **tnsnames.ora** by adding:
 Copy any eventual keystore from the old installation:
 `cp $ODIR/tomcat/shared/classes/ldaps_keystore.jceks $NDIR/tomcat/shared/classes/`
 
- 
+
+Remember to force Alfresco to reload the license file as per:
+http://docs.alfresco.com/6.1/tasks/at-adminconsole-license.html
+```
+cd /opt/alfresco/tomcat/shared/classes/alfresco/extension/license
+mv AlfrescoLicense.lic.installed AlfrescoLicense.lic
+```
 
 Clean, if needed, both "temp" and "work"
 ```
