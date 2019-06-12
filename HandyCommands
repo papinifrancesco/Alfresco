@@ -1,3 +1,25 @@
+# enable Alfresco "single user" to perform maintenance tasks, first review:
+# jmx_command_line_example.sh
+# set user "admin" (but could be anyone) as the only one able to log on: that applies to new logins only,
+# who has logged in already will remain logged in so either inform them to log off or disconnect them
+# from the admin console, your call.
+
+#1 get a connection
+alf_jmx_connect
+
+#2 select the bean you'll be working with
+bean Alfresco:Type=Configuration,Category=sysAdmin,id1=default
+
+#3 set the allowed users parameter
+set server.allowedusers=admin,admin1
+
+#4 perform your maintenance tasks
+
+#5 re-allow everybody to login to Alfresco
+run revert
+
+
+
 # extract repository.properties with Alfresco default values
 # useful to know what is preconfigured
 
