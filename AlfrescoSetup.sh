@@ -1,16 +1,21 @@
 reset
-# maybe you should edit your .bashrc file with:
-export ALFRESCO_HOME="/opt/alfresco-content-services"
-export ALFRESCO_KEYSTORE_HOME="/opt/alfresco-content-services/alf_data/keystore"
+# we don't want run Alfresco as root so let's create a dedicated group and a dedicated user
+groupadd alfresco
+useradd -m alfresco -p alfresco -g alfresco
 
-export CATALINA_HOME="/opt/alfresco-content-services/tomcat"
+
+# maybe you should edit your .bashrc file with:
+export ALFRESCO_HOME="/opt/alfresco"
+export ALFRESCO_KEYSTORE_HOME="/opt/alfresco/alf_data/keystore"
+
+export CATALINA_HOME="/opt/alfresco/tomcat"
 export CATALINA_BASE=$CATALINA_HOME
 export TOMCAT_HOME=$CATALINA_HOME
 
-export SOLR_HOME="/opt/alfresco-search-services/solrhome"
+export SOLR_HOME="/opt/solr/solrhome"
 
-# extract the Alfresco archive in /opt/alfresco-content-services
-# extract the Tomcat archive in /opt/alfresco-content-services/tomcat
+# extract the Alfresco archive in /opt/alfresco
+# extract the Tomcat archive in /opt/alfresco/tomcat
 
 
 
@@ -21,17 +26,25 @@ mkdir $ALFRESCO_HOME/modules/platform
 mkdir $ALFRESCO_HOME/modules/share
 mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
-mkdir /usr/local/script
+mkdir /usr/local/scripts
 
-cp $ALFRESCO_HOME/web-server/webapps/*.war $CATALINA_HOME/webapps/
+# unzip the .war files, don't let Tomcat do it (you can 
+# but we want to make a few mods before Tomcat starts).
+unzip $ALFRESCO_HOME/web-server/webapps/alfresco.war -d $CATALINA_HOME/webapps/alfresco/
+unzip $ALFRESCO_HOME/web-server/webapps/share.war -d $CATALINA_HOME/webapps/share/
+unzip $ALFRESCO_HOME/web-server/webapps/_vti_bin.war -d $CATALINA_HOME/webapps/_vti_bin/
+
 
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 
-cp all_logs_compress.sh /usr/local/script/
-cp catalina.sh /usr/local/script/
+# get the two scripts first , then:
+cd /usr/local/scripts
+wget https://github.com/papinifrancesco/Alfresco/blob/master/all_logs_compress.sh
+wget https://github.com/papinifrancesco/Alfresco/blob/master/catalina_rotate.sh
 
-chown alfresco:alfresco /usr/local/script/all_logs_compress.sh
-chown alfresco:alfresco /usr/local/script/catalina_rotate.sh
+
+chown alfresco:alfresco /usr/local/scripts/all_logs_compress.sh
+chown alfresco:alfresco /usr/local/scripts/catalina_rotate.sh
 
 chmod u+x catalina_rotate.sh
 # chmod 744 catalina_rotate.sh
@@ -40,8 +53,8 @@ chmod u+x catalina_rotate.sh
 
 crontab -u alfresco -e
 # put the two lines below
-55 23 * * * /usr/local/script/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
-59 23 * * * /usr/local/script/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
+55 23 * * * /usr/local/scripts/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
+59 23 * * * /usr/local/scripts/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
 
 # make alfresco user able to start, stop, restart and check the status of both alfresco.service and solr.service
@@ -104,7 +117,7 @@ export JAVA_OPTS
 # about alfresco.host and share.host : put whatever you want (IP, hostname,
 # FQDN) # but be consistent and consider that TLS have strict requirements
 # (the server certificate must have a matching FQDN name)
-dir.root=/opt/alfresco-content-services/alf_data
+dir.root=/opt/alfresco/alf_data
 dir.keystore=${dir.root}/keystore
 db.username=alfresco
 db.password=alfresco
@@ -141,12 +154,6 @@ alfresco.rmi.services.host=0.0.0.0
 
 
 
-# unzip the .war files, don't let Tomcat do it (you can 
-# but we want to make a few mods before Tomcat starts).
-cd $CATALINA_HOME/webapps
-unzip -d alfresco/ alfresco.war
-unzip -d share/ share.war
-unzip -d ROOT/ ROOT.war
 
 
 # install AMPs , by default only $ALFRESCO_HOME/amps/alfresco-share-services.amp
@@ -206,7 +213,7 @@ yum install -y *.rpm
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
 # LibreOffice will be probably installed in /opt/LibreOffice5.2 make a symlink then
-ln -sf /opt/libreoffice5.2/ /opt/alfresco-content-services/LibreOffice/
+ln -sf /opt/libreoffice5.2/ /opt/alfresco/LibreOffice/
 
 # jodConverter.maxTasksPerProcess=100
 # Do not include a slash (/) at the end of the path:
@@ -240,7 +247,7 @@ img.config=/etc/ImageMagick-7
 wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.2.0/alfresco-search-services-1.2.0.zip
 unzip alfresco-search-services-1.2.0.zip
 mv alfresco-search-services /opt/
-vi /opt/alfresco-search-services/solrhome/conf/shared.properties
+vi /opt/solr/solrhome/conf/shared.properties
     # uncomment
 alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
 alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
@@ -251,20 +258,20 @@ alfresco.cross.locale.datatype.1={http://www.alfresco.org/model/dictionary/1.0}c
 alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}mltext
 
 # modify ONLY if you want to change Solr context (not even ASPI do this).
-solr.baseurl=/solr -> solr.baseurl=/opt/alfresco-search-services/solr
+solr.baseurl=/solr -> solr.baseurl=/opt/solr/solr
 
 # set SOLAR_HOME for solr
-vi /opt/alfresco-search-services/solr.in.sh
+vi /opt/solr/solr.in.sh
 # uncomment SOLR_HOME and add the path
-SOLR_HOME=/opt/alfresco-search-services/solrhome
+SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
 SOLR_JAVA_MEM="-Xms2g -Xmx2g"
 
 
 # start Solr , first time only command
-/opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+/opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 # subsequent times you'll start it with just
-/opt/alfresco-search-services/solr/bin/solr start
+/opt/solr/solr/bin/solr start
 
 # restart Alfresco (don't know if it is needed, have to try)
 # TEST 1 - index version number should increase
@@ -309,7 +316,7 @@ cd $ALFRESCO_KEYSTORE_HOME
 
 
 # then copy the .p12 to $ALFRESCO_KEYSTORE ,
-# it should be /opt/alfresco-content-services/alf_data/keystore
+# it should be /opt/alfresco/alf_data/keystore
 
 # import the .p12 into a new keystore , I intentionally left default options
 # for easier reading, in production environment we should change them
@@ -388,7 +395,7 @@ protocol="org.apache.coyote.http11.Http11Protocol"
 SSLEnabled="true"
 maxThreads="150"
 scheme="https"
-keystoreFile="/opt/alfresco-content-services/alf_data/keystore/ssl.keystore"
+keystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"
 keystorePass="kT9X6oe68t"
 keystoreProvider="SunJCE"
 keystoreType="JCEKS"
@@ -421,9 +428,9 @@ mv $SOLR_HOME/alfresco ~/$SOLR_HOME/alfresco.ORIG
 mv $SOLR_HOME/archive  ~/$SOLR_HOME/archive.ORIG
 
 #then start Solr
-/opt/alfresco-search-services/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+/opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 
-vi /opt/alfresco-search-services/solr.in.sh
+vi /opt/solr/solr.in.sh
 # modify so that you'll have
 SOLR_SSL_KEY_STORE=$SOLR_HOME/keystore/ssl.repo.client.keystore
 SOLR_SSL_KEY_STORE_PASSWORD=kT9X6oe68t
@@ -447,7 +454,7 @@ vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
 
 
 ######### Apache reverse proxy - AJP #########
-vi /opt/alfresco-content-services/tomcat/shared/classes/alfresco-global.properties
+vi /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 alfresco.host=alfresco.tst.lcl
 alfresco.port=443
