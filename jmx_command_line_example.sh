@@ -17,4 +17,4 @@ echo -n 'get -b "Alfresco:Name=ConnectionPool" NumIdle'   | alf_jmx_connect 2>&1
 # crontab -e
 # */5 * * * * /opt/alfresco-one/my_scripts/logged_sessions.sh >> /root/logged_sessions.out 2>&1
 #
-# and you have a basic way to log what you what with local JMX, lean and esay
+# and you have a basic way to log what you what with local JMX, lean and easy
