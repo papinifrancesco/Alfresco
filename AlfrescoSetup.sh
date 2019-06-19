@@ -1,4 +1,12 @@
 reset
+
+# on the DB server: PostgreSQL , psql
+psql -U postgres
+CREATE USER alfresco WITH PASSWORD 'alfresco';
+CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
+GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+
+# on the repository machine 
 # we don't want run Alfresco as root so let's create a dedicated group and a dedicated user
 groupadd alfresco
 useradd -m alfresco -p alfresco -g alfresco
@@ -28,28 +36,33 @@ mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
 mkdir /usr/local/scripts
 
+# remove what you don't need from Tomcat
+rm -rf $CATALINA_HOME/webapps/docs/
+rm -rf $CATALINA_HOME/webapps/examples/
+rm -rf $CATALINA_HOME/webapps/ROOT/
 # unzip the .war files, don't let Tomcat do it (you can 
 # but we want to make a few mods before Tomcat starts).
 unzip $ALFRESCO_HOME/web-server/webapps/alfresco.war -d $CATALINA_HOME/webapps/alfresco/
 unzip $ALFRESCO_HOME/web-server/webapps/share.war -d $CATALINA_HOME/webapps/share/
 unzip $ALFRESCO_HOME/web-server/webapps/_vti_bin.war -d $CATALINA_HOME/webapps/_vti_bin/
+unzip $ALFRESCO_HOME/web-server/webapps/ROOT.war -d $CATALINA_HOME/webapps/ROOTA/
 
 
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 
 # get the two scripts first , then:
 cd /usr/local/scripts
-wget https://github.com/papinifrancesco/Alfresco/blob/master/all_logs_compress.sh
-wget https://github.com/papinifrancesco/Alfresco/blob/master/catalina_rotate.sh
-
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/all_logs_compress.sh
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/catalina_rotate.sh
 
 chown alfresco:alfresco /usr/local/scripts/all_logs_compress.sh
 chown alfresco:alfresco /usr/local/scripts/catalina_rotate.sh
 
-chmod u+x catalina_rotate.sh
-# chmod 744 catalina_rotate.sh
+chmod u+x *.sh
 # in the end it should be like as:
-# -rwxr--r-- 1 alfresco alfresco 260 Dec 18 15:24 catalina_rotate.sh
+# -rwxr--r-- 1 alfresco alfresco 66193 Jun 19 13:45 all_logs_compress.sh
+# -rwxr--r-- 1 alfresco alfresco 67607 Jun 19 13:45 catalina_rotate.sh
+
 
 crontab -u alfresco -e
 # put the two lines below
@@ -74,9 +87,6 @@ visudo
 ---
 
 
-
-
-
 # JDBC driver not needed:
 # scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
 
@@ -88,29 +98,20 @@ cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
 # put a Tomcat supported version of PostegreSQL JDBC in $CATALINA_HOME/lib
 # too old or too new might not work as expected, have a look at:
 # https://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
-cp postgresql-42.2.5.jar $CATALINA_HOME/lib
+wget https://jdbc.postgresql.org/download/postgresql-42.2.5.jar -P $CATALINA_HOME/lib/
+
 
 
 # check that $CATALINA_HOME/conf/catalina.properties has:
 shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
 
 
-# check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents:
-----
-# Load Tomcat Native Library
-#LD_LIBRARY_PATH=/opt/alfresco/common/lib:$LD_LIBRARY_PATH
-
-JAVA_HOME=/opt/alfresco/java
-JRE_HOME=$JAVA_HOME
-JAVA_OPTS="-XX:+DisableExplicitGC -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -Djava.awt.headless=true -Dalfresco.home=/opt/alfresco -XX:ReservedCodeCacheSize=128m $JAVA_OPTS "
-JAVA_OPTS="-Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true $JAVA_OPTS "
-JAVA_OPTS="-XX:NewRatio=2 -XX:+CMSParallelRemarkEnabled -XX:ParallelGCThreads=2 $JAVA_OPTS "
-JAVA_OPTS="-Xms4G -Xmx4G $JAVA_OPTS " # java-memory-settings
-export JAVA_HOME
-export JRE_HOME
-export JAVA_OPTS
-#export LD_LIBRARY_PATH
-----                     
+# check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents
+# depending on your hardware: amount of RAM namely
+cd $CATALINA_HOME/bin/
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/setenv.sh
+chown alfresco. setenv.sh
+chmod u+x setenv.sh
 
 
 # edit $CATALINA_HOME/shared/classes/alfresco-global.properties and check:
@@ -150,15 +151,31 @@ alfresco.rmi.services.host=0.0.0.0
 
 # mv $CATALINA_HOME/conf/tomcat-users.xml to .ORIG and copy the
 # provided tomcat.users.xml from this Github repo
+cd $CATALINA_HOME/conf/
+mv tomcat-users.xml tomcat-users.xml.ORIG
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/tomcat-users.xml
 
+# unblock the /manager webapp
+# if Tomcat < 8.0
+vi $CATALINA_HOME/conf/context.xml
+# and comment that Valve below
+<!--
+<Valve className="org.apache.catalina.authenticator.SSLAuthenticator" securePagesWithPragma="false" />
+-->
 
-
+# if Tomcat >= 8.0
+vi $CATALINA_HOME/webapps/manager/META-INF/context.xml
+# and comment the Valve this way
+<!--
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+-->
 
 
 
 # install AMPs , by default only $ALFRESCO_HOME/amps/alfresco-share-services.amp
 java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
-java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco.war -nobackup
+
 
 # define logging for the web apps:
 # $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
@@ -167,53 +184,49 @@ log4j.appender.File.File=${catalina.base}/logs/alfresco.log
 log4j.appender.File.File=${catalina.base}/logs/share.log
 
 
-# to stop Tomcat, ALWAYS use:
-$CATALINA_HOME/bin/shutdown.sh 300 -force
 
-
-# on the DB server: PostgreSQL , psql
-psql -U postgres
-CREATE USER alfresco WITH PASSWORD 'alfresco';
-CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
-GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
-
-
-# Alfresco should start without problems!
-$CATALINA_HOME/bin/startup.sh
 
 
 ######### LibreOffice install #########
-# Libraries
-
-yum install -y libXinerama     \
-               libGLU          \
-               libfontconfig   \
-               libICE libSM    \
-               libXrender      \
-               libXext         \
-               libcups         \               
-               libcairo2       \
-               libgl1-mesa-glx \
-               cups-libs       \
-               cairo
 
 
 # download and extract LibreOffice for your platform
-# http://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
-wget http://ftp.rz.tu-bs.de/pub/mirror/tdf/tdf-pub/libreoffice/stable/5.2.1/rpm/x86_64/LibreOffice_5.2.1_Linux_x86-64_rpm.tar.gz
-tar -xzf LibreOffice_5.2.1_Linux_x86-64_rpm.tar.gz
+# http://docs.alfresco.com/6.1/concepts/supported-platforms-ACS.html
+cd /root/work/
+wget https://downloadarchive.documentfoundation.org/libreoffice/old/5.4.6.2/rpm/x86_64/LibreOffice_5.4.6.2_Linux_x86-64_rpm.tar.gz
+tar -xzf LibreOffice_5.4.6.2_Linux_x86-64_rpm.tar.gz
 
 # CD to the RPMS directory and remove any files with gnome , kde in the filename. 
 rm *gnome* 
 rm *kde*
 rm *freedesktop-menus*
 # yum install -y 
-yum install -y *.rpm
+yum install *.rpm -y
 
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
 # LibreOffice will be probably installed in /opt/LibreOffice5.2 make a symlink then
-ln -sf /opt/libreoffice5.2/ /opt/alfresco/LibreOffice/
+ln -sf /opt/libreoffice5.4/ /opt/alfresco/LibreOffice
+
+
+# Libraries : check first IF this ones are missing
+rpm -q libXinerama     \
+       libGLU          \
+       libfontconfig   \
+       libICE          \
+       libSM           \
+       libXrender      \
+       libXext         \
+       libcups         \
+       libcairo2       \
+       libgl1-mesa-glx \
+       cups-libs       \
+       cairo           ;
+       
+# in my case, I had to install:
+yum install libGLU libfontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cairo -y ;
+
+
 
 # jodConverter.maxTasksPerProcess=100
 # Do not include a slash (/) at the end of the path:
@@ -225,7 +238,7 @@ vi $CATALINA_HOME/shared/classes/alfresco-global.properties
 # EPEL is your friend, so:
 yum install epel-release
 
-# ImageMagick installation process is not that clear but try to get and .rpm for it and force the installation
+# ImageMagick installation process is not that clear but try to get a .rpm for it and force the installation
 # probably the installer will complain but there are high chances that will get a working installation... for
 # Alfresco at least (in the end just "convert" is used).
 
@@ -506,4 +519,7 @@ $CATALINA_HOME/bin/shutdown.sh 90 -force ; $CATALINA_HOME/bin/startup.sh
 apachectl restart
 
 
-
+# to stop Tomcat, ALWAYS use:
+$CATALINA_HOME/bin/shutdown.sh 300 -force
+# Alfresco should start without problems!
+$CATALINA_HOME/bin/startup.sh
