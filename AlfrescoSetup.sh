@@ -244,6 +244,10 @@ yum install epel-release
 
 # the key point is that we WILL NOT have a root directory so in alfresco-global.properties define
 # an empty root folder (see the provided file):
+wget https://github.com/ImageMagick/ImageMagick/archive/7.0.7-39.tar.gz
+
+# unnecessary on Centos 7 :
+#wget https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
 
 img.root=
 img.dyn=/usr/lib64
