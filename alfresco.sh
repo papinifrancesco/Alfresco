@@ -13,7 +13,7 @@ if [ -f "/usr/sbin/getenforce" ] && [ `id -u` = 0 ] ; then
     /usr/sbin/setenforce 0 2> /dev/null
 fi
 
-INSTALLDIR=/opt/alfresco-one
+INSTALLDIR=/opt/alfresco
 
 if [ -r "$INSTALLDIR/scripts/setenv.sh" ]; then
 . "$INSTALLDIR/scripts/setenv.sh"
