@@ -205,6 +205,7 @@ elif [ "x$1" = "xstart" ]; then
         fi
     elif [ "x$2" = "xtomcat" ]; then
         if test -x $TOMCAT_SCRIPT; then
+            # modded
             $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
@@ -337,6 +338,7 @@ elif [ "x$1" = "xstart" ]; then
         fi
 
         if test -x $TOMCAT_SCRIPT; then
+            # modded
             $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
@@ -982,6 +984,7 @@ elif [ "x$1" = "xrestart" ]; then
             ELASTICSEARCH_ERROR=$?
         fi
         if test -x $TOMCAT_SCRIPT; then
+            # modded
             $LIBREOFFICE_CHECK; $TOMCAT_CLEAN; $TOMCAT_SCRIPT start
             TOMCAT_ERROR=$?
         fi
