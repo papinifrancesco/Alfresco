@@ -1,10 +1,24 @@
 reset
 
 # on the DB server: PostgreSQL , psql
+sudo su postgres
 psql -U postgres
 CREATE USER alfresco WITH PASSWORD 'alfresco';
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+
+# also, configure Postgresql to LISTEN on all (or on given ones) interfaces
+vi /var/lib/pgsql/10/data/postgresql.conf
+listen_addresses = '*'                  # what IP address(es) to listen on;
+
+# and ACCEPT connections from all (or from given ones) hosts
+vi /var/lib/pgsql/10/data/pg_hba.conf
+host    alfresco        alfresco        172.16.140.12/32        md5
+
+# restart the service to make the changes effective
+systemctl restart postgresql-10.service
+
+
 
 # on the repository machine 
 # we don't want run Alfresco as root so let's create a dedicated group and a dedicated user
@@ -100,7 +114,8 @@ cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
 # https://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
 wget https://jdbc.postgresql.org/download/postgresql-42.2.5.jar -P $CATALINA_HOME/lib/
 
-
+# create the missing path or we'll get a WARNING in AGPre
+mkdir -p /opt/alfresco/tomcat/shared/lib
 
 # check that $CATALINA_HOME/conf/catalina.properties has:
 shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
@@ -284,7 +299,7 @@ SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
 SOLR_JAVA_MEM="-Xms2g -Xmx2g"
 
-X
+
 # start Solr , first time only command
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 # subsequent times you'll start it with just
