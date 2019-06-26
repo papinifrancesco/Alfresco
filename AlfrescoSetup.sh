@@ -46,6 +46,7 @@ mkdir $ALFRESCO_HOME/amps_share
 mkdir $ALFRESCO_HOME/modules
 mkdir $ALFRESCO_HOME/modules/platform
 mkdir $ALFRESCO_HOME/modules/share
+mkdir $CATALINA_HOME/scripts
 mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
 mkdir /usr/local/scripts
@@ -83,6 +84,10 @@ crontab -u alfresco -e
 55 23 * * * /usr/local/scripts/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
 59 23 * * * /usr/local/scripts/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
+# get a 5.2.5 (yes, trust me) ctl.sh script
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/ctl.sh -P $CATALINA_HOME/scripts/
+chown alfresco. $CATALINA_HOME/scripts/ctl.sh
+chmod +x $CATALINA_HOME/scripts/ctl.sh
 
 # make alfresco user able to start, stop, restart and check the status of both alfresco.service and solr.service
 visudo
