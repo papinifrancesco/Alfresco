@@ -4,6 +4,7 @@ reset
 sudo su postgres
 psql -U postgres
 CREATE USER alfresco WITH PASSWORD 'alfresco';
+DROP DATABASE alfresco;
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 
@@ -111,7 +112,7 @@ visudo
 
 
 # alfresco.xml and share.xml MUST be present in the destination folder
-cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf
+cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
 
 
 # put a Tomcat supported version of PostegreSQL JDBC in $CATALINA_HOME/lib
