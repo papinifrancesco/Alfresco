@@ -280,8 +280,8 @@ img.config=/etc/ImageMagick-7
 
 
 ######### Solr - same host - no SSL so far #########
-# references: http://docs.alfresco.com/6.0/tasks/solr6-install-withoutSSL.html
-#             http://docs.alfresco.com/6.0/concepts/external-properties-solr6.html
+# references: http://docs.alfresco.com/6.1/tasks/solr6-install-withoutSSL.html
+#             http://docs.alfresco.com/6.1/concepts/external-properties-solr6.html
 wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.3.0.1/alfresco-search-services-1.3.0.1.zip
 unzip alfresco-search-services-1.3.0.1.zip
 mv alfresco-search-services /opt/
@@ -304,7 +304,7 @@ vi /opt/solr/solr.in.sh
 SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
 SOLR_JAVA_MEM="-Xms2g -Xmx2g"
-
+syst
 
 # start Solr , first time only command
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
