@@ -304,7 +304,7 @@ vi /opt/solr/solr.in.sh
 SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
 SOLR_JAVA_MEM="-Xms2g -Xmx2g"
-syst
+
 
 # start Solr , first time only command
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
