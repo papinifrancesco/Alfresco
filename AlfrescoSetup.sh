@@ -50,6 +50,7 @@ mkdir $ALFRESCO_HOME/modules/share
 mkdir $CATALINA_HOME/scripts
 mkdir $CATALINA_HOME/shared
 mkdir $CATALINA_HOME/webapps
+mkdir -p $CATALINA_HOME/conf/Catalina/localhost/
 mkdir /usr/local/scripts
 
 # remove what you don't need from Tomcat
@@ -61,7 +62,7 @@ rm -rf $CATALINA_HOME/webapps/ROOT/
 unzip $ALFRESCO_HOME/web-server/webapps/alfresco.war -d $CATALINA_HOME/webapps/alfresco/
 unzip $ALFRESCO_HOME/web-server/webapps/share.war -d $CATALINA_HOME/webapps/share/
 unzip $ALFRESCO_HOME/web-server/webapps/_vti_bin.war -d $CATALINA_HOME/webapps/_vti_bin/
-unzip $ALFRESCO_HOME/web-server/webapps/ROOT.war -d $CATALINA_HOME/webapps/ROOTA/
+unzip $ALFRESCO_HOME/web-server/webapps/ROOT.war -d $CATALINA_HOME/webapps/ROOT/
 
 
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
@@ -107,8 +108,8 @@ visudo
 ---
 
 
-# JDBC driver not needed:
-# scp -r $AlfrescoBaseDir/web-server/lib $AlfrescoServer:$CATALINA_HOME/lib
+# JDBC driver not needed in case of Community, needed in case of Enterprise:
+mv $ALFRESCO_HOME/web-server/lib/* $CATALINA_HOME/lib/
 
 
 # alfresco.xml and share.xml MUST be present in the destination folder
