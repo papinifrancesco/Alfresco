@@ -46,12 +46,13 @@ alias MMT='java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar'
 
 # create these folders!
 mkdir -p $ALFRESCO_HOME/amps_share
-mkdir -p $CATALINA_HOME/scripts
-mkdir -p $CATALINA_HOME/webapps
-mkdir -p $CATALINA_HOME/shared/lib
 mkdir -p $ALFRESCO_HOME/modules/platform
 mkdir -p $ALFRESCO_HOME/modules/share
-mkdir -p $CATALINA_HOME/conf/Catalina/localhost/
+mkdir -p $CATALINA_HOME/conf/Catalina/localhost
+mkdir -p $CATALINA_HOME/scripts
+mkdir -p $CATALINA_HOME/shared/classes/alfresco/extension/license
+mkdir -p $CATALINA_HOME/shared/lib
+mkdir -p $CATALINA_HOME/webapps
 mkdir -p /usr/local/scripts
 
 # remove what you don't need from Tomcat
@@ -194,7 +195,7 @@ vi $CATALINA_HOME/webapps/manager/META-INF/context.xml
 
 
 # install AMPs , by default only $ALFRESCO_HOME/amps/alfresco-share-services.amp
-java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
+MMT install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
 
 
 # define logging for the web apps:
@@ -226,7 +227,7 @@ yum install *.rpm -y
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
 # LibreOffice will be probably installed in /opt/LibreOffice5.2 make a symlink then
-ln -sf /opt/libreoffice5.4/ /opt/alfresco/LibreOffice
+ln -sf /opt/libreoffice5.4/ /opt/alfresco/libreOffice
 
 
 # Libraries : check first IF this ones are missing
@@ -277,13 +278,21 @@ img.config=/etc/ImageMagick-7
 
 ######### ImageMagick install #########
 
+######### PDF renderer install #########
+cd $ALFRESCO_HOME/alfresco-pdf-renderer/
+tar xfzv alfresco-pdf-renderer-1.1-linux.tgz
+
+
 
 ######### Solr - same host - no SSL so far #########
 # references: http://docs.alfresco.com/6.1/tasks/solr6-install-withoutSSL.html
 #             http://docs.alfresco.com/6.1/concepts/external-properties-solr6.html
-wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.3.0.1/alfresco-search-services-1.3.0.1.zip
-unzip alfresco-search-services-1.3.0.1.zip
-mv alfresco-search-services /opt/
+# decide if Community or Enterprise
+ wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.3.0.1/alfresco-search-services-1.3.0.1.zip
+# wget https://process.alfresco.com/r/amazon/edl/?p=SearchServices/1.3.0.5&f=alfresco-search-services-1.3.0.5.zip
+unzip alfresco-search-services-1.3.0.1.zip -d alfresco-search-services-1.3.0.1
+mv alfresco-search-services-1.3.0.1 /opt/
+ln -s /opt/alfresco-search-services-1.3.0.1 /opt/solr
 vi /opt/solr/solrhome/conf/shared.properties
     # uncomment
 alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
