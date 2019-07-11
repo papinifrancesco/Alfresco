@@ -37,21 +37,22 @@ export TOMCAT_HOME=$CATALINA_HOME
 
 export SOLR_HOME="/opt/solr/solrhome"
 
+alias MMT='java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar'
+
 # extract the Alfresco archive in /opt/alfresco
 # extract the Tomcat archive in /opt/alfresco/tomcat
 
 
 
 # create these folders!
-mkdir $ALFRESCO_HOME/amps_share
-mkdir $ALFRESCO_HOME/modules
-mkdir $ALFRESCO_HOME/modules/platform
-mkdir $ALFRESCO_HOME/modules/share
-mkdir $CATALINA_HOME/scripts
-mkdir $CATALINA_HOME/shared
-mkdir $CATALINA_HOME/webapps
+mkdir -p $ALFRESCO_HOME/amps_share
+mkdir -p $CATALINA_HOME/scripts
+mkdir -p $CATALINA_HOME/webapps
+mkdir -p $CATALINA_HOME/shared/lib
+mkdir -p $ALFRESCO_HOME/modules/platform
+mkdir -p $ALFRESCO_HOME/modules/share
 mkdir -p $CATALINA_HOME/conf/Catalina/localhost/
-mkdir /usr/local/scripts
+mkdir -p /usr/local/scripts
 
 # remove what you don't need from Tomcat
 rm -rf $CATALINA_HOME/webapps/docs/
@@ -111,18 +112,15 @@ visudo
 # JDBC driver not needed in case of Community, needed in case of Enterprise:
 mv $ALFRESCO_HOME/web-server/lib/* $CATALINA_HOME/lib/
 
-
-# alfresco.xml and share.xml MUST be present in the destination folder
-cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
-
-
+# if Postgres is the DB and the Postgres connector is missing 
 # put a Tomcat supported version of PostegreSQL JDBC in $CATALINA_HOME/lib
 # too old or too new might not work as expected, have a look at:
 # https://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
 wget https://jdbc.postgresql.org/download/postgresql-42.2.5.jar -P $CATALINA_HOME/lib/
 
-# create the missing path or we'll get a WARNING in AGPre
-mkdir -p /opt/alfresco/tomcat/shared/lib
+# alfresco.xml and share.xml MUST be present in the destination folder
+cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
+
 
 # check that $CATALINA_HOME/conf/catalina.properties has:
 shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
