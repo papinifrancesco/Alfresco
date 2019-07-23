@@ -46,6 +46,8 @@ alias MMT='java -jar $ALFRESCO_HOME/bin/alfresco-mmt.jar'
 
 # create these folders!
 mkdir -p $ALFRESCO_HOME/amps_share
+mkdir -p $ALFRESCO_HOME/alf_data/solr6Backup/alfresco
+mkdir -p $ALFRESCO_HOME/alf_data/solr6Backup/archive
 mkdir -p $ALFRESCO_HOME/modules/platform
 mkdir -p $ALFRESCO_HOME/modules/share
 mkdir -p $CATALINA_HOME/conf/Catalina/localhost
@@ -154,6 +156,10 @@ share.context=share
 share.host=${localname}
 share.port=8080
 share.protocol=http
+index.subsystem.name=solr6
+solr.host=localhost
+solr.port=8983
+solr.secureComms=none
 alfresco.rmi.services.host=0.0.0.0
 
 
