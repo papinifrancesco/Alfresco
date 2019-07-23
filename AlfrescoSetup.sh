@@ -9,11 +9,11 @@ CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
 
 # also, configure Postgresql to LISTEN on all (or on given ones) interfaces
-vi /var/lib/pgsql/10/data/postgresql.conf
+vim /var/lib/pgsql/10/data/postgresql.conf
 listen_addresses = '*'                  # what IP address(es) to listen on;
 
 # and ACCEPT connections from all (or from given ones) hosts
-vi /var/lib/pgsql/10/data/pg_hba.conf
+vim /var/lib/pgsql/10/data/pg_hba.conf
 host    alfresco        alfresco        172.16.140.12/32        md5
 
 # restart the service to make the changes effective
@@ -184,14 +184,14 @@ wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/tomcat-us
 
 # unblock the /manager webapp
 # if Tomcat < 8.0
-vi $CATALINA_HOME/conf/context.xml
+vim $CATALINA_HOME/conf/context.xml
 # and comment that Valve below
 <!--
 <Valve className="org.apache.catalina.authenticator.SSLAuthenticator" securePagesWithPragma="false" />
 -->
 
 # if Tomcat >= 8.0
-vi $CATALINA_HOME/webapps/manager/META-INF/context.xml
+vim $CATALINA_HOME/webapps/manager/META-INF/context.xml
 # and comment the Valve this way
 <!--
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
@@ -258,7 +258,7 @@ yum install libGLU libfontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cai
 # jodConverter.maxTasksPerProcess=100
 # Do not include a slash (/) at the end of the path:
 # jodconverter.officeHome=/opt/alfresco/LibreOffice
-vi $CATALINA_HOME/shared/classes/alfresco-global.properties
+vim $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
 ######### ImageMagick install #########
@@ -299,7 +299,7 @@ tar xfzv alfresco-pdf-renderer-1.1-linux.tgz
 unzip alfresco-search-services-1.3.0.1.zip -d alfresco-search-services-1.3.0.1
 mv alfresco-search-services-1.3.0.1 /opt/
 ln -s /opt/alfresco-search-services-1.3.0.1 /opt/solr
-vi /opt/solr/solrhome/conf/shared.properties
+vim /opt/solr/solrhome/conf/shared.properties
     # uncomment
 alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
 alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
@@ -313,7 +313,7 @@ alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}m
 solr.baseurl=/solr -> solr.baseurl=/opt/solr/solr
 
 # set SOLAR_HOME for solr
-vi /opt/solr/solr.in.sh
+vim /opt/solr/solr.in.sh
 # uncomment SOLR_HOME and add the path
 SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
@@ -322,6 +322,14 @@ SOLR_JAVA_MEM="-Xms2g -Xmx2g"
 
 # start Solr , first time only command
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+
+# modify: alfresco.secureComms=https
+# to:     alfresco.secureComms=none     
+vim $SOLR_HOME/alfresco/conf/solrcore.properties
+vim $SOLR_HOME/archive/conf/solrcore.properties
+# and restart Solr
+
+
 # subsequent times you'll start it with just
 /opt/solr/solr/bin/solr start
 
@@ -438,7 +446,7 @@ mkdir $SOLR_HOME/keystore
 
 
 
-vi $CATALINA_HOME/conf/server.xml
+vim $CATALINA_HOME/conf/server.xml
 # the keystorePass is the default one, do not use it in production
 <Connector
 port="8443"
@@ -459,7 +467,7 @@ maxHttpHeaderSize="32768"
 sslEnabledProtocols="TLSv1.2" />
 
 
-vi $CATALINA_HOME/shared/classes/alfresco-global.properties
+vim $CATALINA_HOME/shared/classes/alfresco-global.properties
 # change to:
 alfresco.port=8443
 alfresco.protocol=https
@@ -482,7 +490,7 @@ mv $SOLR_HOME/archive  ~/$SOLR_HOME/archive.ORIG
 #then start Solr
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 
-vi /opt/solr/solr.in.sh
+vim /opt/solr/solr.in.sh
 # modify so that you'll have
 SOLR_SSL_KEY_STORE=$SOLR_HOME/keystore/ssl.repo.client.keystore
 SOLR_SSL_KEY_STORE_PASSWORD=kT9X6oe68t
@@ -496,8 +504,8 @@ SOLR_SSL_WANT_CLIENT_AUTH=false
 
 # modify: alfresco.secureComms=none
 # to:     alfresco.secureComms=https     
-vi $SOLR_HOME/alfresco/conf/solrcore.properties
-vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
+vim $SOLR_HOME/alfresco/conf/solrcore.properties
+vim $SOLR_HOME/archive/conf/solrcore.properties
 
 # restart solr and test you can reach its website.
 
@@ -506,7 +514,7 @@ vi $SOLR_HOME/solrhome/archive/conf/solrcore.properties
 
 
 ######### Apache reverse proxy - AJP #########
-vi /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+vim /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
 
 alfresco.host=alfresco.tst.lcl
 alfresco.port=443
@@ -515,13 +523,13 @@ share.host=alfresco.tst.lcl
 share.port=443
 
 
-vi /opt/alfresco/tomcat/conf/server.xml
+vim /opt/alfresco/tomcat/conf/server.xml
 
 <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" tomcatAuthentication="false" />
 
 
 # then copy the previously generated key and certs to the Apache machine and edit:
-vi /etc/httpd/conf.d/ssl.conf
+vim /etc/httpd/conf.d/ssl.conf
 
 # Server Certificate
 SSLCertificateFile /etc/pki/tls/certs/alfresco6.tst.lcl.cert.pem
@@ -541,7 +549,7 @@ SSLVerifyClient optional
 
 # a basic configuration: everything Apache gets will be sent to:
 # ajp://alfresco6.tst.lcl:8009/
-vi /etc/httpd/conf.d/mod_proxy_ajp.conf
+vim /etc/httpd/conf.d/mod_proxy_ajp.conf
 
 LoadModule proxy_ajp_module modules/mod_proxy_ajp.so
 
