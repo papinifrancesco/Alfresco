@@ -84,6 +84,11 @@ chmod u+x *.sh
 # -rwxr--r-- 1 alfresco alfresco 66193 Jun 19 13:45 all_logs_compress.sh
 # -rwxr--r-- 1 alfresco alfresco 67607 Jun 19 13:45 catalina_rotate.sh
 
+# clean Tomcat's folders before starting it
+cd $ALFRESCO_HOME/bin/
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/clean_tomcat_temp_work.sh
+chmod u+x clean_tomcat_temp_work.sh
+
 
 crontab -u alfresco -e
 # put the two lines below
