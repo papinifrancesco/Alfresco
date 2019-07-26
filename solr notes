@@ -1,0 +1,17 @@
+curl "http://localhost:8080/solr4/archive/update?commit=true&expungeDeletes=true"
+curl "http://localhost:8080/solr4/archive/update?optimize=true"
+curl "http://localhost:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
+curl "http://localhost:8080/solr4/alfresco/update?optimize=true"
+
+curl "http://n0611a87:8080/solr4/archive/update?commit=true&expungeDeletes=true"
+curl "http://n0611a87:8080/solr4/archive/update?optimize=true"
+curl "http://n0611a87:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
+curl "http://n0611a87:8080/solr4/alfresco/update?optimize=true"
+
+curl "http://n0611a63:8080/solr4/admin/cores?action=FIX"
+curl "http://n0611a63:8080/solr4/admin/cores?action=RETRY"
+
+curl "http://n0611a63:8080/solr4/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+
+curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=xml&detail=true&hist=true&values=true"
+
