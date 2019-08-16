@@ -12,8 +12,8 @@ WorkingDirectory=/opt/alfresco
 Restart=always
 User=daf
 Group=dafgrp
-
 LimitNOFILE=65536
+SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
