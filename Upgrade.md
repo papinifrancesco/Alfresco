@@ -107,7 +107,6 @@ diff and check all of these files:
 alfresco.sh
 bin/apply_amps.sh
 bin/clean_tomcat.sh
-common/lib/ImageMagick-x.x.x/config-Q16/policy.xml
 libreoffice/scripts/libreoffice_check.sh
 solr4/archive-SpacesStore/conf/solrcore.properties
 solr4/archive-SpacesStore/conf/solrconfig.xml
@@ -123,10 +122,15 @@ tomcat/conf/server.xml (remember the packetSize and jvmRoute parameters)
 
 tomcat/conf/tomcat-users.xml
 tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+tomcat/shared/classes/alfresco/extension/license/CustomersName.lic.installed
+tomcat/shared/classes/alfresco/extension/alfresco-jmxrmi.password
+tomcat/shared/classes/alfresco/extension/production-log4j.properties
 tomcat/shared/classes/alfresco/extension/subsystems/Authentication/ldap-ad/ad1/ldap-ad-authentication.properties
 tomcat/shared/classes/tnsnames.ora
 tomcat/shared/classes/alfresco/extension/custom-log4j.properties
 tomcat/webapps/DAFalfresco/WEB-INF/classes/alfresco/content-services-context.xml (<bean id="extracter.RFC822" email extractor maybe OFF)
+tomcat/scripts/jmxterm-1.0.1-uber.jar
+tomcat/webapps/DigitalWorkspace/app.config.json
 ```
 
 
