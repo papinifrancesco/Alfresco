@@ -18,5 +18,5 @@ done
 if ! [[ -r "$file" ]] ; then
     echo "'$file' is not readable."
 fi
-echo "'usr' can access '$file'"
+echo "'$usr' can access '$file'"
 namei -l $file
