@@ -3,7 +3,7 @@
 # example: check_permissions.sh /usr/local/scripts/myScript.sh tomcat
 
 file=$1
-usr=$2
+
 # Handle non-absolute paths
 if ! [[ "$file" == /* ]] ; then
     path=.
@@ -18,5 +18,5 @@ done
 if ! [[ -r "$file" ]] ; then
     echo "'$file' is not readable."
 fi
-echo "'$usr' can access '$file'"
+echo "'$USER' can access '$file'"
 namei -l $file
