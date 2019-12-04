@@ -1,4 +1,7 @@
 #!/bin/bash
+# syntax: check_permissions.sh PATH USER
+# example: check_permissions.sh /usr/local/scripts/myScript.sh tomcat
+
 file=$1
 # Handle non-absolute paths
 if ! [[ "$file" == /* ]] ; then
@@ -14,3 +17,4 @@ done
 if ! [[ -r "$file" ]] ; then
     echo "'$file' is not readable."
 fi
+namei -l $file
