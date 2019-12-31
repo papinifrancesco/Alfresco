@@ -36,7 +36,7 @@ RESIN_SCRIPT=$INSTALLDIR/resin/scripts/ctl.sh
 REDIS_SCRIPT=$INSTALLDIR/redis/scripts/ctl.sh
 SUBVERSION_SCRIPT=$INSTALLDIR/subversion/scripts/ctl.sh
 LIBREOFFICE_SCRIPT=$INSTALLDIR/libreoffice/scripts/ctl.sh
-LIBREOFFICE_CHECK=$INSTALLDIR/libreoffice/scripts/libreoffice_check.sh
+LIBREOFFICE_CHECK=/usr/local/scripts/libreoffice_check.sh
 #RUBY_APPLICATION_SCRIPT
 LUCENE_SCRIPT=$INSTALLDIR/lucene/scripts/ctl.sh
 ZOPE_SCRIPT=$INSTALLDIR/zope_application/scripts/ctl.sh
