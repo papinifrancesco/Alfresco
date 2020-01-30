@@ -175,8 +175,6 @@ solr.backup.archive.remoteBackupLocation=/ecm/data/solr6Backup/archive
 solr.backup.alfresco.numberToKeep=1
 solr.backup.archive.numberToKeep=1
 
-
-
 alfresco.rmi.services.host=0.0.0.0
 # Safety options: set to "true" only when the setup is
 # really ready and everything is properly backed up
@@ -187,8 +185,9 @@ server.allowWrite=false
 # edit $CATALINA_HOME/conf/server.xml so that:
  <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               URIEncoding="UTF-8" maxHttpHeaderSize="32768"
-               redirectPort="8443" />
+               redirectPort="8443"
+               URIEncoding="UTF-8"
+               maxHttpHeaderSize="32768" />
        [...]
   <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log." suffix=".txt"
@@ -221,16 +220,18 @@ vim $CATALINA_HOME/webapps/manager/META-INF/context.xml
 
 
 
-# install AMPs , by default only $ALFRESCO_HOME/amps/alfresco-share-services.amp
-MMT install $ALFRESCO_HOME/amps/alfresco-share-services.amp $CATALINA_HOME/webapps/alfresco/ -nobackup
+# install AMPs 
+MMT install $ALFRESCO_HOME/amps/       $CATALINA_HOME/webapps/alfresco/ -nobackup
+MMT install $ALFRESCO_HOME/amps_share/ $CATALINA_HOME/webapps/share/    -nobackup
 
 
-# define logging for the web apps:
-# $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/log4j.properties
-log4j.appender.File.File=${catalina.base}/logs/alfresco.log
-# $CATALINA_HOME/webapps/share/WEB-INF/classes/log4j.properties
-log4j.appender.File.File=${catalina.base}/logs/share.log
-
+# define logging for Alfresco and solr web apps:
+cd $CATALINA_HOME/webapps/alfresco/WEB-INF/classes/
+sed -i.ORIG 's#log4j.appender.File.File=alfresco.log#log4j.appender.File.File=${catalina.base}/logs/alfresco.log#g' log4j.properties
+# read the documentation about custom-log4j.properties
+cp -a log4j.properties $CATALINA_HOME/shared/classes/alfresco/extension/custom-log4j.properties
+cd $CATALINA_HOME/webapps/share/WEB-INF/classes/
+sed -i.ORIG 's#log4j.appender.File.File=share.log#log4j.appender.File.File=${catalina.base}/logs/share.log#g' log4j.properties
 
 
 
@@ -239,22 +240,28 @@ log4j.appender.File.File=${catalina.base}/logs/share.log
 
 
 # download and extract LibreOffice for your platform
-# http://docs.alfresco.com/6.1/concepts/supported-platforms-ACS.html
+# http://docs.alfresco.com/6.2/concepts/supported-platforms-ACS.html
 cd /root/work/
-wget https://downloadarchive.documentfoundation.org/libreoffice/old/5.4.6.2/rpm/x86_64/LibreOffice_5.4.6.2_Linux_x86-64_rpm.tar.gz
-tar -xzf LibreOffice_5.4.6.2_Linux_x86-64_rpm.tar.gz
+wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.1.6.3/rpm/x86_64/LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
+tar -xzf LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
 
 # CD to the RPMS directory and remove any files with gnome , kde in the filename. 
-rm *gnome* 
-rm *kde*
-rm *freedesktop-menus*
+rm *gnome* *kde* *freedesktop-menus*
 # yum install -y 
 yum install *.rpm -y
 
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
-# LibreOffice will be probably installed in /opt/LibreOffice5.2 make a symlink then
-ln -sf /opt/libreoffice5.4/ /opt/alfresco/libreOffice
+# LibreOffice will be probably installed in /opt/LibreOffice6.1 :
+option A - make a symlink: ln -sf /opt/libreoffice6.1/ $ALFRESCO_HOME/libreoffice
+option B - move it       : mv /opt/libreoffice6.1/ $ALFRESCO_HOME/libreoffice
+
+# create the scripts folder and put a .sh in it:
+mkdir $ALFRESCO_HOME/libreoffice/scripts
+cd $ALFRESCO_HOME/libreoffice/scripts
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/libreoffice_ctl.sh
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/libreoffice_check.sh
+chmod u+x *
 
 
 # Libraries : check first IF this ones are missing
@@ -274,7 +281,9 @@ rpm -q libXinerama     \
 # in my case, I had to install:
 yum install libGLU libfontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cairo -y ;
 
-
+# SUSE
+# https://www.suse.com/LinuxPackages/packageRouter.jsp?product=server&version=12&service_pack=&architecture=x86_64&package_name=index_all
+zypper install libXinerama1 libGLU fontconfig libICE6 libSM6 libXrender1 libXext6 cups-libs libcairo2 Mesa-libGL1 libcairo-gobject2
 
 # jodConverter.maxTasksPerProcess=100
 # Do not include a slash (/) at the end of the path:
@@ -295,6 +304,15 @@ yum install epel-release
 # wget https://github.com/ImageMagick/ImageMagick/archive/7.0.5-10.tar.gz
 wget https://github.com/ImageMagick/ImageMagick/archive/7.0.7-39.tar.gz
 
+# CentOS / RHEL
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-20.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-20.x86_64.rpm
+yum install ImageMagick*.rpm -y
+
+#SUSE
+zypper addrepo https://download.opensuse.org/repositories/graphics/SLE_12_SP3_Backports/graphics.repo
+zypper refresh
+zypper install ImageMagick
 
 # unnecessary on Centos 7 :
 #wget https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
@@ -319,8 +337,8 @@ tar xfzv alfresco-pdf-renderer-1.1-linux.tgz
 # decide if Community or Enterprise
  wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.3.0.1/alfresco-search-services-1.3.0.1.zip
 # wget https://process.alfresco.com/r/amazon/edl/?p=SearchServices/1.3.0.5&f=alfresco-search-services-1.3.0.5.zip
-unzip alfresco-search-services-1.3.0.1.zip -d alfresco-search-services-1.3.0.1
-mv alfresco-search-services-1.3.0.1 /opt/
+unzip alfresco-search-services-1.4.1.zip -d alfresco-search-services-1.4.1
+mv alfresco-search-services-1.4.1 /opt/
 ln -s /opt/alfresco-search-services-1.3.0.1 /opt/solr
 vim /opt/solr/solrhome/conf/shared.properties
     # uncomment
