@@ -118,6 +118,7 @@ visudo
 
 
 # JDBC driver not needed in case of Community, needed in case of Enterprise:
+# before the command, do you use PostgreSQL?
 mv $ALFRESCO_HOME/web-server/lib/* $CATALINA_HOME/lib/
 
 # if Postgres is the DB and the Postgres connector is missing 
@@ -130,8 +131,8 @@ wget https://jdbc.postgresql.org/download/postgresql-42.2.5.jar -P $CATALINA_HOM
 cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
 
 
-# check that $CATALINA_HOME/conf/catalina.properties has:
-shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar
+# modify $CATALINA_HOME/conf/catalina.properties :
+sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar#g' $CATALINA_HOME/conf/catalina.properties
 
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents
@@ -146,6 +147,8 @@ chmod u+x setenv.sh
 # about alfresco.host and share.host : put whatever you want (IP, hostname,
 # FQDN) # but be consistent and consider that TLS have strict requirements
 # (the server certificate must have a matching FQDN name)
+# it is a good idea to have a look at this file in a production server
+# if you have one
 dir.root=/opt/alfresco/alf_data
 dir.keystore=${dir.root}/keystore
 db.username=alfresco
@@ -165,7 +168,20 @@ index.subsystem.name=solr6
 solr.host=localhost
 solr.port=8983
 solr.secureComms=none
+solr.backup.alfresco.cronExpression=0 0 2 * * ?
+solr.backup.alfresco.remoteBackupLocation=/ecm/data/solr6Backup/alfresco
+solr.backup.archive.cronExpression=15 0 2 * * ?
+solr.backup.archive.remoteBackupLocation=/ecm/data/solr6Backup/archive
+solr.backup.alfresco.numberToKeep=1
+solr.backup.archive.numberToKeep=1
+
+
+
 alfresco.rmi.services.host=0.0.0.0
+# Safety options: set to "true" only when the setup is
+# really ready and everything is properly backed up
+db.schema.update=false
+server.allowWrite=false
 
 
 # edit $CATALINA_HOME/conf/server.xml so that:
