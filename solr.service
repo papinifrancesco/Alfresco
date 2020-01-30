@@ -1,0 +1,20 @@
+[Unit]
+Description=Alfresco Search Services
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/solr/solr/bin/solr start
+ExecReload=/opt/solr/solr/bin/solr reload
+ExecStop=/opt/solr/solr/bin/solr stop
+PIDFile=/opt/solr/solr/bin/solr-8983.pid
+WorkingDirectory=/opt/solr
+Restart=no
+User=alfresco
+Group=alfresco
+RemainAfterExit=true
+
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
