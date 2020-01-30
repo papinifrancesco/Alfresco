@@ -2,10 +2,12 @@
 
 
 # Libre Office
-SOFFICE_PATH="/opt/alfresco/libreoffice/program"
-SOFFICE_PORT="8100"
-SOFFICEBIN=/opt/alfresco/libreoffice/program/.soffice.bin
-SOFFICEWRAPPER=/opt/alfresco/libreoffice/program/soffice.bin
+#SOFFICE_PATH="/opt/alfresco/libreoffice/program"
+SOFFICE_PATH="/opt/alfresco-content-services-6.2.0/libreoffice/program"
+#SOFFICE_PORT="8100"
+SOFFICE_PORT="8101"
+SOFFICEBIN=$SOFFICE_PATH/.soffice.bin
+SOFFICEWRAPPER=$SOFFICE_PATH/soffice.bin
 SOFFICE="$SOFFICEWRAPPER --nofirststartwizard --nologo --headless --accept=socket,host=localhost,port=$SOFFICE_PORT\;urp\;StarOffice.ServiceManager"
 SOFFICE_STATUS=""
 
