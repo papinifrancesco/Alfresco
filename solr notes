@@ -1,3 +1,5 @@
+ tar --exclude='solrhome/alfresco' --exclude='solrhome/archive' --exclude='contentstore' -cvzf ASS141-20200205_FP_working_backup.tar.gz ./alfresco-search-services-1.4.1/
+
 curl "http://localhost:8080/solr4/archive/update?commit=true&expungeDeletes=true"
 curl "http://localhost:8080/solr4/archive/update?optimize=true"
 curl "http://localhost:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
