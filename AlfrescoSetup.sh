@@ -341,7 +341,7 @@ unzip alfresco-search-services-1.4.1.zip -d alfresco-search-services-1.4.1
 mv alfresco-search-services-1.4.1 /opt/
 ln -s /opt/alfresco-search-services-1.3.0.1 /opt/solr
 vim /opt/solr/solrhome/conf/shared.properties
-    # uncomment
+    # uncomment ONLY if you have plenty of RAM otherwise you'll get an OutOfMemoryError almost always on solr
 alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
 alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
 alfresco.suggestable.property.2={http://www.alfresco.org/model/content/1.0}description 
