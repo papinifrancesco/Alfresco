@@ -245,8 +245,9 @@ cd /root/work/
 wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.1.6.3/rpm/x86_64/LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
 tar -xzf LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
 
-# CD to the RPMS directory and remove any files with gnome , kde in the filename. 
-rm *gnome* *kde* *freedesktop-menus*
+# CD to the RPMS directory and remove any files with gnome , kde in the filename.
+cd LibreOffice_6.1.6.3_Linux_x86-64_rpm/RPMS/
+rm -rf *gnome* *kde* *freedesktop-menus*
 # yum install -y 
 yum install *.rpm -y
 
@@ -320,7 +321,9 @@ zypper install ImageMagick
 img.root=
 img.dyn=/usr/lib64
 img.exe=/usr/bin/convert
+# Check the path is correct
 img.coders=/usr/lib64/ImageMagick-7.0.8/modules-Q16HDRI/coders
+# Check the path is correct
 img.config=/etc/ImageMagick-7
 
 ######### ImageMagick install #########
