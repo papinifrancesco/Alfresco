@@ -1,4 +1,6 @@
-#reference: http://tomcat.apache.org/native-doc/
+# references
+#  generic:  https://tomcat.apache.org/native-doc/
+#  specific: https://tomcat.apache.org/tomcat-8.5-doc/apr.html
 
 #######################################################################
 #NAME="SLES_SAP"
@@ -11,8 +13,7 @@ zypper install libopenssl-devel
 #######################################################################
 
 
-cd /root/work/
-wget https://archive.apache.org/dist/tomcat/tomcat-connectors/native/1.2.23/source/tomcat-native-1.2.23-src.tar.gz
+cd /ecm/software/alfresco-content-services-6.2.0/tomcat/bin
 tar xvfz tomcat-native-1.2.23-src.tar.gz
 cd tomcat-native-1.2.23-src/native
 
