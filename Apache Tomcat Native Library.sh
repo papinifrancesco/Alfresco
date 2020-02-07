@@ -14,7 +14,7 @@ zypper install libopenssl-devel
 
 
 cd /ecm/software/alfresco-content-services-6.2.0/tomcat/bin
-tar xvfz tomcat-native-1.2.23-src.tar.gz
+tar xvfz tomcat-native.tar.gz
 cd tomcat-native-1.2.23-src/native
 
 ./configure --with-apr=/usr/bin/apr-1-config \
