@@ -1,3 +1,10 @@
+# Alfresco sessions
+https://documentai.tai.it/alfresco/service/api/audit/query/alfresco-access?verbose=true&limit=20000&forward=false
+grep -i "login" alfresco-access.json | sort | awk -F\" '{ print $4 }' | uniq -c
+
+
+
+
 # enable Alfresco "single user" to perform maintenance tasks, first review:
 # jmx_command_line_example.sh
 # set user "admin" (but could be anyone) as the only one able to log on: that applies to new logins only,
