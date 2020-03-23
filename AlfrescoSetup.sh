@@ -280,7 +280,7 @@ rpm -q libXinerama     \
        cairo           ;
        
 # in my case, I had to install:
-yum install libGLU libfontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cairo -y ;
+yum install libGLU fontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cairo -y ;
 
 # SUSE
 # https://www.suse.com/LinuxPackages/packageRouter.jsp?product=server&version=12&service_pack=&architecture=x86_64&package_name=index_all
@@ -306,8 +306,8 @@ yum install epel-release
 wget https://github.com/ImageMagick/ImageMagick/archive/7.0.7-39.tar.gz
 
 # CentOS / RHEL
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-20.x86_64.rpm
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-20.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-27.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-27.x86_64.rpm
 yum install ImageMagick*.rpm -y
 
 #SUSE
@@ -322,7 +322,7 @@ img.root=
 img.dyn=/usr/lib64
 img.exe=/usr/bin/convert
 # Check the path is correct
-img.coders=/usr/lib64/ImageMagick-7.0.8/modules-Q16HDRI/coders
+img.coders=/usr/lib64/ImageMagick-7.0.9/modules-Q16HDRI/coders
 # Check the path is correct
 img.config=/etc/ImageMagick-7
 
