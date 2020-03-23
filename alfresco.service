@@ -10,8 +10,8 @@ ExecStop=/opt/alfresco/alfresco.sh stop
 PIDFile=/opt/alfresco/tomcat/temp/catalina.pid
 WorkingDirectory=/opt/alfresco
 Restart=always
-User=daf
-Group=dafgrp
+User=alfresco
+Group=alfresco
 LimitNOFILE=65536
 SuccessExitStatus=143
 
