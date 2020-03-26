@@ -8,9 +8,9 @@ DESTINATION=alfresco-admin@54.32.2.2:/opt/
 
 #rsync -navz --exclude-from='clone_exclusions.txt' $SOURCE $DESTINATION
 
-rsync -navz --exclude={ 'contentstore/*'            , \ 
-                        'contentstore.deleted/*'    , \
-                        'logs/*'                    , \
-                        'temp/*'                    , \
-                        'work/*'                    , \
-                                                    } ;
+rsync -navz --exclude={ 'alf_data/contentstore/*'            , \ 
+                        'alf_data/contentstore.deleted/*'    , \
+                        'tomcat/logs/*'                      , \
+                        'tomcat/temp/*'                      , \
+                        'tomcat/work/*'                      , \
+                                                             } ;
