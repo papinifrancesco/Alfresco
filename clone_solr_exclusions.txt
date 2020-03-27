@@ -1,0 +1,4 @@
+logs/solr*
+contentstore/*
+solrhome/alfresco/*
+solrhome/archive/*
