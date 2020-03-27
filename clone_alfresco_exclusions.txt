@@ -1,0 +1,5 @@
+alf_data/contentstore/*
+alf_data/contentstore.deleted/*
+tomcat/logs/*
+tomcat/temp/*
+tomcat/work/*
