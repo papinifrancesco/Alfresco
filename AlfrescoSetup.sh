@@ -280,7 +280,7 @@ rpm -q libXinerama     \
        cairo           ;
        
 # in my case, I had to install:
-yum install libGLU fontconfig libcups libcairo2 libgl1-mesa-glx cups-libs cairo -y ;
+yum install libXinerama mesa-libGLU fontconfig cups-libs cairo -y ;
 
 # SUSE
 # https://www.suse.com/LinuxPackages/packageRouter.jsp?product=server&version=12&service_pack=&architecture=x86_64&package_name=index_all
