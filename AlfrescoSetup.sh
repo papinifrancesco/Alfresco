@@ -614,3 +614,10 @@ apachectl restart
 $CATALINA_HOME/bin/shutdown.sh 300 -force
 # Alfresco should start without problems!
 $CATALINA_HOME/bin/startup.sh
+
+
+
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/solr.service -P /etc/systemd/system/
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/alfresco.service -P /etc/systemd/system/
+systemctl daemon-reload
+
