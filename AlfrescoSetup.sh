@@ -267,14 +267,12 @@ chmod u+x *
 
 # Libraries : check first IF this ones are missing
 rpm -q libXinerama     \
-       libGLU          \
-       libfontconfig   \
+       mesa-libGLU     \
+       fontconfig      \
        libICE          \
        libSM           \
        libXrender      \
        libXext         \
-       libcups         \
-       libcairo2       \
        libgl1-mesa-glx \
        cups-libs       \
        cairo           ;
