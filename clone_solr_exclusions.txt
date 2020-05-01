@@ -1,4 +1,6 @@
 logs/solr*
+logs/archived/*
 contentstore/*
+contentstore.BAK/*
 solrhome/alfresco/*
 solrhome/archive/*
