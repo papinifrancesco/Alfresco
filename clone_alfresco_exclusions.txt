@@ -3,3 +3,4 @@ alf_data/contentstore.deleted/*
 tomcat/logs/*
 tomcat/temp/*
 tomcat/work/*
+tomcat/webapps.BAK
