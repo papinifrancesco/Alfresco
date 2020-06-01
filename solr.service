@@ -3,7 +3,7 @@ Description=Alfresco Search Services
 After=network.target
 
 [Service]
-Type=oneshot
+Type=forking
 ExecStart=/opt/solr/solr/bin/solr start
 ExecReload=/opt/solr/solr/bin/solr reload
 ExecStop=/opt/solr/solr/bin/solr stop
