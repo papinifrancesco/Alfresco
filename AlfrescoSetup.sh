@@ -298,12 +298,7 @@ yum install epel-release
 # probably the installer will complain but there are high chances that will get a working installation... for
 # Alfresco at least (in the end just "convert" is used).
 
-# the key point is that we WILL NOT have a root directory so in alfresco-global.properties define
-# an empty root folder (see the provided file):
-# wget https://github.com/ImageMagick/ImageMagick/archive/7.0.5-10.tar.gz
-wget https://github.com/ImageMagick/ImageMagick/archive/7.0.7-39.tar.gz
-
-# CentOS / RHEL
+# CentOS 7 / RHEL 7 - NOT CentOS nor RHEL 8 (unless you want to get mad with libs dependencies
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-27.x86_64.rpm
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-27.x86_64.rpm
 yum install ImageMagick*.rpm -y
@@ -315,6 +310,9 @@ zypper install ImageMagick
 
 # unnecessary on Centos 7 :
 #wget https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz
+
+# the key point is that we WILL NOT have a root directory so in alfresco-global.properties define
+# an empty root folder (see the provided file):
 
 img.root=
 img.dyn=/usr/lib64
@@ -335,12 +333,10 @@ tar xfzv alfresco-pdf-renderer-1.1-linux.tgz
 ######### Solr - same host - no SSL so far #########
 # references: http://docs.alfresco.com/6.1/tasks/solr6-install-withoutSSL.html
 #             http://docs.alfresco.com/6.1/concepts/external-properties-solr6.html
-# decide if Community or Enterprise
- wget https://download.alfresco.com/cloudfront/release/community/SearchServices/1.3.0.1/alfresco-search-services-1.3.0.1.zip
-# wget https://process.alfresco.com/r/amazon/edl/?p=SearchServices/1.3.0.5&f=alfresco-search-services-1.3.0.5.zip
-unzip alfresco-search-services-1.4.1.zip -d alfresco-search-services-1.4.1
-mv alfresco-search-services-1.4.1 /opt/
-ln -s /opt/alfresco-search-services-1.3.0.1 /opt/solr
+wget https://process.alfresco.com/r/amazon/edl/?p=SearchServices/1.4.2&f=alfresco-search-services-1.4.2.zip
+unzip alfresco-search-services-1.4.2.zip -d alfresco-search-services-1.4.2
+mv alfresco-search-services-1.4.2 /opt/
+ln -s /opt/alfresco-search-services-1.4.2 /opt/solr
 vim /opt/solr/solrhome/conf/shared.properties
     # uncomment ONLY if you have plenty of RAM otherwise you'll get an OutOfMemoryError almost always on solr
 alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
