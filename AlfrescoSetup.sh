@@ -299,9 +299,11 @@ yum install epel-release
 # Alfresco at least (in the end just "convert" is used).
 
 # CentOS 7 / RHEL 7 - NOT CentOS nor RHEL 8 (unless you want to get mad with libs dependencies
+cd /root/work/
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-27.x86_64.rpm
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-27.x86_64.rpm
-yum install ImageMagick*.rpm -y
+yum install ImageMagick-libs-7.0.9-27.x86_64.rpm -y
+yum install ImageMagick-7.0.9-27.x86_64.rpm -y
 
 #SUSE
 zypper addrepo https://download.opensuse.org/repositories/graphics/SLE_12_SP3_Backports/graphics.repo
