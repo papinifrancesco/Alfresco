@@ -338,11 +338,15 @@ unzip alfresco-search-services-1.4.2.zip -d alfresco-search-services-1.4.2
 mv alfresco-search-services-1.4.2 /opt/
 ln -s /opt/alfresco-search-services-1.4.2 /opt/solr
 vim /opt/solr/solrhome/conf/shared.properties
-    # uncomment ONLY if you have plenty of RAM otherwise you'll get an OutOfMemoryError almost always on solr
-alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
-alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
-alfresco.suggestable.property.2={http://www.alfresco.org/model/content/1.0}description 
-alfresco.suggestable.property.3={http://www.alfresco.org/model/content/1.0}content
+
+# uncomment ONLY if you have plenty of RAM otherwise you'll get an OutOfMemoryError almost always on solr
+#alfresco.suggestable.property.0={http://www.alfresco.org/model/content/1.0}name
+#alfresco.suggestable.property.1={http://www.alfresco.org/model/content/1.0}title 
+#alfresco.suggestable.property.2={http://www.alfresco.org/model/content/1.0}description 
+#alfresco.suggestable.property.3={http://www.alfresco.org/model/content/1.0}content
+
+# https://docs.alfresco.com/search-enterprise/tasks/solr-install.html
+# "If you use several languages across your organization, you must enable cross-language search support in all fields."
 alfresco.cross.locale.datatype.0={http://www.alfresco.org/model/dictionary/1.0}text
 alfresco.cross.locale.datatype.1={http://www.alfresco.org/model/dictionary/1.0}content
 alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}mltext
