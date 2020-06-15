@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SOURCE=/opt/alfresco-search-services-1.4.1/
+SOURCE=/opt/alfresco-search-services-1.4.2
 
-DESTINATION=user@host:/opt/alfresco-search-services-1.4.1/
+DESTINATION=user@host:/tmp/
 
 EXCLUSIONS=clone_solr_exclusions.txt
 
