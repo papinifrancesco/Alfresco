@@ -2,5 +2,7 @@ logs/solr*
 logs/archived/*
 contentstore/*
 contentstore.BAK/*
-solrhome/alfresco/*
-solrhome/archive/*
+solrhome/alfresco/index/*
+solrhome/archive/index/*
+solrhome/alfresco/snapshot_metadata/*
+solrhome/archive/snapshot_metadata/*
