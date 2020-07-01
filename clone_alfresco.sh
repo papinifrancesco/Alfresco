@@ -5,9 +5,9 @@
 
 #!/bin/bash
 
-SOURCE=/opt/alfresco-content-services-6.2.0/
+SOURCE=/opt/alfresco-content-services-6.2.1
 
-DESTINATION=user@host:/opt/alfresco-content-services-6.2.0/
+DESTINATION=user@host:/opt/
 
 EXCLUSIONS=clone_alfresco_exclusions.txt
 
