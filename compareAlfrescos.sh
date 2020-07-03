@@ -1,4 +1,4 @@
-# 2020-01-07
+# 2020-07-03
 # cautious approach: since we're not completely sure about what   #
 # we really want, it is better to just exclude what we don't want #
 ##### do it for both /opt/alfresco /opt/solr #####
@@ -21,8 +21,9 @@ FILTER_EXTENSIONS="\.bin\\b|\.css\\b|\.gz\\b|\.install\\b|\.js\\b|\.sample\\b|\.
 #FILTER_EXTENSIONS="$FILTER_EXTENSIONS|"
 FILTER_STRINGS="googledocs|*BAK*|CONTRIBUTING|RELEASE-NOTES|README|NOTICE|LICENSE|CREDITS|VERSIONS|examples|LibreLogo|templates|terminfo|cloud-folder|cloud-sync-management"
 FILTER_STRINGS="$FILTER_STRINGS|user-cloud-auth"
-FILTER_EXPRESSIONS="tomcat-i18n-??\.jar\\b|pom\.properties\\b|pom\.xml\\b|RUNNING\.txt\\b|MANIFEST\.MF\\b|BUILDING\.txt\\b|_??_??\.properties\\b"
-FILTER_EXPRESSIONS="$FILTER_EXPRESSIONS|version\.properties\\b"
+FILTER_EXPRESSIONS="tomcat-i18n-??\.jar\\b|pom\.properties\\b|pom\.xml\\b|RUNNING\.txt\\b|MANIFEST\.MF\\b|BUILDING\.txt\\b|_[a-z]{2}\.properties\\b|_[a-z]{2}_[A-Z]{2}\.properties\\b"
+FILTER_EXPRESSIONS="$FILTER_EXPRESSIONS|module\.properties\\b|\version\.properties\\b"
+#FILTER_EXPRESSIONS="hfghsghsghdsgfvsdgfdsfg"
 FILTER="$FILTER_DIRS|$FILTER_EXTENSIONS|$FILTER_STRINGS|$FILTER_EXPRESSIONS"
 clear; clear;
 diff -qr $1 $2 | \
