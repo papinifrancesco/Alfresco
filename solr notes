@@ -20,3 +20,7 @@ curl "http://n0611a63:8080/solr4/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
 curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=xml&detail=true&hist=true&values=true"
 
+
+
+
+https://stackoverflow.com/questions/36401983/find-reason-why-a-file-fails-to-get-indexed
