@@ -5,7 +5,7 @@ After=network.target
 PIDFile=/opt/activemq/data/activemq.pid
 ExecStart=/opt/activemq/bin/activemq start
 ExecStop=/opt/activemq/bin/activemq stop
-Restart=On-failure
+Restart=on-failure
 User=alfresco
 Group=alfresco
 [Install]
