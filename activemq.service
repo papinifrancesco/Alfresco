@@ -1,0 +1,12 @@
+[Unit]
+Description=activemq message queue
+After=network.target
+[Service]
+PIDFile=/opt/activemq/data/activemq.pid
+ExecStart=/opt/activemq/bin/activemq start
+ExecStop=/opt/activemq/bin/activemq stop
+Restart=On-failure
+User=alfresco
+Group=alfresco
+[Install]
+WantedBy=multi-user.target
