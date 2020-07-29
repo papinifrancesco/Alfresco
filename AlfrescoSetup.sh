@@ -300,10 +300,10 @@ yum install epel-release
 
 # CentOS 7 / RHEL 7 - NOT CentOS nor RHEL 8 (unless you want to get mad with libs dependencies
 cd /root/work/
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.9-27.x86_64.rpm
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.9-27.x86_64.rpm
-yum install ImageMagick-libs-7.0.9-27.x86_64.rpm -y
-yum install ImageMagick-7.0.9-27.x86_64.rpm -y
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.10-24.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.10-24.x86_64.rpm
+yum install ImageMagick-libs-7.0.10-24.x86_64.rpm -y
+yum install ImageMagick-7.0.10-24.x86_64.rpm -y
 
 #SUSE
 zypper addrepo https://download.opensuse.org/repositories/graphics/SLE_12_SP3_Backports/graphics.repo
@@ -320,7 +320,7 @@ img.root=
 img.dyn=/usr/lib64
 img.exe=/usr/bin/convert
 # Check the path is correct
-img.coders=/usr/lib64/ImageMagick-7.0.9/modules-Q16HDRI/coders
+img.coders=/usr/lib64/ImageMagick-7.0.10/modules-Q16HDRI/coders
 # Check the path is correct
 img.config=/etc/ImageMagick-7
 
