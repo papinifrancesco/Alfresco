@@ -26,7 +26,9 @@ curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=xml&detail=true&h
 https://stackoverflow.com/questions/36401983/find-reason-why-a-file-fails-to-get-indexed
 
 
+Utile anche:
+/solr4/#/alfresco/schema-browser?field=EXCEPTIONMESSAGE
 
-
-# get all error nodes and purge them
-curl http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query?q=ERROR*&wt=csv
+# get all error nodes and purge them - TO BE FINISHED
+# http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query?q=ERROR*&wt=csv
+curl http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query\?q=ERROR\*\&wt\=csv | awk -F, '{$0=$7}1' | grep -v DBID
