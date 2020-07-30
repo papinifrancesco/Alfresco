@@ -30,5 +30,22 @@ Utile anche:
 /solr4/#/alfresco/schema-browser?field=EXCEPTIONMESSAGE
 
 # get all error nodes and purge them - TO BE FINISHED
-# http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query?q=ERROR*&wt=csv
-curl http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query\?q=ERROR\*\&wt\=csv | awk -F, '{$0=$7}1' | grep -v DBID
+
+These 3 calls will list the error nodes and any exceptions with them. You may need to increase the ‘rows’ values depending on the numFound value:
+
+https://alfr-indx-p04.cg93.fr:8443/solr4/alfresco/afts?q=DOC_TYPE:ErrorNode&fl=*,[cached]&rows=100
+
+https://alfr-indx-p04.cg93.fr:8443/solr4/alfresco/afts?q=EXCEPTIONMESSAGE:*&fl=*,[cached]&rows=100
+
+https://alfr-indx-p04.cg93.fr:8443/solr4/alfresco/afts?q=EXCEPTIONSTACK:*&fl=*,[cached]&rows=100
+
+NOTE that your Summary Report indicated 500+ ERROR Nodes so set the rows value to 600. There will be plenty of data returned which we will need to filter to find our problem document.
+
+In terms of logging, I should have started with these Solr log classes that will output to solr.log
+
+log4j.logger.org.alfresco.solr.SolrInformationServer=DEBUG
+log4j.logger.org.alfresco.solr.tracker.MetadataTracker=DEBUG
+log4j.logger.org.alfresco.solr.query.AbstractQParser=debug
+
+
+curl http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query\?q=ERROR\*\&wt\=csv | awk -F, '{$0=$7}1' | grep -v DBID     #### WRONG, TO BE FIXED: ERROR* is just too much
