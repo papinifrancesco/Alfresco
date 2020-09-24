@@ -242,8 +242,8 @@ sed -i.ORIG 's#log4j.appender.File.File=share.log#log4j.appender.File.File=${cat
 # download and extract LibreOffice for your platform
 # http://docs.alfresco.com/6.2/concepts/supported-platforms-ACS.html
 cd /root/work/
-wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.1.6.3/rpm/x86_64/LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
-tar -xzf LibreOffice_6.1.6.3_Linux_x86-64_rpm.tar.gz
+wget https://downloadarchive.documentfoundation.org/libreoffice/old/6.3.5.2/rpm/x86_64/LibreOffice_6.3.5.2_Linux_x86-64_rpm.tar.gz
+tar -xzf LibreOffice_6.3.5.2_Linux_x86-64_rpm.tar.gz
 
 # CD to the RPMS directory and remove any files with gnome , kde in the filename.
 cd LibreOffice_6.1.6.3_Linux_x86-64_rpm/RPMS/
@@ -300,8 +300,8 @@ yum install epel-release
 
 # CentOS 7 / RHEL 7 - NOT CentOS nor RHEL 8 (unless you want to get mad with libs dependencies
 cd /root/work/
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.10-24.x86_64.rpm
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.10-24.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.10-30.x86_64.rpm
+wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.10-30.x86_64.rpm
 yum install ImageMagick-libs-7.0.10-24.x86_64.rpm -y
 yum install ImageMagick-7.0.10-24.x86_64.rpm -y
 
