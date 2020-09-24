@@ -1,9 +1,6 @@
 # Load Tomcat Native Library
 #LD_LIBRARY_PATH=/opt/alfresco/common/lib:$LD_LIBRARY_PATH
 
-# Load Tomcat Native Library
-LD_LIBRARY_PATH=/opt/alfresco/tomcat/lib:$LD_LIBRARY_PATH
-
 JAVA_HOME=/opt/alfresco/java
 JRE_HOME=$JAVA_HOME
 JAVA_OPTS="-XX:+DisableExplicitGC -Djava.awt.headless=true -Dalfresco.home=/opt/alfresco -Dcom.sun.management.jmxremote -Dsun.security.ssl.allowUnsafeRenegotiation=true -XX:ReservedCodeCacheSize=128m $JAVA_OPTS "
