@@ -11,13 +11,13 @@ JAVA_OPTS="$JAVA_OPTS -XX:NewRatio=2 -XX:+CMSParallelRemarkEnabled -XX:ParallelG
 #GC_LOGS="-verbose:gc  -Xlog:gc*  -Xlog:gc:/opt/alfresco/tomcat/logs/gc_$(hostname)_alf_$(date '+%Y%m%d-%H%M%S').log"
 JAVA_OPTS="$JAVA_OPTS $GC_LOGS" # java-memory-settings
 JAVA_OPTS="$JAVA_OPTS -XX:OnOutOfMemoryError='$CATALINA_HOME/bin/shutdown.sh -force' -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true"
-JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStoreType=JCEKS -Djavax.net.ssl.trustStore=/opt/alfresco/tomcat/shared/classes/ldaps_keystore.jceks"
-JAVA_OPTS="$JAVA_OPTS -Doracle.net.tns_admin=/opt/alfresco/tomcat/shared/classes/"
+#JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStoreType=JCEKS -Djavax.net.ssl.trustStore=/opt/alfresco/tomcat/shared/classes/ldaps_keystore.jceks"
+#JAVA_OPTS="$JAVA_OPTS -Doracle.net.tns_admin=/opt/alfresco/tomcat/shared/classes/"
 export JAVA_HOME
 export JRE_HOME
 export JAVA_OPTS
 export LD_LIBRARY_PATH
-export TNS_ADMIN=/opt/alfresco/tomcat/shared/classes/
-export CATALINA_OPTS="$CATALINA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=*:8000,server=y,suspend=n"
-export PATH=/usr/local/Centera_SDK/lib/64:$PATH
-export LD_LIBRARY_PATH=/usr/local/Centera_SDK/lib/64:$LD_LIBRARY_PATH
+#export TNS_ADMIN=/opt/alfresco/tomcat/shared/classes/
+#export CATALINA_OPTS="$CATALINA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=*:8000,server=y,suspend=n"
+#export PATH=/usr/local/Centera_SDK/lib/64:$PATH
+#export LD_LIBRARY_PATH=/usr/local/Centera_SDK/lib/64:$LD_LIBRARY_PATH
