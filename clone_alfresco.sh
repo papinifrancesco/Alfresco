@@ -5,7 +5,7 @@
 
 #!/bin/bash
 
-SOURCE=/opt/alfresco-content-services-6.2.1
+SOURCE=/opt/alfresco/
 
 DESTINATION=user@host:/opt/
 
