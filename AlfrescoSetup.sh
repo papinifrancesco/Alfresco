@@ -24,7 +24,7 @@ systemctl restart postgresql-11.service
 # on the repository machine 
 # we don't want run Alfresco as root so let's create a dedicated group and a dedicated user
 groupadd alfresco
-useradd -m alfresco -p alfresco -g alfresco
+useradd -m alfresco -g alfresco
 
 
 # maybe you should edit your .bashrc file with:
