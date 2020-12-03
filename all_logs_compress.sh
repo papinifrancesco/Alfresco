@@ -3,4 +3,10 @@
 
 TCAT_HOME=$1
 
-find $TCAT_HOME/logs -type f -mtime +1 -exec bash -c "file {} | grep -q xz || /usr/sbin/lsof {} > /dev/null || [ ! -s {} ] || xz -9 {}" \;
+find $TCAT_HOME/logs -maxdepth 1 -type f -size 0 | while read filename ; do /sbin/fuser -s $filename || rm -f $filename ;
+
+find $TCAT_HOME/logs -maxdepth 1 -type f -mmin +180 -exec bash -c "file {} | grep -q xz || /usr/sbin/lsof {} > /dev/null || [ ! -s {} ] || xz -9 {}" \;
+
+find $TCAT_HOME/logs -maxdepth 1 -type f -name "*.xz" -exec mv {} $TCAT_HOME/logs/history/ \;
+
+find $TCAT_HOME/logs/history -maxdepth 1 -mtime +1 -type f -name "*.xz" -exec rm -f {} \; # -mtime +1 is for testing only : +90 or more once tested
