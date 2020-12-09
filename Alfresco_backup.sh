@@ -8,8 +8,6 @@
 
 # Configuration:
 
-CURRENT_FOLDER=$(pwd) # Script folder
-
 TIMESTAMP=$( date +%Y%m%d%H%M%S ) # Create timestamp
 
 DUMP_NUM=3 # Number of backups to keep
@@ -18,7 +16,7 @@ AL_FOLDER="/opt/alfresco-content-services" # Alfresco folder
 
 AL_DATA="/opt/alfresco-content-services/alf_data" # Alfresco data folder
 
-TARGET_FOLDER=”/backup” # Backup destination folder
+TARGET_FOLDER="/backup" # Backup destination folder
 
 DB_HOME="/opt/alfresco-content-services/postgresql" # PostgreSQL folder
 
@@ -50,7 +48,7 @@ else
 
 # Alfresco Stopped successfully
 
-echo “Alfresco Stop successful!”
+echo "Alfresco Stop successful!"
 
 fi
 
@@ -134,7 +132,7 @@ DB_DUMP=alfresco_db_${TIMESTAMP}.tar
 
 # -Ft = Export database as tar file
 
-$DB_HOME/bin/pg_dump alfresco -U alfresco -h localhost -F t > $TARGET_FOLDER/$DB_DUMP
+"$DB_HOME/bin/pg_dump" alfresco -U alfresco -h localhost -F t > "$TARGET_FOLDER/$DB_DUMP"
 
  
 
@@ -168,7 +166,7 @@ AL_DUMP=alfresco_data_${TIMESTAMP}.tgz
 
 # to the backup folder specified
 
-tar zcf $TARGET_FOLDER/$AL_DUMP $AL_DATA
+tar zcf "$TARGET_FOLDER/$AL_DUMP $AL_DATA"
 
 echo "Alfresco Data folder tar complete"
 
@@ -186,7 +184,7 @@ echo "Alfresco Data folder tar complete"
 
 BACKUP_FILE="alfresco_bak_${TIMESTAMP}.tgz"
 
-tar zcf $TARGET_FOLDER/$BACKUP_FILE $TARGET_FOLDER/$AL_DUMP $TARGET_FOLDER/$DB_DUMP
+tar zcf "$TARGET_FOLDER/$BACKUP_FILE" "$TARGET_FOLDER/$AL_DUMP" "$TARGET_FOLDER/$DB_DUMP"
 
 echo "Database and Data File merge complete"
 
@@ -198,9 +196,9 @@ if [ -f "$TARGET_FOLDER/$BACKUP_FILE" ]; then
 
 echo "BACKUP SUCCESSFUL"
 
-rm $TARGET_FOLDER/$AL_DUMP
+rm "$TARGET_FOLDER/$AL_DUMP"
 
-rm $TARGET_FOLDER/$DB_DUMP
+rm "$TARGET_FOLDER/$DB_DUMP"
 
 SUCCESS=1
 
@@ -224,7 +222,7 @@ al_start
 
 if [ "$SUCCESS" = 1 ]; then
 
-find $TARGET_FOLDER/*.tgz -type f -mtime +${DUMP_NUM} -exec rm {} \;
+find "$TARGET_FOLDER/*.tgz" -type f -mtime +${DUMP_NUM} -exec rm {} \;
 
 echo "Backups older than 3 days have been removed"
 
