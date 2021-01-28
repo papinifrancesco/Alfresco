@@ -37,6 +37,9 @@ export TOMCAT_HOME=$CATALINA_HOME
 
 export SOLR_HOME="/opt/solr/solrhome"
 
+
+# this one below could be put in /etc/profile.d/MMT.sh
+# so you'll have it for every user
 alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
 
 # extract the Alfresco archive in /opt/alfresco
