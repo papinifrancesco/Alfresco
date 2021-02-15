@@ -119,3 +119,4 @@ elif [ "x$1" = "xcleanpid" ]; then
     cleanpid
 fi
 
+exit $ERROR
