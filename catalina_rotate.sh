@@ -1,5 +1,7 @@
 #!/bin/bash
-# should be put in /usr/local/scripts
+# should be put in /opt/alfresco/scripts
+# crontab -e -u alfresco
+# 
 
 DATE_F=$(date +%F)
 TCAT_HOME=$1
