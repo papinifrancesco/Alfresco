@@ -2,9 +2,12 @@ reset
 
 # to comply with https://docs.alfresco.com/content-services/latest/support/
 # we have to to install a specific PostgreSQL version, for example 11.4: 
-https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql11-server-11.4-1PGDG.rhel7.x86_64.rpm
-yum localinstall postgresql11-server-11.4-1PGDG.rhel7.x86_64.rpm
-/usr/pgsql-11/bin//postgresql-11-setup initdb
+baseName="https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql11"
+wget $baseName-11.4-1PGDG.rhel7.x86_64.rpm
+wget $baseName-libs-11.4-1PGDG.rhel7.x86_64.rpm
+wget $baseName-server-11.4-1PGDG.rhel7.x86_64.rpm
+yum localinstall -y postgresql11*
+/usr/pgsql-11/bin/postgresql-11-setup initdb
 systemctl enable postgresql-11.service
 systemctl start postgresql-11.service
 
@@ -23,7 +26,7 @@ vim /var/lib/pgsql/11/data/postgresql.conf
 listen_addresses = '*'                  # what IP address(es) to listen on;
 
 # and ACCEPT connections from all (or from given ones) hosts
-vim /var/lib/pgsql/11/data/pg_hba.conf
+vim 
 host    alfresco        alfresco        172.16.140.12/32        md5
 host    alfresco        alfresco          10.11.12.13/32        md5
 
