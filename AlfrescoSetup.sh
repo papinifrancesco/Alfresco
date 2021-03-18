@@ -1,5 +1,14 @@
 reset
 
+# to comply with https://docs.alfresco.com/content-services/latest/support/
+# we have to to install a specific PostgreSQL version, for example 11.4: 
+https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql11-server-11.4-1PGDG.rhel7.x86_64.rpm
+yum localinstall postgresql11-server-11.4-1PGDG.rhel7.x86_64.rpm
+/usr/pgsql-11/bin//postgresql-11-setup initdb
+systemctl enable postgresql-11.service
+systemctl start postgresql-11.service
+
+
 # on the DB server: PostgreSQL , psql
 sudo su postgres
 psql -U postgres
