@@ -16,6 +16,7 @@ CREATE USER alfresco WITH PASSWORD 'alfresco';
 DROP DATABASE alfresco;
 CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
 GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+\q
 
 # also, configure Postgresql to LISTEN on all (or on given ones) interfaces
 vim /var/lib/pgsql/11/data/postgresql.conf
@@ -24,6 +25,8 @@ listen_addresses = '*'                  # what IP address(es) to listen on;
 # and ACCEPT connections from all (or from given ones) hosts
 vim /var/lib/pgsql/11/data/pg_hba.conf
 host    alfresco        alfresco        172.16.140.12/32        md5
+host    alfresco        alfresco          10.11.12.13/32        md5
+
 
 # restart the service to make the changes effective
 systemctl restart postgresql-11.service
