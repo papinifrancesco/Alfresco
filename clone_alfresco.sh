@@ -11,4 +11,4 @@ DESTINATION=user@host:/opt/
 
 EXCLUSIONS=clone_alfresco_exclusions.txt
 
-rsync -avz --exclude-from $EXCLUSIONS $SOURCE $DESTINATION
+rsync -avz --exclude-from "$EXCLUSIONS" "$SOURCE" "$DESTINATION"
