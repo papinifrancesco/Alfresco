@@ -310,7 +310,7 @@ vim $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 ######### ImageMagick install #########
 # EPEL is your friend, so:
-yum install epel-release
+yum install -y epel-release
 
 # ImageMagick installation process is not that clear but try to get a .rpm for it and force the installation
 # probably the installer will complain but there are high chances that will get a working installation... for
@@ -320,8 +320,7 @@ yum install epel-release
 cd /root/work/
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.10-30.x86_64.rpm
 wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.10-30.x86_64.rpm
-yum install ImageMagick-libs-7.0.10-24.x86_64.rpm -y
-yum install ImageMagick-7.0.10-24.x86_64.rpm -y
+yum localinstall -y ImageMagick-libs-7.0.10-30.x86_64.rpm ImageMagick-7.0.10-30.x86_64.rpm
 
 #SUSE
 zypper addrepo https://download.opensuse.org/repositories/graphics/SLE_12_SP3_Backports/graphics.repo
