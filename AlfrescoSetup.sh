@@ -118,20 +118,27 @@ wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/ctl.sh -P
 chown alfresco. $CATALINA_HOME/scripts/ctl.sh
 chmod +x $CATALINA_HOME/scripts/ctl.sh
 
-# make alfresco user able to start, stop, restart and check the status of both alfresco.service and solr.service
-visudo
+# make alfresco user able to start, stop, restart and check the
+# status of alfresco.service, activemq.service and solr.service
+vim /etc/sudoers.d/alfresco_sudoers
 ---
 # Allows members of the alfresco group to start and stop alfresco service
-%alfresco ALL= NOPASSWD: /bin/systemctl start   alfresco.service
-%alfresco ALL= NOPASSWD: /bin/systemctl stop    alfresco.service
-%alfresco ALL= NOPASSWD: /bin/systemctl restart alfresco.service
-%alfresco ALL= NOPASSWD: /bin/systemctl status  alfresco.service
+%alfresco ALL= NOPASSWD: /bin/systemctl start   alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl stop    alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl restart alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl status  alfresco
+
+# Allows members of the alfresco group to start and stop alfresco service
+%alfresco ALL= NOPASSWD: /bin/systemctl start   activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl stop    activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl restart activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl status  activemq
 
 # Allows members of the alfresco group to start and stop solr service
-%alfresco ALL= NOPASSWD: /bin/systemctl start   solr.service
-%alfresco ALL= NOPASSWD: /bin/systemctl stop    solr.service
-%alfresco ALL= NOPASSWD: /bin/systemctl restart solr.service
-%alfresco ALL= NOPASSWD: /bin/systemctl status  solr.service
+%alfresco ALL= NOPASSWD: /bin/systemctl start   solr
+%alfresco ALL= NOPASSWD: /bin/systemctl stop    solr
+%alfresco ALL= NOPASSWD: /bin/systemctl restart solr
+%alfresco ALL= NOPASSWD: /bin/systemctl status  solr
 ---
 
 
