@@ -73,7 +73,7 @@ mkdir -p $CATALINA_HOME/scripts
 mkdir -p $CATALINA_HOME/shared/classes/alfresco/extension/license
 mkdir -p $CATALINA_HOME/shared/lib
 mkdir -p $CATALINA_HOME/webapps
-mkdir -p /usr/local/scripts
+mkdir -p $CATALINA_HOME/logs/old
 
 # remove what you don't need from Tomcat
 rm -rf $CATALINA_HOME/webapps/docs/
@@ -89,18 +89,12 @@ unzip $ALFRESCO_HOME/web-server/webapps/ROOT.war -d $CATALINA_HOME/webapps/ROOT/
 
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 
-# get the two scripts first , then:
+# get the script used to manage log rotation
 cd $ALFRESCO_HOME/scripts
-wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/all_logs_compress.sh
-wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/catalina_rotate.sh
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/AlfrescoLogsManager.sh
+chown alfresco. *.sh
+chmod +x *.sh
 
-chown alfresco:alfresco /usr/local/scripts/all_logs_compress.sh
-chown alfresco:alfresco /usr/local/scripts/catalina_rotate.sh
-
-chmod u+x *.sh
-# in the end it should be like as:
-# -rwxr--r-- 1 alfresco alfresco 66193 Jun 19 13:45 all_logs_compress.sh
-# -rwxr--r-- 1 alfresco alfresco 67607 Jun 19 13:45 catalina_rotate.sh
 
 # clean Tomcat's folders before starting it
 cd $ALFRESCO_HOME/bin/
