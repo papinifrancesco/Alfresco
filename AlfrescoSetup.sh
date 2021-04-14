@@ -44,9 +44,9 @@ useradd -m alfresco -g alfresco
 
 # maybe you should edit your .bashrc file with:
 export ALFRESCO_HOME="/opt/alfresco"
-export ALFRESCO_KEYSTORE_HOME="/opt/alfresco/alf_data/keystore"
+export ALFRESCO_KEYSTORE_HOME="$ALFRESCO_HOME/alf_data/keystore"
 
-export CATALINA_HOME="/opt/alfresco/tomcat"
+export CATALINA_HOME="$ALFRESCO_HOME/tomcat"
 export CATALINA_BASE=$CATALINA_HOME
 export TOMCAT_HOME=$CATALINA_HOME
 
@@ -90,7 +90,7 @@ unzip $ALFRESCO_HOME/web-server/webapps/ROOT.war -d $CATALINA_HOME/webapps/ROOT/
 cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 
 # get the two scripts first , then:
-cd /usr/local/scripts
+cd $ALFRESCO_HOME/scripts
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/all_logs_compress.sh
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/catalina_rotate.sh
 
