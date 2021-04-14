@@ -1,15 +1,24 @@
-reset
+# This installation assumes that the components will be in:
+# /opt/activemq
+# /opt/alfresco
+# /opt/solr
+# /opt/solr_data
+# I recommend the paths above to be symlink to the real path,
+# that way if we need to change the real path for some reasons,
+# we won't be in need to change all the internal references among
+# the many Alfresco's files: everything will always point to the
+# symlinks.
 
 # to comply with https://docs.alfresco.com/content-services/latest/support/
-# we have to to install a specific PostgreSQL version, for example 11.4: 
-baseName="https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql11"
-wget $baseName-11.4-1PGDG.rhel7.x86_64.rpm
-wget $baseName-libs-11.4-1PGDG.rhel7.x86_64.rpm
-wget $baseName-server-11.4-1PGDG.rhel7.x86_64.rpm
-yum localinstall -y postgresql11*
-/usr/pgsql-11/bin/postgresql-11-setup initdb
-systemctl enable postgresql-11.service
-systemctl start postgresql-11.service
+# we have to to install a specific PostgreSQL version, for example 13.1: 
+baseName="https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql13"
+wget $baseName-13.1-1PGDG.rhel7.x86_64.rpm
+wget $baseName-libs-13.1-1PGDG.rhel7.x86_64.rpm
+wget $baseName-server-13.1-1PGDG.rhel7.x86_64.rpm
+yum localinstall -y postgresql13*
+/usr/pgsql-13/bin/postgresql-11-setup initdb
+systemctl enable postgresql-13.service
+systemctl start postgresql-13.service
 
 
 # on the DB server: PostgreSQL , psql
@@ -32,7 +41,7 @@ host    alfresco        alfresco          10.11.12.13/32        md5
 
 
 # restart the service to make the changes effective
-systemctl restart postgresql-11.service
+systemctl restart postgresql-13.service
 
 
 
@@ -92,20 +101,18 @@ cp -r $ALFRESCO_HOME/web-server/shared/classes $CATALINA_HOME/shared/
 # get the script used to manage log rotation
 cd $ALFRESCO_HOME/scripts
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/AlfrescoLogsManager.sh
-chown alfresco. *.sh
 chmod +x *.sh
 
 
 # clean Tomcat's folders before starting it
-cd $ALFRESCO_HOME/bin/
+cd $ALFRESCO_HOME/scripts/
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/clean_tomcat_temp_work.sh
-chmod u+x clean_tomcat_temp_work.sh
+chmod +x clean_tomcat_temp_work.sh
 
 
 crontab -u alfresco -e
-# put the two lines below
-55 23 * * * /usr/local/scripts/catalina_rotate.sh /opt/alfresco/tomcat > /dev/null 2>&1
-59 23 * * * /usr/local/scripts/all_logs_compress.sh /opt/alfresco/tomcat > /dev/null 2>&1
+# write the line below
+59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
 # get a 5.2.5 (yes, trust me) ctl.sh script
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/ctl.sh -P $CATALINA_HOME/scripts/
