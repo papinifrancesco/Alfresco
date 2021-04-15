@@ -1,3 +1,5 @@
+# This script is a collection of commands to be executed manually: it does NOT have error control logic.
+
 # This installation assumes that:
 # 1) these symlink will be used:
 # /opt/activemq
@@ -73,12 +75,16 @@ export TOMCAT_HOME=$CATALINA_HOME
 
 export SOLR_HOME="/opt/solr/solrhome"
 
-
-# this one below could be put in /etc/profile.d/MMT.sh
+# optional but very handy
+# this one below could be put in /etc/profile.d/alfresco_aliases.sh
 # so you'll have it for every user
+alias AGP='vim /opt/alfresco/tomcat/shared/classes/alfresco-global.properties'
+alias COUT='less /opt/alfresco/tomcat/logs/catalina.out'
 alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
 
+
 # extract the Alfresco archive in /opt/alfresco
+
 # extract the Tomcat archive in /opt/alfresco/tomcat
 
 
@@ -90,7 +96,6 @@ mkdir -p $ALFRESCO_HOME/alf_data/solr6Backup/archive
 mkdir -p $ALFRESCO_HOME/modules/platform
 mkdir -p $ALFRESCO_HOME/modules/share
 mkdir -p $CATALINA_HOME/conf/Catalina/localhost
-mkdir -p $CATALINA_HOME/scripts
 mkdir -p $CATALINA_HOME/shared/classes/alfresco/extension/license
 mkdir -p $CATALINA_HOME/shared/lib
 mkdir -p $CATALINA_HOME/webapps
@@ -219,6 +224,8 @@ alfresco.rmi.services.host=0.0.0.0
 db.schema.update=false
 server.allowWrite=false
 
+
+
 # make a backup of the original server.xml
 # edit $CATALINA_HOME/conf/server.xml so that:
  <Connector port="8080" protocol="HTTP/1.1"
@@ -257,24 +264,24 @@ server.allowWrite=false
                prefix="localhost_access_log." suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b %I %T" />
                
-# DO NOT define HTTPS/SSL in a basic installation
 
 
-# mv $CATALINA_HOME/conf/tomcat-users.xml to .ORIG and copy the
-# provided tomcat.users.xml from this Github repo
+# optional: maybe better in DEV rather than PROD
+# copy $CATALINA_HOME/conf/tomcat-users.xml to .ORIG and then
 cd $CATALINA_HOME/conf/
-mv tomcat-users.xml tomcat-users.xml.ORIG
-wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/tomcat-users.xml
+cp -a tomcat-users.xml tomcat-users.xml.ORIG
+# then define who can access the /manager context
+  <role rolename="admin"/>
+  <role rolename="manager"/>
+  <role rolename="manager-gui"/>
+  <role rolename="manager-status"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <user username="manager" password="alf2021resco" roles="manager-gui,manager-status,manager-script,manager-jmx,manager,admin"/>
 
 # unblock the /manager webapp
-# if Tomcat < 8.0
-vim $CATALINA_HOME/conf/context.xml
-# and comment that Valve below
-<!--
-<Valve className="org.apache.catalina.authenticator.SSLAuthenticator" securePagesWithPragma="false" />
--->
-
-# if Tomcat >= 8.0
+cd $CATALINA_HOME/webapps/manager/META-INF/
+cp -a context.xml context.xml.ORIG
 vim $CATALINA_HOME/webapps/manager/META-INF/context.xml
 # and comment the Valve this way
 <!--
@@ -284,9 +291,9 @@ vim $CATALINA_HOME/webapps/manager/META-INF/context.xml
 
 
 
-# install AMPs 
-MMT install $ALFRESCO_HOME/amps/       $CATALINA_HOME/webapps/alfresco/ -nobackup
-MMT install $ALFRESCO_HOME/amps_share/ $CATALINA_HOME/webapps/share/    -nobackup
+# install the AMPs you want
+MMT install $ALFRESCO_HOME/amps/       $CATALINA_HOME/webapps/alfresco/ -directory -nobackup
+MMT install $ALFRESCO_HOME/amps_share/ $CATALINA_HOME/webapps/share/    -directory -nobackup
 
 
 # define logging for Alfresco and solr web apps:
@@ -317,16 +324,14 @@ yum install *.rpm -y
 
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 
-# LibreOffice will be probably installed in /opt/LibreOffice6.1 :
-option A - make a symlink: ln -sf /opt/libreoffice6.1/ $ALFRESCO_HOME/libreoffice
-option B - move it       : mv /opt/libreoffice6.1/ $ALFRESCO_HOME/libreoffice
+# LibreOffice will be probably installed in /opt/LibreOffice6.3 :
+mv /opt/libreoffice6.3 $ALFRESCO_HOME/libreoffice
 
-# create the scripts folder and put a .sh in it:
-mkdir $ALFRESCO_HOME/libreoffice/scripts
-cd $ALFRESCO_HOME/libreoffice/scripts
+# get Libreoffice control scripts
+cd $ALFRESCO_HOME/scripts
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/libreoffice_ctl.sh
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/libreoffice_check.sh
-chmod u+x *
+chmod +x *.sh
 
 
 # Libraries : check first IF this ones are missing
@@ -354,6 +359,7 @@ zypper install libXinerama1 libGLU fontconfig libICE6 libSM6 libXrender1 libXext
 vim $CATALINA_HOME/shared/classes/alfresco-global.properties
 
 
+
 ######### ImageMagick install #########
 # EPEL is your friend, so:
 yum install -y epel-release
@@ -364,8 +370,8 @@ yum install -y epel-release
 
 # CentOS 7 / RHEL 7 - NOT CentOS nor RHEL 8 (unless you want to get mad with libs dependencies
 cd /root/work/
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-libs-7.0.10-30.x86_64.rpm
-wget https://imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-7.0.10-30.x86_64.rpm
+wget https://github.com/papinifrancesco/Alfresco/raw/master/ImageMagick-libs-7.0.10-30.x86_64.rpm
+wget https://github.com/papinifrancesco/Alfresco/raw/master/ImageMagick-7.0.10-30.x86_64.rpm
 yum localinstall -y ImageMagick-libs-7.0.10-30.x86_64.rpm ImageMagick-7.0.10-30.x86_64.rpm
 
 #SUSE
