@@ -21,10 +21,11 @@
 
 # to comply with https://docs.alfresco.com/content-services/latest/support/
 # we have to to install a specific PostgreSQL version, for example 13.1: 
-baseName="https://download.postgresql.org/pub/repos/yum/11/redhat/rhel-7-x86_64/postgresql13"
-wget $baseName-13.1-1PGDG.rhel7.x86_64.rpm
-wget $baseName-libs-13.1-1PGDG.rhel7.x86_64.rpm
-wget $baseName-server-13.1-1PGDG.rhel7.x86_64.rpm
+baseName="https://yum.postgresql.org/13/redhat/rhel-7-x86_64"
+wget "$baseName/postgresql13-13.1-1PGDG.rhel7.x86_64.rpm"
+wget "$baseName/postgresql13-libs-13.1-1PGDG.rhel7.x86_64.rpm"
+wget "$baseName/postgresql13-server-13.1-1PGDG.rhel7.x86_64.rpm"
+
 yum localinstall -y postgresql13*
 /usr/pgsql-13/bin/postgresql-11-setup initdb
 systemctl enable postgresql-13.service
@@ -48,6 +49,7 @@ listen_addresses = '*'                  # what IP address(es) to listen on;
 vim 
 host    alfresco        alfresco        172.16.140.12/32        md5
 host    alfresco        alfresco          10.11.12.13/32        md5
+host    alfresco        alfresco               127.0.0.1        md5
 
 
 # restart the service to make the changes effective
