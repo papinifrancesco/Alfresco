@@ -1,7 +1,6 @@
 [Unit]
 Description=Alfresco ECM Repository
-Wants=activemq.service
-After=network.target activemq.service
+After=network.target
 
 [Service]
 Type=forking
