@@ -227,6 +227,32 @@ server.allowWrite=false
                URIEncoding="UTF-8"
                maxHttpHeaderSize="32768" />
        [...]
+       
+  <Connector port="8443" URIEncoding="UTF-8" protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true"
+               maxThreads="150" scheme="https"   keystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"     keystorePass="kT9X6oe68t"   keystoreType="JCEKS"
+               connectionTimeout="240000"      truststoreFile="/opt/alfresco/alf_data/keystore/ssl.truststore" truststorePass="kT9X6oe68t" truststoreType="JCEKS"
+               secure="true" clientAuth="want" sslProtocol="TLS" allowUnsafeLegacyRenegotiation="true" maxHttpHeaderSize="32768" maxSavePostSize="-1" >
+    <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+    </Connector>       
+       
+       [...] 
+   
+       <!-- Define an AJP 1.3 Connector on port 8009 -->
+
+    <Connector protocol="AJP/1.3"
+               address="0.0.0.0"
+               port="8009"
+               redirectPort="8443"
+               secretRequired="false"
+               packetSize="65536"
+               URIEncoding="UTF-8" />
+   
+   [...]
+   # define the jvmRoute value in case you plan to use an AJP load balancer
+   <Engine name="Catalina" defaultHost="localhost" jvmRoute="Repo1">
+
+   [...]
+
   <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log." suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b %I %T" />
