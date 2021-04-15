@@ -1,13 +1,23 @@
-# This installation assumes that the components will be in:
+# This installation assumes that:
+# 1) these symlink will be used:
 # /opt/activemq
 # /opt/alfresco
 # /opt/solr
 # /opt/solr_data
-# I recommend the paths above to be symlink to the real path,
+# Real installation folders can be anywhere but symlinks will be used
 # that way if we need to change the real path for some reasons,
 # we won't be in need to change all the internal references among
-# the many Alfresco's files: everything will always point to the
-# symlinks.
+# the many Alfresco's files: everything will always point to the symlinks
+
+# 2) CentOS 7.x but not CentOS 8
+
+# 3) Database : PostgreSQL
+
+# 4) All extra scripts will be in /opt/alfresco/scripts
+
+# 5) For ANY file we plan to modify, make a copy of it first with ".ORIG" extension
+# example: cp -a server.xml server.xml.ORIG
+# later on it'll be easy to find which files we modified and how
 
 # to comply with https://docs.alfresco.com/content-services/latest/support/
 # we have to to install a specific PostgreSQL version, for example 13.1: 
@@ -115,9 +125,9 @@ crontab -u alfresco -e
 59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
 # get a 5.2.5 (yes, trust me) ctl.sh script
-wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/ctl.sh -P $CATALINA_HOME/scripts/
-chown alfresco. $CATALINA_HOME/scripts/ctl.sh
-chmod +x $CATALINA_HOME/scripts/ctl.sh
+cd $ALFRESCO_HOME/scripts/
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/ctl.sh
+chmod +x ctl.sh
 
 # make alfresco user able to start, stop, restart and check the
 # status of alfresco.service, activemq.service and solr.service
@@ -150,11 +160,12 @@ mv $ALFRESCO_HOME/web-server/lib/* $CATALINA_HOME/lib/
 # if Postgres is the DB and the Postgres connector is missing 
 # put a Tomcat supported version of PostegreSQL JDBC in $CATALINA_HOME/lib
 # too old or too new might not work as expected, have a look at:
-# https://docs.alfresco.com/6.0/concepts/supported-platforms-ACS.html
-wget https://jdbc.postgresql.org/download/postgresql-42.2.5.jar -P $CATALINA_HOME/lib/
+# https://docs.alfresco.com/content-services/latest/support/
+wget https://jdbc.postgresql.org/download/postgresql-42.2.19.jar -P $CATALINA_HOME/lib/
 
 # alfresco.xml and share.xml MUST be present in the destination folder
-cp $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
+# if the server runs both of the webapps, otherwise just the needed .xml
+mv $ALFRESCO_HOME/web-server/conf/Catalina/localhost/*.xml $CATALINA_HOME/conf/Catalina/localhost/
 
 
 # modify $CATALINA_HOME/conf/catalina.properties :
@@ -163,10 +174,9 @@ sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${c
 
 # check that $CATALINA_HOME/bin/setenv.sh exist and correct its contents
 # depending on your hardware: amount of RAM namely
-cd $CATALINA_HOME/bin/
+cd $ALFRESCO_HOME/scripts/
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/setenv.sh
-chown alfresco. setenv.sh
-chmod u+x setenv.sh
+chmod +x setenv.sh
 
 
 # edit $CATALINA_HOME/shared/classes/alfresco-global.properties and check:
@@ -207,7 +217,7 @@ alfresco.rmi.services.host=0.0.0.0
 db.schema.update=false
 server.allowWrite=false
 
-
+# make a backup of the original server.xml
 # edit $CATALINA_HOME/conf/server.xml so that:
  <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
