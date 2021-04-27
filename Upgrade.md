@@ -1,10 +1,24 @@
-If you need to install A524 on a machine where A51x is running, install, with typical options but under /opt/alfresco, A524 on a dedicated (maybe temporary) VM
+# First of all, I assume you've read:
+https://github.com/papinifrancesco/Alfresco7001/blob/main/AlfrescoSetup7001.sh
+# and you made it in having a completely working installation.
+
+# Then, study :
+https://docs.alfresco.com/content-services/community/upgrade/
+https://docs.alfresco.com/content-services/6.0/upgrade/
+up to:
+https://docs.alfresco.com/content-services/latest/upgrade/
+
+# After all that, let's have a look at my notes.
+
+
+
+If you need to install A52x on a machine where A51x is running, install, with typical options but under /opt/alfresco, A52x on a dedicated (maybe temporary) VM
 
 Copy the whole Alfresco tree from the VM to the target machine
 
 Why? Because that way the installer will generate all of the files referring to /opt/alfresco
 
-It is not good to realise later that your Alfresco tree contains lots of /somedir/alfresco-5.2.4 pointers
+It is not good to realise later that your Alfresco tree contains lots of /somedir/alfresco-5.2.x pointers
 
 
 A list of notes to perform an Alfresco upgrade, review:
