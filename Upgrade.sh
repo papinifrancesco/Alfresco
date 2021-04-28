@@ -1,3 +1,17 @@
+# First of all, I assume you've read:
+https://github.com/papinifrancesco/Alfresco7001/blob/main/AlfrescoSetup7001.sh
+# and you made it in having a completely working installation.
+
+# Then, study :
+https://docs.alfresco.com/content-services/community/upgrade/
+https://docs.alfresco.com/content-services/6.0/upgrade/
+up to:
+https://docs.alfresco.com/content-services/latest/upgrade/
+
+# After all that, let's have a look at my notes.
+
+#fsdf
+
 If you need to install A524 on a machine where A51x is running, install, with typical options but under /opt/alfresco, A524 on a dedicated (maybe temporary) VM
 
 Copy the whole Alfresco tree from the VM to the target machine
@@ -20,10 +34,10 @@ Remember to check the DB driver (a .jar probably), from a version to another the
 
 
 
-**ALWAYS** make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
-```
+# **ALWAYS** make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
+
 cp alfresco-global.properties alfresco-global.properties.ORIG
-```
+
 
 
 
