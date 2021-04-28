@@ -11,21 +11,51 @@
 # After all that, let's have a look at my notes.
 
 
+# ALWAYS make a copy of a file you're going to modify so it'll be easy later on
+# (for you and your colleagues) to understand had been done, example:
+cp -a alfresco-global.properties alfresco-global.properties.ORIG
+# or
+cp -a alfresco-global.properties alfresco-global.properties.20210428_FL
+# where _FL stands for initial of the First name and initial of the Last name
+
+
+# create one symlink to the old alfresco installation
+ln -s alfresco-6.2.1 ACS6
+# create one symlink to the new alfresco installation
+ln -s alfresco-content-services.7.0.0.1 ACS7
+# why this? When diffing the two installations later on, it comes in handy to have:
+# a) the least differences in the paths
+# b) shorter paths
+# example, is it better this:
+diff -qr alfresco-content-services-6.2.1 alfresco-content-services-7.0.0.1
+[...]
+Only in alfresco-content-services-7.0.0.1/amps: aos
+Only in alfresco-content-services-6.2.1/amps_share: alfresco-googledrive-share-3.2.0.amp
+# or this:
+diff -qr ACS6 ACS7
+[...]
+Only in ACS7/amps: aos
+Only in ACS6/amps_share: alfresco-googledrive-share-3.2.0.amp
+
+
+
+
 # If you need to install A52x on a machine where A51x is running, install, with typical options but under /opt/alfresco,
 # A52x on a dedicated (maybe temporary) VM
-# Copy the whole Alfresco tree from the VM to the target machine
-# Because that way the installer will generate all of the files referring to /opt/alfresco
+# Copy the whole Alfresco tree from the VM to the target machine because
+# that way the installer will generate all of the files referring to /opt/alfresco
 # It is not good to realise later that your Alfresco tree contains lots of /somedir/alfresco-5.2.x pointers
 
 
+# check the DB driver (a .jar probably)
+# from a version to another the file might not be the same:
+# for example in /opt/alfresco/tomcat/lib/ we may have ojdbc6.jar but the new Alfresco version needs ojdbc7.jar
 
-Remember to check the DB driver (a .jar probably), from a version to another the file might not be the same: for example in /opt/alfresco/tomcat/lib/ we may have ojdbc6.jar but the Alfresco version needs ojdbc7.jar
+
+# check alfresco-global.properties first so you can have a picture of what you have
 
 
 
-# **ALWAYS** make a copy of a file you're going to modify so it'll be easy later on to understand what you did, example:
-
-cp alfresco-global.properties alfresco-global.properties.ORIG
 
 
 
