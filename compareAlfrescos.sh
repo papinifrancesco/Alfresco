@@ -12,6 +12,7 @@ grep -vF                         \
  -e '.less'                      \
  -e '.md'                        \
  -e '.MF'                        \
+ -e '.png'                       \
  -e '.sample'                    \
  -e '.svg'                       \
  -e '.swf'                       \
