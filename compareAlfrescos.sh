@@ -7,6 +7,8 @@ grep -vF                         \
  -e '.css'                       \
  -e '.eot'                       \
  -e '.ftl'                       \
+ -e '.gif'                       \
+ -e '.ico'                       \
  -e '.install'                   \
  -e '.js'                        \
  -e '.less'                      \
@@ -22,6 +24,8 @@ grep -vF                         \
  -e 'google'                     \
  -e 'licenses/'                  \
  -e 'module.properties'          \
+ -e 'pom.properties'             \
+ -e 'pom.xml'                    \
  -e 'ORIG'                       \
  -e 'tomcat/logs'                \
  -e 'tomcat/temp'                \
