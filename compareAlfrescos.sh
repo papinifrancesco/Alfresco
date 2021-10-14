@@ -27,6 +27,6 @@ grep -vF                         \
  -e 'pom.properties'             \
  -e 'pom.xml'                    \
  -e 'ORIG'                       \
- -e 'tomcat/logs'                \
+ -e '/logs'                      \
  -e 'tomcat/temp'                \
  -e 'tomcat/work'                ;
