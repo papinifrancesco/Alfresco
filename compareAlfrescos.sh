@@ -27,6 +27,10 @@ grep -vF                         \
  -e 'pom.properties'             \
  -e 'pom.xml'                    \
  -e 'ORIG'                       \
+ -e '_pt_BR'                     \
+ -e '_zh_CN'                     \
+ -e 'webapps/share'              \
+ -e '/libreoffice/'              \
  -e '/logs'                      \
  -e '/java/'                     \
  -e 'tomcat/temp'                \
