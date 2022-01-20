@@ -28,5 +28,6 @@ grep -vF                         \
  -e 'pom.xml'                    \
  -e 'ORIG'                       \
  -e '/logs'                      \
+ -e '/java/'                     \
  -e 'tomcat/temp'                \
  -e 'tomcat/work'                ;
