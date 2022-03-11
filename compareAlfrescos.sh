@@ -2,6 +2,7 @@
 
 diff -qr /opt/OLD /opt/NEW 2>&1 |\
 grep -vF                         \
+ -e '.jar differ'                \
  -e '.bin'                       \
  -e '.class'                     \
  -e '.css'                       \
