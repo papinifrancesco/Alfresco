@@ -1,22 +1,45 @@
-SUGGESTER: https://docs.alfresco.com/5.2/concepts/solr4-considerations.html
+SUGGESTER
+
+https://docs.alfresco.com/search-services/latest/admin/monitor/
+
+curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=archive"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco"
+
+curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+
+curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
+
+curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json&fromTxCommitTime=1645632000"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&dryRun=false&wt=json"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
 
 
-tar --exclude='solrhome/alfresco' --exclude='solrhome/archive' --exclude='contentstore' -cvzf ASS141-20200205_FP_working_backup.tar.gz ./alfresco-search-services-1.4.1/
+NODEID=979
+curl "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=$NODEID"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=INDEX&nodeid=$NODEID"
+
+
+
+curl "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=7922950"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=REINDEX&nodeid=7922950"
+
+
+
+
+
 
 curl "http://localhost:8080/solr4/archive/update?commit=true&expungeDeletes=true"
-curl "http://localhost:8080/solr4/archive/update?optimize=true"
+
 curl "http://localhost:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
-curl "http://localhost:8080/solr4/alfresco/update?optimize=true"
+
 
 curl "http://n0611a87:8080/solr4/archive/update?commit=true&expungeDeletes=true"
 curl "http://n0611a87:8080/solr4/archive/update?optimize=true"
 curl "http://n0611a87:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
 curl "http://n0611a87:8080/solr4/alfresco/update?optimize=true"
 
-curl "http://n0611a63:8080/solr4/admin/cores?action=FIX"
-curl "http://n0611a63:8080/solr4/admin/cores?action=RETRY"
-
-curl "http://n0611a63:8080/solr4/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
 curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=xml&detail=true&hist=true&values=true"
 
@@ -46,6 +69,3 @@ In terms of logging, I should have started with these Solr log classes that will
 log4j.logger.org.alfresco.solr.SolrInformationServer=DEBUG
 log4j.logger.org.alfresco.solr.tracker.MetadataTracker=DEBUG
 log4j.logger.org.alfresco.solr.query.AbstractQParser=debug
-
-
-curl http://n0611a86.gruppo.autostrade.it:8180/solr4/alfresco/query\?q=ERROR\*\&wt\=csv | awk -F, '{$0=$7}1' | grep -v DBID     #### WRONG, TO BE FIXED: ERROR* is just too much
