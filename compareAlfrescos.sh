@@ -1,6 +1,6 @@
 #!/bin/bash
 
-diff -qr $1 $2 2>&1 |\
+diff -qr "$1" "$2" 2>&1 |\
 grep -vF                         \
  -e '.jar differ'                \
  -e '.bin'                       \
