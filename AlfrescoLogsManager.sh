@@ -1,6 +1,6 @@
 #!/bin/bash
 # should be put in /opt/alfresco/scripts
-# crontab -e -u alfresco
+# crontab -e -u root
 # 59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh
 
 LOGS=/opt/alfresco/tomcat/logs
