@@ -1,0 +1,21 @@
+[Unit]
+Description==Alfresco transform core
+Requires=activemq.service alfresco-shared-file.service
+After=activemq.service alfresco-shared-file.service
+
+[Service]
+Type=forking
+WorkingDirectory=/opt/alfresco/transform-service
+ExecStartPre=-/bin/pkill -9 soffice.bin
+ExecStart=/opt/alfresco/scripts/alfresco-transform-core.sh
+Restart=always
+RestartSec=15
+User=alfresco
+Group=alfresco
+SuccessExitStatus=143
+
+LimitCORE=infinity
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

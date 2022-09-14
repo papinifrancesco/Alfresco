@@ -1,0 +1,20 @@
+[Unit]
+Description==Alfresco transform router
+Requires=activemq.service alfresco-shared-file.service alfresco-transform-core.service
+After=activemq.service alfresco-shared-file.service alfresco-transform-core.service
+
+[Service]
+Type=forking
+WorkingDirectory=/opt/alfresco/transform-service
+ExecStart=/opt/alfresco/scripts/alfresco-transform-router.sh
+Restart=always
+RestartSec=15
+User=alfresco
+Group=alfresco
+SuccessExitStatus=143
+
+LimitCORE=infinity
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

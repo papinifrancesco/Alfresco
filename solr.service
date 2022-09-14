@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Type=forking
+ExecStartPre=/usr/bin/sh -c "/usr/bin/rm -rf /opt/solr_data/tmp/*"
 ExecStart=/opt/solr/solr/bin/solr start
 ExecReload=/opt/solr/solr/bin/solr reload
 ExecStop=/opt/solr/solr/bin/solr stop
@@ -12,10 +13,10 @@ WorkingDirectory=/opt/solr
 Restart=always
 User=alfresco
 Group=alfresco
-RemainAfterExit=true
-
 LimitCORE=infinity
 LimitNOFILE=65536
+TimeoutSec=90
+RemainAfterExit=No
 
 [Install]
 WantedBy=multi-user.target
