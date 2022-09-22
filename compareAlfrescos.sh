@@ -13,7 +13,9 @@ grep -vF                         \
  -e '.install'                   \
  -e '.js'                        \
  -e '.less'                      \
+ -e '.m4'                        \
  -e '.md'                        \
+ -e '.mo'                        \
  -e '.MF'                        \
  -e '.png'                       \
  -e '.sample'                    \
