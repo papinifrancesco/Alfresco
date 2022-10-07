@@ -1,3 +1,7 @@
+Da ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
+
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco" 
+
 SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/
