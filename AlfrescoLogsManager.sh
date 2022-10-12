@@ -12,6 +12,12 @@ cp -p "$LOGS/catalina.out" "$LOGS/catalina_${DATE_F}.out"
 cat /dev/null > "$LOGS/catalina.out"
 fi
 
+# rotate gc.log
+if [ -s "$LOGS/gc.log" ]; then
+cp -p "$LOGS/gc.log" "$LOGS/gc_${DATE_F}.log"
+cat /dev/null > "$LOGS/gc.log"
+fi
+
 
 # delete 0 size files not in use
 find "$LOGS" -maxdepth 1 -type f -size 0 | while read -r filename ; do /sbin/fuser -s "$filename" || rm -f "$filename" ; done
