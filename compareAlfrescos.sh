@@ -1,8 +1,7 @@
 #!/bin/bash
 
-diff -qr "$1" "$2" 2>&1 |\
+diff -qr "$1" "$2" 2>&1         |\
 grep -vF                         \
- -e '.jar differ'                \
  -e '.bin'                       \
  -e '.class'                     \
  -e '.css'                       \
@@ -13,9 +12,7 @@ grep -vF                         \
  -e '.install'                   \
  -e '.js'                        \
  -e '.less'                      \
- -e '.m4'                        \
  -e '.md'                        \
- -e '.mo'                        \
  -e '.MF'                        \
  -e '.png'                       \
  -e '.sample'                    \
@@ -37,4 +34,8 @@ grep -vF                         \
  -e '/logs'                      \
  -e '/java/'                     \
  -e 'tomcat/temp'                \
- -e 'tomcat/work'                ;
+ -e 'tomcat/work'               |\
+grep -v "Files.*jar"            |\
+sed 's#Files #diff -y -W220 #g' |\
+sed 's# and # #g' |\
+sed 's# differ##g'  ;
