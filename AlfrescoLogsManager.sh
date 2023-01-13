@@ -12,6 +12,14 @@ cp -p "$LOGS/catalina.out" "$LOGS/catalina_${DATE_F}.out"
 cat /dev/null > "$LOGS/catalina.out"
 fi
 
+
+# rotate query-solr.log
+if [ -s "$LOGS/query-solr.log" ]; then
+cp -p "$LOGS/query-solr.log" "$LOGS/query-solr_${DATE_F}.log"
+cat /dev/null > "$LOGS/query-solr.log"
+fi
+
+
 # rotate gc.log
 if [ -s "$LOGS/gc.log" ]; then
 cp -p "$LOGS/gc.log" "$LOGS/gc_${DATE_F}.log"
