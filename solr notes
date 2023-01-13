@@ -2,6 +2,10 @@ Da ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't 
 
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco" 
 
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+
+curl -s --header "x-alfresco-search-secret: Tai22" 'http://127.0.0.1:8983/solr/alfresco/afts' -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format -
+
 SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/
