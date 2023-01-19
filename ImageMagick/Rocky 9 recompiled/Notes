@@ -1,0 +1,5 @@
+dnf install -y epel-release
+
+dnf install -y ImageMagick-libs-7.1.0-57.x86_64.rpm
+
+dnf install -y ImageMagick-7.1.0-57.x86_64.rpm
