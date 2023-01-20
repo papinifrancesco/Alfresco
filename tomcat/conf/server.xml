@@ -1,0 +1,69 @@
+<Server port="8005" shutdown="SHUTDOWN">
+  <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+  <GlobalNamingResources>
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+  </GlobalNamingResources>
+
+  <Service name="Catalina">
+
+    <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
+     <Connector clientAuth="want"
+               connectionTimeout="240000"
+               keystoreFile="/opt/alf_data/keystore/ssl.keystore"
+               keystorePass="kT9X6oe68t"
+               keystoreType="JCEKS"
+               maxHttpHeaderSize="32768"
+               maxSavePostSize="-1"
+               maxThreads="150"
+               port="8443"
+               protocol="org.apache.coyote.http11.Http11NioProtocol"
+               scheme="https"
+               secure="true"
+               SSLEnabled="true"
+               SSLProtocol="TLSv1.2"
+               truststoreFile="/opt/alf_data/keystore/ssl.truststore"
+               truststorePass="kT9X6oe68t"
+               truststoreType="JCEKS"
+               URIEncoding="UTF-8" >
+    <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+    </Connector>
+
+    <Connector protocol="AJP/1.3"
+               address="0.0.0.0"
+               port="8009"
+               redirectPort="8443"
+               secretRequired="false"
+               packetSize="65536"
+               URIEncoding="UTF-8" />
+
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="AlfrescoQualityRepo1">
+      <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase">
+        <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler" algorithm="sha-512" />
+        </Realm>
+      </Realm>
+
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log" suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b %I %T" />
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>
