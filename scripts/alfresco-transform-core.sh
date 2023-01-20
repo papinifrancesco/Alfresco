@@ -2,7 +2,7 @@
 TS=/opt/alfresco/transform-service
 WDIR=$TS
 
-FILE=alfresco-transform-core-aio-boot-2.5.6.jar
+FILE=alfresco-transform-core-aio-boot
 PATTERN=transform-core-aio
 
 JAVA_OPTS="$JAVA_OPTS \

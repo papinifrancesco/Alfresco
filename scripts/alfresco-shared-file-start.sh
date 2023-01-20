@@ -2,7 +2,7 @@
 TS=/opt/alfresco/transform-service
 WDIR=$TS
 
-FILE=alfresco-shared-file-store-controller-0.16.1.jar
+FILE=alfresco-shared-file-store-controller
 PATTERN=shared-file-store
 
 JAVA_OPTS="$JAVA_OPTS \
@@ -12,8 +12,8 @@ JAVA_OPTS="$JAVA_OPTS \
   -Dserver.port=8099 \
   -Dserver.error.include-message=ALWAYS \
   -Dlogging.level.org.alfresco.store=warn \
-  -DfileStorePath=$TS/tmp/Alfresco \
-  -Dscheduler.contract.path=$TS/tmp/scheduler.json \
+  -DfileStorePath="$TS/tmp/Alfresco" \
+  -Dscheduler.contract.path="$TS/tmp/scheduler.json" \
   -Dscheduler.content.age.millis=900000 \
   -Dscheduler.cleanup.interval=900000"
 

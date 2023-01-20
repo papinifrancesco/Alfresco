@@ -2,7 +2,7 @@
 TS=/opt/alfresco/transform-service
 WDIR=$TS
 
-FILE=alfresco-transform-router-1.5.1.jar
+FILE=alfresco-transform-router
 PATTERN=transform-router
 
 JAVA_OPTS="$JAVA_OPTS \
