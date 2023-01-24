@@ -7,14 +7,6 @@ JAVA_HOME=/opt/alfresco/java
 
 JRE_HOME=$JAVA_HOME
 
-JAVA_OPTS="                                                                                   # Load Tomcat Native Library
-LD_LIBRARY_PATH=/opt/alfresco/tomcat/lib:$LD_LIBRARY_PATH
-
-CATALINA_PID=/opt/alfresco/tomcat/temp/catalina.pid
-
-JAVA_HOME=/opt/alfresco/java
-
-JRE_HOME=$JAVA_HOME
 
 JAVA_OPTS="$JAVA_OPTS                                                                           \
            -Dalfresco.home=/opt/alfresco                                                        \
@@ -48,8 +40,9 @@ JAVA_OPTS="$JAVA_OPTS                                                           
            -Xms4G                                                                               \
            -Xmx4G                                                                               \
            -Xrunjdwp:transport=dt_socket,address=*:8000,server=y,suspend=n                      \
-           -verbose:gc                                                                          \
-                                                                                              " ;
+           -verbose:gc                                                                         ";
+
+
 export CATALINA_PID
 
 export JAVA_HOME
