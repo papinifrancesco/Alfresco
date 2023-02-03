@@ -78,6 +78,8 @@ SOLR_SOLR_MODEL_DIR=/opt/solr_data/model
 # Alfresco configuration. This file is automatically included by solr. You can define your custom settings here
 SOLR_OPTS="$SOLR_OPTS -Dsolr.jetty.request.header.size=1000000 -Dsolr.jetty.threads.stop.timeout=300000 -Ddisable.configEdit=true"
 SOLR_OPTS="$SOLR_OPTS -Dsolr.model.dir=$SOLR_SOLR_MODEL_DIR -Ddata.dir.root=$SOLR_DATA_DIR_ROOT"
+
+# Now decide if secureComms=secret or secureComms=https
 #SOLR_OPTS="$SOLR_OPTS -Djava.io.tmpdir=$SOLR_TMP_DIR -Dalfresco.secureComms=secret -Dalfresco.secureComms.secret=Tai22"
 SOLR_OPTS="$SOLR_OPTS -Djava.io.tmpdir=$SOLR_TMP_DIR -Dalfresco.secureComms=https"
 
@@ -157,16 +159,3 @@ SOLR_SSL_CLIENT_WANT_CLIENT_AUTH=false
 
 SOLR_SOLR_HOST=localhost
 SOLR_ALFRESCO_HOST=localhost
-
-#SOLR_OPTS="$SOLR_OPTS \
-#    -Dsolr.jetty.truststore.password=truststore \
- #   -Dsolr.jetty.keystore.password=keystore \
-  #  -Dssl-keystore.password=keystore \
-   # -Dssl-keystore.aliases=ssl-alfresco-ca,ssl-repo-client \
-    #-Dssl-keystore.ssl-alfresco-ca.password=keystore \
-#    -Dssl-keystore.ssl-repo-client.password=keystore \
- #   -Dssl-truststore.password=truststore \
-  #  -Dssl-truststore.aliases=ssl-alfresco-ca,ssl-repo,ssl-repo-client \
-   # -Dssl-truststore.ssl-alfresco-ca.password=truststore \
-    #-Dssl-truststore.ssl-repo.password=truststore \
-#    -Dssl-truststore.ssl-repo-client.password=truststore";
