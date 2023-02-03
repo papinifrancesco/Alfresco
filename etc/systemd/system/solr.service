@@ -9,6 +9,8 @@ ExecStart=/opt/solr/solr/bin/solr start
 ExecReload=/opt/solr/solr/bin/solr reload
 ExecStop=/opt/solr/solr/bin/solr stop
 PIDFile=/opt/solr/solr/bin/solr-8983.pid
+# don't change WorkingDirectory unless you gave
+# a thorough look at /opt/solr/solr/bin/solr
 WorkingDirectory=/opt/solr/solr/bin
 Restart=always
 User=alfresco
