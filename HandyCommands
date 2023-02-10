@@ -31,3 +31,7 @@ run revert
 # useful to know what is preconfigured
 
 jar xvf /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/lib/alfresco-repository-6.56.jar alfresco/repository.properties
+
+
+# JMX settings dump when no GUI is available
+curl -o jmxdump.zip -u {admin_user}:{admin_password} http://{host}:{port}/alfresco/s/api/admin/jmxdump
