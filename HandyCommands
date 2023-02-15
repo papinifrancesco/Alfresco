@@ -1,5 +1,5 @@
 # Alfresco sessions
-https://documentai.tai.it/alfresco/service/api/audit/query/alfresco-access?verbose=true&limit=20000&forward=false
+https://FQDN/alfresco/service/api/audit/query/alfresco-access?verbose=true&limit=20000&forward=false
 grep -i "login" alfresco-access.json | sort | awk -F\" '{ print $4 }' | uniq -c
 
 
