@@ -37,5 +37,5 @@ grep -vF                         \
  -e 'tomcat/work'               |\
 grep -v "Files.*jar"            |\
 sed 's#Files #diff -y -W220 #g' |\
-sed 's# and # #g' |\
-sed 's# differ##g'  ;
+sed 's# and # #g'               |\
+sed 's# differ##g'               ;
