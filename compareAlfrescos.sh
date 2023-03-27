@@ -34,6 +34,7 @@ grep -vF                         \
  -e '/logs'                      \
  -e '/java/'                     \
  -e 'tomcat/temp'                \
+ -e 'transform-service/tmp'      \
  -e 'tomcat/work'               |\
 grep -v "Files.*jar"            |\
 sed 's#Files #diff -y -W220 #g' |\
