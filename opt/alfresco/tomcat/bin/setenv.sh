@@ -35,8 +35,9 @@ JAVA_OPTS="$JAVA_OPTS                                                           
            -XX:ParallelGCThreads=16                                                             \
            -XX:ReservedCodeCacheSize=128m                                                       \
            -Xdebug                                                                              \
+           -verbose:gc                                                                          \
            -Xlog:gc*                                                                            \
-           -Xlog:gc:/opt/alfresco/tomcat/logs/gc.log                                            \
+           -Xlog:gc:/opt/alfresco/tomcat/logs/gc.log:tags,time,uptime,level                     \
            -Xms4G                                                                               \
            -Xmx4G                                                                               \
            -Xrunjdwp:transport=dt_socket,address=*:8000,server=y,suspend=n                      \
