@@ -1,0 +1,33 @@
+alfresco-global.properties
+### database connection properties ###
+# OLD
+db.driver=com.mysql.jdbc.Driver
+# NEW
+db.driver=com.mysql.cj.jdbc.Driver
+db.username=alfresco
+db.password=alfresco
+db.name=alfresco
+db.url=jdbc:mysql://192.168.122.250:3306/alfresco?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+db.pool.max=275
+db.pool.validate.query=SELECT 1
+
+
+
+
+
+
+mysql> CREATE USER 'alfresco' IDENTIFIED BY 'StrongPWD09!';
+
+
+CREATE DATABASE alfresco DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT ALL ON alfresco.* to alfresco ;
+
+
+
+
+
+MySQL ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+
+mysql> SHOW VARIABLES LIKE 'validate_password%';
+
+mysql> SET GLOBAL validate_password.policy = 0;
