@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <Server port="8005" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
   <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
@@ -19,10 +21,12 @@
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443" />
-
+<!--
+Usually a real front-end such as httpd or nginx should be used
+Still, if for some reasons you need Tomcat's HTTPS:
      <Connector clientAuth="want"
                connectionTimeout="240000"
-               keystoreFile="/opt/alf_data/keystore/ssl.keystore"
+               keystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"
                keystorePass="kT9X6oe68t"
                keystoreType="JCEKS"
                maxHttpHeaderSize="32768"
@@ -34,13 +38,15 @@
                secure="true"
                SSLEnabled="true"
                SSLProtocol="TLSv1.2"
-               truststoreFile="/opt/alf_data/keystore/ssl.truststore"
+               truststoreFile="/opt/alfresco/alf_data/keystore/ssl.truststore"
                truststorePass="kT9X6oe68t"
                truststoreType="JCEKS"
                URIEncoding="UTF-8" >
+-->
     <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
     </Connector>
-
+<!--
+AJP? Can't we use HTTP nowadays?
     <Connector protocol="AJP/1.3"
                address="0.0.0.0"
                port="8009"
@@ -48,8 +54,8 @@
                secretRequired="false"
                packetSize="65536"
                URIEncoding="UTF-8" />
-
-    <Engine name="Catalina" defaultHost="localhost" jvmRoute="AlfrescoQualityRepo1">
+-->
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="AlfrescoDevRepo1">
       <Realm className="org.apache.catalina.realm.LockOutRealm">
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
                resourceName="UserDatabase">
