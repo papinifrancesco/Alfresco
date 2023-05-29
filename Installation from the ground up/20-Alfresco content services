@@ -7,7 +7,7 @@
 # 
 # extract the Alfresco archive in /opt and create the symlink, for example:
 cd /opt/
-ln -s alfresco-content-services-7.3.0 alfresco
+ln -s alfresco-content-services-7.4.0 alfresco
 
 # download a supported Tomcat, point 7) again, for example:
 https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
@@ -23,3 +23,39 @@ https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
 
 
 # because a lot of script assume to have the former path and not the latter
+
+
+
+# remove what we don't need from Tomcat
+rm -rf /opt/alfresco/tomcat/webapps/docs/
+rm -rf /opt/alfresco/tomcat/webapps/examples/
+rm -rf /opt/alfresco/tomcat/webapps/ROOT/
+
+# unzip the .war files, don't let Tomcat do it (you can
+# but we want to make a few mods before Tomcat starts).
+unzip /opt/alfresco/web-server/webapps/alfresco.war -d /opt/alfresco/tomcat/webapps/alfresco
+unzip /opt/alfresco/web-server/webapps/share.war    -d /opt/alfresco/tomcat/webapps/share
+unzip /opt/alfresco/web-server/webapps/_vti_bin.war -d /opt/alfresco/tomcat/webapps/_vti_bin
+unzip /opt/alfresco/web-server/webapps/ROOT.war     -d /opt/alfresco/tomcat/webapps/ROOT
+
+
+# let's go on with Tomcat's folders
+mv /opt/alfresco/web-server/shared /opt/alfresco/tomcat/
+
+# create these folders
+mkdir -p /opt/alfresco/amps_share
+mkdir -p /opt/alfresco/alf_data/keystore
+mkdir -p /opt/alfresco/alf_data/contentstore
+mkdir -p /opt/alfresco/alf_data/contentstore.deleted
+mkdir -p /opt/alfresco/modules/platform
+mkdir -p /opt/alfresco/modules/share
+mkdir -p /opt/alfresco/tomcat/conf/Catalina/localhost
+
+
+# for enterprise version only
+mkdir -p /opt/alfresco/tomcat/shared/classes/alfresco/extension/license
+
+mkdir -p /opt/alfresco/tomcat/shared/lib
+mkdir -p /opt/alfresco/tomcat/logs/old
+mkdir -p /opt/alfresco/scripts
+
