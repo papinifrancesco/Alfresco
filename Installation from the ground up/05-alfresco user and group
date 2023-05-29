@@ -21,6 +21,7 @@ alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
 # exit bash and log in again
 
 
+
 # make alfresco user able to start, stop, restart and check the
 # status of alfresco.service, activemq.service and solr.service
 vim /etc/sudoers.d/alfresco_sudoers
@@ -41,3 +42,10 @@ vim /etc/sudoers.d/alfresco_sudoers
 
 # then alfresco user should invoke the command he wants with sudo in front:
 # [alfresco@alfrescoseven  ~]$ sudo systemctl restart alfresco
+
+
+
+# Log rotation
+crontab -u alfresco -e
+# write the line below
+59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh /opt/alfresco/tomcat > /dev/null 2>&1
