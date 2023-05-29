@@ -1,3 +1,6 @@
+# When I started with Alfresco I was puzzled because the "took for granted" knowledge in the official documentation is what I hadn't at the time,
+# so this guide is meant to be as simple as possible and be usable by people that have no prior specific knowledge at all.
+
 # This guide doesn't (and probably never will) cover every possible scenario but one and one only:
 # Single node installation with everything in the same, single, VM.
 
