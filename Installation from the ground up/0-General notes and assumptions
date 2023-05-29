@@ -1,3 +1,6 @@
+# This guide doesn't (and probably never will) cover every possible scenario but one and one only:
+# Single node installation with everything in the same, single, VM.
+
 # These scripts are a collection of commands to be executed manually, because they do NOT have error control logic and their purpose it not to automate
 # Alfresco's installation but to make you aware of the many components and how to configure them.
 
