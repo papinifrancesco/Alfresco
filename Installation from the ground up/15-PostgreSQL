@@ -1,0 +1,37 @@
+####### PostgreSQL #######
+
+# do not use the OS bundle but use PostgreSQL repositories
+# basically go to https://www.postgresql.org/download/
+# and follow the instructions, after having completed the installation and with the DB running:
+
+sudo su - postgres
+psql
+CREATE USER alfresco WITH PASSWORD 'alfresco';
+DROP DATABASE alfresco;
+CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
+GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+\q
+
+# also, configure Postgresql to LISTEN on all (or on given ones) interfaces if you want
+cd /var/lib/pgsql/15/data/
+cp -a postgresql.conf postgresql.conf.ORIG
+vim postgresql.conf
+listen_addresses = '*'                  # what IP address(es) to listen on;
+max_connections = 300
+
+
+cp -a pg_hba.conf pg_hba.conf.ORIG
+vim pg_hba.conf
+# and ACCEPT connections from all (or from given ones) hosts
+
+host    alfresco        alfresco        172.16.140.12/32        md5
+host    alfresco        alfresco          10.11.12.13/32        md5
+host    alfresco        alfresco            127.0.0.1/32        md5
+# md5 works but, if possible, use scram-sha-256
+
+exit
+
+# restart the service to make the changes effective
+systemctl restart postgresql-15.service
+
+####### PostgreSQL #######
