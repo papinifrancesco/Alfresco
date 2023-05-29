@@ -23,9 +23,10 @@ cp -a env env.ORIG
 
 vim env
 
-#then set:
+#then set (you decide the allocated memory):
 ACTIVEMQ_OPTS_MEMORY="-Xms1G -Xmx1G"
 
+### go on with vim and substitute
 
 # from:
 
