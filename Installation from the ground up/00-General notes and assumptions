@@ -36,6 +36,8 @@
 #    https://docs.alfresco.com/content-services/latest/support/
 # but keep in mind that small variations (a more up to date DB) might be possible
 
-# 8) create a folder where to store your files
+# 8) broken HTTP links are a possibility: I'm sure you can fix them yourself
+
+# 9) create a folder where to store your files
 MYstuff=/tmp/work
 mkdir "$MYstuff"
