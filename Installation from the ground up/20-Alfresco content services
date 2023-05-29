@@ -57,5 +57,50 @@ mkdir -p /opt/alfresco/tomcat/shared/classes/alfresco/extension/license
 
 mkdir -p /opt/alfresco/tomcat/shared/lib
 mkdir -p /opt/alfresco/tomcat/logs/old
+
+
+
+# The scripts now:
 mkdir -p /opt/alfresco/scripts
+cd /opt/alfresco/scripts
+
+# Dowload the required scripts (wget maybe?) from:
+https://github.com/papinifrancesco/Alfresco/tree/master/opt/alfresco/scripts
+
+# set the shell scripts executable
+chmod +x *.sh
+
+# generate the keystore and the truststore
+cd /opt/alfresco/keystore
+
+# read the documentation in the folder and then
+chmod +x /opt/alfresco/keystore/generate_keystores.sh
+./generate_keystores.sh
+
+# use "
+
+
+# if Postgres is the DB and the Postgres connector is missing
+# put a Tomcat supported version of PostgreSQL JDBC in /opt/alfresco/tomcat/lib
+# too old or too new might not work as expected, have a look at:
+# https://docs.alfresco.com/content-services/latest/support/
+wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar -P /opt/alfresco/tomcat/lib/
+
+
+
+# alfresco.xml and share.xml MUST be present in the destination folder
+# if the server runs both of the webapps, otherwise just the needed .xml
+mv /opt/alfresco/web-server/conf/Catalina/localhost/*.xml /opt/alfresco/tomcat/conf/Catalina/localhost/
+
+
+# modify /opt/alfresco/tomcat/conf/catalina.properties :
+sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar#g' /opt/alfresco/tomcat/conf/catalina.properties
+
+
+# check that
+/opt/alfresco/tomcat/bin/setenv.sh
+# exists and correct its values
+# if needed refer to:
+# https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/bin/setenv.sh
+
 
