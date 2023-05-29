@@ -1,0 +1,75 @@
+####### ActiveMQ #######
+cd $MYstuff
+
+
+# ActiveMQ
+# which version? Go back to point 7) and check what is your goal
+VER=5.16.5
+#VER=5.17.3
+
+wget "http://www.apache.org/dyn/closer.cgi?filename=/activemq/$VER/apache-activemq-$VER-bin.tar.gz&action=download" -O apache-activemq-"$VER"-bin.tar.gz
+
+tar -xf apache-activemq-"$VER"-bin.tar.gz
+
+mv apache-activemq-"$VER" /opt/
+
+cd /opt/ ; ln -s apache-activemq-"$VER" activemq
+
+# configure activemq
+
+cd /opt/activemq/bin
+
+cp -a env env.ORIG
+
+vim env
+
+#then set:
+ACTIVEMQ_OPTS_MEMORY="-Xms1G -Xmx1G"
+
+
+# from:
+
+# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
+# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
+# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
+# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
+
+# to:
+
+ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
+ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
+ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
+ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
+
+
+ACTIVEMQ_USER="alfresco"
+
+
+# from:
+
+#JAVA_HOME=""
+
+# to:
+
+JAVA_HOME="/opt/alfresco/java"
+
+
+# from:
+
+JAVACMD="auto"
+
+# to:
+
+#JAVACMD="auto"
+
+#### save and exit vim now
+
+
+chmod 600 /opt/activemq/conf/jmx.password
+# modify jmx.access and jmx.password as you wish
+
+chown alfresco:alfresco /opt/activemq
+chown -R alfresco:alfresco /opt/activemq/
+
+
+####### ActiveMQ #######
