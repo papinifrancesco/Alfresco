@@ -68,16 +68,19 @@ cd /opt/alfresco/scripts
 https://github.com/papinifrancesco/Alfresco/tree/master/opt/alfresco/scripts
 
 # set the shell scripts executable
-chmod +x *.sh
+chmod +x /*.sh
 
-# generate the keystore and the truststore
-cd /opt/alfresco/keystore
 
-# read the documentation in the folder and then
-chmod +x /opt/alfresco/keystore/generate_keystores.sh
-./generate_keystores.sh
+# get the all the files in
+https://github.com/papinifrancesco/Alfresco/tree/master/opt/alfresco/alf_data/keystore
+# and put them into
+/opt/alfresco/alf_data/keystore
 
-# use "
+# note that the .properties files are not needed
+# but are present for historycal reasons
+
+
+
 
 
 # if Postgres is the DB and the Postgres connector is missing
@@ -100,7 +103,5 @@ sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${c
 # check that
 /opt/alfresco/tomcat/bin/setenv.sh
 # exists and correct its values
-# if needed refer to:
-# https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/bin/setenv.sh
-
-
+# if needed refer (or just copy it) to:
+https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/bin/setenv.sh
