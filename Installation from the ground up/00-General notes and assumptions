@@ -2,10 +2,12 @@
 # so this guide is meant to be as simple as possible and be usable by people that have no prior specific knowledge at all.
 
 # This guide doesn't (and probably never will) cover every possible scenario but one and one only:
-# Single node installation with everything in the same, single, VM.
+# single node installation with everything in the same, single, VM.
 
 # These scripts are a collection of commands to be executed manually, because they do NOT have error control logic and their purpose it not to automate
 # Alfresco's installation but to make you aware of the many components and how to configure them.
+
+# Last but not least: while Alfresco can be installed on Windows, this guide is Linux based even if most of the content holds true for Windows as well.
 
 # This installation assumes that:
 # 1) these symlinks will be used:
