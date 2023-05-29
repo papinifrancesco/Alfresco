@@ -26,9 +26,8 @@ https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
 
 
 # remove what we don't need from Tomcat
-rm -rf /opt/alfresco/tomcat/webapps/docs/
-rm -rf /opt/alfresco/tomcat/webapps/examples/
-rm -rf /opt/alfresco/tomcat/webapps/ROOT/
+rm -rf /opt/alfresco/tomcat/webapps/*
+
 
 
 # unzip the .war files, don't let Tomcat do it (you can
@@ -105,3 +104,11 @@ sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${c
 # exists and correct its values
 # if needed refer (or just copy it) to:
 https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/bin/setenv.sh
+
+
+
+
+# alfresco-global.properties is a key file for every installation and it's properties are to be known
+# start with a working one:
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -O /opt/alfresco/tomcat/shared/classes
+
