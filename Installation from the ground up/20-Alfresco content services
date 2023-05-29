@@ -1,0 +1,25 @@
+# Get the Alfresco package from the official site:
+# the enterprise version if you have a licence 
+# (you'll know what to get and where)
+# or
+# the community version if you don't have one at:
+# https://www.alfresco.com/thank-you/thank-you-downloading-alfresco-community-edition
+# 
+# extract the Alfresco archive in /opt and create the symlink, for example:
+cd /opt/
+ln -s alfresco-content-services-7.3.0 alfresco
+
+# download a supported Tomcat, point 7) again, for example:
+https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
+
+# extract the Tomcat archive and move/rename it /opt/alfresco/tomcat (no symlinks here)
+# to clarify we should have:
+
+/opt/alfresco/tomcat/bin
+
+# but not:
+
+/opt/alfresco/apache-tomcat-9.0.75/bin
+
+
+# because a lot of script assume to have the former path and not the latter
