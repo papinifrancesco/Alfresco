@@ -18,6 +18,26 @@ alias COUT='less /opt/alfresco/tomcat/logs/catalina.out'
 
 alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
 
-
-
 # exit bash and log in again
+
+
+# make alfresco user able to start, stop, restart and check the
+# status of alfresco.service, activemq.service and solr.service
+vim /etc/sudoers.d/alfresco_sudoers
+
+## Allows members of the alfresco group to start and stop alfresco related services
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-shared-file
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-shared-file
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-core
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-core
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-router
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-router
+%alfresco ALL= NOPASSWD: /bin/systemctl start activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl start solr
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  solr
+
+# then alfresco user should invoke the command he wants with sudo in front:
+# [alfresco@alfrescoseven  ~]$ sudo systemctl restart alfresco
