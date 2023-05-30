@@ -49,6 +49,7 @@ mkdir -p /opt/alfresco/alf_data/contentstore.deleted
 mkdir -p /opt/alfresco/modules/platform
 mkdir -p /opt/alfresco/modules/share
 mkdir -p /opt/alfresco/tomcat/conf/Catalina/localhost
+mkdir -p /opt/alfresco/tomcat/webapps.BAK
 
 
 # for enterprise version only
@@ -111,4 +112,55 @@ https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/t
 # alfresco-global.properties is a key file for every installation and it's properties are to be known
 # start with a working one:
 wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -O /opt/alfresco/tomcat/shared/classes
+
+
+
+
+# about the AMPs: look at the Alfresco site for ones you want
+# also, ask your DEVs if you have custom ones to install and then
+# install the AMPs you want , remember: Alfresco MUST be stopped
+# and do a manual backup of the webapps you're going to modify
+cp -ar /opt/alfresco/tomcat/webapps/alfresco /opt/alfresco/tomcat/webapps.BAK/alfresco.2023-05-30
+cp -ar /opt/alfresco/tomcat/webapps/share    /opt/alfresco/tomcat/webapps.BAK/share.2023-05-30
+systemctl stop alfresco 
+MMT install /opt/alfresco/amps/       /opt/alfresco/tomcat/webapps/alfresco/ -directory -nobackup
+MMT install /opt/alfresco/amps_share/ /opt/alfresco/tomcat/webapps/share/    -directory -nobackup
+
+
+
+
+# define logging for Alfresco and share web apps:
+# we need to make this change otherwise the logs won't be
+# written in /opt/alfresco/tomcat/logs
+cd /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/
+sed -i.ORIG 's#log4j.appender.File.File=alfresco.log#log4j.appender.File.File=${catalina.base}/logs/alfresco.log#g' log4j.properties
+
+
+# read the documentation about custom-log4j.properties
+cp -a log4j.properties /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+
+
+cd /opt/alfresco/tomcat/webapps/share/WEB-INF/classes/
+sed -i.ORIG 's#log4j.appender.File.File=share.log#log4j.appender.File.File=${catalina.base}/logs/share.log#g' log4j.properties
+
+
+
+# add some extra logging
+vim /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+
+# and add this below:
+#QuerySolr debug
+log4j.appender.QuerySolr=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.QuerySolr.File=${catalina.base}/logs/query-solr.log
+log4j.appender.QuerySolr.Append=true
+log4j.appender.QuerySolr.DatePattern='.'yyyy-MM-dd
+log4j.appender.QuerySolr.layout=org.apache.log4j.PatternLayout
+log4j.appender.QuerySolr.layout.ConversionPattern=%d{ABSOLUTE} %-5p [%c] [%t] %m%n
+log4j.logger.org.alfresco.repo.search.impl.solr=DEBUG,QuerySolr
+log4j.additivity.org.alfresco.repo.search.impl.solr=false
+# leave the log at INFO level: when in need
+# set it to DEBUG using the GUI
+log4j.logger.org.alfresco.solr.query=INFO
+
+
 
