@@ -1,0 +1,20 @@
+# recomemmended sequence
+# to note that the only real hard dependency is ActiveMQ
+# the other services are pratically essential for almost
+# every customer but not hard dependencies:
+# Alfresco could work without, it'll limited but it'll work
+systemctl start activemq
+  systemctl start alfresco-shared-file
+    systemctl start alfresco-transform-core
+      systemctl start alfresco-transform-router
+        systemctl start alfresco
+          systemctl start solr
+
+
+# the shutdown sequence is clearly the opposite of the startup one:
+systemctl start solr
+  systemctl start alfresco
+    systemctl start alfresco-transform-router
+      systemctl start alfresco-transform-core
+        systemctl start alfresco-shared-file
+          systemctl start activemq

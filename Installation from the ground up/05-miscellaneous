@@ -1,0 +1,79 @@
+# We don't want to run Alfresco as root so let's create:
+
+groupadd alfresco # a dedicated group
+
+useradd -m alfresco -g alfresco # and a dedicated user
+
+
+# optional but very handy
+# this one below could be put in /etc/profile.d/alfresco_aliases.sh
+# so you'll have it for every user
+
+vim /etc/profile.d/alfresco_aliases.sh
+
+
+alias AGP='vim /opt/alfresco/tomcat/shared/classes/alfresco-global.properties'
+
+alias COUT='less /opt/alfresco/tomcat/logs/catalina.out'
+
+alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
+
+# exit bash and log in again
+
+
+
+# make alfresco user able to start, stop, restart and check the
+# status of alfresco.service, activemq.service and solr.service
+vim /etc/sudoers.d/alfresco_sudoers
+
+## Allows members of the alfresco group to start and stop alfresco related services
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-shared-file
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-shared-file
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-core
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-core
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-router
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-router
+%alfresco ALL= NOPASSWD: /bin/systemctl start activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl start solr
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  solr
+
+# then alfresco user should invoke the command he wants with sudo in front:
+# [alfresco@alfrescoseven  ~]$ sudo systemctl restart alfresco
+
+
+# Systemd services
+URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
+wget $URL/etc/systemd/system/activemq.service -P /etc/systemd/system/
+
+wget $URL/etc/systemd/system/alfresco.service -P /etc/systemd/system/
+
+wget $URL/etc/systemd/system/alfresco-shared-file.service -P /etc/systemd/system/
+
+wget $URL/etc/systemd/system/alfresco-transform-core.service -P /etc/systemd/system/
+
+wget $URL/etc/systemd/system/alfresco-transform-router.service -P /etc/systemd/system/
+
+wget $URL/etc/systemd/system/solr.service -P /etc/systemd/system/
+
+systemctl daemon-reload
+
+systemctl enable activemq alfresco alfresco-shared-file alfresco-transform-core alfresco-transform-router solr
+
+
+
+
+
+# Log rotation
+crontab -u alfresco -e
+# write the line below
+59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh /opt/alfresco/tomcat > /dev/null 2>&1
+
+# and check you have xz and fuser commands installed and where
+# modify the script to your paths, example:
+which xz
+/usr/bin/xz
+
+# so check the script has that path and if not adjust it

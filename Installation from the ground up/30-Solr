@@ -1,0 +1,103 @@
+######### Solr - same host - no SSL so far #########
+# references: https://docs.alfresco.com/search-services/latest/
+
+
+# create the solr data folder first
+mkdir /opt/solr_indexes_207
+
+# create the symlink to it
+ln -s /opt/solr_indexes_207 /opt/solr_data
+
+# create the subfolders
+mkdir /opt/solr_data/alfresco /opt/solr_data/archive /opt/solr_data/model /opt/solr_data/tmp 
+
+unzip alfresco-search-services-2.0.7.zip -d alfresco-search-services-2.0.7
+mv alfresco-search-services-2.0.7 /opt/
+ln -s alfresco-search-services-2.0.7 /opt/solr
+cd /opt/solr/solrhome/conf/
+cp -a shared.properties shared.properties.ORIG
+vim /opt/solr/solrhome/conf/shared.properties
+
+# https://docs.alfresco.com/search-enterprise/tasks/solr-install.html
+# "If you use several languages across your organization, you must enable cross-language search support in all fields."
+alfresco.cross.locale.datatype.0={http://www.alfresco.org/model/dictionary/1.0}text
+alfresco.cross.locale.datatype.1={http://www.alfresco.org/model/dictionary/1.0}content
+alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}mltext
+
+
+
+# modify solr.in.sh and set the needed parameters
+cd /opt/solr/
+cp -a solr.in.sh solr.in.sh.ORIG
+vim /opt/solr/solr.in.sh
+
+SOLR_JAVA_HOME="/opt/alfresco/java"
+# uncomment SOLR_HOME and add the path
+SOLR_HOME=/opt/solr/solrhome
+# and maybe change Java memory
+SOLR_JAVA_MEM="-Xms2g -Xmx2g"
+
+# By default the start script uses UTC; override the timezone if needed
+SOLR_TIMEZONE="Europe/Rome"
+
+# set the specific solr folders
+SOLR_DATA_DIR_ROOT=/opt/solr_data
+SOLR_TMP_DIR=/opt/solr_data/tmp
+SOLR_SOLR_MODEL_DIR=/opt/solr_data/model
+# https://docs.alfresco.com/search-enterprise/concepts/external-properties-solr.html
+
+# Alfresco configuration. This file is automatically included by solr. You can define your custom settings here
+SOLR_OPTS="$SOLR_OPTS                                \
+           -Dsolr.jetty.request.header.size=1000000  \
+           -Dsolr.jetty.threads.stop.timeout=300000  \
+           -Ddisable.configEdit=true                 \
+           -Dsolr.content.dir=$SOLR_SOLR_CONTENT_DIR \
+           -Dsolr.model.dir=$SOLR_SOLR_MODEL_DIR     \
+           -Ddata.dir.root=$SOLR_DATA_DIR_ROOT       \
+           -Djava.io.tmpdir=$SOLR_TMP_DIR            \
+           -Dsolr.allow.unsafe.resourceloading=true  \
+           -Dsolr.ssl.checkPeerName=false            \
+           -Dalfresco.secureComms=secret             \
+           -Dalfresco.secureComms.secret=SOMETHING  ";
+
+
+
+
+# https://docs.alfresco.com/search-services/latest/config/properties/#solr-core-configuration-properties
+# modify the templates for both rerank and noRerank , example:
+cd /opt/solr/solrhome/templates/rerank/conf
+cp -a solrcore.properties solrcore.properties.ORIG
+vim solrcore.properties
+
+# define at least
+alfresco.index.transformContent=true
+alfresco.secureComms=secret
+alfresco.secureComms.secret=SOMETHING
+solr.suggester.enabled=false
+
+# comment:
+alfresco.encryption.ssl.*
+
+# so to have:
+# alfresco.encryption.ssl.*
+# encryption properties commented 
+
+# now do the same for:
+cd /opt/solr/solrhome/templates/noRerank/conf
+[...]
+
+chown -R alfresco:alfresco /opt/solr/ /opt/solr_data
+
+# with the alfresco user start Solr , first time only command to create 
+# /opt/solr/solrhome/alfresco
+# /opt/solr/solrhome/archive
+# folders
+# and wait 5' 'cause sometimes it takes time to create the folders
+sudo su - alfresco
+/opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
+
+
+# after 5' stop it
+/opt/solr/solr/bin/solr stop -all
+
+# from now on we can use systemctl
