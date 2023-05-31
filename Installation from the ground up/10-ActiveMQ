@@ -55,6 +55,7 @@ ACTIVEMQ_USER="alfresco"
 JAVA_HOME="/opt/alfresco/java"
 
 
+
 # from:
 
 JAVACMD="auto"

@@ -9,28 +9,25 @@
 cd /opt/
 ln -s alfresco-content-services-7.4.0 alfresco
 
+# download a supported JDK (not JRE)
+cd $MYstuff
+wget https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.19%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.19_7.tar.gz
+tar -xf OpenJDK11U-jdk_x64_linux_hotspot_11.0.19_7.tar.gz  # extract the archive
+mv jdk-11.0.19+7 /opt/alfresco/java   # move and rename
+
+
 # download a supported Tomcat, point 7) again, for example:
-https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
-
-# extract the Tomcat archive and move/rename it /opt/alfresco/tomcat (no symlinks here)
-# to clarify we should have:
-
-/opt/alfresco/tomcat/bin
-
-# but not:
-
-/opt/alfresco/apache-tomcat-9.0.75/bin
-
-# because a lot of scripts assume to have the former path and not the latter
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.75/bin/apache-tomcat-9.0.75.tar.gz
+tar -xf apache-tomcat-9.0.75.tar.gz  # extract the archive
+mv apache-tomcat-9.0.75 /opt/alfresco/tomcat  # move and rename
 
 
-
-# remove what we don't need from Tomcat
+# remove all the default webapps:
 rm -rf /opt/alfresco/tomcat/webapps/*
 
 
 
-# unzip the .war files, don't let Tomcat do it (you can
+# unzip the Alfresco .war files, don't let Tomcat do it (you can
 # but we want to make a few mods before Tomcat starts).
 unzip /opt/alfresco/web-server/webapps/alfresco.war -d /opt/alfresco/tomcat/webapps/alfresco
 unzip /opt/alfresco/web-server/webapps/share.war    -d /opt/alfresco/tomcat/webapps/share
@@ -52,32 +49,25 @@ mkdir -p /opt/alfresco/tomcat/conf/Catalina/localhost
 mkdir -p /opt/alfresco/tomcat/webapps.BAK
 
 
-# for enterprise version only
+# for enterprise version only, community dont need a licence
 mkdir -p /opt/alfresco/tomcat/shared/classes/alfresco/extension/license
 
+# useless but this way we suppress a warning in catalina.out
 mkdir -p /opt/alfresco/tomcat/shared/lib
+
+# need for the log rotation
 mkdir -p /opt/alfresco/tomcat/logs/old
 
 
 
-# The scripts now:
-mkdir -p /opt/alfresco/scripts
-cd /opt/alfresco/scripts
-
-# Dowload the required scripts (wget maybe?) from:
-https://github.com/papinifrancesco/Alfresco/tree/master/opt/alfresco/scripts
-
-# set the shell scripts executable
-chmod +x /*.sh
-
-
-# get the all the files in
-https://github.com/papinifrancesco/Alfresco/tree/master/opt/alfresco/alf_data/keystore
-# and put them into
-/opt/alfresco/alf_data/keystore
-
+# get the JVM keystore and trusstore the files:
+wget $URL/opt/alfresco/alf_data/keystore/keystore                            -O /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/keystore-passwords.properties       -O /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/ssl-truststore-passwords.properties -O /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/ssl.truststore                      -O /opt/alfresco/alf_data/keystore/
 # note that the .properties files are not needed
-# but are present for historycal reasons
+# but are present for historical reasons:
+# these passwords are what we'll find for most Alfresco installations
 
 
 
@@ -97,6 +87,7 @@ mv /opt/alfresco/web-server/conf/Catalina/localhost/*.xml /opt/alfresco/tomcat/c
 
 
 # modify /opt/alfresco/tomcat/conf/catalina.properties :
+# or Tomcat won't load the Alfresco part
 sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar#g' /opt/alfresco/tomcat/conf/catalina.properties
 
 
@@ -104,21 +95,21 @@ sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${c
 /opt/alfresco/tomcat/bin/setenv.sh
 # exists and correct its values
 # if needed refer (or just copy it) to:
-https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/bin/setenv.sh
+wget $URL/opt/alfresco/tomcat/bin/setenv.sh -O opt/alfresco/tomcat/bin/setenv.sh
 
 
 
 
 # alfresco-global.properties is a key file for every installation and it's properties are to be known
 # start with a working one:
-wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -O /opt/alfresco/tomcat/shared/classes
+wget $URL/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -O /opt/alfresco/tomcat/shared/classes/
 
 
 
 
 # about the AMPs: look at the Alfresco site for ones you want
 # also, ask your DEVs if you have custom ones to install and then
-# install the AMPs you want , remember: Alfresco MUST be stopped
+# install them, remember: Alfresco MUST be stopped
 # and do a manual backup of the webapps you're going to modify
 cp -ar /opt/alfresco/tomcat/webapps/alfresco /opt/alfresco/tomcat/webapps.BAK/alfresco.2023-05-30
 cp -ar /opt/alfresco/tomcat/webapps/share    /opt/alfresco/tomcat/webapps.BAK/share.2023-05-30
@@ -161,6 +152,3 @@ log4j.additivity.org.alfresco.repo.search.impl.solr=false
 # leave the log at INFO level: when in need
 # set it to DEBUG using the GUI
 log4j.logger.org.alfresco.solr.query=INFO
-
-
-

@@ -36,5 +36,5 @@ find "$LOGS" -maxdepth 1 -type f | while read -r filename ; do /sbin/fuser -s "$
 # compress all files inside old/ that are not an .xz already
 find "$LOGS/old" -maxdepth 1 -type f \! -name "*.xz" | while read -r filename ; do /usr/bin/xz -9 "$filename" ; done
 
-# remove all compressed logs older than 180 days
-find "$LOGS/old" -maxdepth 1 -mtime +180 -type f -name "*.xz" -exec rm -f {} \;
+# remove all compressed logs older than 30 days
+find "$LOGS/old" -maxdepth 1 -mtime +30 -type f -name "*.xz" -exec rm -f {} \;
