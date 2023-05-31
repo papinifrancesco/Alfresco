@@ -1,0 +1,108 @@
+###### EPEL and various dependecies
+# EPEL is your friend, so:
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+
+# Install these libraries too
+dnf install -y cairo libSM libX11-xcb 
+
+# Additional fonts
+https://github.com/ImageMagick/msttcorefonts
+# after ./install.sh run:
+fc-cache -f -v
+
+
+
+###### LIBREOFFICE
+# download and extract LibreOffice for your platform
+# https://docs.alfresco.com/content-services/latest/support/#supported-platforms/
+cd $MYstuff/ ;
+wget https://downloadarchive.documentfoundation.org/libreoffice/old/7.2.5.2/rpm/x86_64/LibreOffice_7.2.5_Linux_x86-64_rpm.tar.gz
+tar -xf LibreOffice_7.2.5_Linux_x86-64_rpm.tar.gz
+
+
+# go to the RPMS directory and remove any files with gnome , kde in the filename.
+cd LibreOffice_7.2.5.2_Linux_x86-64_rpm/RPMS
+rm -rf *gnome* *kde* *freedesktop-menus*
+
+# Ignore any desktop update not found error messages.  You can remove the rpm files after installation
+dnf install ./*.rpm -y
+
+
+# LibreOffice will be probably installed in /opt/LibreOffice7.2
+# but we want a symlink as well
+ln -fns /opt/libreoffice7.2 /opt/alfresco/libreoffice
+
+# to test it is working, upload a test.odf or test.docx file (you create it)
+# to /tmp/ and then:
+
+export JAVA_HOME=/opt/alfresco/java
+/opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
+# download /tmp/test.pdf to your PC and
+# then check if you can properly open it
+
+
+
+
+
+
+
+###### IMAGEMAGICK
+
+# since the RPMs disappear quite quickly from the official web site and
+# compilation is a nightmare, I saved a few versions here:
+https://github.com/papinifrancesco/Alfresco/tree/master/ImageMagick
+
+# for a RHEL 8.7 the right packages:
+cd $MYstuff/ ;
+URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
+wget $URL/ImageMagick/ImageMagick-libs-7.1.0-29.x86_64.rpm
+wget $URL/ImageMagick/ImageMagick-7.1.0-29.x86_64.rpm
+dnf install -y ImageMagick-libs-7.1.0-29.x86_64.rpm
+dnf install -y ImageMagick-7.1.0-29.x86_64.rpm
+
+# in case of missing dependencies, probably your EPEL is not the right one
+
+
+
+
+
+
+######### TRANSFORM SERVICES
+# https://docs.alfresco.com/transform/concepts/transformservice-overview.html
+# get the zip file, uncompress it and move it under /opt/alfresco/
+cd $MYstuff/ ;
+unzip alfresco-transform-service-distribution-X.X.X.zip -d transform-service
+mv transform-service /opt/alfresco/
+mkdir /opt/alfresco/transform-service/tmp
+
+
+# The scripts now:
+mkdir -p /opt/alfresco/scripts
+cd /opt/alfresco/scripts
+
+# Dowload the required scripts:
+URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
+wget $URL/opt/alfresco/scripts/AlfrescoLogsManager.sh
+wget $URL/opt/alfresco/scripts/alfresco-shared-file.sh
+wget $URL/opt/alfresco/scripts/alfresco-transform-core.sh
+wget $URL/opt/alfresco/scripts/alfresco-transform-router.sh
+wget $URL/opt/alfresco/scripts/sort_amps_by_date.sh
+
+# set the shell scripts to be executable
+chmod +x /*.sh
+
+
+# and create the symlinks called by:
+alfresco-shared-file.sh
+alfresco-transform-core.sh
+alfresco-transform-router.sh
+# inside /opt/alfresco/transform-service: 
+cd /opt/alfresco/transform-service
+ln -fns alfresco-shared-file-store-controller-X.X.X.jar alfresco-shared-file-store-controller
+ln -fns alfresco-transform-core-aio-X.X.X.jar           alfresco-transform-core-aio
+ln -fns alfresco-transform-router-X.X.X.jar             alfresco-transform-router
+
+
+# change owner
+chown -R alfresco:alfresco /opt/alfresco/
