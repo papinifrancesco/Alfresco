@@ -103,3 +103,14 @@ cd /opt/solr/solr/bin # important
 /opt/solr/solr/bin/solr stop -all
 
 # from now on we can use systemctl
+
+
+# to access SOLR GUI install:
+https://chrome.google.com/webstore/detail/modheader-modify-http-hea/idgpnmonknjnojddfkpgkljpfnnfcklj
+
+#and configure:
+Request headsers
+    X-Alfresco-Search-Secret     SOMETHING
+    
+Request URL filters
+    :8983/solr                   All methods
