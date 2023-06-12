@@ -12,9 +12,9 @@ systemctl start activemq
 
 
 # the shutdown sequence is clearly the opposite of the startup one:
-systemctl start solr
-  systemctl start alfresco
-    systemctl start alfresco-transform-router
-      systemctl start alfresco-transform-core
-        systemctl start alfresco-shared-file
-          systemctl start activemq
+systemctl stop solr
+  systemctl stop alfresco
+    systemctl stop alfresco-transform-router
+      systemctl stop alfresco-transform-core
+        systemctl stop alfresco-shared-file
+          systemctl stop activemq
