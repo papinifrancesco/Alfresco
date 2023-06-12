@@ -106,3 +106,10 @@ ln -fns alfresco-transform-router-X.X.X.jar             alfresco-transform-route
 
 # change owner
 chown -R alfresco:alfresco /opt/alfresco/
+
+systemctl enable alfresco-shared-file
+systemctl enable alfresco-transform-core
+systemctl enable alfresco-transform-router
+systemctl start  alfresco-shared-file
+systemctl start  alfresco-transform-core
+systemctl start  alfresco-transform-router
