@@ -13,10 +13,10 @@ JAVA_OPTS="$JAVA_OPTS                                                           
            -Dcom.sun.jndi.ldap.object.disableEndpointIdentification=true                        \
            -Dcom.sun.management.jmxremote                                                       \
            -Djava.awt.headless=true                                                             \
-           -Dencryption.keystore.type=PKCS12                                                    \
-           -Dencryption.keystore.provider=SUN                                                   \
-           -Dencryption.cipherAlgorithm=AES                                                     \
-           -Dencryption.keyAlgorithm=AES                                                        \
+           -Dencryption.keystore.type=JCEKS                                                     \
+           -Dencryption.keystore.provider=SunJCE                                                \
+           -Dencryption.cipherAlgorithm=DESede/CBC/PKCS5Padding                                 \
+           -Dencryption.keyAlgorithm=DESede                                                     \
            -Dencryption.keystore.location=/opt/alfresco/alf_data/keystore/keystore              \
            -Dmetadata-keystore.password=password                                                \
            -Dmetadata-keystore.aliases=metadata                                                 \
