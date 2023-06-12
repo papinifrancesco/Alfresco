@@ -103,6 +103,8 @@ ln -fns alfresco-shared-file-store-controller-X.X.X.jar alfresco-shared-file-sto
 ln -fns alfresco-transform-core-aio-X.X.X.jar           alfresco-transform-core-aio
 ln -fns alfresco-transform-router-X.X.X.jar             alfresco-transform-router
 
+ # create the logs folder
+ mkdir /opt/alfresco/transform-service/logs
 
 # change owner
 chown -R alfresco:alfresco /opt/alfresco/
