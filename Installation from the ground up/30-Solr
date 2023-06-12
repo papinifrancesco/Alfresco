@@ -93,6 +93,7 @@ chown -R alfresco:alfresco /opt/solr/ /opt/solr_data
 # /opt/solr/solrhome/archive
 # folders
 # and wait 5' 'cause sometimes it takes time to create the folders
+systemctl start alfresco
 sudo su - alfresco
 cd /opt/solr/solr/bin # important
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
