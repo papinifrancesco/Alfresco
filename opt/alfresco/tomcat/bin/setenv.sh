@@ -26,7 +26,7 @@ JAVA_OPTS="$JAVA_OPTS                                                           
            -Djavax.net.ssl.keyStorePassword=keystore                                            \
            -Djavax.net.ssl.keyStoreType=JCEKS                                                   \
            -Djavax.net.ssl.trustStore=/opt/alfresco/alf_data/keystore/ssl.truststore            \
-           -Djavax.net.ssl.trustStorePassword=truststore                                        \
+           -Djavax.net.ssl.trustStorePassword=kT9X6oe68t                                        \
            -Djavax.net.ssl.trustStoreType=JCEKS                                                 \
            -XX:+CMSParallelRemarkEnabled                                                        \
            -XX:+DisableExplicitGC                                                               \
