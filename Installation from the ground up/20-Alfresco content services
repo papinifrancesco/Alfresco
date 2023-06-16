@@ -61,10 +61,10 @@ mkdir -p /opt/alfresco/tomcat/logs/old
 
 
 # get the JVM keystore and trusstore the files:
-wget $URL/opt/alfresco/alf_data/keystore/keystore                            -O /opt/alfresco/alf_data/keystore/
-wget $URL/opt/alfresco/alf_data/keystore/keystore-passwords.properties       -O /opt/alfresco/alf_data/keystore/
-wget $URL/opt/alfresco/alf_data/keystore/ssl-truststore-passwords.properties -O /opt/alfresco/alf_data/keystore/
-wget $URL/opt/alfresco/alf_data/keystore/ssl.truststore                      -O /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/keystore                            -P /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/keystore-passwords.properties       -P /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/ssl-truststore-passwords.properties -P /opt/alfresco/alf_data/keystore/
+wget $URL/opt/alfresco/alf_data/keystore/ssl.truststore                      -P /opt/alfresco/alf_data/keystore/
 # note that the .properties files are not needed
 # but are present for historical reasons:
 # these passwords are what we'll find for most Alfresco installations
@@ -102,7 +102,7 @@ wget $URL/opt/alfresco/tomcat/bin/setenv.sh -O opt/alfresco/tomcat/bin/setenv.sh
 
 # alfresco-global.properties is a key file for every installation and it's properties are to be known
 # start with a working one:
-wget $URL/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -O /opt/alfresco/tomcat/shared/classes/
+wget $URL/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -P /opt/alfresco/tomcat/shared/classes/
 
 
 
