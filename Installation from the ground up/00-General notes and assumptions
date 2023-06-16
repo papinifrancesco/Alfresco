@@ -43,3 +43,12 @@
 # 9) create a folder where to store your files
 MYstuff=~/work
 mkdir "$MYstuff"
+
+#10) Disable SeLinux (or go mad configuring it)
+setenforce 0
+
+and/or
+
+vi /etc/selinux/config
+
+SELINUX=disabled
