@@ -84,7 +84,7 @@ cd /opt/alfresco/scripts
 # Dowload the required scripts:
 URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
 wget $URL/opt/alfresco/scripts/AlfrescoLogsManager.sh
-wget $URL/opt/alfresco/scripts/alfresco-shared-file.sh
+wget $URL/opt/alfresco/scripts/alfresco-shared-file-start.sh
 wget $URL/opt/alfresco/scripts/alfresco-transform-core.sh
 wget $URL/opt/alfresco/scripts/alfresco-transform-router.sh
 wget $URL/opt/alfresco/scripts/sort_amps_by_date.sh
