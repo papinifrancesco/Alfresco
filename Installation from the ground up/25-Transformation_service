@@ -90,7 +90,7 @@ wget $URL/opt/alfresco/scripts/alfresco-transform-router.sh
 wget $URL/opt/alfresco/scripts/sort_amps_by_date.sh
 
 # set the shell scripts to be executable
-chmod +x /*.sh
+chmod +x *.sh
 
 
 # and create the symlinks called by:
