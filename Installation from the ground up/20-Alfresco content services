@@ -95,7 +95,7 @@ sed -i.ORIG 's#shared.loader\=#shared.loader=${catalina.base}/shared/classes,${c
 /opt/alfresco/tomcat/bin/setenv.sh
 # exists and correct its values
 # if needed refer (or just copy it) to:
-wget $URL/opt/alfresco/tomcat/bin/setenv.sh -O opt/alfresco/tomcat/bin/setenv.sh
+wget $URL/opt/alfresco/tomcat/bin/setenv.sh -O /opt/alfresco/tomcat/bin/setenv.sh
 
 
 
