@@ -1,0 +1,15 @@
+On your PC , create a folder with many different file types: .jpg , .png , .docx , .xlsx , .odt , .odf , .pdf , .txt
+
+On ACS
+    create a Collaboration Site
+    in its Document Library, upload all of your files
+    
+Expected result 1:
+You can see the miniatures for every file
+
+Expected result 2:
+You can click on a file and have the PDF version rendered on the fly and displayed
+
+
+Problems?
+Have a look at catalina.out
