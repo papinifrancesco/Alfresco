@@ -8,6 +8,9 @@ dnf install -y cairo libSM libX11-xcb
 
 # Additional fonts
 https://github.com/ImageMagick/msttcorefonts
+
+wget https://github.com/ImageMagick/msttcorefonts/archive/refs/heads/main.zip
+unzip main.zip
 # after ./install.sh run:
 fc-cache -f -v
 
