@@ -31,3 +31,6 @@ MySQL ERROR 1819 (HY000): Your password does not satisfy the current policy requ
 mysql> SHOW VARIABLES LIKE 'validate_password%';
 
 mysql> SET GLOBAL validate_password.policy = 0;
+
+
+mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
