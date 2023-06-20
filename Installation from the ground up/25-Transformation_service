@@ -4,7 +4,7 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarc
 
 
 # Install these libraries too
-dnf install -y cairo libSM libX11-xcb 
+dnf install -y cairo libSM libX11-xcb cups-libs
 
 # Additional fonts
 https://github.com/ImageMagick/msttcorefonts
@@ -79,10 +79,13 @@ unzip alfresco-transform-service-distribution-X.X.X.zip -d transform-service
 mv transform-service /opt/alfresco/
 mkdir /opt/alfresco/transform-service/tmp
 
+cd /opt/alfresco/transform-service/alfresco-pdf-renderer/
+tar -xf alfresco-pdf-renderer-1.1-linux.tgz
 
 # The scripts now:
 mkdir -p /opt/alfresco/scripts
 cd /opt/alfresco/scripts
+
 
 # Dowload the required scripts:
 URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
