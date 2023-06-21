@@ -1,0 +1,27 @@
+In catalina.out sooner or later we'll find:
+
+[...]
+2023-06-17 00:01:11,345  ERROR [heartbeat.datasender.HBDataSenderServiceImpl] [QuartzScheduler_Worker-2] [HB] Target is unavailable: https://hbrx.alfresco.com
+javax.net.ssl.SSLHandshakeException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+        at java.base/sun.security.ssl.Alert.createSSLException(Alert.java:131)
+[...]
+
+that means that in the truststore file (probably /opt/alfresco/alf_data/keystore/ssl.truststore) the certificate for https://hbrx.alfresco.com is missing.
+
+
+To add it, first make a backup copy of ssl.truststore and then:
+
+1) get the site certificate
+SITE=hbrx.alfresco.com
+openssl s_client -connect "$SITE":443 </dev/null | sed -n -e '/-.BEGIN/,/-.END/ p' > "$SITE".pem
+
+2) have a look at which aliases are already present in you truststore
+/opt/alfresco/java/bin/keytool -list -v -keystore /opt/alfresco/alf_data/keystore/ssl.truststore -storepass kT9X6oe68t | grep Alias
+
+3) insert the new cert into the truststore
+/opt/alfresco/java/bin/keytool -importcert -noprompt -alias "$SITE" -file "$SITE".pem -keystore ssl.truststore -storepass kT9X6oe68t
+
+4) verify you have your entry in the truststore
+/opt/alfresco/java/bin/keytool -list -v -keystore /opt/alfresco/alf_data/keystore/ssl.truststore -storepass kT9X6oe68t | grep Alias | grep "$SITE"
+
+5) stop and start ACS
