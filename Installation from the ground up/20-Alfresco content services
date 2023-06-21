@@ -113,11 +113,26 @@ wget $URL/opt/alfresco/tomcat/shared/classes/alfresco-global.properties -P /opt/
 # and do a manual backup of the webapps you're going to modify
 cp -ar /opt/alfresco/tomcat/webapps/alfresco /opt/alfresco/tomcat/webapps.BAK/alfresco.2023-05-30
 cp -ar /opt/alfresco/tomcat/webapps/share    /opt/alfresco/tomcat/webapps.BAK/share.2023-05-30
-systemctl stop alfresco 
+systemctl stop alfresco
 MMT install /opt/alfresco/amps/       /opt/alfresco/tomcat/webapps/alfresco/ -directory -nobackup
 MMT install /opt/alfresco/amps_share/ /opt/alfresco/tomcat/webapps/share/    -directory -nobackup
 
+# if we're installing ACS for a normal, usual, environment, we have to remember to install at least
+# the AMP for the share web integration into the alfresco webapp, example:
+systemctl stop alfresco
+MMT install /opt/alfresco/amps/alfresco-share-services.amp /opt/alfresco/tomcat/webapps/alfresco/ -nobackup
 
+# to check what's inside an ACS webapp, example:
+MMT list /opt/alfresco/tomcat/webapps/alfresco/
+Module 'alfresco-share-services' installed in '/opt/alfresco/tomcat/webapps/alfresco/'
+   -    Title:        Alfresco Share Services AMP
+   -    Version:      15.19
+   -    Install Date: Tue Jun 20 22:17:21 CEST 2023
+   -    Description:   Module to be applied to alfresco.war, containing APIs for Alfresco Share
+
+# beware: MMT doesn't detect inexistent paths, example:
+MMT list /I/do/not/exist/webapps/alfresco/
+No modules are installed in this WAR file
 
 
 # define logging for Alfresco and share web apps:
