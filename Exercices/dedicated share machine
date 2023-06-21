@@ -1,0 +1,28 @@
+In all-in-one installation we have both of the webapps, /alfresco and /share, on the same machine but what if the customer wants a dedicated /share one?
+
+While we can set up another tomcat on the same machine, to keep things simple and to adhere to the scenario I strongly recommend to create another VM: clone the one you have already and allocate no more than 2GB.
+
+On the second VM remember to leave only the /share webapp and nothing else: it is a sort of front end after all.
+
+So, remove /alfresco
+rm -rf /opt/alfresco/tomcat/webapps/alfresco
+
+Stop (and remove) the: DB , transformation services, solr, activemq, the unneeded systemd files.
+
+Do I need the "contentstore" and "contentstore.deleted"?
+  
+No, because only the /alfresco webapp use them and /share talks only with /alfresco .
+
+
+Then modify:
+/opt/alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
+
+basically replace "localhost" with the IP of your first VM, the one with the /alfresco webapp .
+
+
+Restart tomcat and try to connect with you browser to:
+
+http://VM2IP:8080/share
+
+you should be able to access.
+
