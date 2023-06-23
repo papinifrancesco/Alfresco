@@ -1,6 +1,6 @@
 In all-in-one installation we have both of the webapps, /alfresco and /share, on the same machine but what if the customer wants a dedicated /share one?
 
-While we can set up another tomcat on the same machine, to keep things simple and to adhere to the scenario I strongly recommend to create another VM: clone the one you have already and allocate no more than 2GB.
+While we can set up another tomcat on the same machine, to keep things simple and to adhere to the scenario I strongly recommend to create another VM: clone the one you have already and allocate no more than 2GB of RAM.
 
 On the second VM remember to leave only the /share webapp and nothing else: it is a sort of front end after all.
 
