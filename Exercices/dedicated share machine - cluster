@@ -1,0 +1,13 @@
+AFTER having successfully done the prerequisite exercise "dedicated share machine" we can go on and create a "clusterized /share" .
+
+Important: at this point, we ARE NOT setting up a "clusterized /alfresco" because clustering /share is independent of it.
+
+So: clone your previous , /share only VM, and change:
+
+/opt/alfresco/tomcat/shared/classes/alfresco/web-extension/custom-slingshot-application-context.xml
+
+on both of the VM and then restart tomcat.
+
+Unsure what to do?
+
+Have a look at custom-slingshot-application-context.xml in this Github repository and diff it with custom-slingshot-application-context.xml.sample on your VM.
