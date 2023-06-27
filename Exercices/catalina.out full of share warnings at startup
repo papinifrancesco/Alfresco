@@ -1,0 +1,7 @@
+Probably our catalina.out will be full of /share cache related warnings.... too many really.
+
+To fix it, download:
+
+/opt/alfresco/tomcat/conf/Catalina/localhost/share.xml
+
+in 
