@@ -2,6 +2,12 @@ Probably our catalina.out will be full of /share cache related warnings.... too 
 
 To fix it, download:
 
+https://github.com/papinifrancesco/Alfresco/blob/master/opt/alfresco/tomcat/conf/Catalina/localhost/share.xml
+
+and diff it with:
+
 /opt/alfresco/tomcat/conf/Catalina/localhost/share.xml
 
-in 
+After having understood what the difference is, copy the downloaded share.xml over the original one.
+
+Restart Alfresco and check catalina.out
