@@ -1,7 +1,7 @@
 Typical scenarios:
   you need to extend ACS functionality with a Hyland official module say: Google Docs.
                                     OR
-  your devs extend ACS functionality with an in-house developed module: TAI-repo.amp and TAI-share.amp
+  your devs extend ACS functionality with an in-house developed module: Company-repo.amp and Company-share.amp
 
 While there are many ways to achieve the same result, the one below has proven over time to be the best one.
 
@@ -21,4 +21,53 @@ You're unsure where to move the AMPs?
   Ask your devs OR
   look at its name: "repo" int the amps/ and "share" into qmps_share/
 
+
+ACS needs to be restarted to load the new functonalities provided by the installed AMPs,
+that activity will probably take place outside the normal office hours but we can prepare
+the webapps anytime.
+
+Then make a backup copy of the actual webapps:
+cp -ar /opt/alfresco/tomcat/webapps /opt/alfresco/tomcat/webapps.YYYY-MM-DD
+
+Then make a copy of the actual webapps where we'll install the new AMPs
+cp -ar /opt/alfresco/tomcat/webapps /opt/alfresco/tomcat/webapps.NEW
+
+Have a look at which, if any, AMPs are already installed:
+MMT list /opt/alfresco/tomcat/webapps/alfresco
+MMT list /opt/alfresco/tomcat/webapps/share
+
+Install the AMPS:
+MMT install /opt/alfresco/amps/Company-repo.amp        /opt/alfresco/tomcat/webapps.NEW/alfresco -force -nobackup
+MMT install /opt/alfresco/amps_share/Company-share.amp /opt/alfresco/tomcat/webapps.NEW/share    -force -nobackup
+
+Check if the AMPs installation worked:
+MMT list /opt/alfresco/tomcat/webapps.NEW/alfresco
+MMT list /opt/alfresco/tomcat/webapps.NEW/share
+
+and compare the textual output with the previous "MMT list" generated one
+
+
+If needed (maybe not), use:
+chown -R alfresco:alfresco /opt/alfresco/
+
+Wait for the agreed installation time with the customer, say 19h
+STOP ACS:
+systemctl stop alfresco
+
+Verify it is really stopped:
+ps -efw | grep java
+
+Sync webapps.NEW/ to webapps/
+rsync --delete -a /opt/alfresco/tomcat/webapps.NEW/ /opt/alfresco/tomcat/webapps/
+
+Start ACS:
+systemctl start alfresco
+
+
+Have a look at catalina.out (you never know).
+
+
+Something wrong? We can go back with:
+systemctl stop alfresco
+rsync --delete -a /opt/alfresco/tomcat/webapps.YYYY-MM-DD/ /opt/alfresco/tomcat/webapps/
 
