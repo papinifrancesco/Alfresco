@@ -2,6 +2,12 @@ In all-in-one installation we have both of the webapps, /alfresco and /share, on
 
 While we can set up another tomcat on the same machine, to keep things simple and to adhere to the scenario I strongly recommend to create another VM: clone the one you have already and allocate no more than 2GB of RAM.
 
+Remember to modify:
+/opt/alfresco/tomcat/bin/setenv.sh
+
+so that you'll have:
+-Xms and -Xmx set to 1GB
+
 On the second VM remember to leave only the /share webapp and nothing else: it is a sort of front end after all.
 
 So, remove /alfresco
