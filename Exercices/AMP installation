@@ -1,0 +1,24 @@
+Typical scenarios:
+  you need to extend ACS functionality with a Hyland official module say: Google Docs.
+                                    OR
+  your devs extend ACS functionality with an in-house developed module: TAI-repo.amp and TAI-share.amp
+
+While there are many ways to achieve the same result, the one below has proven over time to be the best one.
+
+
+First, you get the AMP (or the AMPs) from Hyland's site or from your devs: up to you to copy to your VM somewhere.
+
+Assuming you have an AMP for the repository part /alfresco and one for the webGUI /share:
+
+Rename the AMP file appending a date to it, for example:
+mv TAI-repo.amp TAI-repo_2023-06-28.amp
+
+Move it under
+  /opt/alfresco/amps/        if it is for the repository
+  /opt/alfresco/amps_share/  if it is for the webGUI
+
+You're unsure where to move the AMPs?
+  Ask your devs OR
+  look at its name: "repo" int the amps/ and "share" into qmps_share/
+
+
