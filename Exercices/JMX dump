@@ -1,0 +1,16 @@
+# If we want to have a look at the settings currently in use by ACS we can connect to:
+http://FQDN:PORT/alfresco/s/enterprise/admin/admin-jmx-settings
+
+# to export them, we can click on the "Export" button (have a look at the file later on)
+
+# if we want to make a screenshot of the page we can but there's a better idea:
+# a PDF file : that way we'll keep both the graphics but also the textual data
+# choose a printing format that is big enough to accomodate for all of the content, say A0,
+# and save the file somewhere
+
+
+# last but not least: for some reasons the GUI isn't available but we still
+# want to dump the JMX settings, try that:
+
+# JMX settings dump when no GUI is available
+curl -o jmxdump.zip -u {admin_user}:{admin_password} http://{host}:{port}/alfresco/s/api/admin/jmxdump
