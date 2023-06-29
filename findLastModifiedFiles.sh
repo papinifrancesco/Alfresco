@@ -1,4 +1,4 @@
-### what has modified in Alfresco ? ####
+### what had been modified in Alfresco ? ####
 clear
 find /opt/alfresco/ -type f -regextype posix-extended -iregex '.*.(js|jsp|orig|properties|sh|xml)' |\
 grep -E -v  '/temp/|[0-9].xml' > /root/file_list.txt
