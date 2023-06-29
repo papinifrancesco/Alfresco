@@ -1,0 +1,31 @@
+# We have a webapp , say: alfresco
+# and we want to extract all of its JAR files
+# to later have a look at of their files
+
+# first of all, we don't touch the actual /alfresco webapp
+# but we make a copy of it somewhere:
+cp -ar /opt/alfresco/tomcat/webapps/alfresco /tmp/
+
+# Then we create unJAR.sh in /tmp/alfresco/
+
+vim /tmp/alfresco/unJAR.sh
+
+while [ "`find . -type f -name '*.jar' | wc -l`" -gt 0 ]; do
+  find . -type f -name "*.jar"                    \
+      -exec mkdir -p '{}.dir' \;                  \
+      -exec echo "unzipping "{}" to "{}".dir" \;  \
+      -exec unzip -o -d '{}.dir'  -- '{}' \;      \
+      -exec rm -- '{}' \;;
+done
+
+
+# we make unJAR.sh executable
+chmod +x /tmp/alfresco/unJAR.sh
+
+# IMPORTANT : we go in /tmp/alfresco/
+cd /tmp/alfresco/
+
+# we run unJAR.sh
+./unJAR.sh
+
+# we're done : we can now use "find" "grep" etc. with ease
