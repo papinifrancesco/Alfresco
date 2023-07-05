@@ -6,6 +6,7 @@ FILE=alfresco-transform-core-aio
 PATTERN=transform-core-aio
 
 JAVA_OPTS="$JAVA_OPTS                                                                           \
+  -Xms4g                                                                                        \
   -Xmx4g                                                                                        \
   -DTRANSFORM_ENGINE_REQUEST_QUEUE=org.alfresco.transform.engine.aio.acs                        \
   -DPDFRENDERER_EXE=/opt/alfresco/transform-service/alfresco-pdf-renderer/alfresco-pdf-renderer \
