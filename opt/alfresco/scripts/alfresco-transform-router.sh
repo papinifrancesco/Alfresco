@@ -6,6 +6,7 @@ FILE=alfresco-transform-router
 PATTERN=transform-router
 
 JAVA_OPTS="$JAVA_OPTS                                                                       \
+  -Xms1g                                                                                    \
   -Xmx1g                                                                                    \
   -DCORE_AIO_URL=http://localhost:8090                                                      \
   -DCORE_AIO_QUEUE=org.alfresco.transform.engine.aio.acs                                    \
