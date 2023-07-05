@@ -6,6 +6,7 @@ FILE=alfresco-shared-file-store-controller
 PATTERN=shared-file-store
 
 JAVA_OPTS="$JAVA_OPTS                                \
+  -Xms1g                                             \
   -Xmx1g                                             \
   -Dspring.servlet.multipart.max-file-size=8192MB    \
   -Dspring.servlet.multipart.max-request-size=8192MB \
