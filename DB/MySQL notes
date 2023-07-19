@@ -22,8 +22,8 @@ db.pool.validate.query=SELECT 1
 mysql> CREATE USER 'alfresco' IDENTIFIED BY 'StrongPWD09!';
 
 
-CREATE DATABASE alfresco DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-GRANT ALL ON alfresco.* to alfresco ;
+CREATE DATABASE `alfresco` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT ALL ON `alfresco`.* to alfresco ;
 
 
 
