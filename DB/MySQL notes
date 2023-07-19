@@ -37,3 +37,13 @@ mysql> SET GLOBAL validate_password.policy = 0;
 
 
 mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
+
+
+
+use mysql;
+
+update user set authentication_string=PASSWORD("mynewpassword") where User='root';
+
+flush privileges;
+
+quit
