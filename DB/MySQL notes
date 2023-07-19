@@ -1,3 +1,6 @@
+Remember to inspect /etc/my.cnf from the old server before installing a new one, otherwise you could discover you have to reinitialize the installation later on.
+
+
 alfresco-global.properties
 ### database connection properties ###
 # OLD
