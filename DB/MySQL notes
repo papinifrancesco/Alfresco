@@ -42,9 +42,10 @@ mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
 # To import a big database, restart mysqld after having modified /etc/my.cnf that way:
 
 [mysqld]
-innodb_buffer_pool_size = 4G
-innodb_log_buffer_size = 256M 
-innodb_log_file_size = 1G 
+innodb_log_file_size=1G  # from 50M to support almost 1 Hr before rotation
+innodb_log_buffer_size=500M  # from 16M to support about 30 min before write log data
+innodb_buffer_pool_size=4G  # from 128M to better support your data loading process
+innodb_change_buffer_max_size=50  # to improve innodb_data_writes RPS of 369
 innodb_write_io_threads = 16
 innodb_flush_log_at_trx_commit = 0
 disable_log_bin
