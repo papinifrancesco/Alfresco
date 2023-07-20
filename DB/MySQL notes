@@ -39,11 +39,20 @@ mysql> SET GLOBAL validate_password.policy = 0;
 mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
 
 
+# To import a big database, restart mysqld after having modified /etc/my.cnf that way:
 
-use mysql;
+[mysqld]
+innodb_buffer_pool_size = 4G
+innodb_log_buffer_size = 256M 
+innodb_log_file_size = 1G 
+innodb_write_io_threads = 16
+innodb_flush_log_at_trx_commit = 0
+disable_log_bin
 
-update user set authentication_string=PASSWORD("mynewpassword") where User='root';
+# RESTART MySQL USING THE COMMAND BELOW 
 
-flush privileges;
+sudo systemctl restart mysqld --innodb-doublewrite=0 
 
-quit
+# AFTER IMPORT IS DONE, comment out the entrie in /etc/my.cnf and RESTART MySQL Normally 
+
+sudo systemctl restart mysqld
