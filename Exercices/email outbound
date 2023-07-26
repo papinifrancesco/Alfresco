@@ -36,5 +36,9 @@ Perform Action: Send email
         Message: just a test
     OK
 
+At this point just create a simple .txt file into testEmail folder : when done ACS should send you a notification email..
 
+That works? If it does, then Alfresco is ok with sending email and the problem lies in the specific procedure the customer is using:
+
+call the customer and have him write you the exact steps to reproduce the issue, then good luck with catalina.out
 
