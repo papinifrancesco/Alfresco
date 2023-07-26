@@ -14,7 +14,7 @@ dnf install -y swaks
 
 swaks --from alfresco@domain.one --to myAccount@domain.two --server smtphost.domain.three --port 25
 
-please be aware that maybe you will have to use TLS, have a look at the relevant options in advance
+please be aware that maybe you will have to use TLS and authentication, have a look at the relevant options in advance
 
 if the sending works then we know that the smtp server is ok and then the issue is really in Alfresco somewhere
 
