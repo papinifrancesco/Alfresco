@@ -6,3 +6,10 @@ The customer will report his problem in his very own words but that doesn't mean
 
 So, let's check a few things first.
 
+Open alfresco-global.properties and check the values of mail.* fields.
+
+Install swaks to send an email from the Alfresco machine.
+
+dnf install -y swaks
+
+swaks --from alfresco@technogym.com<mailto:alfresco@technogym.com> --to fpapini@tai.it<mailto:fpapini@tai.it> --server smtphost.technogym.com --port 25
