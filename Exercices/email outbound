@@ -20,5 +20,21 @@ if the sending works then we know that the smtp server is ok and then the issue 
 
 to test it, access /share
 
-create a test site if you don't have it already
+create a test site if you don't have it already and then
+
+go to "Document Library" and create a folder called "testEmail"
+
+DO NOT enter testEmail and, instead, go to the right of the screen and click on "... More" and "Manage Rules"
+
+"Create Rules" ,
+
+Name: sendEmail
+Perform Action: Send email
+    Message...
+        To: select your test user with the email defined or go back and create one
+        Subject: smtp test from ACS - Customer X
+        Message: just a test
+    OK
+
+
 
