@@ -12,4 +12,4 @@ Install swaks to send an email from the Alfresco machine.
 
 dnf install -y swaks
 
-swaks --from alfresco@technogym.com<mailto:alfresco@technogym.com> --to fpapini@tai.it<mailto:fpapini@tai.it> --server smtphost.technogym.com --port 25
+swaks --from alfresco@domain.one --to myAccount@domain.two --server smtphost.technogym.com --port 25
