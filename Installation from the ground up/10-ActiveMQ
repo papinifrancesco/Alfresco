@@ -67,7 +67,7 @@ JAVACMD="auto"
 #### save and exit vim now
 
 
-chmod 600 /opt/activemq/conf/jmx.password
+chmod 0600 /opt/activemq/conf/jmx*
 # modify jmx.access and jmx.password as you wish
 
 chown alfresco:alfresco /opt/activemq
