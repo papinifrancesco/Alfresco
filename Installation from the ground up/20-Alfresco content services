@@ -139,18 +139,24 @@ No modules are installed in this WAR file
 # we need to make this change otherwise the logs won't be
 # written in /opt/alfresco/tomcat/logs
 cd /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/
+# ACS < 7.4.x I guess, check it
 sed -i.ORIG 's#log4j.appender.File.File=alfresco.log#log4j.appender.File.File=${catalina.base}/logs/alfresco.log#g' log4j.properties
-
+# ACS >= 7.4.x
+sed -i.ORIG 's#alfresco.log#${catalina.base}/logs/alfresco.log#g' log4j2.properties
 
 # read the documentation about custom-log4j.properties
 cp -a log4j.properties /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
-
+or
+cp -a log4j2.properties /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j2.properties
 
 cd /opt/alfresco/tomcat/webapps/share/WEB-INF/classes/
+# ACS < 7.4.x
 sed -i.ORIG 's#log4j.appender.File.File=share.log#log4j.appender.File.File=${catalina.base}/logs/share.log#g' log4j.properties
+# ACS >= 7.4.x
+sed -i.ORIG 's#share.log#${catalina.base}/logs/share.log#g' log4j2.properties
 
 
-
+##### TO BE CHECKED FOR 7.4.X
 # add some extra logging
 vim /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
 
