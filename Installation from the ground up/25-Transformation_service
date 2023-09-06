@@ -40,8 +40,7 @@ ln -fns /opt/libreoffice7.2 /opt/alfresco/libreoffice
 # to test it is working, upload a test.odf or test.docx file (you create it)
 # to /tmp/ and then:
 
-export JAVA_HOME=/opt/alfresco/java
-/opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
+JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
 # download /tmp/test.pdf to your PC and
 # then check if you can properly open it
 
