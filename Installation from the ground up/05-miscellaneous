@@ -1,9 +1,6 @@
 # We don't want to run Alfresco as root so let's create:
 
-groupadd alfresco # a dedicated group
-
-useradd -m alfresco -g alfresco # and a dedicated user
-
+useradd -U alfresco
 
 # optional but very handy
 # this one below could be put in /etc/profile.d/alfresco_aliases.sh
