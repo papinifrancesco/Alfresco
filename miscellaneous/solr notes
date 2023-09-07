@@ -19,6 +19,8 @@ https://docs.alfresco.com/search-services/latest/admin/monitor/
 curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=archive"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=alfresco"
 
+curl "http://127.0.0.1:8983/solr/admin/cores?action=summary&core=alfresco"
+
 curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
 curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
