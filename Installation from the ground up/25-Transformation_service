@@ -12,7 +12,7 @@ https://github.com/ImageMagick/msttcorefonts
 wget https://github.com/ImageMagick/msttcorefonts/archive/refs/heads/main.zip
 unzip main.zip
 cd msttcorefonts-main
-# after ./install.sh run:
+./install.sh
 fc-cache -f -v
 
 
