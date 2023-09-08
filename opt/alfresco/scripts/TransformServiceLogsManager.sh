@@ -22,4 +22,4 @@ rotate_file "transform-core-aio"
 rotate_file "shared-file-store"
 
 # delete files older than 5 days if not in use
-find "$LOGS" -maxdepth 1 -type f -mtime 5 | while read -r filename ; do /sbin/fuser -s "$filename" || rm -f "$filename" ; done
+find "$LOGS" -maxdepth 1 -type f -mtime 5 | while read -r filename ; do fuser -s "$filename" || rm -f "$filename" ; done
