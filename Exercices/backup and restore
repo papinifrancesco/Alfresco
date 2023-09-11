@@ -23,6 +23,6 @@ psql
   GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
   \q
 
-date ; pgrestore -d alfresco -f /var/lib/pgsql/15/backup/alfresco.sql ; date
+date ; psql -d alfresco -f /var/lib/pgsql/15/backup/alfresco.sql ; date
 
 One the restore procedure is done, start ACS and check if it works.
