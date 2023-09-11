@@ -1,0 +1,21 @@
+Before anything else, we should always have a backup copy of the DB.
+Ideally we should have a copy of the DB and of the contentstore taken at the same time and with a stopped ACS but:
+a) the contentstore might be difficult to backup (say it is 5TB)
+b) we can't stop ACS
+
+Note: in that case, we should make sure our customer has at least a snapshot of the contentstore.
+
+For this exercise however, we'll be working with our test environment so nothing unmanageable.
+
+Stop ACS
+copy the alf_data folder somewhere
+
+
+log in to the VM with Postgresql (probably the same VM of ACS)
+sudo su - postgres
+date; pg_dump alfresco > /var/lib/pgsql/15/backup/alfresco.sql ; date
+
+Once done with the backup, check alfresco.sql to make sure it has the expected data and then:
+psql
+
+https://www.postgresql.org/docs/current/backup-dump.html
