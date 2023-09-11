@@ -6,6 +6,7 @@ b) we can't stop ACS
 Note: in that case, we should make sure our customer has at least a snapshot of the contentstore.
 
 For this exercise however, we'll be working with our test environment so nothing unmanageable.
+Of course the we can have a few backup and restore procedure: we'll look at the most common one.
 
 Stop ACS
 copy the alf_data folder somewhere
@@ -13,9 +14,15 @@ copy the alf_data folder somewhere
 
 log in to the VM with Postgresql (probably the same VM of ACS)
 sudo su - postgres
-date; pg_dump alfresco > /var/lib/pgsql/15/backup/alfresco.sql ; date
+date ; pg_dump alfresco > /var/lib/pgsql/15/backup/alfresco.sql ; date
 
 Once done with the backup, check alfresco.sql to make sure it has the expected data and then:
 psql
+  DROP DATABASE alfresco;
+  CREATE DATABASE alfresco OWNER alfresco ENCODING 'utf8';
+  GRANT ALL PRIVILEGES ON DATABASE alfresco TO alfresco;
+  \q
 
-https://www.postgresql.org/docs/current/backup-dump.html
+date ; pgrestore -d alfresco -f /var/lib/pgsql/15/backup/alfresco.sql ; date
+
+One the restore procedure is done, start ACS and check if it works.
