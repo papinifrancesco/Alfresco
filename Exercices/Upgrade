@@ -1,0 +1,5 @@
+Sooner or later it'll have to done: the ACS upgrade.
+
+Upgrading means:
+make sure we have a backup of contentstore, keystore and DB
+if possible stop ACS and make a backup
