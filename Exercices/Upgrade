@@ -14,6 +14,12 @@ B) curl -o jmxdump.zip -u {admin_user}:{admin_password} http://{host}:{port}/alf
 the webGUI is more handy in this case because we can easily see if something has been configured using the GUI or not: it would be better to "revert" the GUI settings
 and have them configured in the files on the filesystem (alfresco-global.properties but not only).
 
+Remember to ALWAYS keep the old folder:
+/opt/alfresco/alf_data/keystore/
+unless you have reason to change its files and you are to manipulate them
+(I've manipulated the keystore files once to extract its raw key and re-insert it in a new, AES based, keystore file once)
+
+
 That done, let have a look at which webapps we have:
 ll /opt/alfresco/tomcat/webapps/
 
@@ -59,10 +65,21 @@ of ACS that we're preparing.
 
 While this list is not exhaustive, it contains the most frequently modified files to check in a ACS installation:
 
+/opt/alfresco/alf_data/keystore/*
 /opt/alfresco/tomcat/bin/setenv.sh
+/opt/alfresco/tomcat/conf/catalina.properties
+/opt/alfresco/tomcat/conf/tomcat-users.xml
+/opt/alfresco/tomcat/conf/catalina.properties
 /opt/alfresco/tomcat/conf/server.xml
+/opt/alfresco/tomcat/conf/Catalina/localhost/alfresco.xml
+/opt/alfresco/tomcat/conf/Catalina/localhost/share.xml
 /opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+
 /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+OR
+/opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j2.properties
+
+/opt/alfresco/tomcat/shared/classes/alfresco/extension/license/*
 /opt/alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 
 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/log4j.properties
@@ -73,3 +90,16 @@ OR
 OR
 /opt/alfresco/tomcat/webapps/share/WEB-INF/classes/log4j2.properties
 
+
+
+For ASS (Alfresco Search Services) the procedure is the same but we have no AMPs nor modules.
+
+Usually these are the file to check:
+/opt/solr/solr.in.sh
+/opt/solr/solrhome/alfresco/conf/solrcore.properties
+/opt/solr/solrhome/alfresco/conf/solrconfig.xml
+/opt/solr/solrhome/archive/conf/solrcore.properties
+/opt/solr/solrhome/archive/conf/solrconfig.xml
+/opt/solr/solrhome/alfresco/conf/solrconfig.xml
+
+but a "compareAlfrescos.sh" is always worth to be used.
