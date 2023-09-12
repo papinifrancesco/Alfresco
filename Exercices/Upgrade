@@ -16,7 +16,7 @@ and have them configured in the files on the filesystem (alfresco-global.propert
 
 Remember to ALWAYS keep the old folder:
 /opt/alfresco/alf_data/keystore/
-unless you have reason to change its files and you are to manipulate them
+unless you have reason to change its files and you are able to manipulate them
 (I've manipulated the keystore files once to extract its raw key and re-insert it in a new, AES based, keystore file once)
 
 
