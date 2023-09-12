@@ -35,7 +35,7 @@ for the up to date version of these modules we should ask our DEVs to provide th
 
 
 Now, the actual ACS installation should be compared with a same version, Vanilla one.
-We can prepare a Vanilla one on our PC, make a .tgz of it and upload it to the actal ACS server , then we extract the archive and we make a comparison.
+We can prepare a Vanilla one on our PC, make a .tgz of it and upload it to the actual ACS server , then we extract the archive and we make a comparison.
 
 Go to the installation folder and make two symlinks (veeeeery handy):
 cd /opt/
