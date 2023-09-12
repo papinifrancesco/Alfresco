@@ -59,7 +59,17 @@ of ACS that we're preparing.
 
 While this list is not exhaustive, it contains the most frequently modified files to check in a ACS installation:
 
+/opt/alfresco/tomcat/bin/setenv.sh
+/opt/alfresco/tomcat/conf/server.xml
+/opt/alfresco/tomcat/shared/classes/alfresco-global.properties
+/opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+/opt/alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 
+/opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/log4j.properties
+OR
+/opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/log4j2.properties
 
-
+/opt/alfresco/tomcat/webapps/share/WEB-INF/classes/log4j.properties
+OR
+/opt/alfresco/tomcat/webapps/share/WEB-INF/classes/log4j2.properties
 
