@@ -1,5 +1,65 @@
 Sooner or later it'll have to done: the ACS upgrade.
 
 Upgrading means:
-make sure we have a backup of contentstore, keystore and DB
-if possible stop ACS and make a backup
+1) making sure we have a backup of contentstore, keystore and DB
+2) upgrading ACS
+
+
+Now, the situation is: pretend we inherit an installation of which we know nothing, before anything else let's dump all of the applied ACS setting with a JMX dump.
+
+A) use the webGUI at /alfresco/s/enterprise/admin/admin-jmx-settings
+OR
+B) curl -o jmxdump.zip -u {admin_user}:{admin_password} http://{host}:{port}/alfresco/s/api/admin/jmxdump
+
+the webGUI is more handy in this case because we can easily see if something has been configured using the GUI or not: it would be better to "revert" the GUI settings
+and have them configured in the files on the filesystem (alfresco-global.properties but not only).
+
+That done, let have a look at which webapps we have:
+ll /opt/alfresco/tomcat/webapps/
+
+and, inside these webapps, which AMPs are installed:
+MMT list /opt/alfresco/tomcat/webapps/alfresco
+MMT list /opt/alfresco/tomcat/webapps/share
+we have to remember to install the new version of these AMPs
+
+then, any modules loaded as .jar files?
+ll /opt/alfresco/modules/platform/
+ll /opt/alfresco/modules/share/
+for the up to date version of these modules we should ask our DEVs to provide them
+
+
+Now, the actual ACS installation should be compared with a same version, Vanilla one.
+We can prepare a Vanilla one on our PC, make a .tgz of it and upload it to the actal ACS server , then we extract the archive and we make a comparison.
+
+Go to the installation folder and make two symlinks (veeeeery handy):
+cd /opt/
+ll
+[...]
+alfresco-content-services-7.2.1-actual_installation
+alfresco-content-services-7.2.1-my_Vanilla_installation
+
+ln -fns alfresco-content-services-7.2.1-actual_installation O        # OLD
+ln -fns alfresco-content-services-7.2.1-my_Vanilla_installation N    # NEW
+
+at this point, inside your home folder, create the bin one:
+cd
+mkdir bin
+cd bin
+
+download "compareAlfrescos.sh" and make it executable:
+wget https://raw.githubusercontent.com/papinifrancesco/Alfresco/master/miscellaneous/compareAlfrescos.sh
+chmod +x compareAlfrescos.sh
+
+now go back to /opt and type:
+compareAlfrescos.sh O N
+
+copy the screen results to a notepad and then take a look of what's different (a lot of patience here):
+what is not in the Vanilla installation is what we should remember to bring in the new, upgraded version
+of ACS that we're preparing.
+
+While this list is not exhaustive, it contains the most frequently modified files to check in a ACS installation:
+
+
+
+
+
