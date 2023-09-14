@@ -3,7 +3,7 @@ Typical scenarios:
                                     OR
   your devs extend ACS functionality with an in-house developed module: Company-repo.amp and Company-share.amp
 
-While there are many ways to achieve the same result, the one below has proven over time to be the best one.
+While there are many ways to achieve the same result, this one below has proven over time to be the best one.
 
 
 First, you get the AMP (or the AMPs) from Hyland's site or from your devs: up to you to copy to your VM somewhere.
