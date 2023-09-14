@@ -66,6 +66,7 @@ of ACS that we're preparing.
 While this list is not exhaustive, it contains the most frequently modified files to check in a ACS installation:
 
 /opt/alfresco/alf_data/keystore/*
+/opt/alfresco/modules/*
 /opt/alfresco/tomcat/bin/setenv.sh
 /opt/alfresco/tomcat/conf/catalina.properties
 /opt/alfresco/tomcat/conf/tomcat-users.xml
