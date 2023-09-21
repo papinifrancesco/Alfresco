@@ -57,8 +57,11 @@ systemctl stop alfresco
 Verify it is really stopped:
 ps -efw | grep java
 
-Sync webapps.NEW/ to webapps/
-rsync --delete -a /opt/alfresco/tomcat/webapps.NEW/ /opt/alfresco/tomcat/webapps/
+Rename old webapps to webapps.YYYY-MM-DD
+mv webapps webapps.2023-09-21
+
+and webapps.NEW to webapps
+mv webapps.NEW webapps
 
 Start ACS:
 systemctl start alfresco
