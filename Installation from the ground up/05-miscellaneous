@@ -17,8 +17,6 @@ alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
 
 TD=$(date +'%Y-%m-%d')
 
-alias BK='cp -a $1 $1.$TD'
-
 BK () {
 cp -a "$1" "$1"."$TD"
 }
