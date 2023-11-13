@@ -19,6 +19,10 @@ TD=$(date +'%Y-%m-%d')
 
 alias BK='cp -a $1 $1.$TD'
 
+BK () {
+cp -a "$1" "$1"."$TD"
+}
+
 # exit bash and log in again
 
 
