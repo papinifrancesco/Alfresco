@@ -1,3 +1,4 @@
+alf_data/cachedcontent/*
 alf_data/contentstore/*
 alf_data/contentstore.deleted/*
 tomcat/logs/*
