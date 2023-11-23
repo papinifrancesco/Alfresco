@@ -27,3 +27,27 @@ integrations.sap.system.1.password
 # ask SAP admins to reset it
 
 # In catalina.out we might have:
+2023-11-22 12:53:09,143  DEBUG [repo.behaviours.BehaviourCreateArchivelink] [SapContentConnectorBehaviourWorkerThread1] Setting '{{http://www.connexas.eu/model/administration/1.0}saperror=Initialization of repository destination ASPI - Test ECC failed: Name or password is incorrect (repeat logon):}' for NodeRef workspace://SpacesStore/c97563ee-582d-498e-a560-68a27b24bdde in transaction!
+
+# AFTER having checked the "from ACS to SAP" section above and maybe fixed it, how can we trigger an update from ACS to SAP ?
+# We get the NodeRef in the log : workspace://SpacesStore/c97563ee-582d-498e-a560-68a27b24bdde
+# and we open it from the WebGUI:
+http://FQDN:PORT/share/page/document-details?nodeRef=workspace://SpacesStore/c97563ee-582d-498e-a560-68a27b24bdde
+
+# at the very bottom of the page we should see the error:
+SAP Error: Initialization of repository destination ASPI - Test ECC failed: Name or password is incorrect (repeat logon):
+
+# let's try to fix it by updating one the the properties of the node: pick a safe, not used one such as "SAP Description:"
+click on "Edit Properties:"
+
+in the "SAP Description:" field insert something such as "Manual fix from Alfresco", click "Save"
+
+# at this time, at the bottom of the page we should have "SAP Error: (None)" but, if not, we will have to review the config with the SAP people.
+
+
+An addition check would be opening the Node Browser and make sure our node has:
+connexasCreatearchivelink:sapdescription	d:text	StringWeHaveWrittenManuallyBefore
+connexasArchivelink:sapid               	d:text	c97563ee-582d-498e-a560-68a27b24bdde
+connexasAdministration:sapstatus	        d:text	Sent to SAP	false	Delete
+connexasAdministration:saperror	          d:text	null
+
