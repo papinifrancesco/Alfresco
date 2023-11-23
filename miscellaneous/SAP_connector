@@ -14,3 +14,16 @@ log4j.logger.com.alfresco.integrations.sap.repo.behaviours = WARN
 log4j.logger.com.alfresco.integrations.sap.repo.exceptions = WARN
 
 
+# Problem: communication starting from ACS and going to SAP (doesn't work).
+# it seems weird since the opposite does but remember, we have to flows:
+# from SAP to ACS
+
+# from ACS to SAP
+# in this latter case its importanto to check in alfresco-global.properties:
+integrations.sap.system.1.host
+integrations.sap.system.1.user
+integrations.sap.system.1.password
+# sometimes the SAP user, usually "comalfresco" has an expired password
+# ask SAP admins to reset it
+
+# In catalina.out we might have:
