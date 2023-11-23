@@ -1,0 +1,16 @@
+# The offical and public documentation is clear
+# just some notes on how to enable the debug logs
+# and to resolve a specific issue.
+
+# First of all, logging properties in custom-log4j.properties
+# I prefer to define the object to be logged here at only WARN level
+# and enable the DEBUG level using GUI when needed at:
+# http://FQDN:PORT/alfresco/s/enterprise/admin/admin-log-settings
+log4j.logger.com.alfresco.integrations.sap.archivelink.functions = WARN
+log4j.logger.com.alfresco.integrations.sap.archivelink.beans = WARN
+log4j.logger.com.alfresco.integrations.sap.webscripts = WARN
+log4j.logger.com.alfresco.integrations.sap.repo.jobs = WARN
+log4j.logger.com.alfresco.integrations.sap.repo.behaviours = WARN
+log4j.logger.com.alfresco.integrations.sap.repo.exceptions = WARN
+
+
