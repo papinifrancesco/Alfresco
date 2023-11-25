@@ -1,10 +1,24 @@
-From ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
+# From ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
 
-# DO NOT optimize with the GUI butto as it would create a single, huge file for the index.
+
+# Reindex a node, it is needed to purge it first.
+# So, we get the node DBID from the node browser and then, for example:
+
+NODEID=35812340
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=$NODEID"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REINDEX&nodeid=$NODEID"
+
+
+# DO NOT optimize with the GUI button as it would create a single, huge file for the index.
 # Try instead to reduce the number of the segments you have with the "maxSegments" option.
 # Of course the value for maxSegments is related to your environment and I suggest to start
 # your tests with the "archive" index and not with the "alfresco" one
+
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/archive/update?optimize=true&maxSegments=50"
+
+
+
+
 
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco" 
 
@@ -16,33 +30,20 @@ SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/
 
-curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=archive"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=alfresco"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=archive"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=alfresco"
 
-curl "http://127.0.0.1:8983/solr/admin/cores?action=summary&core=alfresco"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=summary&core=alfresco"
 
-curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
-curl "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
 
 curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json&fromTxCommitTime=1645632000"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&dryRun=false&wt=json"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
-
-
-NODEID=979
-curl "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=$NODEID"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=INDEX&nodeid=$NODEID"
-
-
-
-curl "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=7922950"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=REINDEX&nodeid=7922950"
-
-
-
 
 
 
