@@ -7,9 +7,9 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarc
 dnf install -y cairo libSM libX11-xcb cups-libs
 
 # Additional fonts
-https://github.com/ImageMagick/msttcorefonts
+https://github.com/papinifrancesco/msttcorefonts
 
-wget https://github.com/ImageMagick/msttcorefonts/archive/refs/heads/main.zip
+wget https://github.com/papinifrancesco/msttcorefonts/archive/refs/heads/main.zip
 unzip msttcorefonts-main.zip
 cd msttcorefonts-main
 ./install.sh
