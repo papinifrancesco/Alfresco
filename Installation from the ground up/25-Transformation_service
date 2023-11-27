@@ -10,7 +10,7 @@ dnf install -y cairo libSM libX11-xcb cups-libs
 https://github.com/ImageMagick/msttcorefonts
 
 wget https://github.com/ImageMagick/msttcorefonts/archive/refs/heads/main.zip
-unzip main.zip
+unzip msttcorefonts-main.zip
 cd msttcorefonts-main
 ./install.sh
 fc-cache -f -v
