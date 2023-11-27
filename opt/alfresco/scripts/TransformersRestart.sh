@@ -11,6 +11,8 @@ sudo systemctl stop alfresco-transform-core
 
 sleep 5
 
+rm -f /opt/alfresco/transform-service/logs/transform-*
+
 sudo systemctl start alfresco-transform-core
 
 sleep 10
