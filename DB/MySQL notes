@@ -1,3 +1,15 @@
+########## DATABASE SIZE IN GB ##########
+use yourChosenDB
+SELECT table_schema AS "Database", 
+       Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 1) AS "Size in GB" 
+FROM information_schema.tables 
+GROUP BY table_schema;
+
+
+
+
+
+
 Remember to inspect /etc/my.cnf from the old server before installing a new one, otherwise you could discover you have to reinitialize the installation later on.
 
 
@@ -13,8 +25,6 @@ db.name=alfresco
 db.url=jdbc:mysql://192.168.122.250:3306/alfresco?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
 db.pool.max=275
 db.pool.validate.query=SELECT 1
-
-
 
 
 
