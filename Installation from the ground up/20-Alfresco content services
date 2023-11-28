@@ -159,6 +159,8 @@ sed -i.ORIG 's#share.log#${catalina.base}/logs/share.log#g' log4j2.properties
 ##### TO BE CHECKED FOR 7.4.X
 # add some extra logging
 vim /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
+or
+vim /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j2.properties
 
 # and add this below:
 #QuerySolr debug
