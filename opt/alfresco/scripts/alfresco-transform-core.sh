@@ -1,4 +1,6 @@
 #!/bin/bash
+# https://docs.alfresco.com/transform-service/latest/install/
+
 TS=/opt/alfresco/transform-service
 WDIR=$TS
 
