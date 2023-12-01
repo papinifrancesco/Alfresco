@@ -28,7 +28,7 @@ curl -s --header "x-alfresco-search-secret: Tai22" 'http://127.0.0.1:8983/solr/a
 
 SUGGESTER
 
-https://docs.alfresco.com/search-services/latest/admin/monitor/
+https://docs.alfresco.com/search-services/latest/admin/monitor/#unindexed-transactions
 
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=archive"
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=alfresco"
@@ -39,7 +39,7 @@ curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://localhos
 
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
 
-curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json&fromTxCommitTime=1645632000"
+curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json&fromTxCommitTime=1701298800"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&dryRun=false&wt=json"
 curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
