@@ -1,0 +1,15 @@
+Given:
+https://docs.alfresco.com/transform-service/1.5/config/
+
+and an example at:
+https://github.com/Alfresco/alfresco-transform-core/blob/2847a435cdf52b158d969ffa5f29f91ed57c2d14/engines/libreoffice/src/main/resources/libreoffice_engine_config.json#L28
+
+How do I extract my config?
+wget http://yourATSmachine:8090/transform/config -O transformers_config.json
+
+At this point we can make the modifications we want and then:
+Define in AGP:
+local.transform.pipeline.config.dir=/opt/alfresco/tomcat/shared/classes/alfresco/extension/transform/pipelines/
+
+copy the previous file to the right folder
+cp transformers_config.json /opt/alfresco/tomcat/shared/classes/alfresco/extension/transform/pipelines/
