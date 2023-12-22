@@ -1,7 +1,7 @@
 ###### EPEL and various dependecies
 # EPEL is your friend, so:
 yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-
+/usr/bin/crb enable
 
 # Install these libraries too
 dnf install -y cairo libSM libX11-xcb cups-libs
