@@ -49,17 +49,17 @@ vim /etc/sudoers.d/alfresco_sudoers
 
 # Systemd services
 URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
-wget $URL/etc/systemd/system/activemq.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/activemq.service -P /etc/systemd/system/
 
-wget $URL/etc/systemd/system/alfresco.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/alfresco.service -P /etc/systemd/system/
 
-wget $URL/etc/systemd/system/alfresco-shared-file.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/alfresco-shared-file.service -P /etc/systemd/system/
 
-wget $URL/etc/systemd/system/alfresco-transform-core.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/alfresco-transform-core.service -P /etc/systemd/system/
 
-wget $URL/etc/systemd/system/alfresco-transform-router.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/alfresco-transform-router.service -P /etc/systemd/system/
 
-wget $URL/etc/systemd/system/solr.service -P /etc/systemd/system/
+wget --no-check-certificate $URL/etc/systemd/system/solr.service -P /etc/systemd/system/
 
 systemctl daemon-reload
 
