@@ -39,5 +39,69 @@
       <property name="hazelcastTopicName"><value>slingshot-topic</value></property>
    </bean>
 
+   <!--               -->
+   <!-- Remote Client -->
+   <!--               -->
+   <!-- This bean is responsible for performing remote connections and proxying requests to remote servers.
+        It is generated for each connector instance (per endpoint config) - a new bean instance is used per
+        connection. Each connector will apply state such as the current authentication ticket/cookie and
+        content type as appropriate for the request. The configuration values below will be applied to all
+        instances of the RemoteClient. Override the concrete "connector.remoteclient" bean definition to
+        modify individual properties or to extend the implementing class. -->
+   <bean id="connector.remoteclient" parent="connector.remoteclient.abstract"
+         class="org.springframework.extensions.webscripts.connector.RemoteClient" scope="prototype" />
+   <bean id="connector.remoteclient.abstract" abstract="true" init-method="init">
+      <property name="configService" ref="web.config" />
+      <!-- name of authentication ticket that can be optionally applied to proxied URLs -->
+      <!-- the ticket value is set programmatically by the connector making use of the RemoteClient instance -->
+      <property name="ticketName"><value>alf_ticket</value></property>
+      <!-- default encoding to use when decoded responses when none is set in the response - set to null for platform default -->
+      <property name="defaultEncoding"><null/></property>
+      <!-- default Content-Type header value to use for PUT or POST responses when none is supplied -->
+      <property name="defaultContentType"><value>application/octet-stream</value></property>
+      <!-- size of the internal byte buffer used when proxying responses -->
+      <property name="bufferSize"><value>4096</value></property>
+      <!-- the http.connection.timeout value in milliseconds to apply to HTTP connections -->
+      <property name="connectTimeout"><value>10000</value></property>
+      <!-- the http.socket.timeout value in milliseconds to apply to HTTP connections -->
+      <property name="readTimeout"><value>120000</value></property>
+      <!-- the maximum number of redirects to process from a GET request while maintaining cookies -->
+      <property name="maxRedirects"><value>10</value></property>
+      <!-- the connection thread pool size to use -->
+      <property name="poolSize"><value>200</value></property>
+      <!-- the RemoteClient will automatically use an HTTP proxy if the JVM property 'http.proxyHost' is set
+           but this feature can be disabled by setting this bean property to false -->
+      <property name="allowHttpProxy"><value>true</value></property>
+      <!-- the RemoteClient will automatically use an HTTPS proxy if the JVM property 'https.proxyHost' is set
+           but this feature can be disabled by setting this bean property to false -->
+      <property name="allowHttpsProxy"><value>true</value></property>
+      <!-- the set of headers to remove when proxying a request from a client to a remote endpoint -->
+      <property name="removeRequestHeaders">
+         <set>
+            <value>Cookie</value>
+            <value>Host</value>
+         </set>
+      </property>
+      <!-- the set of headers to apply when proxying a request from a client to a remote endpoint -->
+      <property name="requestHeaders">
+         <map>
+            <!-- Example custom header
+            <entry key="x-something"><value>thevalue</value></entry>
+             -->
+         </map>
+      </property>
+      <!-- the set of headers to remove when proxying a response from a remote endpoint to a client -->
+      <property name="removeResponseHeaders">
+         <set>
+            <value>Set-Cookie</value>
+         </set>
+      </property>
+      <!-- http.tcp.nodelay setting - default is true
+           NOTE: DEPRECATED SINCE 5.0! -->
+      <property name="httpTcpNodelay"><value>true</value></property>
+      <!-- http.connection.stalecheck setting - default is true -->
+      <property name="httpConnectionStalecheck"><value>true</value></property>
+   </bean>
+
 
 </beans>
