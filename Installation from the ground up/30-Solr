@@ -3,17 +3,17 @@
 
 
 # create the solr data folder first
-mkdir /opt/solr_indexes_207
+mkdir /opt/solr_indexes_208
 
 # create the symlink to it
-ln -s /opt/solr_indexes_207 /opt/solr_data
+ln -s /opt/solr_indexes_208 /opt/solr_data
 
 # create the subfolders
 mkdir /opt/solr_data/alfresco /opt/solr_data/archive /opt/solr_data/model /opt/solr_data/tmp 
 
-unzip alfresco-search-services-2.0.7.zip -d alfresco-search-services-2.0.7
-mv alfresco-search-services-2.0.7 /opt/
-ln -s alfresco-search-services-2.0.7 /opt/solr
+unzip alfresco-search-services-2.0.8.2.zip -d alfresco-search-services-2.0.8.2
+mv alfresco-search-services-2.0.8.2 /opt/
+ln -s alfresco-search-services-2.0.8.2 /opt/solr
 cd /opt/solr/solrhome/conf/
 cp -a shared.properties shared.properties.ORIG
 vim /opt/solr/solrhome/conf/shared.properties
