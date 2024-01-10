@@ -1,6 +1,6 @@
 ###### EPEL and various dependecies
 # EPEL is your friend, so:
-yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 /usr/bin/crb enable
 
 # Install these libraries too
@@ -11,7 +11,7 @@ https://github.com/papinifrancesco/msttcorefonts
 
 wget https://github.com/papinifrancesco/msttcorefonts/archive/refs/heads/main.zip
 unzip -d msttcorefonts main.zip
-cd msttcorefonts
+cd msttcorefonts/msttcorefonts-main
 ./install.sh
 fc-cache -f -v
 
@@ -40,7 +40,7 @@ ln -fns /opt/libreoffice7.2 /opt/alfresco/libreoffice
 # to test it is working, upload a test.odf or test.docx file (you create it)
 # to /tmp/ and then:
 
-JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
+export JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
 # download /tmp/test.pdf to your PC and
 # then check if you can properly open it
 
