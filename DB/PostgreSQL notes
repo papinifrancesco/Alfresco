@@ -1,69 +1,9 @@
-########## DATABASE SIZE IN GB ##########
-use yourChosenDB
-SELECT table_schema AS "Database", 
-       Round(Sum(data_length + index_length) / 1024 / 1024 / 1024, 1) AS "Size in GB" 
-FROM information_schema.tables 
-GROUP BY table_schema;
+# test connection with psql
+	psql "postgres://USER:PASSWORD@HOST:PORT/DB?sslmode=allow&options=--search_path%3Dmyschema"
 
+# usually "myschema" is either "public" or "alfresco"
+# but in case of doubts ask the DBA or have a look at the DB yourself
 
+	psql "postgres://USER:PASSWORD@HOST:PORT/DB?sslmode=allow&options=--search_path%3Dpublic"
 
-
-
-
-Remember to inspect /etc/my.cnf from the old server before installing a new one, otherwise you could discover you have to reinitialize the installation later on.
-
-
-alfresco-global.properties
-### database connection properties ###
-# OLD
-db.driver=com.mysql.jdbc.Driver
-# NEW
-db.driver=com.mysql.cj.jdbc.Driver
-db.username=alfresco
-db.password=alfresco
-db.name=alfresco
-db.url=jdbc:mysql://192.168.122.250:3306/alfresco?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
-db.pool.max=275
-db.pool.validate.query=SELECT 1
-
-
-
-
-mysql> CREATE USER 'alfresco' IDENTIFIED BY 'StrongPWD09!';
-
-
-CREATE DATABASE `alfresco` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-GRANT ALL ON `alfresco`.* to alfresco ;
-
-
-
-
-
-MySQL ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
-
-mysql> SHOW VARIABLES LIKE 'validate_password%';
-
-mysql> SET GLOBAL validate_password.policy = 0;
-
-
-mysql -u root -p db_name < dumpfilename.sql > /var/tmp/mysqldump.log 2>&1
-
-
-# To import a big database, restart mysqld after having modified /etc/my.cnf that way:
-
-[mysqld]
-innodb_log_file_size=1G  # from 50M to support almost 1 Hr before rotation
-innodb_log_buffer_size=500M  # from 16M to support about 30 min before write log data
-innodb_buffer_pool_size=4G  # from 128M to better support your data loading process
-innodb_change_buffer_max_size=50  # to improve innodb_data_writes RPS of 369
-innodb_write_io_threads = 16
-innodb_flush_log_at_trx_commit = 0
-disable_log_bin
-
-# RESTART MySQL USING THE COMMAND BELOW 
-
-sudo systemctl restart mysqld --innodb-doublewrite=0 
-
-# AFTER IMPORT IS DONE, comment out the entrie in /etc/my.cnf and RESTART MySQL Normally 
-
-sudo systemctl restart mysqld
+	psql "postgres://USER:PASSWORD@HOST:PORT/DB?sslmode=allow&options=--search_path%3Dalfresco"
