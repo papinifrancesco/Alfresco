@@ -3,7 +3,7 @@
 # create a user, his associated group and set a password
 useradd -U dderosa
 usermod -aG wheel dderosa
-echo 'dderosa:12345' | sudo chpasswd
+echo 'myUsername:myPassword' | sudo chpasswd
 
 
 
@@ -23,3 +23,9 @@ visudo
 # remove the comment deleting "#"
 
 
+
+
+# test the access with your username and make sure that:
+sudo su -
+
+# switches you to be the "root" user
