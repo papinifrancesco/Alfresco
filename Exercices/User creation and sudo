@@ -1,5 +1,6 @@
 # Tested in RHEL based OS
 
+# Logging as root (or someone with the required privileges),
 # create a user, his associated group and set a password
 useradd -U dderosa
 usermod -aG wheel dderosa
@@ -24,7 +25,7 @@ visudo
 
 
 
-
+# opening another session,
 # test the access with your username and make sure that:
 sudo su -
 
