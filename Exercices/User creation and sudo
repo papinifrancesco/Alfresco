@@ -2,8 +2,8 @@
 
 # Logging as root (or someone with the required privileges),
 # create a user, his associated group and set a password
-useradd -U dderosa
-usermod -aG wheel dderosa
+useradd -U myUsername
+usermod -aG wheel myUsername
 echo 'myUsername:myPassword' | sudo chpasswd
 
 
