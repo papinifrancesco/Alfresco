@@ -1,0 +1,25 @@
+# Tested in RHEL based OS
+
+# create a user, his associated group and set a password
+useradd -U dderosa
+usermod -aG wheel dderosa
+echo 'dderosa:12345' | sudo chpasswd
+
+
+
+
+# check that the wheel group can run all commands
+visudo
+
+# a file opens, make sure to have that:
+[...]
+## Allows people in group wheel to run all commands
+%wheel  ALL=(ALL)       ALL
+[...]
+
+# if you have:
+#%wheel  ALL=(ALL)       ALL
+
+# remove the comment deleting "#"
+
+
