@@ -73,5 +73,7 @@ chmod 0600 /opt/activemq/conf/jmx*
 chown alfresco:alfresco /opt/activemq
 chown -R alfresco:alfresco /opt/activemq/
 
+# WARNING : don't try to start ActiveMQ yet because we're missing (that's expected at this stage)
+#           the JVM expected at /opt/alfresco/java
 
 ####### ActiveMQ #######
