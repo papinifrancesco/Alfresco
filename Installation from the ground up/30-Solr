@@ -86,7 +86,8 @@ alfresco.encryption.ssl.*
 cd /opt/solr/solrhome/templates/noRerank/conf
 [...]
 
-chown -R alfresco:alfresco /opt/solr/ /opt/solr_data
+chown -R alfresco:alfresco /opt/solr  /opt/solr_data
+chown -R alfresco:alfresco /opt/solr/ /opt/solr_data/
 
 # with the alfresco user start Solr , first time only command to create 
 # /opt/solr/solrhome/alfresco
