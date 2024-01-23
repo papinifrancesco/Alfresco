@@ -36,7 +36,7 @@ SOLR_JAVA_HOME="/opt/alfresco/java"
 # uncomment SOLR_HOME and add the path
 SOLR_HOME=/opt/solr/solrhome
 # and maybe change Java memory
-SOLR_JAVA_MEM="-Xms2g -Xmx2g"
+SOLR_JAVA_MEM="-Xms1g -Xmx1g"
 
 # By default the start script uses UTC; override the timezone if needed
 SOLR_TIMEZONE="Europe/Rome"
