@@ -41,11 +41,16 @@ SOLR_JAVA_MEM="-Xms1g -Xmx1g"
 # By default the start script uses UTC; override the timezone if needed
 SOLR_TIMEZONE="Europe/Rome"
 
+
+
+# define solr folders so that you'll have:
+[...]
+# The script will use SOLR_PORT+10000 for the RMI_PORT or you can set it here
+# RMI_PORT=18983
 # set the specific solr folders
-SOLR_DATA_DIR_ROOT=/opt/solr_data
 SOLR_TMP_DIR=/opt/solr_data/tmp
+SOLR_DATA_DIR_ROOT=/opt/solr_data
 SOLR_SOLR_MODEL_DIR=/opt/solr_data/model
-# https://docs.alfresco.com/search-enterprise/concepts/external-properties-solr.html
 
 # Alfresco configuration. This file is automatically included by solr. You can define your custom settings here
 SOLR_OPTS="$SOLR_OPTS                                \
@@ -60,7 +65,7 @@ SOLR_OPTS="$SOLR_OPTS                                \
            -Dsolr.ssl.checkPeerName=false            \
            -Dalfresco.secureComms=secret             \
            -Dalfresco.secureComms.secret=SOMETHING  ";
-
+[...]
 
 
 
