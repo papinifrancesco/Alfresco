@@ -11,8 +11,8 @@ ln -s /opt/solr_indexes_208 /opt/solr_data
 # create the subfolders
 mkdir /opt/solr_data/alfresco /opt/solr_data/archive /opt/solr_data/model /opt/solr_data/tmp 
 
-unzip alfresco-search-services-2.0.8.2.zip -d alfresco-search-services-2.0.8.2
-mv alfresco-search-services-2.0.8.2 /opt/
+unzip alfresco-search-services-2.0.8.2.zip
+mv alfresco-search-services /opt/alfresco-search-services-2.0.8.2
 cd /opt/
 ln -s alfresco-search-services-2.0.8.2 solr
 cd /opt/solr/solrhome/conf/
