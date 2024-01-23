@@ -49,8 +49,10 @@ mkdir -p /opt/alfresco/tomcat/conf/Catalina/localhost
 mkdir -p /opt/alfresco/tomcat/webapps.BAK
 
 
-# for enterprise version only, community dont need a licence
+# community doesn't need a licence
+# enterprise version only:
 mkdir -p /opt/alfresco/tomcat/shared/classes/alfresco/extension/license
+# and the copy in it your license file
 
 # useless but this way we suppress a warning in catalina.out
 mkdir -p /opt/alfresco/tomcat/shared/lib
