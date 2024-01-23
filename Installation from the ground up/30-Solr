@@ -13,7 +13,8 @@ mkdir /opt/solr_data/alfresco /opt/solr_data/archive /opt/solr_data/model /opt/s
 
 unzip alfresco-search-services-2.0.8.2.zip -d alfresco-search-services-2.0.8.2
 mv alfresco-search-services-2.0.8.2 /opt/
-ln -s alfresco-search-services-2.0.8.2 /opt/solr
+cd /opt/
+ln -s alfresco-search-services-2.0.8.2 solr
 cd /opt/solr/solrhome/conf/
 cp -a shared.properties shared.properties.ORIG
 vim /opt/solr/solrhome/conf/shared.properties
