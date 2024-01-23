@@ -32,7 +32,7 @@ SOLR_JAVA_HOME="/opt/alfresco/java"
 
 # Expert: If you want finer control over memory options, specify them directly
 # Comment out SOLR_HEAP if you are using this though, that takes precedence
-SOLR_JAVA_MEM="-Xms2g -Xmx2g"
+SOLR_JAVA_MEM="-Xms1g -Xmx1g"
 
 # Enable verbose GC logging...
 #  * If this is unset, various default options will be selected depending on which JVM version is in use
@@ -46,7 +46,7 @@ SOLR_JAVA_MEM="-Xms2g -Xmx2g"
 #  -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime"
 
 # These GC settings have shown to work well for a number of common Solr workloads
-#GC_TUNE="-XX:NewRatio=3 -XX:SurvivorRatio=4    etc.
+GC_TUNE="-XX:+UseG1GC -XX:+PerfDisableSharedMem -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=250 -XX:+UseLargePages -XX:+AlwaysPreTouch -XX:+ExplicitGCInvokesConcurrent"
 
 # Set the ZooKeeper connection string if using an external ZooKeeper ensemble
 # e.g. host1:2181,host2:2181/chroot
@@ -76,15 +76,18 @@ SOLR_DATA_DIR_ROOT=/opt/solr_data
 SOLR_SOLR_MODEL_DIR=/opt/solr_data/model
 
 # Alfresco configuration. This file is automatically included by solr. You can define your custom settings here
-SOLR_OPTS="$SOLR_OPTS -Dsolr.jetty.request.header.size=1000000 -Dsolr.jetty.threads.stop.timeout=300000 -Ddisable.configEdit=true"
-SOLR_OPTS="$SOLR_OPTS -Dsolr.model.dir=$SOLR_SOLR_MODEL_DIR -Ddata.dir.root=$SOLR_DATA_DIR_ROOT"
-
-# Now decide if secureComms=secret or secureComms=https
-#SOLR_OPTS="$SOLR_OPTS -Djava.io.tmpdir=$SOLR_TMP_DIR -Dalfresco.secureComms=secret -Dalfresco.secureComms.secret=Tai22"
-SOLR_OPTS="$SOLR_OPTS -Djava.io.tmpdir=$SOLR_TMP_DIR -Dalfresco.secureComms=https"
-
-# https://hub.alfresco.com/t5/alfresco-content-services-blog/alfresco-mtls-configuration-deep-dive/ba-p/296422
-SOLR_OPTS="$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true -Dsolr.ssl.checkPeerName=false"
+SOLR_OPTS="$SOLR_OPTS                                \
+           -Dsolr.jetty.request.header.size=1000000  \
+           -Dsolr.jetty.threads.stop.timeout=300000  \
+           -Ddisable.configEdit=true                 \
+           -Dsolr.content.dir=$SOLR_SOLR_CONTENT_DIR \
+           -Dsolr.model.dir=$SOLR_SOLR_MODEL_DIR     \
+           -Ddata.dir.root=$SOLR_DATA_DIR_ROOT       \
+           -Djava.io.tmpdir=$SOLR_TMP_DIR            \
+           -Dsolr.allow.unsafe.resourceloading=true  \
+           -Dsolr.ssl.checkPeerName=false            \
+           -Dalfresco.secureComms=secret             \
+           -Dalfresco.secureComms.secret=SOMETHING  ";
 
 # Anything you add to the SOLR_OPTS variable will be included in the java
 # start command line as-is, in ADDITION to other options. If you specify the
@@ -99,7 +102,7 @@ SOLR_OPTS="$SOLR_OPTS -Dsolr.allow.unsafe.resourceloading=true -Dsolr.ssl.checkP
 
 # Path to a directory for Solr to store cores and their data. By default, Solr will use server/solr
 # If solr.xml is not stored in ZooKeeper, this directory needs to contain solr.xml
-SOLR_HOME=/opt/solr/solrhome
+#SOLR_HOME=
 
 # Solr provides a default Log4J configuration properties file in server/resources
 # however, you may want to customize the log settings and file appender location
@@ -120,29 +123,27 @@ LOG4J_PROPS=$SOLR_LOGS_DIR/log4j.properties
 #SOLR_LOG_PRESTART_ROTATION=true
 
 # Sets the port Solr binds to, default is 8983
-SOLR_PORT=8983
+#SOLR_PORT=8983
 
 # Uncomment to set SSL-related system properties
 # Be sure to update the paths to the correct keystore for your environment
-SOLR_SSL_KEY_STORE=/opt/solr/solrhome/alfresco/conf/ssl-repo-client.keystore
-SOLR_SSL_KEY_STORE_PASSWORD=keystore
-SOLR_SSL_KEY_STORE_TYPE=JCEKS
-SOLR_SSL_TRUST_STORE=/opt/solr/solrhome/alfresco/conf/ssl-repo-client.truststore
-SOLR_SSL_TRUST_STORE_PASSWORD=truststore
-SOLR_SSL_TRUST_STORE_TYPE=JCEKS
-SOLR_SSL_NEED_CLIENT_AUTH=true
-SOLR_SSL_WANT_CLIENT_AUTH=false
+#SOLR_SSL_KEY_STORE=/home/shalin/work/oss/shalin-lusolr/solr/server/etc/solr-ssl.keystore.jks
+#SOLR_SSL_KEY_STORE_PASSWORD=secret
+#SOLR_SSL_KEY_STORE_TYPE=JCEKS
+#SOLR_SSL_TRUST_STORE=/home/shalin/work/oss/shalin-lusolr/solr/server/etc/solr-ssl.keystore.jks
+#SOLR_SSL_TRUST_STORE_PASSWORD=secret
+#SOLR_SSL_TRUST_STORE_TYPE=JCEKS
+#SOLR_SSL_NEED_CLIENT_AUTH=false
+#SOLR_SSL_WANT_CLIENT_AUTH=false
 
 # Uncomment if you want to override previously defined SSL values for HTTP client
 # otherwise keep them commented and the above values will automatically be set for HTTP clients
-SOLR_SSL_CLIENT_KEY_STORE=/opt/solr/solrhome/alfresco/conf/ssl-repo-client.keystore
-SOLR_SSL_CLIENT_KEY_STORE_PASSWORD=keystore
-SOLR_SSL_CLIENT_KEY_STORE_TYPE=JCEKS
-SOLR_SSL_CLIENT_TRUST_STORE=/opt/solr/solrhome/alfresco/conf/ssl-repo-client.truststore
-SOLR_SSL_CLIENT_TRUST_STORE_PASSWORD=truststore
-SOLR_SSL_CLIENT_TRUST_STORE_TYPE=JCEKS
-SOLR_SSL_CLIENT_NEED_CLIENT_AUTH=true
-SOLR_SSL_CLIENT_WANT_CLIENT_AUTH=false
+#SOLR_SSL_CLIENT_KEY_STORE=
+#SOLR_SSL_CLIENT_KEY_STORE_PASSWORD=
+#SOLR_SSL_CLIENT_KEY_STORE_TYPE=
+#SOLR_SSL_CLIENT_TRUST_STORE=
+#SOLR_SSL_CLIENT_TRUST_STORE_PASSWORD=
+#SOLR_SSL_CLIENT_TRUST_STORE_TYPE=
 
 # Settings for authentication
 # Please configure only one of SOLR_AUTHENTICATION_CLIENT_CONFIGURER or SOLR_AUTH_TYPE parameters
@@ -156,6 +157,3 @@ SOLR_SSL_CLIENT_WANT_CLIENT_AUTH=false
 #  -DzkDigestUsername=admin-user -DzkDigestPassword=CHANGEME-ADMIN-PASSWORD \
 #  -DzkDigestReadonlyUsername=readonly-user -DzkDigestReadonlyPassword=CHANGEME-READONLY-PASSWORD"
 #SOLR_OPTS="$SOLR_OPTS $SOLR_ZK_CREDS_AND_ACLS"
-
-SOLR_SOLR_HOST=localhost
-SOLR_ALFRESCO_HOST=localhost
