@@ -28,6 +28,9 @@ alfresco.cross.locale.datatype.2={http://www.alfresco.org/model/dictionary/1.0}m
 
 
 # modify solr.in.sh and set the needed parameters
+# if something is unclear have a look at:
+# https://github.com/papinifrancesco/Alfresco/blob/master/opt/solr/solr.in.sh
+
 cd /opt/solr/
 cp -a solr.in.sh solr.in.sh.ORIG
 vim /opt/solr/solr.in.sh
