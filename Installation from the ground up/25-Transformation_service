@@ -37,7 +37,9 @@ dnf install ./*.rpm -y
 # but we want a symlink as well
 ln -fns /opt/libreoffice7.2 /opt/alfresco/libreoffice
 
-# to test it is working, upload a test.odf or test.docx file (you create it)
+# to test it is working, upload a test.odf or test.docx file
+# you create it or
+wget --no-check-certificate https://github.com/papinifrancesco/Alfresco/raw/master/transformation_tests/test.odt -P /tmp/
 # to /tmp/ and then:
 
 export JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.bin --convert-to pdf:writer_pdf_Export /tmp/test.odt --outdir /tmp/
