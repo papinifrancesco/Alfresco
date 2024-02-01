@@ -1,0 +1,20 @@
+
+## Allows members of the alfresco group to start and stop alfresco related services
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-shared-file
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-shared-file
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-core
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-core
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start alfresco-transform-router
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  alfresco-transform-router
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start activemq
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  activemq
+
+%alfresco ALL= NOPASSWD: /bin/systemctl start solr
+%alfresco ALL= NOPASSWD: /bin/systemctl stop  solr
