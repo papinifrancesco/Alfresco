@@ -1,8 +1,20 @@
 # From ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
 
 
-# Reindex a node, it is needed to purge it first.
-# So, we get the node DBID from the node browser and then, for example:
+# To reindex a node, it is needed to purge it first.
+# So, we get the node DBID from the node browser:
+  # we open the document we're interested in using /share (as a normal user would do) and we'll get the URL on our browser, ex:
+http://host.2nd.1st:8080/share/page/site/test/document-details?nodeRef=workspace://SpacesStore/22fa5756-e829-4792-989c-f6c150c38aaa
+  # select and copy the part after "nodeRef=" so:
+workspace://SpacesStore/22fa5756-e829-4792-989c-f6c150c38aaa
+
+# open the node browser and make sure to select "noderef" next to "Search" button
+paste in the search box:
+workspace://SpacesStore/22fa5756-e829-4792-989c-f6c150c38aaa
+and click "search"
+
+look for the 
+and then, for example:
 
 NODEID=35812340
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=$NODEID"
