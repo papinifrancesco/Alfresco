@@ -8,4 +8,4 @@ sort /tmp/temp2.txt > /tmp/temp4.txt
 
 diff -y -W220 /tmp/temp3.txt /tmp/temp4.txt
 
-rm -f /tmp/temp3.txt /tmp/temp4.txt
+rm -f /tmp/temp1.txt /tmp/temp2.txt /tmp/temp3.txt /tmp/temp4.txt
