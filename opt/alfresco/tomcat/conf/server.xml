@@ -20,7 +20,10 @@
 
     <Connector port="8080" protocol="HTTP/1.1"
                connectionTimeout="20000"
-               redirectPort="8443" />
+               redirectPort="8443"
+               maxParameterCount="1000"
+               maxHttpHeaderSize="32768"
+               />
 <!--
 Usually a real front-end such as httpd or nginx should be used
 Still, if for some reasons you need Tomcat's HTTPS:
