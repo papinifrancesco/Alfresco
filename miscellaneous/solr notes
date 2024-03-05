@@ -21,6 +21,12 @@ curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REINDEX&nodeid=$NODEID"
 
 
+# To reindex by type:
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
+curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
+
+
+
 # DO NOT optimize with the GUI button as it would create a single, huge file for the index.
 # Try instead to reduce the number of the segments you have with the "maxSegments" option.
 # Of course the value for maxSegments is related to your environment and I suggest to start
