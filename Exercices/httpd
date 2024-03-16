@@ -1,0 +1,81 @@
+# Say we have both ACS and ASS on Server1 and Server2
+# the customer wants to provide load balance and fault tolerance for both ACS and ASS requests
+# and he provides the hardware load balancer that exposes:
+#
+# https://alfresco.mydomain.it
+# https://solr.mydomain.it
+#
+# we dont want to use certificate authentication for ACS and ASS because we don't need it and
+# also because it is not really worth it in a LAN environment.
+# So we only use the secret based authentication, nothing else.
+# At this point we need to install a reverse proxy on both Server1 and Server2
+
+dnf -y install httpd mod_ssl
+
+# depending on the hardware load balancer configuration, we would have to add:
+Options = UnsafeLegacyRenegotiation
+
+# to /usr/share/crypto-policies/DEFAULT/opensslcnf.txt
+# but try without it at first.
+
+
+# Then, edit /etc/httpd/conf/httpd.conf in a way that should contain ONLY:
+
+ServerRoot "/etc/httpd"
+
+Include conf.modules.d/*.conf
+
+User apache
+Group apache
+
+#LoadModule proxy_module modules/mod_proxy.so
+#LoadModule proxy_http_module modules/mod_proxy_http.so
+#LoadModule ssl_module modules/mod_ssl.so
+
+ErrorLog "logs/error_log"
+
+<IfModule mime_module>
+    TypesConfig /etc/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml
+</IfModule>
+
+<IfModule ssl>
+    ErrorLog logs/ssl.log
+    LogLevel error
+</IfModule>
+
+Listen 127.0.0.1:80
+Listen 127.0.0.1:83
+
+AddDefaultCharset UTF-8
+SSLProxyVerify none
+SSLProxyCheckPeerCN off
+SSLProxyCheckPeerName off
+SSLProxyCheckPeerExpire off
+SSLEngine off
+SSLProxyEngine on
+proxyPreserveHost off
+
+<VirtualHost 127.0.0.1:83>
+ProxyPass / https://solr.mydomain.it/
+ProxyPassReverse / https://solr.mydomain.it/
+</VirtualHost>
+
+<VirtualHost 127.0.0.1:80>
+ProxyPass / https://alfresco.mydomain.it/
+ProxyPassReverse / https://alfresco.mydomain.it/
+</VirtualHost>
+
+
+
+# remember to check the configuration with:
+httpd -t
+
+# and to restart httpd
+systemctl restart httpd
+
+# after that, change both alfresco-global.properties and solrcore.properties to point to the httpd sockets
+# restart Alfresco and Solr
