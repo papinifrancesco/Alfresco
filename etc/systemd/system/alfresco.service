@@ -6,7 +6,8 @@ After=network.target activemq.service alfresco-shared-file.service alfresco-tran
 
 [Service]
 Type=forking
-ExecStartPre=/usr/bin/rm -rf /opt/alfresco/tomcat/temp/* /opt/alfresco/tomcat/work/*
+ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/temp/ -mindepth 1 -delete
+ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/work/ -mindepth 1 -delete
 ExecStart=/opt/alfresco/tomcat/bin/startup.sh
 ExecStop=/opt/alfresco/tomcat/bin/shutdown.sh
 PIDFile=/opt/alfresco/tomcat/temp/catalina.pid
