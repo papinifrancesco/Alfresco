@@ -1,8 +1,9 @@
 #!/bin/bash
+
 TS=/opt/alfresco/transform-service
-WDIR=$TS
 
 FILE=alfresco-shared-file-store-controller
+
 PATTERN=shared-file-store
 
 JAVA_OPTS="$JAVA_OPTS                                \
@@ -13,9 +14,9 @@ JAVA_OPTS="$JAVA_OPTS                                \
   -Dserver.port=8099                                 \
   -Dserver.error.include-message=ALWAYS              \
   -Dlogging.level.org.alfresco.store=warn            \
-  -DfileStorePath="$TS/tmp/Alfresco"                 \
-  -Dscheduler.contract.path="$TS/tmp/scheduler.json" \
+  -DfileStorePath="$TS"/tmp/Alfresco                 \
+  -Dscheduler.contract.path="$TS"/tmp/scheduler.json \
   -Dscheduler.content.age.millis=900000              \
   -Dscheduler.cleanup.interval=900000"               ;
 
-/opt/alfresco/java/bin/java ${JAVA_OPTS} -jar $FILE >> $WDIR/logs/$PATTERN.out 2>> $WDIR/logs/$PATTERN.err &
+/opt/alfresco/java/bin/java ${JAVA_OPTS} -jar $FILE >> $TS/logs/$PATTERN.out 2>> $TS/logs/$PATTERN.err &
