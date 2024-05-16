@@ -45,9 +45,10 @@ Still, if for some reasons you need Tomcat's HTTPS:
                truststorePass="kT9X6oe68t"
                truststoreType="JCEKS"
                URIEncoding="UTF-8" >
--->
     <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
     </Connector>
+-->
+    
 <!--
 AJP? Can't we use HTTP nowadays?
     <Connector protocol="AJP/1.3"
