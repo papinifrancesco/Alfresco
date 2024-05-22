@@ -15,11 +15,28 @@ cat /dev/null > "$LOGS/$1.out"
 fi
 }
 
+systemctl stop alfresco-transform-router
+
+systemctl stop alfresco-transform-core
+
+systemctl stop alfresco-shared-file
+
+
 rotate_file "transform-router"
 
 rotate_file "transform-core-aio"
 
 rotate_file "shared-file-store"
 
-# delete files older than 5 days if not in use
-find "$LOGS" -maxdepth 1 -type f -mtime 5 | while read -r filename ; do fuser -s "$filename" || rm -f "$filename" ; done
+
+# delete files older than 3 days if not in use
+find "$LOGS" -maxdepth 1 -type f -mtime 3 | while read -r filename ; do fuser -s "$filename" || rm -f "$filename" ; done
+
+
+systemctl start alfresco-shared-file
+sleep 20
+
+systemctl start alfresco-transform-core
+sleep 20
+
+systemctl start alfresco-transform-router
