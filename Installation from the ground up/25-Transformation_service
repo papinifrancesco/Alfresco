@@ -1,3 +1,6 @@
+#!/bin/bash
+MYstuff=/root/work
+
 ###### EPEL and various dependecies
 # EPEL is your friend, so:
 yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -11,7 +14,7 @@ https://github.com/papinifrancesco/msttcorefonts
 
 wget https://github.com/papinifrancesco/msttcorefonts/archive/refs/heads/main.zip
 unzip -d msttcorefonts main.zip
-cd msttcorefonts/msttcorefonts-main
+cd msttcorefonts/msttcorefonts-main || exit
 ./install.sh
 fc-cache -f -v
 
@@ -20,14 +23,14 @@ fc-cache -f -v
 ###### LIBREOFFICE
 # download and extract LibreOffice for your platform
 # https://docs.alfresco.com/content-services/latest/support/#supported-platforms/
-cd $MYstuff/ ;
+cd "$MYstuff"/ || exit ;
 wget --no-check-certificate https://downloadarchive.documentfoundation.org/libreoffice/old/7.2.5.2/rpm/x86_64/LibreOffice_7.2.5_Linux_x86-64_rpm.tar.gz
 tar -xf LibreOffice_7.2.5_Linux_x86-64_rpm.tar.gz
 
 
 # go to the RPMS directory and remove any files with gnome , kde in the filename.
-cd LibreOffice_7.2.5.2_Linux_x86-64_rpm/RPMS
-rm -rf *gnome* *kde* *freedesktop-menus*
+cd LibreOffice_7.2.5.2_Linux_x86-64_rpm/RPMS || exit
+rm -rf -- *gnome* *kde* *freedesktop-menus*
 
 # Ignore any desktop update not found error messages.  You can remove the rpm files after installation
 dnf install ./*.rpm -y
@@ -59,7 +62,7 @@ export JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.
 https://github.com/papinifrancesco/Alfresco/tree/master/ImageMagick
 
 # for a RHEL 8.7 the right packages:
-cd $MYstuff/ ;
+cd "$MYstuff"/ || exit ;
 URL=https://raw.githubusercontent.com/papinifrancesco/Alfresco/master
 wget $URL/ImageMagick/ImageMagick-libs-7.1.0-29.x86_64.rpm
 wget $URL/ImageMagick/ImageMagick-7.1.0-29.x86_64.rpm
@@ -69,24 +72,25 @@ dnf install -y ImageMagick-7.1.0-29.x86_64.rpm
 # in case of missing dependencies, probably your EPEL is not the right one
 
 
-
+# for RHEL 9.x have a look here:
+https://nexus.alfresco.com/nexus/#nexus-search;quick~imagemagick-distribution
 
 
 
 ######### TRANSFORM SERVICES
 # https://docs.alfresco.com/transform/concepts/transformservice-overview.html
 # get the zip file, uncompress it and move it under /opt/alfresco/
-cd $MYstuff/ ;
+cd "$MYstuff"/ || exit ;
 unzip alfresco-transform-service-distribution-X.X.X.zip -d transform-service
 mv transform-service /opt/alfresco/
 mkdir /opt/alfresco/transform-service/tmp
 
-cd /opt/alfresco/transform-service/alfresco-pdf-renderer/
+cd /opt/alfresco/transform-service/alfresco-pdf-renderer/ || exit
 tar -xf alfresco-pdf-renderer-1.1-linux.tgz
 
 # The scripts now:
 mkdir -p /opt/alfresco/scripts
-cd /opt/alfresco/scripts
+cd /opt/alfresco/scripts || exit
 
 
 # Dowload the required scripts:
@@ -98,7 +102,7 @@ wget $URL/opt/alfresco/scripts/alfresco-transform-router.sh
 wget $URL/opt/alfresco/scripts/sort_amps_by_date.sh
 
 # set the shell scripts to be executable
-chmod +x *.sh
+chmod +x ./*.sh
 
 
 # and create the symlinks called by:
@@ -106,7 +110,7 @@ alfresco-shared-file.sh
 alfresco-transform-core.sh
 alfresco-transform-router.sh
 # inside /opt/alfresco/transform-service: 
-cd /opt/alfresco/transform-service
+cd /opt/alfresco/transform-service || exit
 ln -fns alfresco-shared-file-store-controller-X.X.X.jar alfresco-shared-file-store-controller
 ln -fns alfresco-transform-core-aio-X.X.X.jar           alfresco-transform-core-aio
 ln -fns alfresco-transform-router-X.X.X.jar             alfresco-transform-router
