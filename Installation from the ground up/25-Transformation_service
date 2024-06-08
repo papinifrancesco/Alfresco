@@ -1,6 +1,7 @@
 #!/bin/bash
 MYstuff=~/work
 
+
 ###### EPEL and various dependecies
 # EPEL is your friend, so:
 yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
@@ -56,6 +57,9 @@ export JAVA_HOME=/opt/alfresco/java ; /opt/alfresco/libreoffice/program/soffice.
 
 
 ###### IMAGEMAGICK
+
+# Have a look at:
+# https://github.com/Alfresco/imagemagick-build
 
 # since the RPMs disappear quite quickly from the official web site and
 # compilation is a nightmare, I saved a few versions here:
