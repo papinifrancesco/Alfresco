@@ -1,5 +1,7 @@
+#!/bin/bash
 ####### ActiveMQ #######
-cd $MYstuff
+MYstuff=~/work
+cd $MYstuff || exit
 
 
 # ActiveMQ
@@ -13,58 +15,59 @@ tar -xf apache-activemq-"$VER"-bin.tar.gz
 
 mv apache-activemq-"$VER" /opt/
 
-cd /opt/ ; ln -s apache-activemq-"$VER" activemq
+cd /opt/ || exit ; ln -s apache-activemq-"$VER" activemq
 
 # configure activemq
 
-cd /opt/activemq/bin
+cd /opt/activemq/bin || exit
 
 cp -a env env.ORIG
 
 vim env
+    #then set (you decide the allocated memory):
+    # shellcheck disable=SC2034
+    ACTIVEMQ_OPTS_MEMORY="-Xms1G -Xmx1G"
 
-#then set (you decide the allocated memory):
-ACTIVEMQ_OPTS_MEMORY="-Xms1G -Xmx1G"
+    ### go on with vim and substitute
 
-### go on with vim and substitute
+    # from:
 
-# from:
+    # ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
+    # ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
+    # ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
+    # ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
 
-# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
-# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
-# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
-# ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
+    # to:
 
-# to:
+    ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
+    ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
+    ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
+    ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
 
-ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.port=11099 "
-ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.password.file=${ACTIVEMQ_CONF}/jmx.password"
-ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.access.file=${ACTIVEMQ_CONF}/jmx.access"
-ACTIVEMQ_SUNJMX_START="$ACTIVEMQ_SUNJMX_START -Dcom.sun.management.jmxremote.ssl=false"
-
-
-ACTIVEMQ_USER="alfresco"
-
-
-# from:
-
-#JAVA_HOME=""
-
-# to:
-
-JAVA_HOME="/opt/alfresco/java"
+    # shellcheck disable=SC2034
+    ACTIVEMQ_USER="alfresco"
 
 
+    # from:
 
-# from:
+    #JAVA_HOME=""
 
-JAVACMD="auto"
+    # to:
 
-# to:
+    # shellcheck disable=SC2034
+    JAVA_HOME="/opt/alfresco/java"
 
-#JAVACMD="auto"
 
-#### save and exit vim now
+    # from:
+
+    # shellcheck disable=SC2034
+    JAVACMD="auto"
+
+    # to:
+
+    #JAVACMD="auto"
+
+    #### save and exit vim now
 
 
 chmod 0600 /opt/activemq/conf/jmx*

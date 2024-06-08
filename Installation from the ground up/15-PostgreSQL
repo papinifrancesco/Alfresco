@@ -1,3 +1,4 @@
+#!/bin/bash
 ####### PostgreSQL #######
 
 # do not use the OS bundle but use PostgreSQL repositories

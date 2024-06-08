@@ -1,5 +1,5 @@
 #!/bin/bash
-MYstuff=/root/work
+MYstuff=~/work
 
 ###### EPEL and various dependecies
 # EPEL is your friend, so:

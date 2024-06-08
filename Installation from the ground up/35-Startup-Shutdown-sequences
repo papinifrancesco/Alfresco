@@ -1,3 +1,4 @@
+#!/bin/bash
 # recomemmended sequence
 # to note that the only real hard dependency is ActiveMQ
 # the other services are pratically essential for almost

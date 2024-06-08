@@ -1,3 +1,4 @@
+#!/bin/bash
 # We don't want to run Alfresco as root so let's create:
 
 useradd -U alfresco
@@ -72,6 +73,7 @@ systemctl enable activemq alfresco alfresco-shared-file alfresco-transform-core 
 # Log rotation
 crontab -u alfresco -e
 # write the line below
+# shellcheck disable=SC2035
 59 23 * * * /opt/alfresco/scripts/AlfrescoLogsManager.sh /opt/alfresco/tomcat > /dev/null 2>&1
 
 # and check you have xz and fuser commands installed and where
