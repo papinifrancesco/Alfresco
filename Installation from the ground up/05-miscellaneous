@@ -7,20 +7,9 @@ useradd -U alfresco
 # this one below could be put in /etc/profile.d/alfresco_aliases.sh
 # so you'll have it for every user
 
-vim /etc/profile.d/alfresco_aliases.sh
-
-
-alias AGP='vim /opt/alfresco/tomcat/shared/classes/alfresco-global.properties'
-
-alias COUT='less /opt/alfresco/tomcat/logs/catalina.out'
-
-alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'
-
-TD=$(date +'%Y-%m-%d')
-
-BK () {
-cp -a "$1" "$1"."$TD"
-}
+echo "alias AGP='vim /opt/alfresco/tomcat/shared/classes/alfresco-global.properties'" >> /etc/profile.d/alfresco_aliases.sh
+echo "alias COUT='less /opt/alfresco/tomcat/logs/catalina.out'" >> /etc/profile.d/alfresco_aliases.sh
+echo "alias MMT='/opt/alfresco/java/bin/java -jar /opt/alfresco/bin/alfresco-mmt.jar'" >> /etc/profile.d/alfresco_aliases.sh
 
 # exit bash and log in again
 
