@@ -3,7 +3,7 @@
 # A text file would do so:
 
 # Create a file on your filesystem:
-echo "V1.0" > AMQ_test.txt
+echo "1.0" > AMQ_test.txt
 
 # Create the node:
   curl -u "$USERNAME":"$PASSWORD" -X POST http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children -F filedata=@AMQ_test.txt > create_result.txt
@@ -11,5 +11,7 @@ echo "V1.0" > AMQ_test.txt
 # Get the nodeId
 nodeId=$(jq -r '.entry.id' create_result.txt)
 
-# Update the node
-  curl -u "$USERNAME":"$PASSWORD" -X PUT -d 'prova123456' http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/"$nodeId"/content
+# Update the node 10 times
+for i in {1..10}; do
+curl -u "$USERNAME":"$PASSWORD" -X PUT -d "1.$i" http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/"$nodeId"/content
+done
