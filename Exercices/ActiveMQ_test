@@ -15,3 +15,16 @@ nodeId=$(jq -r '.entry.id' create_result.txt)
 for i in {1..10}; do
 curl -u "$USERNAME":"$PASSWORD" -X PUT -d "1.$i" http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/"$nodeId"/content
 done
+
+
+----------------To be reviewed----------------
+#!/bin/bash
+
+# Crée un fichier texte avec le contenu "1.0"
+echo "1.0" > mon_fichier.txt
+
+# Convertit le fichier texte en PNG
+convert -pointsize 24 label:@mon_fichier.txt mon_fichier.png
+
+# Nettoie le fichier texte temporaire
+rm mon_fichier.txt
