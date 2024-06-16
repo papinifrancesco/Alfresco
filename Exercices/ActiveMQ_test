@@ -1,0 +1,9 @@
+# Alfresco uses ActiveMQ for versioning when we have more than 4 versions for a given node.
+# I want to programmatically create a node and update it with at least 10 versions.
+# A text file would do so:
+
+# Create a file on your filesystem:
+echo "V1.0" > AMQ_test.txt
+
+# Create the node:
+  curl -u "$USERNAME":"$PASSWORD" -X POST -F filedata=@AMQ_test.txt -F "relativePath=/Sites/Prova/documentLibrary/" http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-root-/children
