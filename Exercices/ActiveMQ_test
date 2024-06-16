@@ -6,4 +6,10 @@
 echo "V1.0" > AMQ_test.txt
 
 # Create the node:
-  curl -u "$USERNAME":"$PASSWORD" -X POST -F filedata=@AMQ_test.txt -F "relativePath=/Sites/Prova/documentLibrary/" http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-root-/children
+  curl -u "$USERNAME":"$PASSWORD" -X POST http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children -F filedata=@AMQ_test.txt > create_result.txt
+
+# Get the nodeId
+nodeId=$(jq -r '.entry.id' create_result.txt)
+
+# Update the node
+  curl -u "$USERNAME":"$PASSWORD" -X PUT -d 'prova123456' http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/"$nodeId"/content
