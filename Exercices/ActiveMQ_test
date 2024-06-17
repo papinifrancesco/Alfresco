@@ -17,14 +17,20 @@ curl -u "$USERNAME":"$PASSWORD" -X PUT -d "1.$i" http://localhost:8080/alfresco/
 done
 
 
-----------------To be reviewed----------------
-#!/bin/bash
 
-# Crée un fichier texte avec le contenu "1.0"
-echo "1.0" > mon_fichier.txt
 
-# Convertit le fichier texte en PNG
-convert -pointsize 24 label:@mon_fichier.txt mon_fichier.png
+# A variation of the procedure abobe, to test ActiveMQ and the Transformation Services at the same time
+# Create a file on your filesystem:
+echo "1.0" | convert -pointsize 240 label:@- ATS_test.png
 
-# Nettoie le fichier texte temporaire
-rm mon_fichier.txt
+# Create the node:
+  curl -u "$USERNAME":"$PASSWORD" -X POST http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children -F filedata=@ATS_test.png > create_result.txt
+
+# Get the nodeId
+nodeId=$(jq -r '.entry.id' create_result.txt)
+
+# Update the node 10 times
+for i in {1..10}; do
+echo "1.$i" | convert -pointsize 240 label:@- ATS_test.png
+curl -u "$USERNAME":"$PASSWORD" -X PUT http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/"$nodeId"/content -T ATS_test.png
+done
