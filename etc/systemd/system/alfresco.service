@@ -7,8 +7,8 @@ After=network.target activemq.service alfresco-shared-file.service alfresco-tran
 [Service]
 Type=forking
 # make sure /opt/alfresco/crash exists otherwise Alfresco won't start
-ExecStartPre=-/usr/bin/mv /opt/alfresco/tomcat/temp/core* -t /opt/alfresco/crash/
-ExecStartPre=-/usr/bin/mv /opt/alfresco/tomcat/temp/hs_err_pid* -t /opt/alfresco/crash/
+ExecStartPre=-/usr/bin/find /opt/alfresco/tomcat/temp/ -type f -name "core*" -exec mv {} -t /opt/alfresco/crash/ \;
+ExecStartPre=-/usr/bin/find /opt/alfresco/tomcat/temp/ -type f -name "hs_err_pid*" -exec mv {} -t /opt/alfresco/crash/ \;
 ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/temp/ -mindepth 1 -delete
 ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/work/ -mindepth 1 -delete
 ExecStart=/opt/alfresco/tomcat/bin/startup.sh
