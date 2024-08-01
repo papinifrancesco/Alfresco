@@ -40,8 +40,8 @@ curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.
 
 curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco" 
 
-curl --header "x-alfresco-search-secret: YourDefinedSecretHere" "http://127.0.0.1:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
-
+curl -s --header "x-alfresco-search-secret: secret" "http://127.0.0.1:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
+cat
 curl -s --header "x-alfresco-search-secret: Tai22" 'http://127.0.0.1:8983/solr/alfresco/afts' -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
 
 SUGGESTER
