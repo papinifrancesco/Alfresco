@@ -87,7 +87,7 @@ SOLR_OPTS="$SOLR_OPTS                                \
            -Dsolr.allow.unsafe.resourceloading=true  \
            -Dsolr.ssl.checkPeerName=false            \
            -Dalfresco.secureComms=secret             \
-           -Dalfresco.secureComms.secret=SOMETHING  ";
+           -Dalfresco.secureComms.secret=secret     ";
 
 # Anything you add to the SOLR_OPTS variable will be included in the java
 # start command line as-is, in ADDITION to other options. If you specify the
