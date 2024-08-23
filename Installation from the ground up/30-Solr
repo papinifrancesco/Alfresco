@@ -14,9 +14,9 @@ mkdir /opt/solr_data/alfresco /opt/solr_data/archive /opt/solr_data/model /opt/s
 
 unzip alfresco-search-services-2.0.8.2.zip
 mv alfresco-search-services /opt/alfresco-search-services-2.0.8.2
-cd /opt/ || exit
+cd /opt/
 ln -s alfresco-search-services-2.0.8.2 solr
-cd /opt/solr/solrhome/conf/ || exit
+cd /opt/solr/solrhome/conf/
 cp -a shared.properties shared.properties.ORIG
 
 vim /opt/solr/solrhome/conf/shared.properties
@@ -32,7 +32,7 @@ vim /opt/solr/solrhome/conf/shared.properties
 # if something is unclear have a look at:
 # https://github.com/papinifrancesco/Alfresco/blob/master/opt/solr/solr.in.sh
 
-cd /opt/solr/ || exit
+cd /opt/solr/
 cp -a solr.in.sh solr.in.sh.ORIG
 vim /opt/solr/solr.in.sh
 
@@ -75,7 +75,7 @@ vim /opt/solr/solr.in.sh
 
 # https://docs.alfresco.com/search-services/latest/config/properties/#solr-core-configuration-properties
 # modify the templates for both rerank and noRerank , example:
-cd /opt/solr/solrhome/templates/rerank/conf || exit
+cd /opt/solr/solrhome/templates/rerank/conf
 cp -a solrcore.properties solrcore.properties.ORIG
 
 vim solrcore.properties
@@ -93,7 +93,7 @@ vim solrcore.properties
     # encryption properties commented 
 
 # now do the same for:
-cd /opt/solr/solrhome/templates/noRerank/conf || exit
+cd /opt/solr/solrhome/templates/noRerank/conf
 # [...]
 
 chown -R alfresco:alfresco /opt/solr  /opt/solr_data
@@ -106,7 +106,8 @@ chown -R alfresco:alfresco /opt/solr/ /opt/solr_data/
 # and wait 5' 'cause sometimes it takes time to create the folders
 systemctl start alfresco
 sudo su - alfresco
-cd /opt/solr/solr/bin || exit # important
+# important
+cd /opt/solr/solr/bin 
 /opt/solr/solr/bin/solr start -a "-Dcreate.alfresco.defaults=alfresco,archive"
 
 
