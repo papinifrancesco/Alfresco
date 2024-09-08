@@ -1,0 +1,4 @@
+https://blyx.com/2014/08/18/understanding-alfresco-content-deletion/
+
+https://github.com/keensoft/alfresco-deleted-content-store-cleaner?tab=readme-ov-file
+
