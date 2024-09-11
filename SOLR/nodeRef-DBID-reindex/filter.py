@@ -1,14 +1,14 @@
 import json
 import re
 
-# Chargement du fichier JSON
-with open('report.json', 'r') as f:
+# Load the JSON file
+with open('response.json', 'r') as f:
     data = json.load(f)
 
-# Expression régulière pour correspondre à un GUID (UUID)
+# RegEx for GUID (UUID)
 guid_pattern = re.compile(r'[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
 
-# Fonction pour parcourir récursivement le JSON
+# Scan through the JSON
 def extract_guids(obj):
     guids = []
     if isinstance(obj, dict):
@@ -22,10 +22,10 @@ def extract_guids(obj):
             guids.append(obj)
     return guids
 
-# Extraire les GUID
+# Extract GUIDs
 guids = extract_guids(data)
 
-# Affichage des GUID extraits
+# Print GUIDs
 for guid in guids:
     print(guid)
     
