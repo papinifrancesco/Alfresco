@@ -1,0 +1,3875 @@
+{
+    "list": {
+        "pagination": {
+            "count": 118,
+            "hasMoreItems": false,
+            "totalItems": 118,
+            "skipCount": 0,
+            "maxItems": 1000
+        },
+        "entries": [
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2024-03-21T08:55:42.330+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2024-03-21T08:53:52.883+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - Organismo Intermedio",
+                    "location": "nodes",
+                    "id": "8e621e18-67ac-4293-87c4-52be77278a50",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Serv 2",
+                        "skpitb:nome": "DIP II - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-09-22T09:26:02.414+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-09-22T09:25:20.766+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP ACILIA INDUSTRIA",
+                    "location": "nodes",
+                    "id": "dd9c9c15-59c8-4584-8ddf-0d8e9d1798d8",
+                    "properties": {
+                        "skpitb:cognome": "Consiglieri Delegati",
+                        "skpitb:nome": "Consiglieri Delegati",
+                        "skpitb:email": "segretariatoserv1@cittametropolitanaroma.it, p.sanna@cittametropolitanaroma.it,t.biolghini@cittametropolitanaroma.it,m.chioccia@cittametropolitanaroma.it,r.ferraro@cittametropolitanaroma.it,c.michetelli@cittametropolitanaroma.it,d.parrucci@cittametropolitanaroma.it,a.pieretti@cittametropolitanaroma.it,da.pucci@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-07-03T09:08:01.260+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-07-03T09:07:46.017+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Direttore",
+                    "location": "nodes",
+                    "id": "44e17cae-c479-4d3b-9619-42e18835f536",
+                    "properties": {
+                        "skpitb:cognome": "Capo di Gabinetto",
+                        "skpitb:nome": "Capo di Gabinetto",
+                        "skpitb:email": "segreteriasindaco@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-07-03T09:07:13.947+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-07-03T09:06:27.729+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Dirigente",
+                    "location": "nodes",
+                    "id": "2961d82e-67ea-447c-9e52-717b4d7d05fe",
+                    "properties": {
+                        "skpitb:cognome": "Capo di Gabinetto",
+                        "skpitb:nome": "Capo di Gabinetto",
+                        "skpitb:email": "segreteriasindaco@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-06T20:58:57.389+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-06T20:58:02.192+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Nicoletta Irato",
+                    "location": "nodes",
+                    "id": "9747354a-69c5-463b-a3a1-603393ad1844",
+                    "properties": {
+                        "skpitb:cognome": "Palombi",
+                        "skpitb:nome": "Alessandro",
+                        "skpitb:email": "a.palombi@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-06T08:25:02.672+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-06T08:24:22.934+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 2 - Serv 1",
+                    "location": "nodes",
+                    "id": "7f63d8c4-3fad-40a7-8e58-9d1cc54cc0ba",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Serv 2",
+                        "skpitb:nome": "DIP V - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-06T08:11:03.783+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "cm:copiedfrom",
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-06T08:09:02.027+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 2 - Serv 2",
+                    "location": "nodes",
+                    "id": "20dfd1c2-6c6c-4eb3-8fc4-a2eb4ad676a0",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Serv 2",
+                        "skpitb:nome": "DIP V - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T12:47:59.102+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T12:47:12.069+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Avvocatura",
+                    "location": "nodes",
+                    "id": "3591a322-c5b8-4578-95fe-ba7c5e9dd33c",
+                    "properties": {
+                        "skpitb:cognome": "A tutti i Dirigenti",
+                        "skpitb:nome": "A tutti i Dirigenti",
+                        "skpitb:email": "solo per Destinatari in fase di creazione scheda"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T11:46:18.584+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T11:45:51.432+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "SEG GEN - Serv 1",
+                    "location": "nodes",
+                    "id": "09bafe76-887d-4311-8d0d-c54b6f2506a1",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 5",
+                        "skpitb:nome": "DIP IV - Serv 5"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T11:45:31.498+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T11:44:51.618+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "SEG GEN - Direzione",
+                    "location": "nodes",
+                    "id": "0c9e5ea4-128c-429b-984d-f98738a029cc",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 5",
+                        "skpitb:nome": "DIP IV - Serv 5"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T10:29:26.060+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T10:28:25.557+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "RAG GEN - Direzione",
+                    "location": "nodes",
+                    "id": "2ce4aa1b-dc4c-49bd-ab94-a8a7bf2b10d0",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 5",
+                        "skpitb:nome": "DIP IV - Serv 5"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T10:27:23.096+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T10:26:43.360+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "RAG GEN - Serv 1",
+                    "location": "nodes",
+                    "id": "7dd3628e-1ef9-4f8d-9834-d5b711c3e42c",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 5",
+                        "skpitb:nome": "DIP IV - Serv 5"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-06-05T10:25:00.116+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-06-05T10:23:51.109+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "RAG GEN - Serv 2",
+                    "location": "nodes",
+                    "id": "bc6b9359-b4c8-4b53-9dec-72f88bdb8be7",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 5",
+                        "skpitb:nome": "DIP IV - Serv 5"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-04-06T08:36:36.223+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-04-06T08:35:25.471+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA - DT ROMA CENTRO",
+                    "location": "nodes",
+                    "id": "5a2f3ae9-1fce-4666-927f-d3e5deb419cd",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT ARTENA",
+                        "skpitb:nome": "POLIZIA LOCALE - DT ARTENA",
+                        "skpitb:email": "poliziasud.artena@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-03-14T10:37:47.041+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-03-14T10:36:34.824+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Giancarlo Frascarelli",
+                    "location": "nodes",
+                    "id": "a82f1feb-90c3-4663-a976-b14504cfa481",
+                    "properties": {
+                        "skpitb:cognome": "Pascucci",
+                        "skpitb:nome": "Alessio",
+                        "skpitb:email": "a.pascucci@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-03-14T10:38:16.913+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-03-14T10:36:34.781+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Antonio Proietti",
+                    "location": "nodes",
+                    "id": "08d67d7d-38e1-4145-83a3-e86801b8be14",
+                    "properties": {
+                        "skpitb:cognome": "Ascani",
+                        "skpitb:nome": "Federico",
+                        "skpitb:email": "f.ascani@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2023-03-14T10:38:40.588+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2023-03-14T10:36:34.568+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Marco Di Stefano",
+                    "location": "nodes",
+                    "id": "9417339a-5c19-441e-bc69-567989c07fba",
+                    "properties": {
+                        "skpitb:cognome": "Ferrara",
+                        "skpitb:nome": "Paolo",
+                        "skpitb:email": "p.ferrara@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-26T11:50:03.347+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-26T11:49:47.905+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "SUPPORTO al Sindaco Metropolitano - Serv 1",
+                    "location": "nodes",
+                    "id": "03496404-9463-419e-8cac-4346c66ad2bc",
+                    "properties": {
+                        "skpitb:cognome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:nome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:email": "sviluppostrategico@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-26T11:49:18.548+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-26T11:48:49.875+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "SUPPORTO al Sindaco Metropolitano - Serv 2",
+                    "location": "nodes",
+                    "id": "175d290a-8da4-4daa-ab71-b741d5b6d6b4",
+                    "properties": {
+                        "skpitb:cognome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:nome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:email": "sviluppostrategico@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:34:21.506+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:33:04.773+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP CIVITAVECCHIA",
+                    "location": "nodes",
+                    "id": "2a45c431-6c95-457d-9ec2-fffecd3945b3",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP CIVITAVECCHIA",
+                        "skpitb:nome": "DIP III - Direzione - CFP CIVITAVECCHIA",
+                        "skpitb:email": "formazione_civitavecchia@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:34:10.451+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:33:04.728+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP CAVE",
+                    "location": "nodes",
+                    "id": "ccd26551-27dc-4b20-98d4-8d9d7c28a36f",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP CAVE",
+                        "skpitb:nome": "DIP III - Direzione - CFP CAVE",
+                        "skpitb:email": "formazione_cave@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:33:58.832+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:33:04.682+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP CASTELFUSANO ALBERGHIERO",
+                    "location": "nodes",
+                    "id": "0820c934-2585-4c0b-86f3-db5a1d950450",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP CASTELFUSANO ALBERGHIERO",
+                        "skpitb:nome": "DIP III - Direzione - CFP CASTELFUSANO ALBERGHIERO",
+                        "skpitb:email": "formazione_castelfusanoalberghiero@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:33:49.829+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:33:04.632+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP AGORA’ SCUOLA DEL SOCIALE",
+                    "location": "nodes",
+                    "id": "39697a4e-3bca-47de-aa41-d7ac2afa4085",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP AGORA’ SCUOLA DEL SOCIALE",
+                        "skpitb:nome": "DIP III - Direzione - CFP AGORA’ SCUOLA DEL SOCIALE",
+                        "skpitb:email": "scuoladelsociale@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:33:33.528+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:33:04.580+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP ADRIATICO",
+                    "location": "nodes",
+                    "id": "57d01478-62e7-4afa-a0ea-e5aea5e8cdfe",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP ADRIATICO",
+                        "skpitb:nome": "DIP III - Direzione - CFP ADRIATICO",
+                        "skpitb:email": "formazione_adriatico@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:29:36.312+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:28:30.315+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP MARINO",
+                    "location": "nodes",
+                    "id": "994ac7bf-71dd-42b0-aa78-5f710cf09595",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP SCUOLA D’ARTE CINEMATOGRAFICA",
+                        "skpitb:nome": "DIP III - Direzione - CFP SCUOLA D’ARTE CINEMATOGRAFICA",
+                        "skpitb:email": "scuolacinema@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T14:21:37.835+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T14:20:49.948+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1 - CFP SCUOLA D’ARTE CINEMATOGRAFICA",
+                    "location": "nodes",
+                    "id": "7020e165-c6bf-44bc-93fd-65e5cdbeefd0",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione - CFP SCUOLA D’ARTE CINEMATOGRAFICA",
+                        "skpitb:nome": "DIP III - Direzione - CFP SCUOLA D’ARTE CINEMATOGRAFICA",
+                        "skpitb:email": "scuolacinema@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:17:05.118+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:16:12.056+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 5 - Serv 1",
+                    "location": "nodes",
+                    "id": "3b7bae92-32c7-4089-9195-b4c67a324004",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 1",
+                        "skpitb:nome": "DIP IV - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:15:04.534+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:14:45.626+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Direzione",
+                    "location": "nodes",
+                    "id": "eb38c5dd-5d91-4e4a-a2ed-a4607ae3fcb7",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Direzione",
+                        "skpitb:nome": "DIP IV - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:14:09.195+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:12:59.714+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 6 - Serv 1",
+                    "location": "nodes",
+                    "id": "42675559-9b3c-4dc5-bf56-67eb9ba3fe8d",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 1",
+                        "skpitb:nome": "DIP IV - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:14:26.576+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:12:59.660+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 6 - Direzione",
+                    "location": "nodes",
+                    "id": "57e9563a-b424-4376-9f92-e1725a99a980",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Direzione",
+                        "skpitb:nome": "DIP IV - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:14:07.359+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:11:09.413+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 7 - Serv 1",
+                    "location": "nodes",
+                    "id": "17ec00e4-af95-4632-b261-6c172489f3d8",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 1",
+                        "skpitb:nome": "DIP IV - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-10-24T13:12:23.559+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-10-24T13:11:09.329+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 5 - Direzione",
+                    "location": "nodes",
+                    "id": "1647c086-1bd5-4b62-899b-32a3e5d4ef21",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Direzione",
+                        "skpitb:nome": "DIP IV - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:33:07.471+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:32:16.535+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Angelo Pizzigallo",
+                    "location": "nodes",
+                    "id": "fe53d2fc-8632-4479-ad22-79faa0d83986",
+                    "properties": {
+                        "skpitb:cognome": "Pizzigallo",
+                        "skpitb:nome": "Angelo",
+                        "skpitb:email": "a.pizzigallo@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:31:38.293+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:30:50.615+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Alessandro Palombi",
+                    "location": "nodes",
+                    "id": "86bc6cf0-b580-4ed9-9d57-c951f3e3d0cb",
+                    "properties": {
+                        "skpitb:cognome": "Palombi",
+                        "skpitb:nome": "Alessandro",
+                        "skpitb:email": "a.palombi@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:30:21.353+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:29:25.304+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Esterino Montino",
+                    "location": "nodes",
+                    "id": "11f3a183-915f-48d6-a1e8-47bc4bdf6def",
+                    "properties": {
+                        "skpitb:cognome": "Montino",
+                        "skpitb:nome": "Esterino",
+                        "skpitb:email": "e.montino@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:28:54.347+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:28:07.813+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Nicola Marini",
+                    "location": "nodes",
+                    "id": "516ec881-23b3-4772-ae76-de328398d249",
+                    "properties": {
+                        "skpitb:cognome": "Marini",
+                        "skpitb:nome": "Nicola",
+                        "skpitb:email": "n.marini@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:27:42.558+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:26:54.020+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Antonio Giammusso",
+                    "location": "nodes",
+                    "id": "8470a706-ecb7-4268-8a4e-593042449281",
+                    "properties": {
+                        "skpitb:cognome": "Giammusso",
+                        "skpitb:nome": "Antonio",
+                        "skpitb:email": "a.giammusso@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:26:27.737+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:25:31.246+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Massimo Ferrarini",
+                    "location": "nodes",
+                    "id": "a0806a97-7999-442b-81e6-086b91a0c506",
+                    "properties": {
+                        "skpitb:cognome": "Ferrarini",
+                        "skpitb:nome": "Massimo",
+                        "skpitb:email": "m.ferrarini@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-08-02T15:21:36.731+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:23:55.215+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Angelo Capobianco",
+                    "location": "nodes",
+                    "id": "2b07d930-1f5b-4bec-a1b0-150d87dc2d2e",
+                    "properties": {
+                        "skpitb:cognome": "Capobianco",
+                        "skpitb:nome": "Angelo  ",
+                        "skpitb:email": "a.capobianco@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:23:15.753+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:22:20.850+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Roberto Eufemia",
+                    "location": "nodes",
+                    "id": "57d05581-ddaf-420e-91de-50afd0336219",
+                    "properties": {
+                        "skpitb:cognome": "Eufemia",
+                        "skpitb:nome": "Roberto",
+                        "skpitb:email": "r.eufemia@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:21:10.588+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:20:05.212+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Stefano Cacciotti",
+                    "location": "nodes",
+                    "id": "6065b063-1ee0-4a04-97f7-c56cbd56046f",
+                    "properties": {
+                        "skpitb:cognome": "Cacciotti",
+                        "skpitb:nome": "Stefano",
+                        "skpitb:email": "s.cacciotti@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:19:20.936+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-09T14:16:17.519+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Mariano Angelucci",
+                    "location": "nodes",
+                    "id": "59265987-ddc5-4b69-9dbb-36311176c783",
+                    "properties": {
+                        "skpitb:cognome": "Angelucci",
+                        "skpitb:nome": "Mariano",
+                        "skpitb:email": "m.angelucci@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:48:48.423+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:47:37.420+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Damiano Pucci",
+                    "location": "nodes",
+                    "id": "6c77b672-da24-474d-90c0-28690379d46f",
+                    "properties": {
+                        "skpitb:cognome": "Pucci",
+                        "skpitb:nome": "Damiano",
+                        "skpitb:email": "d.pucci@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:47:03.421+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:45:46.567+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Alessia Pieretti",
+                    "location": "nodes",
+                    "id": "739b4321-167e-48a2-8ee5-1ce7a82ce1dd",
+                    "properties": {
+                        "skpitb:cognome": "Pieretti",
+                        "skpitb:nome": "Alessia",
+                        "skpitb:email": "a.pieretti@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:45:16.153+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:43:31.865+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Daniele Parrucci",
+                    "location": "nodes",
+                    "id": "9399e462-b6db-4cfa-8e19-b86005367e48",
+                    "properties": {
+                        "skpitb:cognome": "Parrucci",
+                        "skpitb:nome": "Daniele",
+                        "skpitb:email": "d.parrucci@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:42:41.314+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:40:45.060+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Rocco Ferraro",
+                    "location": "nodes",
+                    "id": "b5c1565f-855f-42c9-88f3-829a9a8bb347",
+                    "properties": {
+                        "skpitb:cognome": "Ferraro",
+                        "skpitb:nome": "Rocco",
+                        "skpitb:email": "r.ferraro@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-03-01T08:02:58.176+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:38:39.361+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Manuela Chioccia",
+                    "location": "nodes",
+                    "id": "320baa86-0d00-4c09-a157-7a1a734ef4ba",
+                    "properties": {
+                        "skpitb:cognome": "Chioccia",
+                        "skpitb:nome": "Manuela",
+                        "skpitb:email": "m.chioccia@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:05:45.340+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-02-08T08:00:09.654+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Tiziana Biolghini",
+                    "location": "nodes",
+                    "id": "a65e6da7-56d4-439a-a963-fe73d4856b18",
+                    "properties": {
+                        "skpitb:cognome": "Biolghini",
+                        "skpitb:nome": "Tiziana",
+                        "skpitb:email": "t.biolghini@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:04:51.449+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-01-31T10:43:05.287+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere Delegato - Cristina Michetelli",
+                    "location": "nodes",
+                    "id": "78e33574-1877-4467-bae5-707a02e8fe6e",
+                    "properties": {
+                        "skpitb:cognome": "Michetelli",
+                        "skpitb:nome": "Cristina",
+                        "skpitb:email": "c.michetelli@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-01-10T09:29:50.010+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2022-01-10T09:17:31.777+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Vito Presicce",
+                    "location": "nodes",
+                    "id": "f5386947-736a-4a61-b711-1e79813a73ac",
+                    "properties": {
+                        "skpitb:cognome": "Presicce",
+                        "skpitb:nome": "Vito",
+                        "skpitb:email": "v.presicce@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:06:02.767+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2021-04-11T16:13:26.216+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 1 - Serv 4",
+                    "location": "nodes",
+                    "id": "8e825387-64e7-4788-a871-5f878e914325",
+                    "properties": {
+                        "skpitb:cognome": "DIP I - Serv 2",
+                        "skpitb:nome": "DIP I - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:03:10.197+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2021-04-11T16:13:25.882+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 1 - Serv 3",
+                    "location": "nodes",
+                    "id": "1d7d3962-fbe2-47b1-82e3-a4f516de786f",
+                    "properties": {
+                        "skpitb:cognome": "DIP I - Serv 1",
+                        "skpitb:nome": "DIP I - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:56:19.328+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2021-03-24T11:55:51.535+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Al Ragioniere Generale",
+                    "location": "nodes",
+                    "id": "4874b4a4-f9e4-4ad6-8455-3d99a1e9ec00",
+                    "properties": {
+                        "skpitb:cognome": "Ragioniere Generale",
+                        "skpitb:nome": "Ragioniere Generale",
+                        "skpitb:email": "ragioneria@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-11T16:25:21.154+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-02-25T08:22:05.202+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 2 - Direzione",
+                    "location": "nodes",
+                    "id": "9e6dad64-2b16-4071-a91d-5657380e95ae",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Serv 2",
+                        "skpitb:nome": "DIP V - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-12T09:28:25.035+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-02-10T10:49:16.705+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "SUPPORTO al Sindaco Metropolitano",
+                    "location": "nodes",
+                    "id": "ac7f0074-12d4-48cf-8e02-2b519a4b23fb",
+                    "properties": {
+                        "skpitb:cognome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:nome": "Soggetto aggregatore - Serv 1",
+                        "skpitb:email": "sviluppostrategico@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2020-02-07T10:14:05.161+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-02-07T10:12:01.403+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Pianificazione strategica generale",
+                    "location": "nodes",
+                    "id": "00f61d32-56af-46a1-a82a-6c5d4c3fbfbe",
+                    "properties": {
+                        "skpitb:cognome": "Soggetto aggregatore",
+                        "skpitb:nome": "Soggetto aggregatore",
+                        "skpitb:email": "gov.territoriale@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:53:14.012+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-02-07T10:08:37.706+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Capo di Gabinetto",
+                    "location": "nodes",
+                    "id": "3c5da08f-5822-44c8-82d4-cfed1dc241c0",
+                    "properties": {
+                        "skpitb:cognome": "Capo di Gabinetto",
+                        "skpitb:nome": "Capo di Gabinetto",
+                        "skpitb:email": "segreteriasindaco@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2024-03-18T10:33:06.644+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-01-14T09:46:34.369+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Al Direttore Generale",
+                    "location": "nodes",
+                    "id": "4d3d18d3-ca67-4348-8d87-59ea85770d49",
+                    "properties": {
+                        "skpitb:cognome": "Al Direttore Generale",
+                        "skpitb:nome": "Al Direttore Generale",
+                        "skpitb:email": "direzionegenerale@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-08T08:54:56.810+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2020-01-14T09:43:26.857+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Al Segretario Generale",
+                    "location": "nodes",
+                    "id": "43623e28-7c60-45c3-86f1-f4501f09e43e",
+                    "properties": {
+                        "skpitb:cognome": " Segretario Generale",
+                        "skpitb:nome": "Segretario Generale",
+                        "skpitb:email": "segretariato@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-06-18T07:29:14.807+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-06-18T07:28:11.484+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo misto - Cristina Grancio",
+                    "location": "nodes",
+                    "id": "ebc94a64-3a27-41d3-a7b4-783433775b6f",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo misto - Cristina Grancio",
+                        "skpitb:nome": "Presidente Gruppo misto - Cristina Grancio",
+                        "skpitb:email": "c.grancio@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2024-07-08T08:51:17.984+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-05-08T09:46:33.396+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Al personale titolare di Posizione di Elevata Qualifica",
+                    "location": "nodes",
+                    "id": "57583d4c-b804-41dd-9f70-dd9cc3ed73c8",
+                    "properties": {
+                        "skpitb:cognome": "A tutti i Consiglieri Metropolitani",
+                        "skpitb:nome": "A tutti i Consiglieri Metropolitani",
+                        "skpitb:email": "segretariatoserv1@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-05-08T09:48:10.700+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-05-08T09:46:33.382+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Al Nucleo di Controllo Strategico",
+                    "location": "nodes",
+                    "id": "3dc3d764-2967-4a2d-ba66-f1c33effa4ec",
+                    "properties": {
+                        "skpitb:cognome": "A tutti i Consiglieri Delegati",
+                        "skpitb:nome": "A tutti i Consiglieri Delegati",
+                        "skpitb:email": "segretariatoserv1@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2020-01-20T14:47:25.988+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-05-08T09:38:24.513+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "R.S.U. della CmRC",
+                    "location": "nodes",
+                    "id": "3a83929f-6caa-4019-8922-374604d252b2",
+                    "properties": {
+                        "skpitb:cognome": "R.S.U.",
+                        "skpitb:nome": "R.S.U.",
+                        "skpitb:email": "l.valle@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2020-01-20T14:41:30.794+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-05-08T09:35:40.319+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "OO. SS. della CmRC",
+                    "location": "nodes",
+                    "id": "30a89d5c-a223-462d-8b65-0dad770f04ca",
+                    "properties": {
+                        "skpitb:cognome": "OO. SS. della CmRC",
+                        "skpitb:nome": "OO. SS. della CmRC",
+                        "skpitb:email": "aformaggi@lazio.cgil.it, i.rondinelli@cittametropolitanaroma.gov.it, giancarlo.cosentino@cisl.it, s.lumaca@cittametropolitanaroma.gov.it, a.angritti@gmail.com, angelo.angritti@uilfplromalazio.it, segreteriauilfplcmrc@yahoo.com, virginiozuccari@gmail.com, r.fiacco@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:35:55.163+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-05-07T11:56:56.647+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Vice Sindaco Metropolitano",
+                    "location": "nodes",
+                    "id": "46d99e80-3c57-46cb-9fa9-1f014559fbc1",
+                    "properties": {
+                        "skpitb:cognome": "Vice Sindaco Metropolitano",
+                        "skpitb:nome": "Vice Sindaco Metropolitano",
+                        "skpitb:email": "segreteriasindaco@cittametropolitanaroma.it; vicesindaco@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:52.027+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-04-19T08:34:00.494+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 3 - Serv 3",
+                    "location": "nodes",
+                    "id": "cfa737a2-a964-4a9a-a7a7-794f77a1be55",
+                    "properties": {
+                        "skpitb:cognome": "AVVOCATURA",
+                        "skpitb:nome": "AVVOCATURA",
+                        "skpitb:email": "avvocatura@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:44.644+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-04-19T08:27:11.877+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 3 - Serv 2",
+                    "location": "nodes",
+                    "id": "d9120748-badc-4f50-83f5-ff52ddb46a17",
+                    "properties": {
+                        "skpitb:cognome": "AVVOCATURA",
+                        "skpitb:nome": "AVVOCATURA",
+                        "skpitb:email": "avvocatura@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-06-18T09:53:51.414+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2019-03-22T15:12:12.566+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Collegio dei revisori",
+                    "location": "nodes",
+                    "id": "77fa5a65-2ee3-44ea-ac12-21153a9a35d0",
+                    "properties": {
+                        "skpitb:cognome": "Collegio dei revisori",
+                        "skpitb:nome": "Collegio dei revisori",
+                        "skpitb:email": "Collegio dei revisori"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-05-08T09:45:30.912+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-11-06T09:40:46.178+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "A tutto il personale Dipendente",
+                    "location": "nodes",
+                    "id": "7e25234b-33ee-4ae2-bc00-8abd4bab033f",
+                    "properties": {
+                        "skpitb:cognome": "Al personale dipendente",
+                        "skpitb:nome": "Al personale dipendente",
+                        "skpitb:email": "test"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-05-08T09:45:17.494+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-11-06T09:40:46.149+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "A tutti i Dirigenti di Servizio",
+                    "location": "nodes",
+                    "id": "331fc948-9123-4dfa-82ea-86a17aeeb591",
+                    "properties": {
+                        "skpitb:cognome": "A tutti i Dirigenti",
+                        "skpitb:nome": "A tutti i Dirigenti",
+                        "skpitb:email": "solo per Destinatari in fase di creazione scheda"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-05-08T09:45:04.997+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-11-06T09:40:46.057+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "A tutti i Direttori di Dipartimento, Uffici Centrali ed Extradipartimentali",
+                    "location": "nodes",
+                    "id": "1dc841c6-1ae1-4b2a-9fd6-07237282cde1",
+                    "properties": {
+                        "skpitb:cognome": "A tutti i Direttori",
+                        "skpitb:nome": "A tutti i Direttori",
+                        "skpitb:email": "solo per Destinatari in fase di creazione scheda"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:44:29.143+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-26T08:11:23.391+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Componenti del CUG",
+                    "location": "nodes",
+                    "id": "f7ee8fa5-eb21-49a4-b018-091cc8756aa5",
+                    "properties": {
+                        "skpitb:cognome": "COMPONENTI CUG",
+                        "skpitb:nome": "COMPONENTI CUG",
+                        "skpitb:email": "cug@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-02-09T14:40:18.158+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-25T11:41:27.886+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Vice Segretario Generale Vicario",
+                    "location": "nodes",
+                    "id": "a63efffd-ac4d-472f-b05d-827b4997a66c",
+                    "properties": {
+                        "skpitb:cognome": "Vice Segretario Generale Vicario - Dott. Andrea Anemone",
+                        "skpitb:nome": "Vice Segretario Generale Vicario - Dott. Andrea Anemone",
+                        "skpitb:email": " segretariogenerale@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-18T12:07:25.679+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:20:50.012+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Micol Grasselli",
+                    "location": "nodes",
+                    "id": "f3c52223-9e3d-437c-a276-01b898cc04b8",
+                    "properties": {
+                        "skpitb:cognome": "Grasselli",
+                        "skpitb:nome": "Micol",
+                        "skpitb:email": "m.grasselli@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-18T12:05:57.052+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:20:49.980+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Andrea Volpi",
+                    "location": "nodes",
+                    "id": "65371248-2e1c-4826-b88d-ee5e5a7dc044",
+                    "properties": {
+                        "skpitb:cognome": "Volpi",
+                        "skpitb:nome": "Andrea",
+                        "skpitb:email": "a.volpi@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-18T12:07:48.874+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:15:05.583+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Pierluigi Sanna",
+                    "location": "nodes",
+                    "id": "c012162f-bf06-4d08-95e3-2a101542d84a",
+                    "properties": {
+                        "skpitb:cognome": "Sanna",
+                        "skpitb:nome": "Pierluigi",
+                        "skpitb:email": "p.sanna@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-18T12:05:47.374+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:15:05.524+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Alessio Pascucci",
+                    "location": "nodes",
+                    "id": "83fea594-45af-4d00-bebf-73b84cce1a6a",
+                    "properties": {
+                        "skpitb:cognome": "Pascucci",
+                        "skpitb:nome": "Alessio",
+                        "skpitb:email": "a.pascucci@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-08-02T14:57:58.458+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:04:13.172+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Federica Lavalle",
+                    "location": "nodes",
+                    "id": "14d2054f-ce4b-4c0b-b2ac-7f29af6555e5",
+                    "properties": {
+                        "skpitb:cognome": "Ascani",
+                        "skpitb:nome": "Federico",
+                        "skpitb:email": "f.ascani@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-18T12:07:32.953+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T15:03:32.578+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Consigliere metropolitano Paolo Ferrara",
+                    "location": "nodes",
+                    "id": "69a30e0d-6f72-4795-986c-6b1380e84c5f",
+                    "properties": {
+                        "skpitb:cognome": "Ferrara",
+                        "skpitb:nome": "Paolo",
+                        "skpitb:email": "p.ferrara@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-17T15:33:11.179+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:20:44.896+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare CONSERVATORI E RIFORMISTI",
+                    "location": "nodes",
+                    "id": "48f48dad-807f-4891-a0d8-eda0261ae4be",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare CONSERVATORI E RIFORMISTI",
+                        "skpitb:nome": "Presidente Gruppo Consiliare CONSERVATORI E RIFORMISTI",
+                        "skpitb:email": "g.libanori@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-17T15:34:00.189+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:18:50.683+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare FRATELLI D'ITALIA",
+                    "location": "nodes",
+                    "id": "8849faae-60aa-49b4-8f7d-c3a0bfd16b99",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare FRATELLI D'ITALIA",
+                        "skpitb:nome": "Presidente Gruppo Consiliare FRATELLI D'ITALIA",
+                        "skpitb:email": "a.volpi@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2019-06-10T12:48:31.617+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:16:12.629+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare LEGA SALVINI PREMIER",
+                    "location": "nodes",
+                    "id": "c2d2a879-68b9-4172-be4d-0bd804ee70d5",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare LEGA SALVINI PREMIER",
+                        "skpitb:nome": "Presidente Gruppo Consiliare LEGA SALVINI PREMIER",
+                        "skpitb:email": "a.proietti@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-17T15:33:36.169+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:15:36.605+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare FORZA ITALIA",
+                    "location": "nodes",
+                    "id": "0242c5c2-29c3-485c-ba8e-0a7aa974859b",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare FORZA ITALIA",
+                        "skpitb:nome": "Presidente Gruppo Consiliare FORZA ITALIA",
+                        "skpitb:email": "m.cacciotti@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-17T15:37:03.482+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:14:53.906+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare MOVIMENTO 5 STELLE",
+                    "location": "nodes",
+                    "id": "5da825ff-5356-4ec2-8cfb-8fe9687ccf04",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare MOVIMENTO 5 STELLE",
+                        "skpitb:nome": "Presidente Gruppo Consiliare MOVIMENTO 5 STELLE",
+                        "skpitb:email": "p.ferrara@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-17T15:34:21.647+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T11:13:18.516+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Presidente Gruppo Consiliare LE CITTA' della METROPOLI",
+                    "location": "nodes",
+                    "id": "31bf8115-0244-4378-8866-9d297d7e38e1",
+                    "properties": {
+                        "skpitb:cognome": "Presidente Gruppo Consiliare LE CITTA' della METROPOLI",
+                        "skpitb:nome": "Presidente Gruppo Consiliare LE CITTA' della METROPOLI",
+                        "skpitb:email": "f.ascani@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2024-03-21T08:51:32.460+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-17T09:10:31.553+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Vice Presidente del Consiglio Metropolitano",
+                    "location": "nodes",
+                    "id": "a0ecdb13-7302-48ed-b331-b9c1843153b2",
+                    "properties": {
+                        "skpitb:cognome": "Cacciotti",
+                        "skpitb:nome": "Mario",
+                        "skpitb:email": "m.cacciotti@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-01-21T12:11:42.538+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-15T08:38:56.294+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "A tutti i Consiglieri Delegati",
+                    "location": "nodes",
+                    "id": "de64842e-b651-4b6d-86ab-6f855d3990da",
+                    "properties": {
+                        "skpitb:cognome": "Consiglieri Delegati",
+                        "skpitb:nome": "Consiglieri Delegati",
+                        "skpitb:email": "segretariatoserv1@cittametropolitanaroma.it, p.sanna@cittametropolitanaroma.it,t.biolghini@cittametropolitanaroma.it,m.chioccia@cittametropolitanaroma.it,r.ferraro@cittametropolitanaroma.it,c.michetelli@cittametropolitanaroma.it,d.parrucci@cittametropolitanaroma.it,a.pieretti@cittametropolitanaroma.it,da.pucci@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-08-02T15:19:33.442+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-09T10:37:13.812+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "A tutti i Consiglieri Metropolitani",
+                    "location": "nodes",
+                    "id": "4ed07dd1-ced7-4b61-a65b-e7cdec6ad540",
+                    "properties": {
+                        "skpitb:cognome": "Consiglieri Metropolitani",
+                        "skpitb:nome": "Consiglieri Metropolitani",
+                        "skpitb:email": "m.angelucci@cittametropolitanaroma.it, f.lavalle@cittametropolitanaroma.gov.it, t.biolghini@cittametropolitanaroma.it, s.cacciotti@cittametropolitanaroma.it, m.chioccia@cittametropolitanaroma.it r.eufemia@cittametropolitanaroma.it, a.capobianco@cittametropolitanaroma.it, p.ferrara@cittametropolitanaroma.gov.it, m.ferrarini@cittametropolitanaroma.it, r.ferraro@cittametropolitanaroma.it, a.giammusso@cittametropolitanaroma.it, m.grasselli@cittametropolitanaroma.gov.it, n.marini@cittametropolitanaroma.it, c.michetelli@cittametropolitanaroma.it, e.montino@cittametropolitanaroma.it, al.palombi@cittametropolitanaroma.it, d.parrucci@cittametropolitanaroma.it, a.pascucci@cittametropolitanaroma.gov.it, a.pieretti@cittametropolitanaroma.it, a.pizzigallo@cittametropolitanaroma.it, v.presicce@cittametropolitanaroma.it, da.pucci@cittametropolitanaroma.it, p.sanna@cittametropolitanaroma.gov.it, a.volpi@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:21:46.606+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-08T10:14:27.682+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA - DT TIVOLI",
+                    "location": "nodes",
+                    "id": "4b2a79f9-b626-4436-aaaa-420cf66ea181",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT TIVOLI",
+                        "skpitb:nome": "POLIZIA LOCALE - DT TIVOLI",
+                        "skpitb:email": "poliziasud.tivoli@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:21:30.979+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-08T10:13:05.485+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA - DT ARTENA",
+                    "location": "nodes",
+                    "id": "f6a91c6d-736d-40c6-b7e8-eaf2796becd9",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT ARTENA",
+                        "skpitb:nome": "POLIZIA LOCALE - DT ARTENA",
+                        "skpitb:email": "poliziasud.artena@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:21:18.120+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-08T10:06:00.152+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA  - DT LAVINIO",
+                    "location": "nodes",
+                    "id": "b8c53f43-50b6-45d1-98f3-045aff20508a",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT LAVINIO",
+                        "skpitb:nome": "POLIZIA LOCALE - DT LAVINIO",
+                        "skpitb:email": "polizianord.lavinio@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:20:57.114+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-08T10:04:30.466+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA  - DT BRACCIANO",
+                    "location": "nodes",
+                    "id": "be7d6016-a27c-4791-886f-695ccadc2c61",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT BRACCIANO",
+                        "skpitb:nome": "POLIZIA LOCALE - DT BRACCIANO",
+                        "skpitb:email": "polizianord.bracciano@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:20:39.460+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-08T10:01:05.074+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA  - DT FIUMICINO",
+                    "location": "nodes",
+                    "id": "04a5d854-fc78-4bc0-bb0e-386d9023d23a",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - DT FIUMICINO",
+                        "skpitb:nome": "POLIZIA LOCALE - DT FIUMICINO",
+                        "skpitb:email": "polizianord.rmovest@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:20:13.733+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.519+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA  - Comando",
+                    "location": "nodes",
+                    "id": "376ba239-09ca-46b6-9d24-52130915d500",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - Comando",
+                        "skpitb:nome": "POLIZIA LOCALE - Comando"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:09:09.711+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.512+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 4 - Direzione",
+                    "location": "nodes",
+                    "id": "a707b02c-e7de-4561-bd80-1aa8760a2d99",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Direzione",
+                        "skpitb:nome": "DIP IV - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:29.105+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.505+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 3 - Direzione",
+                    "location": "nodes",
+                    "id": "6c83118c-d13f-401f-9e10-68230ce1c910",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Direzione",
+                        "skpitb:nome": "DIP III - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:07:38.555+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.497+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 2 - Serv 1",
+                    "location": "nodes",
+                    "id": "e7a01b38-f836-4c76-9c6e-ae8a08105ddd",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Serv 1",
+                        "skpitb:nome": "DIP II - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-11T16:23:04.761+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.490+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 1 - Direzione",
+                    "location": "nodes",
+                    "id": "85c20f0b-02a6-4cd7-af01-6a8fe8a74497",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Direzione",
+                        "skpitb:nome": "DIP V - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-05T14:24:31.469+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.469+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIR GEN - Serv 1",
+                    "location": "nodes",
+                    "id": "8102a9c7-674c-41ef-978a-62b1e950cd5e",
+                    "properties": {
+                        "skpitb:cognome": "DIR GEN - Serv 1",
+                        "skpitb:nome": "DIR GEN - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:09:17.201+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.462+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 4 - Serv 1",
+                    "location": "nodes",
+                    "id": "08c04485-d812-4f98-b966-e0db0c0dacbe",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 1",
+                        "skpitb:nome": "DIP IV - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-15T08:36:38.060+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.354+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Difensore Civico",
+                    "location": "nodes",
+                    "id": "9e499bf4-cc1f-46fe-924e-d45342721fc5",
+                    "properties": {
+                        "skpitb:cognome": "Difensore Civico",
+                        "skpitb:nome": "Difensore Civico",
+                        "skpitb:email": "difensor@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T11:46:29.227+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.338+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 1 - Direzione",
+                    "location": "nodes",
+                    "id": "215cf274-688c-4350-b753-bc702cc7f32d",
+                    "properties": {
+                        "skpitb:cognome": "DIP I - Direzione",
+                        "skpitb:nome": "DIP I - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-11T16:23:29.362+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.332+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 1 - Serv 1",
+                    "location": "nodes",
+                    "id": "5f7729ca-c837-46da-a379-7cdf250199d2",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Serv 1",
+                        "skpitb:nome": "DIP V - Serv 1",
+                        "skpitb:email": "l.cappelli@cittametropolitanaroma.gov.it,c.checchi@cittametropolitanaroma.gov.it,c.dimilla@cittametropolitanaroma.gov.it,a.iacoboni@cittametropolitanaroma.gov.it,m.marcoaldi@cittametropolitanaroma.gov.it,e.menicocci@cittametropolitanaroma.gov.it,g.nardella@cittametropolitanaroma.gov.it,s.pasquali@cittametropolitanaroma.gov.it,d.sena@cittametropolitanaroma.gov.it,l.stampachiacchiere@cittametropolitanaroma.gov.it, e.tamanti@cittametropolitanaroma.gov.it,e.venanzi@cittametropolitanaroma.gov.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2022-05-20T13:11:49.599+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.320+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Ufficio Sindaco",
+                    "location": "nodes",
+                    "id": "68f9e446-5568-4d46-ae8f-a9f548701ecf",
+                    "properties": {
+                        "skpitb:cognome": "Ufficio Sindaco",
+                        "skpitb:nome": "Ufficio Sindaco",
+                        "skpitb:email": "segreteriasindaco@cittametropolitanaroma.it,p.manfrellotti@cittametropolitanaroma.it,s.angelini@cittametropolitanaroma.it"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-11T16:23:46.197+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.308+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "UC 1 - Serv 2",
+                    "location": "nodes",
+                    "id": "9b07b5b0-a60e-4d0d-a7b4-2fb53bf1ad64",
+                    "properties": {
+                        "skpitb:cognome": "DIP V - Serv 2",
+                        "skpitb:nome": "DIP V - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:09:41.811+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.279+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 4 - Serv 3",
+                    "location": "nodes",
+                    "id": "0fb2f101-32e7-4e2a-93aa-b9e910c89843",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 3",
+                        "skpitb:nome": "DIP IV - Serv 3"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:07:32.320+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.273+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 2 - Direzione",
+                    "location": "nodes",
+                    "id": "694830f4-fc4e-41b4-9cbb-75e2e29d0d08",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Direzione",
+                        "skpitb:nome": "DIP II - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:12.389+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.261+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 2 - Serv 4",
+                    "location": "nodes",
+                    "id": "e26cc2db-912f-4bc1-87c4-301679aa7561",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Serv 4",
+                        "skpitb:nome": "DIP II - Serv 4"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:07:54.677+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.250+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 2 - Serv 2",
+                    "location": "nodes",
+                    "id": "e0c3dab0-ca1e-477b-be08-64b03411ae52",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Serv 2",
+                        "skpitb:nome": "DIP II - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:03:03.681+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.240+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 1 - Serv 2",
+                    "location": "nodes",
+                    "id": "93270735-69eb-4f51-802b-da8dea88de13",
+                    "properties": {
+                        "skpitb:cognome": "DIP I - Serv 2",
+                        "skpitb:nome": "DIP I - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-05T14:24:31.223+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.223+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIR GEN - Direzione",
+                    "location": "nodes",
+                    "id": "85d9bb8c-64ad-482e-8e98-d1a9ac0b6bf6",
+                    "properties": {
+                        "skpitb:cognome": "DIR GEN - Direzione",
+                        "skpitb:nome": "DIR GEN - Direzione"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:09:33.459+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.206+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 4 - Serv 2",
+                    "location": "nodes",
+                    "id": "c0b2be36-f4d0-47e1-8c46-1d734b092c32",
+                    "properties": {
+                        "skpitb:cognome": "DIP IV - Serv 2",
+                        "skpitb:nome": "DIP IV - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:19:16.188+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.196+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA - Serv 1",
+                    "location": "nodes",
+                    "id": "a99f1d44-0878-4ab0-9971-9b5c4f601025",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - Serv 1",
+                        "skpitb:nome": "POLIZIA LOCALE - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:37.228+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.190+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 3 - Serv 1",
+                    "location": "nodes",
+                    "id": "f122aeb6-ff8c-4e4e-8816-2d3dc73bec37",
+                    "properties": {
+                        "skpitb:cognome": "DIP III - Serv 1",
+                        "skpitb:nome": "DIP III - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:02:42.330+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.175+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 1 - Serv 1",
+                    "location": "nodes",
+                    "id": "3396dd35-72f8-4e00-be68-eed9c7d1872a",
+                    "properties": {
+                        "skpitb:cognome": "DIP I - Serv 1",
+                        "skpitb:nome": "DIP I - Serv 1"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-05-03T12:08:03.667+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.149+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "DIP 2 - Serv 3",
+                    "location": "nodes",
+                    "id": "db863a47-f176-442d-bfac-a958288dac6b",
+                    "properties": {
+                        "skpitb:cognome": "DIP II - Serv 3",
+                        "skpitb:nome": "DIP II - Serv 3"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2021-04-21T08:22:31.299+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.113+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "POLIZIA METROPOLITANA - Serv 2",
+                    "location": "nodes",
+                    "id": "746e98a7-d889-44f9-bd26-459b019d03ea",
+                    "properties": {
+                        "skpitb:cognome": "POLIZIA LOCALE - Serv 2",
+                        "skpitb:nome": "POLIZIA LOCALE - Serv 2"
+                    }
+                }
+            },
+            {
+                "entry": {
+                    "isFile": true,
+                    "createdByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "modifiedAt": "2018-10-05T14:24:31.106+0000",
+                    "nodeType": "skpitb:contattoModel",
+                    "parentId": "e4a37915-d1ba-4f23-9245-09034fc23a4f",
+                    "aspectNames": [
+                        "skpitb:contatto",
+                        "cm:auditable"
+                    ],
+                    "createdAt": "2018-10-05T14:24:31.106+0000",
+                    "isFolder": false,
+                    "search": {
+                        "score": 1.0
+                    },
+                    "modifiedByUser": {
+                        "id": "admin",
+                        "displayName": "Administrator"
+                    },
+                    "name": "Polizia Giudiziaria",
+                    "location": "nodes",
+                    "id": "96c96f5f-9dbd-4d8c-b63b-78a9c2e0ee7e",
+                    "properties": {
+                        "skpitb:cognome": "Polizia Giudiziaria",
+                        "skpitb:nome": "Polizia Giudiziaria"
+                    }
+                }
+            }
+        ]
+    }
+}
