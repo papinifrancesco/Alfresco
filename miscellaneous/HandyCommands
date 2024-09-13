@@ -35,3 +35,8 @@ jar xvf /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/lib/alfresco-repository-6.
 
 # JMX settings dump when no GUI is available
 curl -o jmxdump.zip -u {admin_user}:{admin_password} http://{host}:{port}/alfresco/s/api/admin/jmxdump
+
+
+# Check for duplicates in WEB-INF/lib
+ls /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/lib/* > list.txt
+cat list.txt | awk -F'/' '{print $NF}' | awk -F'-[0-9]' '{print $1}' | sort | uniq -d | while read line; do grep "$line" list.txt; done 
