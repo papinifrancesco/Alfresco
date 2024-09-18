@@ -25,8 +25,10 @@
                maxHttpHeaderSize="32768"
                />
 <!--
-Usually a real front-end such as httpd or nginx should be used
-Still, if for some reasons you need Tomcat's HTTPS:
+Even if you don't plan to use it, DO NOT disable the TLS connector:
+    Elasticsearch integration will fail (even if you don't use HTTPS)
+    SMTPS might break (even if you don't use CLIENT AUTHENTICATION)
+-->
      <Connector clientAuth="want"
                connectionTimeout="240000"
                keystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"
@@ -47,7 +49,7 @@ Still, if for some reasons you need Tomcat's HTTPS:
                URIEncoding="UTF-8" >
     <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
     </Connector>
--->
+
     
 <!--
 AJP? Can't we use HTTP nowadays?
