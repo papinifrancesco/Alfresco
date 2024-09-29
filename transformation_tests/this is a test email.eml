@@ -1,0 +1,162 @@
+Delivered-To: francescopapini@gmail.com
+Received: by 2002:a05:6358:7f0c:b0:1be:ecf4:d5b with SMTP id p12csp179329rwn;
+        Sun, 29 Sep 2024 06:33:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEniLz/iWy1O+74Cbi0VWHsfgJTgA/wLOc3LNndjtwiCKS/+kayKXZXW+rrfqaeEFXny6xV
+X-Received: by 2002:a17:902:fa4c:b0:202:4b65:65af with SMTP id d9443c01a7336-20b37ba0664mr97749345ad.52.1727616791371;
+        Sun, 29 Sep 2024 06:33:11 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1727616791; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=Z+8IAbqBhdkjOWm+YVnGVXutdvkKH9FbaSyzSh7qzwOH2+RgkqBXCfJadj3AzKhN31
+         G6ZyfyWOoa3Y13816EgA30QFKyz01+MnVEpnkNUGVz3vW2NJ87kNXNrWPdRhz7IXHhXq
+         +pLWlO9wpQxL5TAI3PWy6PvRrMhCLM8lbzWavrxTwZaLkuj9bRjHUJNRCKMOX7Ci91y3
+         8H44mIk8g2wXi7hzQWfJXMWQ9LvC0xAGnrZdP4JR0DpbVqrK8WwhESc3ikOmDwL/tQt6
+         /WLdODHuPaQ6ohIgcXMAUce0Z1R8d91rxV+EO5725gskZdzFkTFPEhQRWVzy0ekLB3hv
+         RVmg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :message-id:date:thread-index:thread-topic:subject:to:from
+         :dkim-signature;
+        bh=P/Cs9emwalgFZnbPSpX2uaLI8kLpESFe4Vm9Qf1X+cc=;
+        fh=KzL6a0R1MwbbSpixWZ58pGU0nwXKnVPktd3DsTIlS3A=;
+        b=cWJ+78EDRWPWEeN9HhapQZS/TKxwh77Z3iHj3+P0nl/PZikcScCpjumpGNPWVWu/N6
+         +phCm5QKYaSqGauCxuRhWYUEKTHnmmedRK56zRBt8iS5xatGo42+Ta5cb/cTliPw87U5
+         4lHr19xHaTAdspZKbIUuufw7piOF4XGjRsj6LF+HGZGfXke+Uh81Sb/8IHvqnMG/krRI
+         2JBd+IF5CyWLtsWQj/Y8JPN+I79V0+skWf6QWOWFjG01ljRZlm4P+hQOr+DK/Kb6xSsA
+         rNoMuvgdZxlPSwsYjb5fgEbDhRLVJz7h8Gg/M5t89myF3KGuJvvGD4x+LUGrLsOwZBOc
+         A7lg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@hotmail.com header.s=selector1 header.b=HVZMUgjI;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of francesco_papini@hotmail.com designates 2a01:111:f403:d200:: as permitted sender) smtp.mailfrom=francesco_papini@hotmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hotmail.com
+Return-Path: <francesco_papini@hotmail.com>
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazolkn190110000.outbound.protection.outlook.com. [2a01:111:f403:d200::])
+        by mx.google.com with ESMTPS id d9443c01a7336-20b37dabc4dsi66256685ad.151.2024.09.29.06.33.11
+        for <francescopapini@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 29 Sep 2024 06:33:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of francesco_papini@hotmail.com designates 2a01:111:f403:d200:: as permitted sender) client-ip=2a01:111:f403:d200::;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@hotmail.com header.s=selector1 header.b=HVZMUgjI;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of francesco_papini@hotmail.com designates 2a01:111:f403:d200:: as permitted sender) smtp.mailfrom=francesco_papini@hotmail.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rbQFulyq7Jf3a0IdByfoeyMocF8bYiWW30DK+XeGodUyDZ18sz56Q1zZzjfisFjD5q3zwBmunpkkf3ClmVh7BPV6X97rn5YbdciQ3dtuJF86+4v5iISmjgxODw1F9SuRMd5pdyvOwq+5T6vx67KEigd2LMstpIxlrKZF4Oth5Ef3Bjclq22tSYTCiDaAnJkxpkIZ9vdYrIztZr2HqjdFb+VI1Z6GUhwGB39dusqW7sNo6jq75gO/O2DjXIPBZJgH7p24MvzCOXBQO7R33p0R4YOuwIPpeZY0VW21JhESD0BogC6Okb1wsyl3zMl4IMagCLigUqW53vxvj65qq9Wn0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P/Cs9emwalgFZnbPSpX2uaLI8kLpESFe4Vm9Qf1X+cc=;
+ b=NLgq2d1POy97qaQk73cZtPqomOWhAn+xU4LoTORxYcCD5qMYFRvq5yTd5QpbXjMBvtum/5gjYWfmQncpaHTdpEbRq5C6Q46MhQPSy5cHfHxFC0Kr4PS4eFxngKi2F5b8HLlADFaB5R90XC+HgMnw/sRIvwIuVm6KVCwUZpnrW7JnP2751sQsd4i4IrIfOs/E7wDpwcNcjjP9+J+OiIs1R/KJE2VPK570vijTXWwJ9hIapGXG6xyyrUdBdl5AL2MUShxYa++t0kQaKXogbrJtzJcfcfftvSKqD67AT7IlbbGN2yRsmrSoc/hEvUMYLLFQStnHQz1/M/rlyVvX7FQ6YQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P/Cs9emwalgFZnbPSpX2uaLI8kLpESFe4Vm9Qf1X+cc=;
+ b=HVZMUgjICaOhr7RImw9Sl8DE6/6NHQo+yF1FL7vLsJoKhfEw2ve7/swQk7n6CcuzE1v7CBliV6OPFryMYI6In7xQzspRkWFVZIt+7jLmLevk5xMtK2I0XkrkRIqqiGoMUB6ge6fepsx60mDLz4hkDscPyW3FnQeRQB4iOVR/EKzhqjhX4ZqeuWqa5W+Mym7N9qsJ8Mq1LCzEfO778VNfU/5g8p7+d7wM1PWJOfo/KKx3sHqA7z5aT9CdxNeVWo76QZlFhQcYzqnbPJ09FkBErQZCJnW+IjlsyMvJXzuT3wD6+1vE6Q9o9ruypVBhPP3wfxppSoiYxoYlQQhnfgDulA==
+Received: from DB5PR02MB10263.eurprd02.prod.outlook.com (2603:10a6:10:4a8::22)
+ by GV2PR02MB8553.eurprd02.prod.outlook.com (2603:10a6:150:ad::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Sun, 29 Sep
+ 2024 13:33:08 +0000
+Received: from DB5PR02MB10263.eurprd02.prod.outlook.com
+ ([fe80::5aff:a9cf:4f38:a4ef]) by DB5PR02MB10263.eurprd02.prod.outlook.com
+ ([fe80::5aff:a9cf:4f38:a4ef%5]) with mapi id 15.20.8005.024; Sun, 29 Sep 2024
+ 13:33:08 +0000
+From: Francesco Papini <francesco_papini@hotmail.com>
+To: Francesco Papini <francescopapini@gmail.com>
+Subject: this is a test email
+Thread-Topic: this is a test email
+Thread-Index: AQHbEnP8g0QO9neX1UyHNUUgPUvE+g==
+Date: Sun, 29 Sep 2024 13:33:08 +0000
+Message-ID:
+ <DB5PR02MB102635D8AFEAAD0D6D26CF463FD752@DB5PR02MB10263.eurprd02.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB5PR02MB10263:EE_|GV2PR02MB8553:EE_
+x-ms-office365-filtering-correlation-id: 4c141fe0-c94b-44be-d8d6-08dce08b4176
+x-microsoft-antispam:
+ BCL:0;ARA:14566002|461199028|8060799006|15030799003|19110799003|8062599003|7092599003|15080799006|102099032|440099028|3412199025;
+x-microsoft-antispam-message-info:
+ z4m5mM4IQvuI2bTXUe7QXBvOTRGUEMmnRdg5YwnbKgkkS34/bt7b0A41rBzyzneu12bJut2vGMkBFMHc8PVXwQpSndk2ZMWqb4Ou1Qrbb59ig6fDbkdiw6ovJ3QF/+ex80xldjWQjbAz74J6+8c/0XeYthRMJy5sd6/uxroYj/yp+pX/yRqC2nGEOTS4XrPtCeokps4qTyBRCzPv9ghpVyxWvOqCoqEHFTEB75rrsfEhKGM26fSxTL438XRM981AkGGsVklyPgPfA4/enL/Wf6bK1I5WSJYfhZX3XNf6MMgLxLcuuFcVqfS6XXO+6OLQI0ru4/dJau1hLq5iZD8n2mdtDe0aJ+mPrQkkLu+22vSPS2zBVmtkP9bKNhIBArFwd5F8rnbpy/hcPeTN9CGV/PyPCiq+j62D+LONzGZjWPxrHWvMjeLRklOZUBboQttqz3470V0UGU+5oohxii/dPBZek5QYjDts/ynZC654zR5tHJ0V3+aSUAQc6TLO4QNpBjmNCuxaLWlqKj1IGbeakA2j0GMHHO0FY2XyQQK7VOXWZyws3H3X1632+Zbx/w+iCDsKKSX0VGg/OaCI2fBo1KRsbXeBbVIt+UO1EhXwlMzn4W3VBwP0jfcRWkU/EugCuffqbp7RBYSnxs0LKjf99WyLc19w5ctuwQAiVT+TIDVoVx0/u6a1dJM8OKU8iJy3SOwD8KIrxD4NlJ6d6dppxWjRAky1aUNV3uG6vOB/ggc90f0PMz4auuYzRh02jbyW4A7/SlyJPkSMJczOulPdQA==
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?qB6bIRt9PgdYsWH8QLsjFayft7J8OBqaUYiTpu0bhNE7MxLJd/7qB+eUa3?=
+ =?iso-8859-1?Q?D4Xpe6WZwrAtqIF4L/Ypt/Zsub9kj350F4u2iTqb9UMge9WW5bFuHxGQhv?=
+ =?iso-8859-1?Q?kDVNVoWzoCNZ62qh6Uh+8wMZv0bX3/hG0LB4b7hmCr9I0IBNjmsOG7ttno?=
+ =?iso-8859-1?Q?c7NM7oEwKiODinzeR4bkSAefbME8uHzQLGAy3hXbImJfueMvZc21BNoT3N?=
+ =?iso-8859-1?Q?qIBQzf4jl79Gp/mtnhp94l1Ifph9/B0Zjrd5xcBTjTnyH8ZpdnMHiAVTOy?=
+ =?iso-8859-1?Q?/hgBSXiFNvDNJoi9luRenZ1R5i9NsTUt1NsIU+HSr4up+68w9keFv2yxyg?=
+ =?iso-8859-1?Q?Y67KiPgUK0FqDwh4GgxAUYNpJZKSF7QeEPPoG3eBvPKWbPdLa5+TrljwjZ?=
+ =?iso-8859-1?Q?Vyr3stI9L1s4Ilnf/Lavyh+szmhLD1J5Mh6bLVqpIa+bkq5KgoW3dK14fB?=
+ =?iso-8859-1?Q?xapKHHqIBHKCnjr2TY8n15mIxw51TbvgNaoljcraDtfKRof5ZxTHRPKStq?=
+ =?iso-8859-1?Q?t5fiNZeEXhZDTLJpEF+HpR9pWa3Bhv40kdqgswmA1YTj15a1F2hjkZdJHT?=
+ =?iso-8859-1?Q?vuFFx+TbDXjhFzcPizR+xziIWJw16pNIeUbw0bDGPjM30NkTLMGHK3Af0w?=
+ =?iso-8859-1?Q?T3jgMa5uYJ03vPv42WjOXZH+80uUtGz64/0Vk3Bd0hYqY1IrJAfDwiMXs1?=
+ =?iso-8859-1?Q?4NnRLsuBpOWCq78YV3Cloy7cSfmyc4p5P1ow7kBTLbkS550+U3dcP30b14?=
+ =?iso-8859-1?Q?9qlZuFHGcHvR84dMchb9o0fLDpfQ+OHLl+9NKgR612PO+kk7Ywm+zGVPhw?=
+ =?iso-8859-1?Q?f7hmqI2qfZdH4ta2fC+6AKcTzJ/OpJ5+OEGeg0Guxwg2THScoY4WsF7VSo?=
+ =?iso-8859-1?Q?zA+K81kp+R4b0yHgTkBJLU/lZrvCWuU1hTHppsKkmN24uCu09au5m2c+h0?=
+ =?iso-8859-1?Q?de4boDGt4UPzDYEVBwyLjaNL5AC52ENTcIzeLi1ityvAfwXMHNGNENh9Qb?=
+ =?iso-8859-1?Q?n6pmQRaIN0HFdEGLube7LXijtONnNnsMqHzXMmrJ4dhPsGyQObn8B4Qw9J?=
+ =?iso-8859-1?Q?Vi8J5SAjsQO5Sraz8fz6+EvfEFTbHfCkHgB4HUfC8jR9/x5Vd4bHGbJOBz?=
+ =?iso-8859-1?Q?hO3I9wmbApUA8wS4fPZmsI2dOFFd0snPBjMU5oFwjgN54O7frm1VpKhUjG?=
+ =?iso-8859-1?Q?AqQGPEAmzK2W687/c5BOeE9DEIRzm29F6sJeKS75V3UetcVdzWgKv2G/HF?=
+ =?iso-8859-1?Q?P56jssDDyDYYXZ0ydeWur/DLDelVC936trkTRkWQ/gdbznybmrThVnegiV?=
+ =?iso-8859-1?Q?xBwo?=
+Content-Type: multipart/alternative;
+	boundary="_000_DB5PR02MB102635D8AFEAAD0D6D26CF463FD752DB5PR02MB10263eu_"
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-7828-19-msonline-outlook-12d23.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB5PR02MB10263.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c141fe0-c94b-44be-d8d6-08dce08b4176
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2024 13:33:08.2889
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB8553
+
+--_000_DB5PR02MB102635D8AFEAAD0D6D26CF463FD752DB5PR02MB10263eu_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Yep, just to test the EML format.
+
+1727616769
+
+--_000_DB5PR02MB102635D8AFEAAD0D6D26CF463FD752DB5PR02MB10263eu_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Yep, just to test the EML format.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+1727616769</div>
+</body>
+</html>
+
+--_000_DB5PR02MB102635D8AFEAAD0D6D26CF463FD752DB5PR02MB10263eu_--
