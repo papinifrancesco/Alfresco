@@ -1,5 +1,7 @@
 # From ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
 
+HEADER="x-alfresco-search-secret: YourSecret"
+URL=http://127.0.0.1:8983/solr
 
 # To reindex a node, it is needed to purge it first.
 # So, we get the node DBID from the node browser:
@@ -16,12 +18,10 @@ and click "search"
 look for the 
 and then, for example:
 
-NODEID=35812340
-HEADER="x-alfresco-search-secret: YourSecret"
-URL=http://127.0.0.1:8983/solr
+DBID=35812340
 
-curl --header "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$NODEID"
-curl --header "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$NODEID"
+curl --header "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$DBID"
+curl --header "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$DBID"
 
 
 # To reindex by type:
@@ -41,7 +41,7 @@ curl --header "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
 
 
 
-curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=xml&core=alfresco" 
+curl --max-time 9000000 --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=xml&core=alfresco" 
 
 curl -s --header "$HEADER" "$URL/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
 cat
