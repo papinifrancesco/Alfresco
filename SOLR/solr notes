@@ -17,13 +17,16 @@ look for the
 and then, for example:
 
 NODEID=35812340
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=PURGE&nodeid=$NODEID"
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=REINDEX&nodeid=$NODEID"
+HEADER="x-alfresco-search-secret: YourSecret"
+URL=http://127.0.0.1:8983/solr
+
+curl --header "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$NODEID"
+curl --header "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$NODEID"
 
 
 # To reindex by type:
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
+curl --header "$HEADER" "$URL/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
+curl --header "$HEADER" "$URL/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
 
 
 
@@ -32,37 +35,37 @@ curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr
 # Of course the value for maxSegments is related to your environment and I suggest to start
 # your tests with the "archive" index and not with the "alfresco" one
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/archive/update?optimize=true&maxSegments=50"
+curl --header "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
 
 
 
 
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=xml&core=alfresco" 
+curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=xml&core=alfresco" 
 
-curl -s --header "x-alfresco-search-secret: secret" "http://127.0.0.1:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
+curl -s --header "$HEADER" "$URL/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
 cat
-curl -s --header "x-alfresco-search-secret: Tai22" 'http://127.0.0.1:8983/solr/alfresco/afts' -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
+curl -s --header "$HEADER" "$URL/alfresco/afts" -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
 
 SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/#unindexed-transactions
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=archive"
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=REPORT&wt=json&core=alfresco"
+curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=archive"
+curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco"
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://127.0.0.1:8983/solr/admin/cores?action=summary&core=alfresco"
+curl --header "$HEADER" "$URL/admin/cores?action=summary&core=alfresco"
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
-curl --header "x-alfresco-search-secret: YourSecret" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
+curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
 
-curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json&fromTxCommitTime=1701298800"
-curl --header "x-alfresco-search-secret: Tai22" "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&dryRun=false&wt=json"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
-curl "http://127.0.0.1:8983/solr/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
+curl --header "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
+
+curl "$URL/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
+curl "$URL/admin/cores?action=RETRY&dryRun=false&wt=json"
+curl "$URL/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
+curl "$URL/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
 
 
 
