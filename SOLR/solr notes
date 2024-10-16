@@ -24,9 +24,17 @@ curl --header "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$DBID"
 curl --header "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$DBID"
 
 
+
+
+
 # To reindex by type:
 curl --header "$HEADER" "$URL/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
 curl --header "$HEADER" "$URL/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
+
+
+
+# to perform a REPORT
+curl --max-time 9000000 --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco" 
 
 
 
@@ -41,10 +49,9 @@ curl --header "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
 
 
 
-curl --max-time 9000000 --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=xml&core=alfresco" 
+
 
 curl -s --header "$HEADER" "$URL/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
-cat
 curl -s --header "$HEADER" "$URL/alfresco/afts" -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
 
 SUGGESTER
@@ -80,16 +87,19 @@ curl "http://n0611a87:8080/solr4/alfresco/update?commit=true&expungeDeletes=true
 curl "http://n0611a87:8080/solr4/alfresco/update?optimize=true"
 
 
-curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=xml&detail=true&hist=true&values=true"
+curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=json&detail=true&hist=true&values=true"
 
 
 
 
-https://stackoverflow.com/questions/36401983/find-reason-why-a-file-fails-to-get-indexed
+
 
 
 Utile anche:
-/solr4/#/alfresco/schema-browser?field=EXCEPTIONMESSAGE
+http://"$URL/#/alfresco/schema?field=EXCEPTIONMESSAGE"
+
+
+
 
 # get all error nodes and purge them - TO BE FINISHED
 
@@ -108,3 +118,16 @@ In terms of logging, I should have started with these Solr log classes that will
 log4j.logger.org.alfresco.solr.SolrInformationServer=DEBUG
 log4j.logger.org.alfresco.solr.tracker.MetadataTracker=DEBUG
 log4j.logger.org.alfresco.solr.query.AbstractQParser=debug
+
+
+
+
+
+# REFERENCES
+https://docs.alfresco.com/search-services/latest/admin/monitor/
+
+
+
+
+
+
