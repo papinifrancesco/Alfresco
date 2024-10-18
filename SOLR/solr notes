@@ -69,7 +69,7 @@ curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:Err
 
 curl --header "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
 
-curl "$URL/admin/cores?action=FIX&core=archive&dryRun=false&wt=json"
+curl "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json"
 curl "$URL/admin/cores?action=RETRY&dryRun=false&wt=json"
 curl "$URL/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
 curl "$URL/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
