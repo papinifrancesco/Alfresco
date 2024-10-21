@@ -1,4 +1,5 @@
-
+# TAKE NOTES FIRST
+# REORGANISE LATER
 
 
 #########  ACS  #########
@@ -18,14 +19,19 @@ curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/
 
 curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-live-"  -H  "accept: application/json"
 
-
+#########  ACS  #########
 
 
 
 
 #########  ActiveMQ #########
 
-https://gist.github.com/veysby/cf89534dc023f668c499
+# brokerName has to be defined in:
+# /opt/activemq/conf/activemq.xml
+
+curl --noproxy '*' -u user:Apassword -s http://127.0.0.1:8161/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=edoc-activemq,service=Health/healthStatus | jq -r '.value'
+
+#########  ActiveMQ #########
 
 
 
@@ -37,3 +43,5 @@ EPOCH="$(date +%s)" ; curl -s -H "x-alfresco-search-secret: secret" "http://172.
 curl -s --header "x-alfresco-search-secret: secret" -X GET "http://172.30.31.57:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode&wt=json" | jq 
 
 curl --noproxy '*' -s --header "x-alfresco-search-secret: secret" -X GET "http://172.30.31.57:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode&wt=json" | jq '{lastIndexedTxTime, txRemaining, numFound: .response.numFound}'
+
+#########  SOLR  #########
