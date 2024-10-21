@@ -36,6 +36,32 @@ curl --noproxy '*' -u user:Apassword -s http://127.0.0.1:8161/api/jolokia/exec/o
 
 
 
+#########  ATS #########
+
+curl --noproxy '*' -s -X GET "http://172.30.31.55:8090/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.56:8090/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.51:8090/live"
+
+curl --noproxy '*' -s -X GET "http://172.30.31.55:8095/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.56:8095/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.51:8095/live"
+
+curl --noproxy '*' -s -X GET "http://172.30.31.55:8099/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.56:8099/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.51:8099/live"
+
+# CaDES
+curl --noproxy '*' -s -X GET "http://172.30.31.55:8097/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.56:8097/live"
+curl --noproxy '*' -s -X GET "http://172.30.31.51:8097/live"
+
+
+
+
+
+#########  ATS #########
+
+
 #########  SOLR  #########
 
 EPOCH="$(date +%s)" ; curl -s -H "x-alfresco-search-secret: secret" "http://172.30.31.57:8983/solr/alfresco/admin/ping?_=$EPOCH&ts=$EPOCH&wt=json' | jq
