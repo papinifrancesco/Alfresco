@@ -69,7 +69,7 @@ curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:Err
 
 curl --header "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
 
-curl "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&wt=json"
+
 curl "$URL/admin/cores?action=RETRY&dryRun=false&wt=json"
 curl "$URL/admin/cores?action=RETRY&core=alfresco&dryRun=false&wt=json"
 curl "$URL/admin/cores?action=RETRY&core=archive&dryRun=false&wt=json"
@@ -105,7 +105,7 @@ http://"$URL/#/alfresco/schema?field=EXCEPTIONMESSAGE"
 
 These 3 calls will list the error nodes and any exceptions with them. You may need to increase the ‘rows’ values depending on the numFound value:
 
-https://alfr-indx-p04.cg93.fr:8443/solr4/alfresco/afts?q=DOC_TYPE:ErrorNode&fl=*,[cached]&rows=100
+$URL/alfresco/afts?q=DOC_TYPE:ErrorNode&fl=*,[cached]&rows=10
 
 https://alfr-indx-p04.cg93.fr:8443/solr4/alfresco/afts?q=EXCEPTIONMESSAGE:*&fl=*,[cached]&rows=100
 
@@ -123,11 +123,13 @@ log4j.logger.org.alfresco.solr.query.AbstractQParser=debug
 
 
 
+
+
 # REFERENCES
 https://docs.alfresco.com/search-services/latest/admin/monitor/
-
-
-
+https://solr.apache.org/guide/8_5/jvm-settings.html
+https://solr.apache.org/guide/8_5/taking-solr-to-production.html#reduce-swappiness
+https://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html
 
 
 
