@@ -131,5 +131,8 @@ https://solr.apache.org/guide/8_5/jvm-settings.html
 https://solr.apache.org/guide/8_5/taking-solr-to-production.html#reduce-swappiness
 https://blog.thetaphi.de/2012/07/use-lucenes-mmapdirectory-on-64bit.html
 
+Uwe Schindler – The future of Lucene's MMapDirectory: Why use it & what's coming with Java19 & later
+https://www.youtube.com/watch?v=hgF0jNxKrrg
+
 
 
