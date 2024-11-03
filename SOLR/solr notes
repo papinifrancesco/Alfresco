@@ -34,7 +34,7 @@ curl --header "$HEADER" "$URL/admin/cores?action=reindex&query=TYPE:'clmWfV1:pro
 
 
 # to perform a REPORT
-curl --max-time 9000000 --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco" 
+curl --noproxy '*' -s --max-time 9000000 -H "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco" | jq
 
 
 
@@ -58,7 +58,7 @@ SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/#unindexed-transactions
 
-curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=archive"
+
 curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco"
 
 curl --header "$HEADER" "$URL/admin/cores?action=summary&core=alfresco"
@@ -67,6 +67,7 @@ curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:Uni
 
 curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
 
+curl --noproxy '*' -s -H "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
 curl --header "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
 
 
@@ -80,11 +81,6 @@ curl "http://localhost:8080/solr4/archive/update?commit=true&expungeDeletes=true
 
 curl "http://localhost:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
 
-
-curl "http://n0611a87:8080/solr4/archive/update?commit=true&expungeDeletes=true"
-curl "http://n0611a87:8080/solr4/archive/update?optimize=true"
-curl "http://n0611a87:8080/solr4/alfresco/update?commit=true&expungeDeletes=true"
-curl "http://n0611a87:8080/solr4/alfresco/update?optimize=true"
 
 
 curl "http://n0611a63:8080/solr4/admin/cores?action=SUMMARY&wt=json&detail=true&hist=true&values=true"
