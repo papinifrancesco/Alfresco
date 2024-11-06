@@ -20,22 +20,24 @@ and then, for example:
 
 DBID=35812340
 
-curl --header "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$DBID"
-curl --header "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$DBID"
+curl -H "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$DBID"
+curl -H "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$DBID"
 
 
 
 
 
 # To reindex by type:
-curl --header "$HEADER" "$URL/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
-curl --header "$HEADER" "$URL/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
+curl -H "$HEADER" "$URL/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
+curl -H "$HEADER" "$URL/admin/cores?action=reindex&query=TYPE:'clmWfV1:promotionalContent'
 
 
 
 # to perform a REPORT
-curl --noproxy '*' -s --max-time 9000000 -H "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco" | jq
+curl --noproxy '*' -s -m 9000000 -H "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco" | jq
 
+
+curl --noproxy '*' -s -m 9000000 -H "$HEADER" "$URL/#/alfresco/plugins?type=core&entry=searcher&wt=json&core=alfresco" | jq
 
 
 # DO NOT optimize with the GUI button as it would create a single, huge file for the index.
@@ -43,7 +45,7 @@ curl --noproxy '*' -s --max-time 9000000 -H "$HEADER" "$URL/admin/cores?action=R
 # Of course the value for maxSegments is related to your environment and I suggest to start
 # your tests with the "archive" index and not with the "alfresco" one
 
-curl --header "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
+curl -H "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
 
 
 
@@ -51,24 +53,24 @@ curl --header "$HEADER" "$URL/archive/update?optimize=true&maxSegments=50"
 
 
 
-curl -s --header "$HEADER" "$URL/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
-curl -s --header "$HEADER" "$URL/alfresco/afts" -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
+curl -s -H "$HEADER" "$URL/alfresco/afts?q=DOC_TYPE:UnindexedNode&rows=9999999&wt=csv&fl=DBID&cache=false&omitHeader=true" -o DBIDs.txt
+curl -s -H "$HEADER" "$URL/alfresco/afts" -d '{query: "TYPE:\"cm:folder\" AND =cm:name:\"SAP Repositories\""}'| xmllint --format - | grep -F 'numFound="1"'
 
 SUGGESTER
 
 https://docs.alfresco.com/search-services/latest/admin/monitor/#unindexed-transactions
 
 
-curl --header "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco"
+curl -H "$HEADER" "$URL/admin/cores?action=REPORT&wt=json&core=alfresco"
 
-curl --header "$HEADER" "$URL/admin/cores?action=summary&core=alfresco"
+curl -H "$HEADER" "$URL/admin/cores?action=summary&core=alfresco"
 
-curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
+curl -H "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:UnindexedNode"
 
-curl --header "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
+curl -H "$HEADER" "http://localhost:8983/solr/alfresco/afts?q=DOC_TYPE:ErrorNode"
 
 curl --noproxy '*' -s -H "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
-curl --header "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
+curl -H "$HEADER" "$URL/admin/cores?action=FIX&core=alfresco&dryRun=false&maxScheduledTransactions=999&wt=json&fromTxCommitTime=1727301600000"
 
 
 curl "$URL/admin/cores?action=RETRY&dryRun=false&wt=json"
