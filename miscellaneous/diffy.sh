@@ -80,3 +80,6 @@ done < "$temp_keys"
 rm "$temp_file1" "$temp_file2" "$temp_keys"
 
 echo "Results written to $output"
+
+cat "$output"
+
