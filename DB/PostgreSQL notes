@@ -36,3 +36,26 @@ Connect with psql
 
 DROP TABLE IF EXISTS alf_bootstrap_lock;
 
+
+
+
+
+
+
+
+
+
+
+
+
+From a .bin (found on the filesystem) to its uuid (in workspace, not in archive)
+
+
+select alf_node.uuid
+from alf_node
+        join alf_node_properties PROP_9 on ((PROP_9.node_id = alf_node.id) AND ((SELECT id from alf_qname where local_name='content') = PROP_9.qname_id))
+        join alf_content_data on (alf_content_data.id=PROP_9.long_value)
+        join alf_content_url on (alf_content_url.id=alf_content_data.content_url_id)
+where alf_node.store_id = (select id from alf_store where protocol='workspace' and identifier='SpacesStore')
+      and alf_content_url.content_url='store://2021/7/8/11/36/73bb804f-fcfc-4c56-ab21-8af0374cce39.bin';
+
