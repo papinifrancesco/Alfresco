@@ -1,7 +1,6 @@
 # From ASS 203 onwards the no authentication mechanism between ACS and Solr doesn't exist anymore so we have to switch to custom header with secret or HTTPS.
 
-HEADER="x-alfresco-search-secret: YourSecret"
-URL=http://127.0.0.1:8983/solr
+HEADER="x-alfresco-search-secret: YourSecret" ; URL=http://127.0.0.1:8983/solr
 
 # To reindex a node, it is needed to purge it first.
 # So, we get the node DBID from the node browser:
