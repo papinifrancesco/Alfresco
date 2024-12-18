@@ -1,0 +1,39 @@
+Installation of Oracle Free:
+
+docker run --name Ora23ai -p 1521:1521 -e ORACLE_PDB=alfresco -e ORACLE_PWD=alfresco -v /opt/oracle/oradata:/opt/oracle/oradata container-registry.oracle.com/database/free:latest-lite ;
+
+
+
+Then, with sys connecting as sysdba , create a schema named alfresco and then (may have redundant commands):
+
+
+GRANT CREATE SESSION TO alfresco;
+
+GRANT CONNECT, RESOURCE TO alfresco;
+
+GRANT CREATE TABLE TO alfresco;
+GRANT CREATE VIEW TO alfresco;
+GRANT CREATE SEQUENCE TO alfresco;
+GRANT CREATE PROCEDURE TO alfresco;
+GRANT CREATE TRIGGER TO alfresco;
+
+GRANT UNLIMITED TABLESPACE TO alfresco;
+
+GRANT ALL PRIVILEGES ON SCHEMA alfresco TO alfresco;
+
+ALTER USER alfresco QUOTA UNLIMITED ON SYSTEM;
+
+
+
+in alfresco-global.properties :
+
+db.driver=oracle.jdbc.OracleDriver
+db.host=127.0.0.1
+db.name=alfresco
+db.password=alfresco
+db.pool.max=275
+db.pool.validate.query=SELECT 1
+db.port=1521
+db.schema.update=true
+db.url=jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=127.0.0.1)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=alfresco)))
+db.username=alfresco
