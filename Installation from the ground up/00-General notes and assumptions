@@ -47,8 +47,10 @@ mkdir "$MYstuff"
 #10) Disable SeLinux (or go mad configuring it)
 setenforce 0
 
-and/or
+and
 
 vi /etc/selinux/config
 
 SELINUX=disabled
+
+and then reboot the VM
