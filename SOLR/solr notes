@@ -23,8 +23,9 @@ curl -H "$HEADER" "$URL/admin/cores?action=PURGE&nodeid=$DBID"
 curl -H "$HEADER" "$URL/admin/cores?action=REINDEX&nodeid=$DBID"
 
 
-
-
+# To force a commit
+curl -H "$HEADER" "$URL/alfresco/update?commit=true"
+curl -H "$HEADER" "$URL/archive/update?commit=true"
 
 # To reindex by type:
 curl -H "$HEADER" "$URL/admin/cores?action=purge&query=TYPE:'clmWfV1:promotionalContent'
