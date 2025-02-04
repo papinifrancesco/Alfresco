@@ -12,7 +12,7 @@ cd /opt/
 ln -s alfresco-content-services-7.4.0 alfresco
 
 # download a supported JDK (not JRE)
-cd "$MYstuff" || exit
+cd "$MYstuff"
 wget https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.19%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.19_7.tar.gz
 tar -xf OpenJDK11U-jdk_x64_linux_hotspot_11.0.19_7.tar.gz  # extract the archive
 mv jdk-11.0.19+7 /opt/alfresco/java   # move and rename
