@@ -1,4 +1,5 @@
 What is this guide ?
+
 Something very basic covering only this scenario : httpd performing Kerberos authentication and then passing a parsed X-Alfresco-Remote-User header to ACS
 
 Why ?
