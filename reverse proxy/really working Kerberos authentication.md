@@ -2,6 +2,7 @@ What is this guide ?
 
 Something very basic covering only this scenario : httpd performing Kerberos authentication and then passing a parsed X-Alfresco-Remote-User header to ACS
 
+
 Why ?
 Because it is the only scenario that works for /alfresco /adw (Alfresco Digital Workspace) **and**/share
 
