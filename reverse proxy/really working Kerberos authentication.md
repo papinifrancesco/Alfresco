@@ -2,13 +2,22 @@ What is this guide ?
 
 Something very basic covering only this scenario : httpd performing Kerberos authentication and then passing a parsed X-Alfresco-Remote-User header to ACS
 
+<br />
+<br />
 
 Why ?
-Because it is the only scenario that works for /alfresco /adw (Alfresco Digital Workspace) **and**/share
+
+Because it is the only scenario that works for /alfresco /adw (Alfresco Digital Workspace) **and** /share
+
+<br />
+<br />
 
 But ACS supports Kerberos natively.... 
+
 True but the problem is /share (not /alfresco nor /adw) : after the Kerberos ticket has expired there's no way to have /share to renew it unless we restart the webapp.
 
+<br />
+<br />
 
 So, the diagram is?
 ```mermaid
@@ -22,7 +31,12 @@ config:
 flowchart LR
     n1["User"] -- 1 --- n2["httpd"]
     n2 -- 2 --- n3["KDC"]
-    n2 -- 3 --- n4["ACS"]
+    n2 -- 3 --- n4["ACS
+/_vti_bin
+/alfresco
+/adw
+/share
+"]
 
 ```
 
@@ -686,3 +700,5 @@ share-config-custom.xml follows what we find in the official docs but here it is
         </alfresco-config>
 
 </details>
+
+**Remenber to restrict inbound HTTP:8080 traffic from only httpd and (of course) localhost... be aware that ACS is granting login rights to anybody that knows a valid username and how to pass it using a header (modHeader docet)**
