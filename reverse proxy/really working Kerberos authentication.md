@@ -24,10 +24,6 @@ flowchart LR
     n2 -- 2 --- n3["KDC"]
     n2 -- 3 --- n4["ACS"]
 
-    n1@{ shape: text}
-    n2@{ shape: text}
-    n3@{ shape: text}
-    n4@{ shape: text}
 ```
 
 
@@ -43,7 +39,7 @@ sequenceDiagram
     User->>httpd: GET with Kerberos ticket
     httpd->>KDC: Kerberos ticket ok ?
     KDC->>httpd: Yup, he's a valid user
-    httpd->>httpd: parse "user1@REALM" and leave only "user"
+    httpd->>httpd: parse "user1@REALM" and leave only "user1"
     httpd->>ACS: X-Alfresco-Remote-User : user1
     ACS->>httpd: Auth ok, answer request
     httpd->>User: the data for your GET
