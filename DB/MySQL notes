@@ -28,11 +28,12 @@ db.pool.validate.query=SELECT 1
 
 
 
-
-mysql> CREATE USER 'alfresco' IDENTIFIED BY 'StrongPWD09!';
-
-
-CREATE DATABASE `alfresco` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+mysqlsh(.exe)(.sh)
+\connect root@localhost:3306
+mysql>
+CREATE USER 'alfresco' IDENTIFIED BY 'StrongPWD09!';
+DROP DATABASE IF EXISTS alfresco;
+CREATE DATABASE `alfresco` DEFAULT CHARACTER SET UTF8MB4 COLLATE utf8mb4_bin;
 GRANT ALL ON `alfresco`.* to alfresco ;
 
 
