@@ -1,0 +1,3 @@
+set "JAVA_HOME=c:\alfresco\java"
+set "JRE_HOME=c:\alfresco\java"
+doskey MMT=java -jar c:\alfresco\bin\alfresco-mmt.jar $1 $2
