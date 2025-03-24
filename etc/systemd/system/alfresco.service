@@ -25,6 +25,9 @@ LimitNOFILE=65536
 SuccessExitStatus=143
 TimeoutStartSec=180
 TimeoutStopSec=180
+Environment="CATALINA_HOME=/opt/alfresco/tomcat"
+Environment="CATALINA_BASE=/opt/alfresco/tomcat"
+
 
 # in case we want to run tomcat with an unprivileged 
 # user and with a port (80 perhaps?) in the range 1-1024
