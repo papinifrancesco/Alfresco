@@ -147,7 +147,7 @@ cd /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/
 # ACS < 7.4.x I guess, check it
 sed -i.ORIG 's#log4j.appender.File.File=alfresco.log#log4j.appender.File.File=${catalina.base}/logs/alfresco.log#g' log4j.properties
 # ACS >= 7.4.x
-sed -i.ORIG 's#alfresco.log#${catalina.base}/logs/alfresco.log#g' log4j2.properties
+sed -i.ORIG 's#alfresco.log#${env:CATALINA_BASE}/logs/alfresco.log#g' log4j2.properties
 
 # read the documentation about custom-log4j.properties
 cp -a log4j.properties /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j.properties
@@ -158,7 +158,7 @@ cd /opt/alfresco/tomcat/webapps/share/WEB-INF/classes/
 # ACS < 7.4.x
 sed -i.ORIG 's#log4j.appender.File.File=share.log#log4j.appender.File.File=${catalina.base}/logs/share.log#g' log4j.properties
 # ACS >= 7.4.x
-sed -i.ORIG 's#share.log#${catalina.base}/logs/share.log#g' log4j2.properties
+sed -i.ORIG 's#share.log#${env:CATALINA_BASE}/logs/share.log#g' log4j2.properties
 
 
 ##### TO BE CHECKED FOR 7.4.X
@@ -170,7 +170,7 @@ vim /opt/alfresco/tomcat/shared/classes/alfresco/extension/custom-log4j2.propert
 # and add this below:
 #QuerySolr debug
 log4j.appender.QuerySolr=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.QuerySolr.File=${catalina.base}/logs/query-solr.log
+log4j.appender.QuerySolr.File=${env:CATALINA_BASE}/logs/query-solr.log
 log4j.appender.QuerySolr.Append=true
 log4j.appender.QuerySolr.DatePattern='.'yyyy-MM-dd
 log4j.appender.QuerySolr.layout=org.apache.log4j.PatternLayout
