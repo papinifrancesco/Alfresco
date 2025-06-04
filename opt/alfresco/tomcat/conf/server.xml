@@ -23,6 +23,8 @@
                redirectPort="8443"
                maxParameterCount="1000"
                maxHttpHeaderSize="32768"
+               xpoweredby="false"
+               server="X"
                />
 <!--
 Even if you don't plan to use it, DO NOT disable the TLS connector:
