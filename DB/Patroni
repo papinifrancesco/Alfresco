@@ -1,0 +1,53 @@
+We want to reinit a node NOT using the leader (I'd avoid all the locks I can) but a replica server instead.
+
+root@postgresql3 :
+    patronictl -c /etc/patroni/patroni.yml list
+    + Cluster: myPatroniCluster (7400362985465214756) -+----+-----------+
+    | Member      | Host         | Role    | State     | TL | Lag in MB |
+    +-------------+--------------+---------+-----------+----+-----------+
+    | postgresql1 |   10.0.0.1   | Leader  | running   | 26 |           |
+    | postgresql2 |   10.0.0.2   | Replica | streaming | 26 |         0 |
+    | postgresql3 |   10.0.0.3   | Replica | streaming | 26 |         0 |
+    +-------------+--------------+---------+-----------+----+-----------+
+
+    # I want to "reinit" postgresql3 from postgresql2 :
+
+
+    systemctl stop patroni
+    patronictl -c /etc/patroni/patroni.yml list
+    + Cluster: myPatroniCluster (7400362985465214756) -+----+-----------+
+    | Member      | Host         | Role    | State     | TL | Lag in MB |
+    +-------------+--------------+---------+-----------+----+-----------+
+    | postgresql1 |   10.0.0.1   | Leader  | running   | 26 |           |
+    | postgresql2 |   10.0.0.2   | Replica | streaming | 26 |         0 |
+    | postgresql3 |   10.0.0.3   | Replica | stopped   |    |   unknown |
+    +-------------+--------------+---------+-----------+----+-----------+
+
+    rm -rf /data/pgsql/*
+
+    pg_basebackup -h postgresql2 -D /data/pgsql -U replicator -Fp -Xs -P -R
+        Password:
+        1586904/1586904 kB (100%), 1/1 tablespace
+    chown -R postgres:postgres /data/pgsql/
+    systemctl start patroni
+
+    patronictl -c /etc/patroni/patroni.yml list
+    + Cluster: myPatroniCluster (7400362985465214756) -+----+-----------+
+    | Member      | Host         | Role    | State     | TL | Lag in MB |
+    +-------------+--------------+---------+-----------+----+-----------+
+    | postgresql1 |   10.0.0.1   | Leader  | running   | 26 |           |
+    | postgresql2 |   10.0.0.2   | Replica | streaming | 26 |         0 |
+    | postgresql3 |   10.0.0.3   | Replica | running   | 26 |         0 |
+    +-------------+--------------+---------+-----------+----+-----------+
+
+    # Let's wait just a minute...
+    patronictl -c /etc/patroni/patroni.yml list
+    + Cluster: myPatroniCluster (7400362985465214756) -+----+-----------+
+    | Member      | Host         | Role    | State     | TL | Lag in MB |
+    +-------------+--------------+---------+-----------+----+-----------+
+    | postgresql1 |   10.0.0.1   | Leader  | running   | 26 |           |
+    | postgresql2 |   10.0.0.2   | Replica | streaming | 26 |         0 |
+    | postgresql3 |   10.0.0.3   | Replica | streaming | 26 |         0 |
+    +-------------+--------------+---------+-----------+----+-----------+
+
+    # We're done !
