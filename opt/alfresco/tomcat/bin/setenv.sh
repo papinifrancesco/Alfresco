@@ -43,6 +43,16 @@ JAVA_OPTS="$JAVA_OPTS                                                           
            -Xrunjdwp:transport=dt_socket,address=*:8000,server=y,suspend=n                      \
            -verbose:gc                                                                         ";
 
+# Found in only one installation:
+#-Dencryption.keystore.backup.type=JCEKS
+#-Dencryption.keystore.backup.location=/opt/alfresco/alf_data/keystore/backup-keystore
+#-Dencryption.keystore.backup.provider=SunJCE
+#-Dmetadata-backup-keystore.password=MyPass
+#-Dmetadata-backup-keystore.aliases=metadata
+#-Dmetadata-backup-keystore.metadata.password=Mypass
+#-Dmetadata-backup-keystore.metadata.algorithm=DESede
+
+
 
 export CATALINA_PID
 
