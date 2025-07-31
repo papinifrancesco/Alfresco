@@ -17,6 +17,8 @@ curl -s -X GET "$REPO/alfresco/api/-default-/public/alfresco/versions/1/probes/-
 #########  ActiveMQ #########
 # brokerName has to be defined in:
 # /opt/activemq/conf/activemq.xml
+# usually the line is this one:
+    <broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" dataDirectory="${activemq.data}">
 
 AMQ="http://172.30.31.55:8161"
 
