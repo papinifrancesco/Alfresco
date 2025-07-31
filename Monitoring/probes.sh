@@ -4,14 +4,10 @@
 
 #########  ACS  #########
 
-curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-" -H  "accept: application/json"
-curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-live-"  -H  "accept: application/json"
+REPO="http://172.30.31.52:8080"
 
-curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-" -H  "accept: application/json"
-curl -s -X GET "http://172.30.31.52:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-live-"  -H  "accept: application/json"
-
-curl -s -X GET "http://172.30.31.51:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-" -H  "accept: application/json"
-curl -s -X GET "http://172.30.31.51:8080/alfresco/api/-default-/public/alfresco/versions/1/probes/-live-"  -H  "accept: application/json"
+curl -s -X GET "$REPO/alfresco/api/-default-/public/alfresco/versions/1/probes/-ready-" -H  "accept: application/json"
+curl -s -X GET "$REPO/alfresco/api/-default-/public/alfresco/versions/1/probes/-live-"  -H  "accept: application/json"
 
 #########  ACS  #########
 
@@ -24,8 +20,9 @@ curl -s -X GET "http://172.30.31.51:8080/alfresco/api/-default-/public/alfresco/
 # brokerName has to be defined in:
 # /opt/activemq/conf/activemq.xml
 
-curl --noproxy '*' -u user:Apassword -s http://172.30.31.55:8161/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=edoc-activemq,service=Health/healthStatus | jq -r '.value'
-curl --noproxy '*' -u user:Apassword -s http://172.30.31.56:8161/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=edoc-activemq,service=Health/healthStatus | jq -r '.value'
+AMQ="http://172.30.31.55:8161"
+
+curl --noproxy '*' -u user:Apassword -s $AMQ/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=edoc-activemq,service=Health/healthStatus | jq -r '.value'
 
 #########  ActiveMQ #########
 
@@ -34,23 +31,18 @@ curl --noproxy '*' -u user:Apassword -s http://172.30.31.56:8161/api/jolokia/exe
 
 
 #########  ATS #########
+ATC="http://172.30.31.55:8090"
+curl --noproxy '*' -s -X GET "$ATC/live"
 
-curl --noproxy '*' -s -X GET "http://172.30.31.55:8090/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.56:8090/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.51:8090/live"
+ATR="http://172.30.31.55:8095"
+curl --noproxy '*' -s -X GET "$ATR/live"
 
-curl --noproxy '*' -s -X GET "http://172.30.31.55:8095/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.56:8095/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.51:8095/live"
+SFS="http://172.30.31.55:8099"
+curl --noproxy '*' -s -X GET "$SFS/live"
 
-curl --noproxy '*' -s -X GET "http://172.30.31.55:8099/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.56:8099/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.51:8099/live"
-
-# CaDES
-curl --noproxy '*' -s -X GET "http://172.30.31.55:8097/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.56:8097/live"
-curl --noproxy '*' -s -X GET "http://172.30.31.51:8097/live"
+# CaDES is a custom transformer : you don't have it
+CDS="http://172.30.31.55:8097"
+curl --noproxy '*' -s -X GET "$CDS/live"
 
 #########  ATS #########
 
