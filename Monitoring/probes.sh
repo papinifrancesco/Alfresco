@@ -22,7 +22,14 @@ curl -s -X GET "$REPO/alfresco/api/-default-/public/alfresco/versions/1/probes/-
 
 AMQ="http://172.30.31.55:8161"
 
-curl --noproxy '*' -u user:Apassword -s $AMQ/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=edoc-activemq,service=Health/healthStatus | jq -r '.value'
+curl --noproxy '*' -u admin:admin -H "Origin: http://localhost" -s $AMQ/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=localhost,service=Health/healthStatus | jq -r '{value, timestamp}'
+
+curl --noproxy '*' -u admin:admin -H "Origin: http://localhost" -s $AMQ/api/jolokia/read/org.apache.activemq:brokerName=localhost,destinationName=org.alfresco.transform.engine.aio.acs,destinationType=Queue,type=Broker/QueueSize | jq '{value, timestamp}'
+{
+  "value": 0,
+  "timestamp": 1754400976
+}
+
 #########  ActiveMQ #########
 
 
