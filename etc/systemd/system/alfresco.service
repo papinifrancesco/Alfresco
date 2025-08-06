@@ -14,6 +14,7 @@ ExecStartPre=-/usr/bin/find /opt/alfresco/tomcat/temp/ -type f -name "core*" -ex
 ExecStartPre=-/usr/bin/find /opt/alfresco/tomcat/temp/ -type f -name "hs_err_pid*" -exec mv {} -t /opt/alfresco/crash/ \;
 ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/temp/ -mindepth 1 -delete
 ExecStartPre=/usr/bin/find /opt/alfresco/tomcat/work/ -mindepth 1 -delete
+ExecStartPre=/bin/sh -c 'test "$(curl --noproxy '*' -u admin:admin -H "Origin: http://10.58.6.73:8161" -s http://10.58.6.73:8161/api/jolokia/exec/org.apache.activemq:type=Broker,brokerName=localhost,service=Health/healthStatus | jq -r .value)" = "Good"'
 ExecStart=/opt/alfresco/tomcat/bin/startup.sh
 ExecStop=/opt/alfresco/tomcat/bin/shutdown.sh
 PIDFile=/opt/alfresco/tomcat/temp/catalina.pid
