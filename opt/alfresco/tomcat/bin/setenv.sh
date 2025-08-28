@@ -54,6 +54,25 @@ JAVA_OPTS="$JAVA_OPTS                                                           
 
 
 
+# HAZELCAST
+JAVA_OPTS="$JAVA_OPTS \
+  --add-modules java.se \
+  --add-exports java.base/jdk.internal.ref=ALL-UNNAMED \
+  --add-opens java.base/java.lang=ALL-UNNAMED \
+  --add-opens java.base/sun.nio.ch=ALL-UNNAMED \
+  --add-opens java.management/sun.management=ALL-UNNAMED \
+  --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED" ;
+
+# PROXY
+#JAVA_OPTS="$JAVA_OPTS                                                        \
+#    -Dhttp.proxyHost=127.0.0.1                                               \
+#    -Dhttp.proxyPort=8888                                                    \
+#    -Dhttps.proxyHost=127.0.0.1                                              \
+#    -Dhttps.proxyPort=8888                                                   \
+#    -Dhttp.nonProxyHosts='localhost|*.benetton.org|127.*|10.47.*|10.58.6.*'" ;
+
+
+
 export CATALINA_PID
 
 export JAVA_HOME
