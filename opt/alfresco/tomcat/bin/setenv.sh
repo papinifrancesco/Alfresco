@@ -53,6 +53,15 @@ JAVA_OPTS="$JAVA_OPTS                                                           
 #-Dmetadata-backup-keystore.metadata.algorithm=DESede
 
 
+# JMX properties using your specific ports
+#-Dcom.sun.management.jmxremote=true
+#-Dcom.sun.management.jmxremote.port=50508
+#-Dcom.sun.management.jmxremote.rmi.port=50500
+#-Dcom.sun.management.jmxremote.authenticate=false
+#-Dcom.sun.management.jmxremote.ssl=false
+#-Djava.rmi.server.hostname=127.0.0.1
+
+
 
 # HAZELCAST
 JAVA_OPTS="$JAVA_OPTS \
