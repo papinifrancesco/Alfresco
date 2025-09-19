@@ -12,7 +12,7 @@ We have almost no syntax nor GUI based checks here... a bad value can be directl
 In any case, let's see what has to be done to connect through a SSH tunnel (having it working without a tunnel is very unlikely).
 
 setenv.sh :
-```
+``` ini
 [...]
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
@@ -23,7 +23,7 @@ setenv.sh :
 <br />
 
 alfresco-global.properties
-```
+``` ini
 [...]
 alfresco.jmx.connector.enabled=true
 alfresco.rmi.services.host=127.0.0.1
@@ -39,12 +39,19 @@ Remember that if you don't override them,  these two apply:
 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.password
 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.access
 ```
+<br />
 
 Set up a SSH tunnel the way you want: PuTTY, KiTTY, command line, etc. etc. so that:
-The listening sockets on your PC are : 127.0.0.1:50500 and 127.0.0.1:50508
-The listening sockets on your VM are : 127.0.0.1:50500 and 127.0.0.1:50508
-Then make the SSH connection.
 
+The listening sockets on your PC : 127.0.0.1:50500 and 127.0.0.1:50508 
+
+will forward data to the 
+
+the listening sockets on your VM : 127.0.0.1:50500 and 127.0.0.1:50508
+
+Then make the SSH connection.
+<br />
+<br />
 
 Open JConsole:
 ```
