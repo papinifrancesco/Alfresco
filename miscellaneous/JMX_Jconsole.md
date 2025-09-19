@@ -1,5 +1,11 @@
-JMX console access is a good idea : we can see and modify a lot of parameters.
-Watch out : we have no syntax nor GUI based filters here... a bad value can be directly written and you'll notice it probably only at the next restart of ACS...
+Reference:
+https://support.hyland.com/r/Alfresco/Alfresco-Content-Services/25.2/Alfresco-Content-Services/Configure/Overview/Using-JMX-Client-to-Change-Settings-Dynamically
+
+My considerations below.
+
+JMX console access for reading is a good idea : we can a lot of parameters and their values.
+About wrinting stuff... DANGER!
+We have almost no syntax nor GUI based checks here... a bad value can be directly written in the DB and you'll notice it probably only at the next restart of ACS...
 
 In any case, let's see what has to be done to connect through a SSH tunnel (having it working without a tunnel is very unlikely).
 
@@ -21,7 +27,11 @@ alfresco-global.properties
            monitor.rmi.service.port=50508        
 [...]
 
-REM define Jconsole full path
+Remember that if you don't override them,  these two apply:
+/opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.password
+/opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.access
+
+
 set JCP="C:\TAI\JDK17\bin\jconsole.exe"
 
 %JCP% "service:jmx:rmi://127.0.0.1:50508/jndi/rmi://127.0.0.1:50500/alfresco/jmxrmi" 
