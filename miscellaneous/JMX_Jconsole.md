@@ -20,6 +20,7 @@ setenv.sh :
 ```
 
 alfresco-global.properties
+```
 [...]
 alfresco.jmx.connector.enabled=true
 alfresco.rmi.services.host=127.0.0.1
@@ -27,20 +28,28 @@ alfresco.rmi.services.port=50500
 monitor.rmi.service.enabled=true
 monitor.rmi.service.port=50508
 [...]
+```
 
 Remember that if you don't override them,  these two apply:
+```
 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.password
 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi.access
+```
 
 Set up a SSH tunnel the way you want: PuTTY, KiTTY, command line, etc. etc. so that:
 The listening sockets on your PC are : 127.0.0.1:50500 and 127.0.0.1:50508
 The listening sockets on your VM are : 127.0.0.1:50500 and 127.0.0.1:50508
 Then make the SSH connection.
 
+
 Open JConsole:
-C:\TAI\JDK17\bin\jconsole.exe
+```
+C:\JDK17\bin\jconsole.exe
+```
 
 Remote Process:
+```
 service:jmx:rmi://127.0.0.1:50508/jndi/rmi://127.0.0.1:50500/alfresco/jmxrmi
+```
 
 fill also Username and Password
