@@ -1,11 +1,13 @@
-Reference:
+Reference:  
 https://support.hyland.com/r/Alfresco/Alfresco-Content-Services/25.2/Alfresco-Content-Services/Configure/Overview/Using-JMX-Client-to-Change-Settings-Dynamically
 
 My considerations below.
 
-JMX console access for reading is a good idea : we can a lot of parameters and their values.
-About wrinting stuff... DANGER!
-We have almost no syntax nor GUI based checks here... a bad value can be directly written in the DB and you'll notice it probably only at the next restart of ACS...
+JMX console access for reading is a good idea : we can have a look at lot of parameters and their values.
+
+About writing stuff... DANGER!
+
+We have almost no syntax nor GUI based checks here... a bad value can be directly written in the DB and you'll notice it probably only at the next restart of ACS... (meaning: ACS won't start)
 
 In any case, let's see what has to be done to connect through a SSH tunnel (having it working without a tunnel is very unlikely).
 
@@ -18,6 +20,7 @@ setenv.sh :
 #The last one is what makes SSH tunnel working
 [...]
 ```
+<br />
 
 alfresco-global.properties
 ```
@@ -29,6 +32,7 @@ monitor.rmi.service.enabled=true
 monitor.rmi.service.port=50508
 [...]
 ```
+<br />
 
 Remember that if you don't override them,  these two apply:
 ```
