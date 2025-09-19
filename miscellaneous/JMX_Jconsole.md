@@ -10,13 +10,15 @@ We have almost no syntax nor GUI based checks here... a bad value can be directl
 In any case, let's see what has to be done to connect through a SSH tunnel (having it working without a tunnel is very unlikely).
 
 setenv.sh :
-
+```
 [...]
 -Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
 -Djava.rmi.server.hostname=127.0.0.1
 #The last one is what makes SSH tunnel working
 [...]
+```
+
 alfresco-global.properties
 [...]
 alfresco.jmx.connector.enabled=true
