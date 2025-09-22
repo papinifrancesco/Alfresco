@@ -19,7 +19,7 @@
   <Service name="Catalina">
 
     <Connector port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
+               connectionTimeout="90000"
                redirectPort="8443"
                maxParameterCount="1000"
                maxHttpHeaderSize="32768"
@@ -31,26 +31,31 @@ Even if you don't plan to use it, DO NOT disable the TLS connector:
     Elasticsearch integration will fail (even if you don't use HTTPS)
     SMTPS might break (even if you don't use CLIENT AUTHENTICATION)
 -->
-     <Connector clientAuth="want"
-               connectionTimeout="240000"
-               keystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"
-               keystorePass="kT9X6oe68t"
-               keystoreType="JCEKS"
-               maxHttpHeaderSize="32768"
-               maxSavePostSize="-1"
-               maxThreads="150"
-               port="8443"
-               protocol="org.apache.coyote.http11.Http11NioProtocol"
-               scheme="https"
-               secure="true"
-               SSLEnabled="true"
-               SSLProtocol="TLSv1.2"
-               truststoreFile="/opt/alfresco/alf_data/keystore/ssl.truststore"
-               truststorePass="kT9X6oe68t"
-               truststoreType="JCEKS"
-               URIEncoding="UTF-8" >
+    
+     <Connector port="8443"
+           protocol="org.apache.coyote.http11.Http11NioProtocol"
+           scheme="https"
+           secure="true"
+           connectionTimeout="240000"
+           maxHttpHeaderSize="32768"
+           maxSavePostSize="-1"
+           maxThreads="150"
+           URIEncoding="UTF-8" >
+
+    <SSLHostConfig certificateVerification="required"
+                   sslProtocol="TLSv1.2"
+                   truststoreFile="/opt/alfresco/alf_data/keystore/ssl.truststore"
+                   truststorePassword="kT9X6oe68t"
+                   truststoreType="JCEKS" >
+        <Certificate
+            certificateKeystoreFile="/opt/alfresco/alf_data/keystore/ssl.keystore"
+            certificateKeystorePassword="kT9X6oe68t"
+            certificateKeystoreType="JCEKS"
+            type="RSA" />
+    </SSLHostConfig>
+
     <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
-    </Connector>
+</Connector>
 
     
 <!--
