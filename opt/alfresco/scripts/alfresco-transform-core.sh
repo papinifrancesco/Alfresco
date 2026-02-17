@@ -22,7 +22,7 @@ JAVA_OPTS="$JAVA_OPTS                                                           
   -DIMAGEMAGICK_EXE=/usr/bin/convert                                                         \
   -DPDFBOX_NOTEXTRACTBOOKMARKS_DEFAULT=false                                                 \
   -DACTIVEMQ_URL=failover:(tcp://10.64.112.40:61616,tcp://10.64.112.41:61616)?timeout=3000   \
-  -DFILE_STORE_URL=http://localhost:8099/alfresco/api/-default-/private/sfs/versions/1/file" ;
+  -DFILE_STORE_URL=http://127.0.0.1:8099/alfresco/api/-default-/private/sfs/versions/1/file" ;
 
 /opt/alfresco/java/bin/java ${JAVA_OPTS} -jar $FILE > $TS/logs/$PATTERN.out 2> $TS/logs/$PATTERN.err &
 
