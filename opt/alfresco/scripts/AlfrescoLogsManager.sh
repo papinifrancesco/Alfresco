@@ -85,26 +85,26 @@ fi
 
 echo "Starting cleanup of 0 byte files..."
 # delete 0 size files not in use
-find "$LOGS" -maxdepth 1 -type f -size 0 | while read -r filename ; do 
+find "$LOGS"/ -maxdepth 1 -type f -size 0 | while read -r filename ; do 
     "$FUSER_BIN" -s "$filename" || { echo "Deleting empty file: $filename"; rm -f "$filename"; }
 done
 
 echo "Moving unused log files to old/..."
 # if a log file is not in use, move it to old/
-find "$LOGS" -maxdepth 1 -type f | while read -r filename ; do 
+find "$LOGS"/ -maxdepth 1 -type f | while read -r filename ; do 
     "$FUSER_BIN" -s "$filename" || { echo "Moving $filename to old/"; mv "$filename" "$LOGS/old/"; }
 done
 
 echo "Compressing files in old/..."
 # compress all files inside old/ that are not an .xz already
-find "$LOGS/old" -maxdepth 1 -type f \! -name "*.xz" | while read -r filename ; do 
+find "$LOGS/old/" -maxdepth 1 -type f \! -name "*.xz" | while read -r filename ; do 
     echo "Compressing $filename"
     "$XZ_BIN" -9 "$filename" 
 done
 
 echo "Deleting compressed logs older than 30 days..."
 # remove all compressed logs older than 30 days
-find "$LOGS/old" -maxdepth 1 -mtime +30 -type f -name "*.xz" -exec rm -vf {} \;
+find "$LOGS/old/" -maxdepth 1 -mtime +30 -type f -name "*.xz" -exec rm -vf {} \;
 
 echo "----------------------------------------------------"
 echo "Execution finished at $(date)"
