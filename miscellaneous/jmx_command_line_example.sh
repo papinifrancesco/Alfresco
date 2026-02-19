@@ -3,7 +3,7 @@
 # define the method to make a JMX connection first
 alf_jmx_connect ()
 {
-/opt/alfresco/java/bin/java -jar /opt/alfresco/scripts/jmxterm-1.0.1-uber.jar -l service:jmx:rmi:///jndi/rmi://localhost:50500/alfresco/jmxrmi -u controlRole -p change_asap -n
+/opt/alfresco/java/bin/java -jar /opt/alfresco/scripts/jmxterm-1.0.4-uber.jar -l service:jmx:rmi:///jndi/rmi://localhost:50500/alfresco/jmxrmi -u controlRole -p change_asap -n
 }
 
 echo -n $(date +"%Y-%m-%d_%H-%M-%S")
