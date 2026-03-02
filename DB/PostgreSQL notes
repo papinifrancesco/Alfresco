@@ -48,8 +48,7 @@ DROP TABLE IF EXISTS alf_bootstrap_lock;
 
 
 
-From a .bin (found on the filesystem) to its uuid (in workspace, not in archive)
-
+# From a .bin (found on the filesystem) to its uuid (in workspace, not in archive)
 
 select alf_node.uuid
 from alf_node
@@ -58,4 +57,32 @@ from alf_node
         join alf_content_url on (alf_content_url.id=alf_content_data.content_url_id)
 where alf_node.store_id = (select id from alf_store where protocol='workspace' and identifier='SpacesStore')
       and alf_content_url.content_url='store://2021/7/8/11/36/73bb804f-fcfc-4c56-ab21-8af0374cce39.bin';
+
+
+
+
+
+
+
+# find the biggest files
+# SELECT
+    n.id AS node_id,
+    p_name.string_value AS nom_fichier,
+    ROUND(u.content_size / 1048576.0, 2) AS taille_Mo,
+    n.audit_creator AS createur,
+    n.audit_created AS date_creation
+FROM alf_node n
+-- Jointure pour récupérer le nom du fichier
+JOIN alf_node_properties p_name ON n.id = p_name.node_id
+JOIN alf_qname q_name ON p_name.qname_id = q_name.id AND q_name.local_name = 'name'
+-- Jointure pour récupérer le pointeur de contenu
+JOIN alf_node_properties p_content ON n.id = p_content.node_id
+JOIN alf_qname q_content ON p_content.qname_id = q_content.id AND q_content.local_name = 'content'
+JOIN alf_content_data c ON p_content.long_value = c.id
+-- Jointure vers l'URL physique qui contient la taille réelle
+JOIN alf_content_url u ON c.content_url_id = u.id
+-- On filtre pour ne voir que les vrais fichiers
+WHERE n.type_qname_id IN (SELECT id FROM alf_qname WHERE local_name = 'content')
+ORDER BY u.content_size DESC
+LIMIT 20;
 
