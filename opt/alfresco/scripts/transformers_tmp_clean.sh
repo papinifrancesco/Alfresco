@@ -1,11 +1,11 @@
 #!/bin/bash
 # Clean stale subdirectories from the Alfresco Transform Service tmp directory.
-# Removes directories older than 2 hours whose files are not currently in use.
+# Removes directories older than 30 minutes whose files are not currently in use.
 #
-# Schedule (alfresco crontab): 0 * * * * /opt/alfresco/scripts/transformers_tmp_clean.sh
+# Schedule (alfresco crontab): */15 * * * * /opt/alfresco/scripts/transformers_tmp_clean.sh
 
 TMP_DIR="/opt/alfresco/transform-service/tmp"
-MIN_AGE_MINUTES=120
+MIN_AGE_MINUTES=30
 LOG_FILE="/opt/alfresco/transform-service/logs/tmp_clean.log"
 
 find "$TMP_DIR" -maxdepth 1 -mindepth 1 -type d -mmin +"$MIN_AGE_MINUTES" | while IFS= read -r dir; do
