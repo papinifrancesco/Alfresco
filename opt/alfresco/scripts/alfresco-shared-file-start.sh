@@ -1,13 +1,11 @@
 #!/bin/bash
 TS=/opt/alfresco/transform-service
-WDIR=$TS
 
 FILE=alfresco-shared-file-store-controller
 PATTERN=shared-file-store
 
 JAVA_OPTS="$JAVA_OPTS                                                          \
-  -Xms512m                                                                     \
-  -Xmx512m                                                                     \
+  -Xmx2g                                                                       \
   -XX:+ExitOnOutOfMemoryError                                                  \
   -Dspring.servlet.multipart.max-file-size=8192MB                              \
   -Dspring.servlet.multipart.max-request-size=8192MB                           \
@@ -16,8 +14,9 @@ JAVA_OPTS="$JAVA_OPTS                                                          \
   -Dlogging.level.org.alfresco.store=warn                                      \
   -DfileStorePath=/opt/alfresco/transform-service/tmp/Alfresco                 \
   -Dscheduler.contract.path=/opt/alfresco/transform-service/tmp/scheduler.json \
-  -Dscheduler.content.age.millis=900000                                        \
-  -Dscheduler.cleanup.interval=900000"                                         ;
+  -Dscheduler.content.age.millis=3600000                                       \
+  -Dscheduler.cleanup.interval=3600000                                         \
+  -Djava.io.tmpdir=/opt/alfresco/transform-service/tmp"
 
-/opt/alfresco/java/bin/java ${JAVA_OPTS} -jar $FILE > $WDIR/logs/$PATTERN.out 2> $WDIR/logs/$PATTERN.err &
-echo $! > $WDIR/shared-file-store.pid
+/opt/alfresco/java/bin/java ${JAVA_OPTS} -jar $FILE > "$TS"/logs/$PATTERN.out 2> "$TS"/logs/$PATTERN.err &
+echo $! > "$TS"/shared-file-store.pid
