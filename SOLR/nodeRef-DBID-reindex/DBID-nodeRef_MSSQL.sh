@@ -13,5 +13,5 @@ database="alfresco"
 # Read the file line by line
 while IFS= read -r id; do
   # Do the SQL Server query for each DBID
-  sqlcmd -S "$host,$port" -U "$user" -P "$password" -d "$database" -h -1 -W -s "," -Q "SET NOCOUNT ON; SELECT uuid FROM alf_node WHERE id=$id;"
+  sqlcmd -C -S "$host,$port" -U "$user" -P "$password" -d "$database" -h -1 -W -s "," -Q "SET NOCOUNT ON; SELECT uuid FROM alf_node WHERE id=$id;" < /dev/null
 done < "$id_file"
