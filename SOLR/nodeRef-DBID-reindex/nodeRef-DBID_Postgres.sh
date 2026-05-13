@@ -3,15 +3,17 @@
 # File containing the UUIDs (one UUID per line)
 uuid_file="nodeRef.txt"
 
-# MySQL parameters
+# PostgreSQL parameters
 user="alfresco"
 password="alfresco"
 host="FQDN"
-port="3306"
+port="5432"
 database="alfresco"
+
+export PGPASSWORD="$password"
 
 # Read the file line by line
 while IFS= read -r uuid; do
-  # Do the MySQL query for each UUID
-  mysql -u "$user" -p"$password" -h "$host" -P "$port" -D "$database" --skip-column-names -e "SELECT id FROM alf_node WHERE uuid='$uuid';"
+  # Do the PostgreSQL query for each UUID
+  psql -U "$user" -h "$host" -p "$port" -d "$database" -t -A -c "SELECT id FROM alf_node WHERE uuid='$uuid';"
 done < "$uuid_file"
