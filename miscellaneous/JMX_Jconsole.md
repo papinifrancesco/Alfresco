@@ -41,6 +41,12 @@ Remember that if you don't override them,  these two apply:
 ```
 <br />
 
+So, just to be sure:
+```
+chmod 600 /opt/alfresco/tomcat/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-jmxrmi*
+```
+<br />
+
 Set up a SSH tunnel the way you want: PuTTY, KiTTY, command line, etc. etc. so that:
 
 The listening sockets on your PC : 127.0.0.1:50500 and 127.0.0.1:50508 
