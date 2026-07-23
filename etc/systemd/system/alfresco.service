@@ -2,10 +2,9 @@
 Description=Alfresco ECM Repository
 Wants=activemq.service alfresco-shared-file.service alfresco-transform-core.service alfresco-transform-router.service
 After=network.target activemq.service alfresco-shared-file.service alfresco-transform-core.service alfresco-transform-router.service
-# RequiresMountsFor=/opt/alf_data/contentstore
 
 # If the content store or other critical folders are not mounted then don't even try to start ACS
-RequiresMountsFor=/samba/public/
+RequiresMountsFor=opt/alf_data/contentstore
 
 [Service]
 Type=forking
